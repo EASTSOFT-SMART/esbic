@@ -1,11 +1,10 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 21
     buildToolsVersion "23.0.2"
 
     defaultConfig {
-        applicationId "com.eastsoft.android.esbic"
         minSdkVersion 15
         targetSdkVersion 21
         versionCode 1
@@ -23,6 +22,5 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:21.0.3'
-    compile project(':esbic-presenter')
-
+    compile project(':esbic-model')
 }
