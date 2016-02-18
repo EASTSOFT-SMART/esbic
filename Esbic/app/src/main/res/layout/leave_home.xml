@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/callmanagement_bg1">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/width100"
+        android:background="@drawable/home_top_bg"
+        >
+        <ImageButton
+            android:id="@+id/leave_home_back"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/width75"
+            android:layout_width="@dimen/width100"
+            android:layout_height="@dimen/width35"
+            android:background="@drawable/top_back"/>
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+        <LinearLayout
+        android:layout_width="@dimen/width1000"
+        android:layout_height="@dimen/width550"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/callmanagement_bg2"
+        android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="@dimen/width400"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/width70"
+                android:layout_height="@dimen/width160"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="@dimen/width300"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="请输入密码"
+                    android:textSize="35px"
+                    android:textColor="#FFFFFF"
+                    android:layout_height="@dimen/width60" />
+                <LinearLayout
+                    android:layout_width="@dimen/width400"
+                    android:layout_height="@dimen/width70"
+                    android:orientation="horizontal"
+                    android:background="@drawable/input_box">
+                    <TextView
+                        android:id="@+id/num_one"
+                        android:textSize="30sp"
+                        android:layout_width="@dimen/width100"
+                        android:layout_height="@dimen/width70" />
+                    <TextView
+                        android:id="@+id/num_two"
+                        android:textSize="30sp"
+                        android:layout_width="@dimen/width100"
+                        android:layout_height="@dimen/width70" />
+                    <TextView
+                        android:id="@+id/num_three"
+                        android:textSize="30sp"
+                        android:layout_width="@dimen/width100"
+                        android:layout_height="@dimen/width70" />
+                    <TextView
+                        android:id="@+id/num_four"
+                        android:textSize="30sp"
+                        android:layout_width="@dimen/width100"
+                        android:layout_height="@dimen/width70" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="@dimen/width500"
+                android:layout_height="@dimen/width460"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+                <GridView
+                    android:id="@+id/leave_home_input_keyboard"
+                    android:numColumns="3"
+                    android:layout_marginLeft="@dimen/width70"
+                    android:horizontalSpacing="@dimen/width30"
+                    android:verticalSpacing="@dimen/width20"
+                    android:layout_width="@dimen/width400"
+                    android:listSelector="#00000000"
+                    android:layout_height="@dimen/width460"></GridView>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>

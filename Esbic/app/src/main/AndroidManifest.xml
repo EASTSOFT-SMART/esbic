@@ -1,13 +1,111 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.eastsoft.android.esbic">
+    package="com.eastsoft.android.esbic"
+    android:versionCode="1"
+    android:versionName="1.0"
+    android:installLocation="auto">
+
+    <uses-sdk
+        android:minSdkVersion="17"
+        android:targetSdkVersion="23"
+        />
+
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <!-- 以下是使用wifi访问网络所需要的权限-->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" ></uses-permission>
+    <uses-permission android:name="android.permission.WAKE_LOCK" ></uses-permission>
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen"
+        >
 
+
+        <activity android:name=".ativity.WelcomeActivity"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity android:name=".ativity.MainActivity"
+            android:screenOrientation="landscape">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER"></category>
+                <action android:name="android.intent.action.MAIN"></action>
+            </intent-filter>
+        </activity>
+        <activity android:name=".ativity.SmartHomeActivity"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity android:name=".ativity.LeaveHome"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity android:name=".ativity.CallMain"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity android:name=".ativity.CallManagementCenterActivity"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity android:name=".ativity.CallRecordActivity"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity android:name=".ativity.ConversationActivity"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity android:name=".ativity.MessageContentActivity"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity android:name=".ativity.MonitorActivity"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity android:name=".ativity.PushMessageActivity"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity android:name=".ativity.ScreenLightActivity"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity android:name=".ativity.VolumeActivity"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity android:name=".ativity.SettingActivity"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity android:name=".ativity.WifiSettingActivity"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity android:name=".ativity.AlarmRecordActivity"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity android:name=".ativity.SettingSecurityNeedPwdActivity"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity android:name=".ativity.SettingSecurityActivity"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity android:name=".ativity.SecurityAlterUserPwdActivity"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity android:name=".ativity.SettingDateActivity"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity android:name=".ativity.SettingRecoveryFactoryActivity"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity android:name=".ativity.SettingProjectQueryActivity"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity android:name=".ativity.SettingDeviceInfoActivity"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity android:name=".ativity.SettingProjectPassWordActivity"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity android:name=".ativity.SettingProjectSetActivity"
+            android:screenOrientation="landscape">
+        </activity>
     </application>
-
 </manifest>

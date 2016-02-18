@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_width="@dimen/width550"
+        android:layout_height="@dimen/width400"
+        android:orientation="vertical"
+        >
+        <ImageView
+            android:id="@+id/reset_icon"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/width25"
+            android:layout_width="@dimen/width100"
+            android:layout_height="@dimen/width100"
+            android:background="@drawable/reset_icon"/>
+        <LinearLayout
+            android:layout_width="@dimen/width430"
+            android:layout_height="@dimen/width100"
+            android:layout_marginTop="@dimen/width15"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/show_password"
+                android:layout_width="@dimen/width400"
+                android:layout_marginLeft="@dimen/width30"
+                android:layout_height="@dimen/width90"
+                android:text="确认恢复出厂设置？"
+                android:gravity="center"
+                android:textSize="@dimen/textsize35"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="@dimen/width500"
+            android:layout_height="@dimen/width100"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/width25"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/reset_cancel"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginLeft="@dimen/width50"
+                android:layout_width="@dimen/width150"
+                android:layout_height="@dimen/width80"
+                android:textSize="@dimen/textsize30"
+                android:text="取消"/>
+            <Button
+                android:id="@+id/reset_recovery"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/width100"
+                android:gravity="center"
+                android:layout_width="@dimen/width150"
+                android:layout_height="@dimen/width80"
+                android:textSize="@dimen/textsize30"
+                android:text="确定"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_width="@dimen/width480"
+        android:layout_height="@dimen/width130"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/record_from"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/width65"
+                android:textSize="@dimen/textsize27"
+                android:text="中心管理机"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/width65"
+                >
+
+                <TextView
+                    android:id="@+id/record_time"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_width="@dimen/width200"
+                    android:layout_height="@dimen/width65"
+                    android:textSize="@dimen/textsize27"
+                    android:text="2016.01.26"/>
+
+                <TextView
+                    android:id="@+id/record_status"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_width="@dimen/width200"
+                    android:layout_height="@dimen/width65"
+                    android:textSize="@dimen/textsize27"
+                    android:text="未连接"/>
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</RelativeLayout>

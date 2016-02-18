@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_width="@dimen/width550"
+        android:layout_height="@dimen/width500"
+        android:orientation="vertical">
+        <TextView
+            android:gravity="center|left"
+            android:layout_marginTop="@dimen/width20"
+            android:layout_width="@dimen/width550"
+            android:layout_height="@dimen/width100"
+            android:textSize="@dimen/textsize34"
+            android:text="① 房间号" />
+        <TextView
+            android:gravity="center|left"
+            android:layout_marginTop="@dimen/width20"
+            android:layout_width="@dimen/width550"
+            android:layout_height="@dimen/width100"
+            android:textSize="@dimen/textsize34"
+            android:text="② 楼层号+房间号"/>
+        <TextView
+            android:gravity="center|left"
+            android:layout_marginTop="@dimen/width20"
+            android:layout_width="@dimen/width550"
+            android:layout_height="@dimen/width100"
+            android:textSize="@dimen/textsize34"
+            android:text="③ 单元号+楼层号+房间号"/>
+        <TextView
+            android:gravity="center|left"
+            android:layout_marginTop="@dimen/width20"
+            android:layout_width="@dimen/width550"
+            android:layout_height="@dimen/width100"
+            android:textSize="@dimen/textsize34"
+            android:text="④ 楼栋号+单元号+楼层号+房间号"/>
+    </LinearLayout>
+
+</RelativeLayout>

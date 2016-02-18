@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="match_parent">
+
+<LinearLayout
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:layout_width="@dimen/width550"
+    android:layout_height="@dimen/width400"
+    android:orientation="vertical"
+    >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/width100"
+        android:layout_marginTop="@dimen/width25"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="Wifi名称"
+        android:textSize="@dimen/textsize35"/>
+    <LinearLayout
+        android:layout_width="@dimen/width430"
+        android:layout_height="@dimen/width100"
+        android:layout_marginTop="@dimen/width25"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/input_password"
+            android:layout_width="@dimen/width300"
+            android:layout_height="@dimen/width90"
+            android:layout_gravity="center"
+            android:hint="请输入wifi密码"
+            android:textSize="@dimen/textsize25"/>
+        <ImageButton
+            android:id="@+id/show_password"
+            android:layout_width="@dimen/width90"
+            android:layout_marginLeft="@dimen/width30"
+            android:layout_height="@dimen/width90"
+            android:background="@drawable/lock"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="@dimen/width500"
+        android:layout_height="@dimen/width100"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/width25"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/wifi_setting_cancel"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginLeft="@dimen/width50"
+            android:layout_width="@dimen/width150"
+            android:layout_height="@dimen/width80"
+            android:text="取消"/>
+        <Button
+            android:id="@+id/wifi_setting_connect"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/width100"
+            android:gravity="center"
+            android:layout_width="@dimen/width150"
+            android:layout_height="@dimen/width80"
+            android:text="连接"/>
+
+    </LinearLayout>
+</LinearLayout>
+
+</RelativeLayout>
