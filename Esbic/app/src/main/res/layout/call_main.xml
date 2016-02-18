@@ -114,7 +114,6 @@
                         android:id="@+id/tel_number"
                         android:textSize="25sp"
                         android:gravity="center|left"
-                        android:text=""
                         android:layout_gravity="center"
                         android:layout_width="@dimen/width260"
                         android:layout_height="@dimen/width75"

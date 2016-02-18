@@ -1,19 +1,14 @@
 package com.eastsoft.android.esbic.ativity;
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.widget.Button;
-
 import com.eastsoft.android.esbic.R;
 import com.eastsoft.android.esbic.fragment.SmartHomeFragment;
 import com.eastsoft.android.esbic.fragment.SmartHomeFragmentThree;
 import com.eastsoft.android.esbic.fragment.SmartHomeFragmentTwo;
-import com.eastsoft.android.esbic.model.util.adapter.MyFragmentPagerAdapter;
-import com.eastsoft.android.esbic.presenter.getviewadapter.GetMyFragmentPagerAdapter;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +18,7 @@ import java.util.List;
 public class SmartHomeActivity extends FragmentActivity {
     private ViewPager viewPager;
     private List<Fragment> viewList;
-    private MyFragmentPagerAdapter myFragmentPagerAdapter;
+    //private MyFragmentPagerAdapter myFragmentPagerAdapter;
     private int currentTab=0;
     private Button circleOne,circleTwo,circleThree;
     @Override
@@ -36,11 +31,11 @@ public class SmartHomeActivity extends FragmentActivity {
 
     }
     //从presenter层获取PageAdapter
-    private MyFragmentPagerAdapter getMyFragmentPagerAdapter(FragmentManager fm, List<Fragment> views) {
-        GetMyFragmentPagerAdapter getMyPageAdapter = new GetMyFragmentPagerAdapter();
-       return getMyPageAdapter.getAdapter(fm,views);
+    //private MyFragmentPagerAdapter getMyFragmentPagerAdapter(FragmentManager fm, List<Fragment> views) {
+     //   GetMyFragmentPagerAdapter getMyPageAdapter = new GetMyFragmentPagerAdapter();
+    //   return getMyPageAdapter.getAdapter(fm,views);
 
-    }
+    //}
     private void initButton(){
         circleOne=(Button)this.findViewById(R.id.button_one);
         circleTwo=(Button)this.findViewById(R.id.button_two);
@@ -71,8 +66,8 @@ public class SmartHomeActivity extends FragmentActivity {
         viewList.add(smartHomeFragment);
         viewList.add(smartHomeFragmentTwo);
         viewList.add(smartHomeFragmentThree);
-        myFragmentPagerAdapter=getMyFragmentPagerAdapter(this.getSupportFragmentManager(),viewList);
-        viewPager.setAdapter(myFragmentPagerAdapter);
+        //myFragmentPagerAdapter=getMyFragmentPagerAdapter(this.getSupportFragmentManager(),viewList);
+        //viewPager.setAdapter(myFragmentPagerAdapter);
         viewPager.setCurrentItem(0);//设置当前页为第一页
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override

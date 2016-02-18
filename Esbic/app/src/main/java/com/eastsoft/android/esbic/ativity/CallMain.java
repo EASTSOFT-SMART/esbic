@@ -44,9 +44,10 @@ public class CallMain extends BaseActivity implements View.OnClickListener,Adapt
     private String list[];
     private List<Map<String,Object>> mapList;
     private Intent intent;
-    private SimpleAdapter simpleAdapter,simpleAdapterTwo;
+    private SimpleAdapter inputKeyBoardAdapter;
     private LinearLayout linearLayout;
     private String number="";
+    private int[] icon;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,7 +69,8 @@ public class CallMain extends BaseActivity implements View.OnClickListener,Adapt
          help.setOnClickListener(this);
          //historyList.setAdapter();
          initAdapter();
-         inputBoard.setAdapter(simpleAdapter);
+         inputBoard.setAdapter(inputKeyBoardAdapter);
+         inputBoard.setOnItemClickListener(this);
 
     }
 
@@ -102,18 +104,19 @@ public class CallMain extends BaseActivity implements View.OnClickListener,Adapt
    //初始化Adapter
     public void initAdapter(){
         //SimpleAdapter simpleAdapter=new SimpleAdapter();
-        list=new String[]{"1","2","3","4","5","6","7","8","9","重播","0","删除"};
-        mapList=new ArrayList<Map<String,Object>>();
-        for (int i=0;i<list.length;i++){
+        icon=new int[]{R.drawable.num_one,R.drawable.num_two,R.drawable.num_three
+                ,R.drawable.num_four,R.drawable.num_five,R.drawable.num_six,R.drawable.num_seven,R.drawable.num_eight,
+                R.drawable.num_nine,R.drawable.num_clear_all,R.drawable.num_zero,R.drawable.num_delete};
+        mapList=new ArrayList<Map<String, Object>>();
+        for (int i=0;i<icon.length;i++){
             Map<String,Object> map=new HashMap<String,Object>();
-            map.put("number",list[i]);
+            map.put("number",icon[i]);
             mapList.add(map);
         }
-       simpleAdapter=new SimpleAdapter(this,mapList,R.layout.call_main_item,new String[]{
-              "number"},new int[]{R.id.input_kaybord_call_main});
+       inputKeyBoardAdapter=new SimpleAdapter(this,mapList,R.layout.input_keyboard_item,new String[]{
+              "number"},new int[]{R.id.keyboard_child});
 
     }
-
 
    private void showHelpDialog(){
        MyDialog myDialog=new MyDialog(CallMain.this);
@@ -144,11 +147,14 @@ public class CallMain extends BaseActivity implements View.OnClickListener,Adapt
             number+=String.valueOf(0);
             phoneNumber.setText(number);
         }
-        if (i==12){
+        if (i==11){
             number=phoneNumber.getText().toString();
             int numLength=number.length();
-            if (numLength>=2){
-                String num=number.substring(numLength-2,numLength-1);
+            if (numLength>=3){
+                String num=number.substring(numLength-3,numLength-2);
+                phoneNumber.setText(num);
+            }else if (numLength==2){
+                String num =number.substring(0);
                 phoneNumber.setText(num);
             }else{
                 phoneNumber.setText("");
