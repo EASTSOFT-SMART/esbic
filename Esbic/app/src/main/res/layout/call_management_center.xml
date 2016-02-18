@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/callmanagement_bg1">
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/width100"
+    android:background="@drawable/home_top_bg"
+    >
+    <ImageButton
+        android:id="@+id/call_center_management_back"
+        android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/width75"
+        android:layout_width="@dimen/width100"
+        android:layout_height="@dimen/width35"
+        android:background="@drawable/top_back"/>
+
+</LinearLayout>
+    <!--第二大部分-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+     <LinearLayout
+         android:layout_width="@dimen/width1000"
+         android:layout_height="@dimen/width550"
+         android:layout_centerHorizontal="true"
+         android:layout_centerVertical="true"
+         android:background="@drawable/callmanagement_bg2"
+         android:orientation="horizontal">
+
+         <RelativeLayout
+             android:layout_width="@dimen/width500"
+             android:layout_height="match_parent"
+             >
+             <LinearLayout
+                 android:layout_width="@dimen/width400"
+                 android:layout_height="@dimen/width200"
+                 android:layout_centerHorizontal="true"
+                 android:layout_centerVertical="true"
+                 android:orientation="vertical">
+                 <TextView
+                     android:id="@+id/is_calling_center"
+                     android:layout_width="@dimen/width400"
+                     android:layout_height="@dimen/width100"
+                     android:textSize="30sp"
+                     android:gravity="center"
+                     android:visibility="visible"
+                     android:textColor="#FFFFFF"
+                     android:text="正在呼叫管理中心..."/>
+
+                 <TextView
+                     android:id="@+id/time"
+                     android:gravity="center"
+                     android:layout_width="@dimen/width400"
+                     android:layout_height="@dimen/width100"
+                     android:textSize="30sp"
+                     android:textColor="#FFFFFF"
+                     android:text="00:00"/>
+
+             </LinearLayout>
+             <LinearLayout
+                 android:layout_width="@dimen/width300"
+                 android:layout_height="@dimen/width240"
+                 android:layout_centerHorizontal="true"
+                 android:layout_centerVertical="true"
+                 android:visibility="gone"
+                 android:orientation="vertical">
+                 <TextView
+                     android:id="@+id/is_comm_center"
+                     android:layout_width="@dimen/width300"
+                     android:layout_height="@dimen/width80"
+                     android:textSize="30sp"
+                     android:gravity="center"
+                     android:textColor="#FFFFFF"
+                     android:visibility="visible"
+                     android:text="正在与"/>
+                 <TextView
+                     android:layout_width="@dimen/width300"
+                     android:layout_height="@dimen/width80"
+                     android:textSize="30sp"
+                     android:gravity="center"
+                     android:textColor="#FFFFFF"
+                     android:visibility="visible"
+                     android:text="管理中心通话"/>
+
+                 <TextView
+                     android:id="@+id/comm_time"
+                     android:layout_width="@dimen/width300"
+                     android:layout_height="@dimen/width80"
+                     android:textSize="35sp"
+                     android:textColor="#FFFFFF"
+                     android:gravity="center"
+                     android:text="00:00"/>
+
+             </LinearLayout>
+
+
+         </RelativeLayout>
+
+         <RelativeLayout
+             android:layout_width="@dimen/width500"
+             android:layout_height="match_parent">
+             <LinearLayout
+                 android:layout_width="@dimen/width200"
+                 android:layout_height="@dimen/width80"
+                 android:layout_centerVertical="true"
+                 android:layout_centerHorizontal="true"
+                 android:orientation="vertical">
+
+             </LinearLayout>
+             <ImageButton
+                 android:id="@+id/hang_up"
+                 android:layout_width="@dimen/width270"
+                 android:layout_height="@dimen/width70"
+                 android:layout_centerVertical="true"
+                 android:layout_centerHorizontal="true"
+                 android:background="@drawable/hangup_bg"/>
+
+
+         </RelativeLayout>
+
+     </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

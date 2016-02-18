@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/width120"
+        android:orientation="horizontal">
+        <ImageButton
+            android:id="@+id/wifi_setting_back"
+            android:layout_marginLeft="@dimen/width40"
+            android:layout_gravity="center"
+            android:layout_width="@dimen/width100"
+            android:layout_height="@dimen/width100"
+            android:background="@drawable/back"/>
+        <TextView
+            android:layout_gravity="center"
+            android:gravity="center|left"
+            android:layout_width="@dimen/width150"
+            android:layout_height="@dimen/width100"
+            android:textSize="@dimen/textsize30"
+            android:text="主页面"/>
+        <TextView
+            android:layout_marginLeft="@dimen/width270"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_width="@dimen/width150"
+            android:layout_height="@dimen/width100"
+            android:textSize="@dimen/textsize40"
+            android:text="Wifi设置"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/width150"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/width100"
+            android:layout_width="@dimen/width400"
+            android:layout_height="@dimen/width130"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/wifi_name"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/width10"
+                android:layout_width="@dimen/width300"
+                android:layout_height="@dimen/width50"
+                android:textSize="@dimen/textsize25"
+                android:text="wifi名称"/>
+            <TextView
+                android:id="@+id/wifi_status"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/width10"
+                android:layout_width="@dimen/width300"
+                android:layout_height="@dimen/width50"
+                android:textSize="@dimen/textsize25"
+                android:text="未连接"/>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/add_lock"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/width330"
+            android:layout_width="@dimen/width70"
+            android:layout_height="@dimen/width70"
+            android:visibility="invisible"
+            android:background="@drawable/lock"/>
+        <ImageView
+            android:id="@+id/wifi_intensity"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/width80"
+            android:layout_width="@dimen/width70"
+            android:layout_height="@dimen/width80"
+            android:visibility="invisible"
+            android:background="@drawable/wifi"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/width380"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/width100">
+            <TextView
+                android:layout_marginLeft="@dimen/width100"
+                android:layout_width="@dimen/width300"
+                android:layout_gravity="center"
+                android:layout_height="@dimen/width80"
+                android:textSize="@dimen/textsize25"
+                android:gravity="center"
+                android:text="附近的Wifi"/>
+
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/wifi_list"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="@dimen/width100"
+            android:layout_height="@dimen/width250">
+
+        </ListView>
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/rescan_wifi"
+        android:layout_gravity="center"
+        android:layout_width="@dimen/width100"
+        android:layout_height="@dimen/width70"
+        android:background="@drawable/scan_wifi"/>
+
+
+</LinearLayout>

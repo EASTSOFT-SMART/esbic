@@ -3,4 +3,10 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="heise">#0F0F0F</color>
+    <color name="danlanse">#00EEEE</color>
+    <color name="danlanse_more">#00E5EE</color>
+    <color name="huise">#949494</color>
+    <color name="zise">#9A32CD</color>
+    <color name="hongse">#CD0000</color>
 </resources>

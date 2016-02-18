@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_width="@dimen/width380"
+        android:layout_height="@dimen/width150"
+        android:orientation="horizontal">
+      <RelativeLayout
+          android:id="@+id/type"
+          android:layout_marginLeft="@dimen/width20"
+          android:layout_gravity="center"
+          android:layout_width="@dimen/width120"
+          android:layout_height="@dimen/width120">
+          <ImageView
+              android:id="@+id/read_status"
+              android:layout_alignParentRight="true"
+              android:layout_width="@dimen/width30"
+              android:layout_height="@dimen/width30"
+              android:background="#009956"/>
+      </RelativeLayout>
+        <LinearLayout
+            android:layout_marginLeft="@dimen/width30"
+            android:layout_width="@dimen/width200"
+            android:layout_height="@dimen/width150"
+            android:orientation="vertical">
+            <TextView
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:id="@+id/item_content"
+                android:textSize="@dimen/width25"
+                android:layout_width="@dimen/width200"
+                android:layout_height="@dimen/width65"
+                android:text="交物业费"/>
+            <TextView
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_width="@dimen/width200"
+                android:layout_height="@dimen/width65"
+                android:textSize="@dimen/width25"
+                android:text="2015年3月2日"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

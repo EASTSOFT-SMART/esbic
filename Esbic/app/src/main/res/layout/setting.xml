@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/callmanagement_bg1">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/width100"
+        android:background="@drawable/home_top_bg"
+        >
+        <ImageButton
+            android:id="@+id/setting_back"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/width75"
+            android:layout_width="@dimen/width100"
+            android:layout_height="@dimen/width35"
+            android:background="@drawable/top_back"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/width450"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_gravity="center"
+                android:layout_width="@dimen/width1000"
+                android:layout_height="@dimen/width225">
+                <Button
+                    android:id="@+id/security_setting"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/width40"
+                    android:layout_width="@dimen/width200"
+                    android:layout_height="@dimen/width150"
+                    android:textSize="@dimen/textsize26"
+                    android:text="安防设置"/>
+                <Button
+                    android:id="@+id/user_password"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/width40"
+                    android:layout_width="@dimen/width200"
+                    android:textSize="@dimen/textsize26"
+                    android:text="用户密码"
+                    android:layout_height="@dimen/width150" />
+                <Button
+                    android:id="@+id/date_setting"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/width40"
+                    android:layout_width="@dimen/width200"
+                    android:layout_height="@dimen/width150"
+                    android:textSize="@dimen/textsize26"
+                    android:text="时间设置"/>
+                <Button
+                    android:id="@+id/recover"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/width40"
+                    android:layout_width="@dimen/width200"
+                    android:layout_height="@dimen/width150"
+                    android:textSize="@dimen/textsize26"
+                    android:text="恢复出厂"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_gravity="center"
+                android:layout_width="@dimen/width1000"
+                android:layout_height="@dimen/width225">
+                <Button
+                    android:id="@+id/project_query"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/width40"
+                    android:layout_width="@dimen/width200"
+                    android:layout_height="@dimen/width150"
+                    android:textSize="@dimen/textsize26"
+                    android:text="工程查询"/>
+                <Button
+                    android:id="@+id/project_setting"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/width40"
+                    android:layout_width="@dimen/width200"
+                    android:layout_height="@dimen/width150"
+                    android:textSize="@dimen/textsize26"
+                    android:text="工程设置"/>
+                <Button
+                    android:id="@+id/project_password"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/width40"
+                    android:layout_width="@dimen/width200"
+                    android:layout_height="@dimen/width150"
+                    android:textSize="@dimen/textsize26"
+                    android:text="工程密码 "/>
+                <Button
+                    android:id="@+id/device_information"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/width40"
+                    android:layout_width="@dimen/width200"
+                    android:layout_height="@dimen/width150"
+                    android:textSize="@dimen/textsize26"
+                    android:text="设备信息"/>
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>

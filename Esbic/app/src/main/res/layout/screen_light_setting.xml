@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/width100">
+        <ImageButton
+            android:id="@+id/screen_light_back"
+            android:layout_gravity="center"
+            android:layout_width="@dimen/width100"
+            android:layout_height="@dimen/width50" />
+        </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_width="@dimen/width500"
+            android:layout_height="@dimen/width100">
+            <ImageButton
+                android:id="@+id/screen_light_decrease"
+                android:layout_width="@dimen/width100"
+                android:layout_height="match_parent" />
+            <SeekBar
+                android:id="@+id/screen_light_seekbar"
+                android:layout_width="@dimen/width300"
+                android:layout_height="@dimen/width60" />
+            <ImageButton
+                android:id="@+id/screen_light_add"
+                android:layout_width="@dimen/width100"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+</LinearLayout>

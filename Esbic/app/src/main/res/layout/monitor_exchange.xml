@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_width="@dimen/width200"
+        android:layout_height="@dimen/width100"
+        android:orientation="vertical">
+        <ImageButton
+            android:id="@+id/close_monitor"
+            android:layout_gravity="center"
+            android:layout_width="@dimen/width100"
+            android:layout_height="@dimen/width40"
+            />
+        <TextView
+            android:gravity="center"
+            android:id="@+id/monitor_time"
+            android:layout_gravity="center"
+            android:layout_width="@dimen/width100"
+            android:layout_height="@dimen/width30"
+            android:text="00:00"
+            android:textSize="@dimen/width30"/>
+        <TextView
+            android:gravity="center"
+            android:id="@+id/place"
+            android:layout_gravity="center"
+            android:layout_width="@dimen/width150"
+            android:layout_height="@dimen/width30"
+            android:text="单元正门"
+            android:textSize="@dimen/textsize28"/>
+
+
+    </LinearLayout>
+
+</RelativeLayout>
