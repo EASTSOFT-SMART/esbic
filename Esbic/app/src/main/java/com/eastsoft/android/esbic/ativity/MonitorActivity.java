@@ -24,9 +24,8 @@ public class MonitorActivity extends Activity implements AdapterView.OnItemSelec
         AdapterView.OnItemClickListener{
     private SurfaceView surfaceView;
     private GridView gridView;
-    private int hangUpIcon[];
     private ImageButton back;
-    private String placeName[],monitorTime[],state[];
+    private String placeName[];
     private List<Map<String,Object>> mapList;
     private SimpleAdapter simpleAdapter;
     @Override
@@ -40,13 +39,10 @@ public class MonitorActivity extends Activity implements AdapterView.OnItemSelec
         back=(ImageButton)this.findViewById(R.id.monitor_back);
         surfaceView=(SurfaceView)this.findViewById(R.id.monitor_place);
         gridView=(GridView)this.findViewById(R.id.exchange_monitor);
-        hangUpIcon=initIcon();
         placeName=new String[]{"单元正门","单元车库","单元侧门","单元右门","小区正门","小区侧门","小区","小区"};
-        monitorTime=new String[]{"00:00","00:00","00:00","00:00","00:00","00:00","00:00","00:00"};
-        state=new String[]{"空闲","空闲","空闲","空闲","空闲","空闲","空闲","空闲"};
         mapList=getData();
-        simpleAdapter=new SimpleAdapter(this,mapList,R.layout.monitor_exchange,new String[]{"image"
-                ,"place","monitorTime"},new int[]{R.id.close_monitor,R.id.place,R.id.monitor_time});
+        simpleAdapter=new SimpleAdapter(this,mapList,R.layout.monitor_exchange,new String[]{
+                "place"},new int[]{R.id.place});
         gridView.setAdapter(simpleAdapter);
         gridView.setOnItemClickListener(this);
         gridView.setOnItemSelectedListener(this);
@@ -59,23 +55,12 @@ public class MonitorActivity extends Activity implements AdapterView.OnItemSelec
     }
 
 
-    //获取挂断的图标
-    private int[] initIcon(){
-        int[] icon=new int[8];
-        for (int i=0;i<icon.length;i++){
-            icon[i]=R.drawable.ic_launcher;
-        }
-        return icon;
-    }
     //获取List<Map<String,Object>>数据
     private List<Map<String,Object>> getData(){
         List<Map<String,Object>> mapList=new ArrayList<Map<String,Object>>();
-          for (int i=0;i<hangUpIcon.length;i++){
+          for (int i=0;i<placeName.length;i++){
               Map<String,Object> map=new HashMap<String,Object>();
-              map.put("image",hangUpIcon[i]);
               map.put("place",placeName[i]);
-              map.put("state",state[i]);
-              map.put("monitorTime",monitorTime[i]);
               mapList.add(map);
         }
      return mapList;

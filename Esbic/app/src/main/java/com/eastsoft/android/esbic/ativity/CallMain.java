@@ -77,10 +77,13 @@ public class CallMain extends BaseActivity implements View.OnClickListener,Adapt
     @Override
     public void onClick(View view) {
         if (view.getId()==back.getId()){
+            playButtonMusic(musicButtonId);
             this.finish();
         }
         if (view.getId()==call.getId()){
-            if (!phoneNumber.equals("")){
+            String callNumber=phoneNumber.getText().toString();
+            playButtonMusic(musicButtonId);
+            if (!callNumber.equals("")){
                 intent=getIntents();
                 intent.setClass(CallMain.this,ConversationActivity.class);
                 intent.putExtra("roomNumber", phoneNumber.getText());
@@ -91,11 +94,13 @@ public class CallMain extends BaseActivity implements View.OnClickListener,Adapt
 
         }
         if (view.getId()==history.getId()){
+             playButtonMusic(musicButtonId);
              linearLayout.setVisibility(View.GONE);
              historyList.setVisibility(View.VISIBLE);
 
         }
         if (view.getId()==help.getId()){
+            playButtonMusic(musicButtonId);
             linearLayout.setVisibility(View.VISIBLE);
             historyList.setVisibility(View.GONE);
         }
@@ -118,27 +123,28 @@ public class CallMain extends BaseActivity implements View.OnClickListener,Adapt
 
     }
 
-   private void showHelpDialog(){
-       MyDialog myDialog=new MyDialog(CallMain.this);
-       final  Dialog dialog=myDialog.getDialog();
-       View view=myDialog.getDialogView(R.layout.call_main_help);
-       dialog.setContentView(view);
-       Window  dialogWindow=dialog.getWindow();
-       WindowManager.LayoutParams lp=dialogWindow.getAttributes();
-       dialogWindow.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.CENTER_VERTICAL);
-       lp.width=ViewGroup.LayoutParams.WRAP_CONTENT;
-       lp.height= ViewGroup.LayoutParams.WRAP_CONTENT;
-       dialogWindow.setAttributes(lp);
-       dialog.show();
-   }
+   //private void showHelpDialog(){
+   //    MyDialog myDialog=new MyDialog(CallMain.this);
+   //    final  Dialog dialog=myDialog.getDialog();
+   //    View view=myDialog.getDialogView(R.layout.call_main_help);
+   //    dialog.setContentView(view);
+   //    Window  dialogWindow=dialog.getWindow();
+   //    WindowManager.LayoutParams lp=dialogWindow.getAttributes();
+   //    dialogWindow.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.CENTER_VERTICAL);
+   //    lp.width=ViewGroup.LayoutParams.WRAP_CONTENT;
+   //    lp.height= ViewGroup.LayoutParams.WRAP_CONTENT;
+   //    dialogWindow.setAttributes(lp);
+   //    dialog.show();
+   //}
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-         if (i<9){
+        playNumberSingByNumber(i);
+        if (i<9){
              number=phoneNumber.getText().toString();
              number+=String.valueOf(i+1);
              phoneNumber.setText(number);
-         }
+        }
         if (i==9){
             phoneNumber.setText("");
         }
@@ -150,11 +156,8 @@ public class CallMain extends BaseActivity implements View.OnClickListener,Adapt
         if (i==11){
             number=phoneNumber.getText().toString();
             int numLength=number.length();
-            if (numLength>=3){
-                String num=number.substring(numLength-3,numLength-2);
-                phoneNumber.setText(num);
-            }else if (numLength==2){
-                String num =number.substring(0);
+            if (numLength>=2){
+                String num=number.substring(0,numLength-1);
                 phoneNumber.setText(num);
             }else{
                 phoneNumber.setText("");
@@ -163,7 +166,49 @@ public class CallMain extends BaseActivity implements View.OnClickListener,Adapt
         }
     }
 
+   //判断输入键盘按的是哪一个按键
+    private void playNumberSingByNumber(int num){
+        if (num==0){
+            playButtonMusic(numOneMusicId);
+        }
+        if (num==1){
+            playButtonMusic(numTwoMusicId);
+        }
+        if (num==2){
+            playButtonMusic(numThreeMusicId);
+        }
+        if (num==3){
+            playButtonMusic(numFourMusicId);
+        }
+        if (num==4){
+            playButtonMusic(numFiveMusicId);
+        }
+        if (num==5){
+            playButtonMusic(numSixMusicId);
+        }
+        if (num==6){
+            playButtonMusic(numSevenMusicId);
+        }
+        if (num==7){
+            playButtonMusic(numEightMusicId);
+        }
+        if (num==8){
+            playButtonMusic(numNineMusicId);
+        }
+        if (num==9){
+            playButtonMusic(musicButtonId);
+        }
+        if (num==10){
+            playButtonMusic(numZeroMusicId);
+        }
+        if (num==11){
+            playButtonMusic(musicButtonId);
+        }
 
-
+    }
+    //拉去通话历史记录
+    private List<Map<Object,Object>> pullHistoryRecord(){
+        return null;
+    }
 
 }

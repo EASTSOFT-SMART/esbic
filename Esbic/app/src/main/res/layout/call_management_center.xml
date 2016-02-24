@@ -49,14 +49,15 @@
                      android:textColor="#FFFFFF"
                      android:text="正在呼叫管理中心..."/>
 
-                 <TextView
-                     android:id="@+id/time"
+
+                 <Chronometer
+                     android:id="@+id/timer"
                      android:gravity="center"
                      android:layout_width="@dimen/width400"
                      android:layout_height="@dimen/width100"
                      android:textSize="30sp"
                      android:textColor="#FFFFFF"
-                     android:text="00:00"/>
+                     android:text="00:00" />
 
              </LinearLayout>
              <LinearLayout
@@ -109,7 +110,7 @@
                  android:orientation="vertical">
 
              </LinearLayout>
-             <ImageButton
+             <Button
                  android:id="@+id/hang_up"
                  android:layout_width="@dimen/width270"
                  android:layout_height="@dimen/width70"

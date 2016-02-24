@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/monitor_bg">
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="67px"
+        android:background="@drawable/home_top_bg">
+        <ImageButton
+            android:layout_width="57px"
+            android:layout_height="19px"
+            android:layout_gravity="center"
+            android:layout_marginLeft="48px"
+            android:background="@drawable/top_back"/>
+    </com.zhy.autolayout.AutoLinearLayout>
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <SurfaceView
+            android:layout_width="601px"
+            android:layout_height="421px"
+            android:layout_marginLeft="48px"
+            android:layout_marginTop="58px"
+            android:background="@drawable/video_bg"/>
+        <LinearLayout
+            android:layout_width="329px"
+            android:layout_height="353px"
+            android:layout_marginTop="91px"
+            android:layout_marginRight="48px"
+            android:background="@drawable/right_bg"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="45sp"
+                android:text="5号楼6单元"
+                android:textColor="#ffffff"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_marginTop="45px"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="9号楼门口机呼叫"
+                android:textColor="#ffffff"
+                android:gravity="center"
+                android:layout_marginTop="19px"
+                android:layout_gravity="center"
+                android:textSize="45sp"/>
+            <Button
+                android:layout_width="@dimen/width60"
+                android:layout_height="@dimen/width60"
+                android:text="9"
+                android:background="@drawable/num_five"/>
+
+        </LinearLayout>
+    </com.zhy.autolayout.AutoLinearLayout>
+
+
+
+</LinearLayout>

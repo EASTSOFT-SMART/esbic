@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextClock;
 import android.widget.TextView;
 import com.eastsoft.android.esbic.R;
+import com.eastsoft.android.esbic.util.BoardCastFilterInfo;
 import com.eastsoft.android.esbic.util.QueryWeatherInformation;
 import com.eastsoft.android.esbic.util.Weather;
 import com.eastsoft.android.esbic.util.WeatherIcon;
@@ -25,12 +26,12 @@ import java.util.Date;
  */
 public class MainActivity extends BaseActivity implements View.OnClickListener {
     private Button message,callRecord,alarmRecord,voice,screenBrightness,wifi,
-            leaveHome,callManagement,monitor,callOtherUser,setting;
+            leaveHome,callManagement,monitor,callOtherUser,setting,callElevator;
     private TextView weather,week,yearMonthDay;
     private ImageView weatherIcon,hourFront,hourAfter,timeIcon,minuteFront,minuterAfter;
     private Dialog progressDialog;
     private String cityName;
-    private Handler handler;
+    private Handler  handler;
     private Intent intent;
     private Date now;
     private TextClock clock;
@@ -88,6 +89,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         monitor=(Button)this.findViewById(R.id.monitor_main);
         callOtherUser=(Button)this.findViewById(R.id.call_other_user);
         setting=(Button)this.findViewById(R.id.set);
+        callElevator=(Button)this.findViewById(R.id.call_elevator);
         yearMonthDay=(TextView) this.findViewById(R.id.year_mouth_day);
         week=(TextView)this.findViewById(R.id.week);
         message.setOnClickListener(this);
@@ -104,6 +106,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         callManagement.setOnClickListener(this);
         monitor.setOnClickListener(this);
         setting.setOnClickListener(this);
+        callElevator.setOnClickListener(this);
         callOtherUser.setOnClickListener(this);
         //progressDialog=new AlertDialog.Builder(this).setTitle("数据读取中").
         //        setMessage("正在读取数据").create();
@@ -114,6 +117,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         week.setText(new SimpleDateFormat("E").format(now));
 
     }
+
+
+
 
     @Override
     public void onClick(View view) {
@@ -126,6 +132,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             playMusic();
             intent.setClass(MainActivity.this,CallRecordActivity.class);
             startActivity(intent);
+
         }
         if(view.getId()==alarmRecord.getId()){
             playMusic();
@@ -171,6 +178,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         if (view.getId()==callOtherUser.getId()){
             playMusic();
             intent.setClass(MainActivity.this,CallMain.class);
+            startActivity(intent);
+        }
+        if (view.getId()==callElevator.getId()){
+            intent.setClass(MainActivity.this,OnCallActivity.class);
             startActivity(intent);
         }
     }

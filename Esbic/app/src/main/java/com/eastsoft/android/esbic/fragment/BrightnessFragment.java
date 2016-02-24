@@ -9,7 +9,6 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.eastsoft.android.esbic.R;
-import com.eastsoft.android.esbic.adapter.MyBrightnessAdapter;
 
 /**
  * Created by sofa on 2016/1/27.

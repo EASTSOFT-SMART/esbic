@@ -10,7 +10,7 @@
         android:background="@drawable/home_top_bg"
         >
         <ImageButton
-            android:id="@+id/back"
+            android:id="@+id/conversation_back"
             android:layout_gravity="center"
             android:layout_marginLeft="@dimen/width75"
             android:layout_width="@dimen/width100"
@@ -44,14 +44,15 @@
                 android:textSize="@dimen/textsize30"
                 android:layout_height="@dimen/width100"
                 android:text="正在和XXX通话"/>
-            <TextView
+
+            <Chronometer
                 android:id="@+id/conversation_time"
                 android:layout_width="match_parent"
                 android:textSize="@dimen/textsize30"
                 android:gravity="center"
                 android:textColor="#FFFFFF"
                 android:layout_height="@dimen/width100"
-                android:text="00:00"/>
+                />
         </LinearLayout>
 
 

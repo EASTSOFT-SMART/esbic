@@ -3,33 +3,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <LinearLayout
+        android:id="@+id/monitor_background"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_width="@dimen/width200"
-        android:layout_height="@dimen/width100"
-        android:orientation="vertical">
-        <ImageButton
-            android:id="@+id/close_monitor"
-            android:layout_gravity="center"
-            android:layout_width="@dimen/width100"
-            android:layout_height="@dimen/width40"
-            />
+        android:layout_width="@dimen/width206"
+        android:layout_height="@dimen/width111"
+        android:orientation="vertical"
+        android:background="@drawable/monitor_display">
         <TextView
+            android:id="@+id/monitor_state"
+            android:layout_width="@dimen/width40"
+            android:layout_height="@dimen/width18"
+            android:layout_marginLeft="@dimen/width96"
+            android:layout_marginTop="@dimen/width7"
+            android:textSize="@dimen/textsize18"
             android:gravity="center"
+            android:textColor="#ffffff"
+            android:text="监视"
+            />
+        <Chronometer
             android:id="@+id/monitor_time"
             android:layout_gravity="center"
             android:layout_width="@dimen/width100"
-            android:layout_height="@dimen/width30"
-            android:text="00:00"
-            android:textSize="@dimen/width30"/>
+            android:layout_marginTop="@dimen/width23"
+            android:layout_height="wrap_content"
+            style="@style/text_18_ffffff"/>
+
         <TextView
-            android:gravity="center"
-            android:id="@+id/place"
+            android:id="@+id/monitor_place"
             android:layout_gravity="center"
+            android:layout_marginTop="@dimen/width10"
             android:layout_width="@dimen/width150"
-            android:layout_height="@dimen/width30"
+            android:layout_height="wrap_content"
             android:text="单元正门"
-            android:textSize="@dimen/textsize28"/>
+            style="@style/text_18_ffffff"/>
 
 
     </LinearLayout>

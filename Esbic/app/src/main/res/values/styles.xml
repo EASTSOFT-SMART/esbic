@@ -52,6 +52,30 @@
         <item name="android:textSize">@dimen/textsize33</item>
     </style>
 
+    <style name="text_24_ffffff">
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">@dimen/textsize24</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="text_20_ffffff">
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">@dimen/textsize20</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="text_25_ffffff">
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">@dimen/textsize25</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="text_18_ffffff">
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">@dimen/textsize18</item>
+        <item name="android:gravity">center</item>
+    </style>
+
     <style name="text_16_444">
         <item name="android:textColor">#444</item>
         <item name="android:textSize">@dimen/textsize16</item>

@@ -1,44 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/monitor_bg">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/width100"
+        android:layout_height="@dimen/width93"
         android:background="@drawable/home_top_bg"
         >
         <ImageButton
             android:id="@+id/monitor_back"
             android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/width75"
-            android:layout_width="@dimen/width100"
-            android:layout_height="@dimen/width35"
+            android:layout_marginLeft="@dimen/width50"
+            android:layout_width="@dimen/width36"
+            android:layout_height="@dimen/width81"
             android:background="@drawable/top_back"/>
+        <TextView
+            android:layout_width="@dimen/width50"
+            android:layout_height="@dimen/width27"
+            android:layout_marginTop="@dimen/width30"
+            style="@style/text_25_ffffff"
+            android:text="返回"/>
 
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-
+        android:layout_height="match_parent"
+        >
+        <LinearLayout
+            android:layout_width="@dimen/width751"
+            android:layout_height="@dimen/width526"
+            android:layout_marginLeft="@dimen/width48"
+            android:layout_marginTop="@dimen/width58"
+            android:background="@drawable/monitor_video_bg">
             <SurfaceView
+                android:id="@+id/monitor_video"
                 android:layout_gravity="center"
-                android:id="@+id/monitor_place"
-                android:layout_marginLeft="@dimen/width75"
-                android:layout_width="@dimen/width600"
-                android:layout_height="@dimen/width500" />
+                android:layout_width="@dimen/width700"
+                android:layout_height="@dimen/width526" />
 
-
-
-
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="@dimen/width412"
+            android:layout_height="@dimen/width440"
+            android:layout_gravity="center"
+            >
             <GridView
                 android:id="@+id/exchange_monitor"
-                android:layout_width="@dimen/width400"
-                android:layout_marginLeft="@dimen/width75"
                 android:layout_gravity="center"
                 android:numColumns="2"
+                android:layout_width="@dimen/width412"
                 android:layout_height="@dimen/width400"></GridView>
-
+        </LinearLayout>
 
     </LinearLayout>
 

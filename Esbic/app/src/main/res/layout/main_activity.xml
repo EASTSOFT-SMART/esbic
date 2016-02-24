@@ -7,7 +7,7 @@
 <!--第一大块-->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/width70"
+        android:layout_height="@dimen/width93"
         android:orientation="horizontal"
         android:background="@drawable/message_bg"
         >
@@ -15,64 +15,62 @@
             android:id="@+id/message"
             android:layout_gravity="center"
             android:layout_marginLeft="@dimen/width105"
-            android:layout_width="@dimen/width105"
-            android:layout_height="@dimen/width70"
-            android:textSize="@dimen/textsize26"
+            android:layout_width="@dimen/width71"
+            android:layout_height="@dimen/width47"
             android:background="@drawable/message"/>
         <Button
             android:id="@+id/call_record"
-            android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/width50"
-            android:layout_width="@dimen/width105"
-            android:layout_height="@dimen/width70"
+            android:layout_marginTop="@dimen/width23"
+            android:layout_marginLeft="@dimen/width98"
+            android:layout_width="@dimen/width71"
+            android:layout_height="@dimen/width47"
             android:textSize="@dimen/textsize26"
             android:background="@drawable/call_record"
             />
         <Button
             android:id="@+id/alarm_record"
-            android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/width50"
-            android:layout_width="@dimen/width105"
-            android:layout_height="@dimen/width70"
+            android:layout_marginTop="@dimen/width23"
+            android:layout_marginLeft="@dimen/width98"
+            android:layout_width="@dimen/width71"
+            android:layout_height="@dimen/width47"
             android:textSize="@dimen/textsize26"
             android:background="@drawable/alarm_record"
            />
         <Button
             android:id="@+id/wifi"
-            android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/width50"
-            android:layout_width="@dimen/width105"
-            android:layout_height="@dimen/width70"
+            android:layout_marginTop="@dimen/width23"
+            android:layout_marginLeft="@dimen/width98"
+            android:layout_width="@dimen/width71"
+            android:layout_height="@dimen/width47"
             android:textSize="@dimen/textsize26"
             android:background="@drawable/wifi_setting"
             />
         <Button
             android:id="@+id/volume"
-            android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/width50"
-            android:layout_width="@dimen/width105"
-            android:layout_height="@dimen/width70"
+            android:layout_marginTop="@dimen/width23"
+            android:layout_marginLeft="@dimen/width98"
+            android:layout_width="@dimen/width71"
+            android:layout_height="@dimen/width47"
             android:textSize="@dimen/textsize26"
             android:background="@drawable/volume_setting"
             />
         <Button
             android:id="@+id/brightness"
-            android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/width50"
-            android:layout_width="@dimen/width105"
-            android:layout_height="@dimen/width70"
+            android:layout_marginTop="@dimen/width23"
+            android:layout_marginLeft="@dimen/width98"
+            android:layout_width="@dimen/width71"
+            android:layout_height="@dimen/width47"
             android:textSize="@dimen/textsize26"
             android:background="@drawable/light_setting"
             />
         <Button
             android:id="@+id/set"
-            android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/width50"
-            android:layout_width="@dimen/width105"
-            android:layout_height="@dimen/width70"
+            android:layout_marginTop="@dimen/width23"
+            android:layout_marginLeft="@dimen/width98"
+            android:layout_width="@dimen/width71"
+            android:layout_height="@dimen/width47"
             android:textSize="@dimen/textsize26"
             android:background="@drawable/setting" />
-
     </LinearLayout>
 
 
@@ -84,10 +82,10 @@
     android:orientation="horizontal">
     <!--第二大块左边部分-->
     <LinearLayout
-        android:layout_width="@dimen/width480"
-        android:layout_height="@dimen/width480"
-        android:layout_marginTop="@dimen/width80"
-        android:layout_marginLeft="@dimen/width120"
+        android:layout_width="@dimen/width489"
+        android:layout_height="@dimen/width501"
+        android:layout_marginTop="@dimen/width121"
+        android:layout_marginLeft="@dimen/width102"
         android:orientation="vertical"
         android:background="@drawable/bg"
         >
@@ -166,60 +164,122 @@
 
        <!--第二部分右边开始-->
         <LinearLayout
-            android:layout_width="@dimen/width550"
-            android:layout_height="@dimen/width380"
-            android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/width50"
+            android:layout_width="@dimen/width520"
+            android:layout_height="@dimen/width386"
+            android:layout_marginTop="@dimen/width173"
+            android:layout_marginLeft="@dimen/width67"
             android:orientation="vertical">
             <LinearLayout
-                android:layout_width="@dimen/width550"
-                android:layout_height="@dimen/width190"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/width170"
                 android:orientation="horizontal">
-                <Button
-                    android:id="@+id/monitor_main"
-                    android:layout_gravity="center"
-                    android:layout_width="@dimen/width120"
-                    android:layout_height="@dimen/width150"
-                    android:layout_marginLeft="@dimen/width47"
-                    android:background="@drawable/button_spy"
-                    />
-                <Button
-                    android:id="@+id/call_other_user"
-                    android:layout_width="@dimen/width120"
-                    android:layout_height="@dimen/width150"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="@dimen/width47"
-                    android:background="@drawable/button_phone"
-                    />
-                <Button
-                    android:id="@+id/call_center_management"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="@dimen/width47"
-                    android:layout_width="@dimen/width120"
-                    android:layout_height="@dimen/width150"
-                    android:background="@drawable/button_center"
-                    />
+                <LinearLayout
+                    android:layout_width="@dimen/width135"
+                    android:layout_height="@dimen/width170"
+                    android:orientation="vertical">
+                    <Button
+                        android:id="@+id/monitor_main"
+                        android:layout_width="@dimen/width135"
+                        android:layout_height="@dimen/width135"
+                        android:background="@drawable/button_spy"
+                        />
+                    <TextView
+                        android:layout_width="@dimen/width135"
+                        android:layout_height="@dimen/width35"
+                        android:textSize="@dimen/textsize26"
+                        android:gravity="center|bottom"
+                        android:textColor="#ffffff"
+                        android:text="监视"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="@dimen/width135"
+                    android:layout_height="@dimen/width170"
+                    android:layout_marginLeft="@dimen/width56"
+                    android:orientation="vertical">
+                    <Button
+                        android:id="@+id/call_other_user"
+                        android:layout_width="@dimen/width135"
+                        android:layout_height="@dimen/width135"
+                        android:background="@drawable/button_phone"
+                        />
+                    <TextView
+                        android:layout_width="@dimen/width135"
+                        android:layout_height="@dimen/width35"
+                        android:textSize="@dimen/textsize26"
+                        android:gravity="center|bottom"
+                        android:textColor="#ffffff"
+                        android:text="呼叫用户"/>
+
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="@dimen/width135"
+                    android:layout_height="@dimen/width170"
+                    android:layout_marginLeft="@dimen/width56"
+                    android:orientation="vertical">
+                    <Button
+                        android:id="@+id/call_center_management"
+                        android:layout_width="@dimen/width135"
+                        android:layout_height="@dimen/width130"
+                        android:background="@drawable/button_center"
+                        />
+                    <TextView
+                        android:layout_width="@dimen/width135"
+                        android:layout_height="@dimen/width35"
+                        android:textSize="@dimen/textsize26"
+                        android:gravity="center|bottom"
+                        android:textColor="#ffffff"
+                        android:text="管理中心"/>
+                </LinearLayout>
             </LinearLayout>
             <LinearLayout
-                android:layout_width="@dimen/width550"
-                android:layout_height="@dimen/width190"
+                android:layout_width="@dimen/width326"
+                android:layout_height="@dimen/width170"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/width46"
                 android:orientation="horizontal">
-                <Button
-                    android:id="@+id/leave_home"
-                    android:layout_gravity="center"
-                    android:layout_width="@dimen/width120"
-                    android:layout_height="@dimen/width150"
-                    android:layout_marginLeft="@dimen/width100"
-                    android:background="@drawable/button_leavehome"
-                    />
-                <Button
-                    android:id="@+id/call_elevator"
-                    android:layout_gravity="center"
-                    android:layout_width="@dimen/width120"
-                    android:layout_height="@dimen/width150"
-                    android:layout_marginLeft="@dimen/width100"
-                    android:background="@drawable/button_lift"
-                    />
+                <LinearLayout
+                    android:layout_width="@dimen/width135"
+                    android:layout_height="@dimen/width170"
+                    android:orientation="vertical">
+                    <Button
+                        android:id="@+id/leave_home"
+                        android:layout_width="@dimen/width135"
+                        android:layout_height="@dimen/width135"
+                        android:background="@drawable/button_leavehome"
+                        />
+                    <TextView
+                        android:layout_width="@dimen/width135"
+                        android:layout_height="@dimen/width35"
+                        android:textSize="@dimen/textsize26"
+                        android:gravity="center|bottom"
+                        android:textColor="#ffffff"
+                        android:text="离家模式"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="@dimen/width135"
+                    android:layout_height="@dimen/width170"
+                    android:layout_marginLeft="@dimen/width56"
+                    android:orientation="vertical">
+                    <Button
+                        android:id="@+id/call_elevator"
+                        android:layout_width="@dimen/width135"
+                        android:layout_height="@dimen/width135"
+                        android:background="@drawable/button_lift"
+                        />
+                    <TextView
+                        android:layout_width="@dimen/width135"
+                        android:layout_height="@dimen/width35"
+                        android:textSize="@dimen/textsize26"
+                        android:gravity="center|bottom"
+                        android:textColor="#ffffff"
+                        android:text="呼叫电梯"/>
+                </LinearLayout>
+
             </LinearLayout>
         </LinearLayout>
     <!--第二部分右边结束-->

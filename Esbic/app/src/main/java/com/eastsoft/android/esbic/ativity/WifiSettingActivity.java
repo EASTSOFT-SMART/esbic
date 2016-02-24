@@ -127,9 +127,6 @@ public class WifiSettingActivity extends BaseActivity implements View.OnClickLis
     @Override
     public void onClick(View view) {
         if (view.getId()==back.getId()){
-            intent=getIntents();
-            intent.setClass(WifiSettingActivity.this,MainActivity.class);
-            startActivity(intent);
             this.finish();
         }
 
