@@ -3,7 +3,10 @@ package com.eastsoft.android.esbic.ativity;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -12,8 +15,21 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextClock;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.eastsoft.android.esbic.R;
+import com.eastsoft.android.esbic.jni.DeviceInfo;
+import com.eastsoft.android.esbic.jni.DeviceTypeEnum;
+import com.eastsoft.android.esbic.jni.IpAddressInfo;
+import com.eastsoft.android.esbic.jni.JniUtil;
+import com.eastsoft.android.esbic.service.BroadcastTypeEnum;
+import com.eastsoft.android.esbic.service.IModelService;
+import com.eastsoft.android.esbic.service.ModelServiceImpl;
+import com.eastsoft.android.esbic.table.AlarmInfo;
+import com.eastsoft.android.esbic.table.MessageInfo;
+import com.eastsoft.android.esbic.util.JsonUtil;
 import com.eastsoft.android.esbic.util.QueryWeatherInformation;
+import com.eastsoft.android.esbic.util.TimeUtil;
 import com.eastsoft.android.esbic.util.Weather;
 import com.eastsoft.android.esbic.util.WeatherIcon;
 
@@ -38,6 +54,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     public  Weather weathers;
     private SimpleDateFormat simpleDateFormat;
     private QueryWeatherInformation queryWeather;
+    private IModelService modelService;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -113,6 +130,19 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         yearMonthDay.setText(simpleDateFormat.format(now));
         week.setText(new SimpleDateFormat("E").format(now));
 
+        MyApplication myApplication = (MyApplication) getApplication();
+        myApplication.setModelService(new ModelServiceImpl(getApplicationContext()));
+
+        MyReceiver myReceiver = new MyReceiver();
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("com.eastsoft.android.esbic.model");
+        registerReceiver(myReceiver, intentFilter);
+        modelService = ((MyApplication)getApplication()).getModelService();
+        DeviceInfo deviceInfo = modelService.getDeviceInfo();
+        if(deviceInfo != null)
+        {
+            modelService.init_intercom_core(deviceInfo);
+        }
     }
 
     @Override
@@ -155,8 +185,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
         if (view.getId()==callManagement.getId()){
             playMusic();
-            intent.setClass(MainActivity.this,CallManagementCenterActivity.class);
-            startActivity(intent);
+            IpAddressInfo ipAddressInfo = modelService.getIpAddressInfo();
+            if(ipAddressInfo == null || ipAddressInfo.getCenterAddress() == null)
+            {
+                showLongToast("请先设置中心管理机的地址！");
+            }else
+            {
+                intent.setClass(MainActivity.this,CallManagementCenterActivity.class);
+                startActivity(intent);
+            }
         }
         if (view.getId()==monitor.getId()){
             playMusic();
@@ -178,8 +215,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
   //查询天气
     private void getWeatherInformation(){
 
-           queryWeather=new QueryWeatherInformation();
-         weathers=queryWeather.getXml();
+        queryWeather=new QueryWeatherInformation();
+        weathers=queryWeather.getXml();
 
     }
     //非空判断
@@ -377,11 +414,66 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                  message.what=1;
                  handler.sendMessageDelayed(message,60000);
              }
-
          }
 
      });
        thread.start();
-
    }
+
+    public class MyReceiver extends BroadcastReceiver
+    {
+        @Override
+        public void onReceive(Context context, Intent intent2)
+        {
+            Bundle bundle = intent2.getExtras();
+            int cmd = bundle.getInt("cmd");
+            BroadcastTypeEnum e = BroadcastTypeEnum.find(cmd);
+            String value = bundle.getString("value");
+            switch (e)
+            {
+                case CALL_REQUEST :
+                    showLongToast("收到呼叫请求！" + value);
+                    playMusic();
+                    intent.setClass(MainActivity.this,ConversationActivity.class);
+                    intent.putExtra("value", value);
+                    startActivity(intent);
+                    break;
+                case PLAY_VIDEO :
+                    showLongToast("视频url" + value);
+                    break;
+                case HANG_UP :
+                    showLongToast("对方已挂断！");
+                    break;
+                case CALL_CONFIRM :
+                    showLongToast("您呼叫的设备已经找到！");
+                    break;
+                case OPEN_LOCK_CONFIRM :
+                    showLongToast("锁已开！");
+                    break;
+                case MONITOR_CONFIRM :
+                    showLongToast("您监视的设备已经找到！");
+                    break;
+                case DEVICE_BUSY :
+                    showLongToast("您呼叫的设备正在忙，请稍后再拨！");
+                    break;
+                case MONITOR_HANG_UP :
+                    showLongToast("门口机挂断监视！");
+                    break;
+                case CALL_ANSWER_CONFIRM :
+                    showLongToast("您呼叫的设备已接听！");
+                    break;
+                case RECEIVE_MESSAGE :
+                    showLongToast("收到新的消息：" + value);
+                    break;
+                case RECEIVE_AD :
+                    showLongToast("收到新的广告" + value);
+                    break;
+                case RECEIVE_ALARM :
+                    showLongToast("收到新的警报" + value);
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
 }

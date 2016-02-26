@@ -53,7 +53,7 @@
                 android:gravity="center"
                 android:layout_width="@dimen/width600"
                 android:layout_height="@dimen/width100"
-                android:text="交物业费(电梯维修费，垃圾处理费等)"
+                android:text="消息"
                 android:textSize="@dimen/textsize25"/>
             <TextView
                 android:id="@+id/message_content"

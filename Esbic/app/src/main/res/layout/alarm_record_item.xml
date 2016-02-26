@@ -21,11 +21,12 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
             <TextView
+                android:id="@+id/alarm_type"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/width65"
                 android:textSize="@dimen/textsize27"
-                android:text="检测到车库门口有人"/>
+                android:text="没有报警信息"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/width65"
@@ -53,7 +54,7 @@
                     android:textSize="@dimen/textsize27"
                     android:text="处理时间:"/>
                 <TextView
-                    android:id="@+id/handle_time"
+                    android:id="@+id/alarm_handle_time"
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:layout_width="@dimen/width200"

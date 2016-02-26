@@ -22,10 +22,10 @@ public class BrightnessFragment extends Fragment implements AdapterView.OnItemCl
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView=inflater.inflate(R.layout.volume_bright_fragment_brightness,null);
-        iniyData();
+        initData();
         return rootView;
     }
-    private void iniyData(){
+    private void initData(){
         listView=(ListView)rootView.findViewById(R.id.brightness_item_setting);
         strings=new String[]{"屏幕亮度","锁屏时间"};
         myBrightnessAdapter=new MyBrightnessAdapter(this.getActivity(),strings);
