@@ -11,8 +11,10 @@ import android.widget.TextView;
 
 import com.eastsoft.android.esbic.R;
 import com.eastsoft.android.esbic.adapter.MessageAdapter;
-import com.eastsoft.android.esbic.util.MessageUtil;
+import com.eastsoft.android.esbic.service.IModelService;
+import com.eastsoft.android.esbic.table.MessageInfo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,13 +22,14 @@ import java.util.List;
  */
 public class MessageContentActivity extends BaseActivity implements View.OnClickListener,AdapterView.OnItemClickListener{
 
-    private ListView messageContentTitle;
+    private ListView messageListView;
     private ImageButton back;
-    private TextView meessageTitle,messageContent;
+    private TextView messageTitle,messageContent;
     private MessageAdapter messageAdapter;
-    private List<MessageUtil> messageUtilList;
+    private List<MessageInfo> messageInfos = new ArrayList<>();
     private Context context;
     private Intent intent;
+    private IModelService modelService;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,14 +37,22 @@ public class MessageContentActivity extends BaseActivity implements View.OnClick
         initData();
     }
     private void initData(){
-        meessageTitle=(TextView)this.findViewById(R.id.message_title);
+        modelService = ((MyApplication)getApplication()).getModelService();
+        messageInfos = modelService.getMessageInfo();
+
+        messageTitle =(TextView)this.findViewById(R.id.message_title);
         messageContent=(TextView)this.findViewById(R.id.message_content);
+        if(messageInfos.size() > 0)
+        {
+            messageTitle.setText((messageInfos.get(0).getType()==0?"消息":"广告")+"详情");
+            messageContent.setText(messageInfos.get(0).getMessage());
+        }
         back=(ImageButton)this.findViewById(R.id.message_con_back);
         back.setOnClickListener(this);
-        messageContentTitle=(ListView)this.findViewById(R.id.message_content_title);
-        messageAdapter=new MessageAdapter(messageUtilList,this);
-        messageContentTitle.setAdapter(messageAdapter);
-
+        messageListView =(ListView)this.findViewById(R.id.message_content_title);
+        messageAdapter=new MessageAdapter(messageInfos,this);
+        messageListView.setAdapter(messageAdapter);
+        messageListView.setOnItemClickListener(this);
     }
 
     @Override
@@ -53,7 +64,9 @@ public class MessageContentActivity extends BaseActivity implements View.OnClick
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
+        MessageInfo messageInfo = messageInfos.get(i);
+        messageTitle.setText((messageInfo.getType()==0?"消息":"广告")+"详情");
+        messageContent.setText(messageInfo.getMessage());
     }
 
 }

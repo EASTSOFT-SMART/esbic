@@ -9,6 +9,9 @@ import android.widget.ListView;
 
 import com.eastsoft.android.esbic.R;
 import com.eastsoft.android.esbic.adapter.AlarmRecordAdapter;
+import com.eastsoft.android.esbic.table.AlarmInfo;
+
+import java.util.List;
 
 /**
  * Created by sofa on 2016/1/26.
@@ -25,10 +28,11 @@ public class AlarmRecordActivity extends BaseActivity implements View.OnClickLis
         initData();
     }
     private void initData(){
+        List<AlarmInfo> alarmInfoList = ((MyApplication)getApplication()).getModelService().getAlarmInfo();
         back=(ImageButton)this.findViewById(R.id.alarm_record_back);
         back.setOnClickListener(this);
         alarmRecordContent=(ListView)this.findViewById(R.id.record_list);
-        alarmRecordAdapter=new AlarmRecordAdapter(this);
+        alarmRecordAdapter=new AlarmRecordAdapter(alarmInfoList, this);
         alarmRecordContent.setAdapter(alarmRecordAdapter);
     }
 

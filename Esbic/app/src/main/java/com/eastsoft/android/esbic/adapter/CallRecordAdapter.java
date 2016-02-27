@@ -5,8 +5,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
 import com.eastsoft.android.esbic.R;
+import com.eastsoft.android.esbic.jni.DeviceInfo;
+import com.eastsoft.android.esbic.jni.DeviceTypeEnum;
+import com.eastsoft.android.esbic.jni.IntercomTypeEnum;
+import com.eastsoft.android.esbic.table.IntercomInfo;
+import com.eastsoft.android.esbic.util.JsonUtil;
 
 import java.util.List;
 
@@ -14,16 +20,17 @@ import java.util.List;
  * Created by Mr Wang on 2016/2/6.
  */
 public class CallRecordAdapter extends BaseAdapter {
-    private List<Object> objectList;
+    private List<IntercomInfo> intercomInfos;
     private Context context;
     private LayoutInflater inflater;
-    public CallRecordAdapter(List<Object> objectList,Context context){
+    private TextView device,time,type;
+    public CallRecordAdapter(List<IntercomInfo> intercomInfos,Context context){
         this.context=context;
-        this.objectList=objectList;
+        this.intercomInfos =intercomInfos;
     }
     @Override
     public int getCount() {
-        return 6;
+        return intercomInfos.size();
     }
 
     @Override
@@ -40,6 +47,22 @@ public class CallRecordAdapter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
         inflater=LayoutInflater.from(context);
         view=inflater.inflate(R.layout.call_record_item,null);
+        device = (TextView)view.findViewById(R.id.record_from);
+        time = (TextView)view.findViewById(R.id.record_time);
+        type = (TextView)view.findViewById(R.id.record_status);
+        if(intercomInfos.size() == 0)
+        {
+            return view;
+        }
+        IntercomInfo intercomInfo = intercomInfos.get(i);
+        DeviceInfo deviceInfo = JsonUtil.fromJson(intercomInfo.getDevice(), DeviceInfo.class);
+        if(deviceInfo == null)
+        {
+            return view;
+        }
+        device.setText(DeviceTypeEnum.find(deviceInfo.getDevice_type()).getName());
+        time.setText(intercomInfos.get(i).getTime());
+        type.setText(IntercomTypeEnum.find(intercomInfos.get(i).getType()).getName());
         return view;
     }
 }

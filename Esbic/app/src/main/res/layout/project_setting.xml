@@ -37,11 +37,12 @@
                 android:background="@mipmap/project_1">
 
                     <EditText
+                        android:id="@+id/project_set_buildingNo"
                         android:layout_width="@dimen/width70"
                         android:layout_marginLeft="@dimen/width200"
                         android:layout_height="match_parent"
                         android:textSize="@dimen/textsize30"
-                        android:text="10"/>
+                        android:text="5"/>
                     <TextView
                         android:layout_width="@dimen/width40"
                         android:layout_height="match_parent"
@@ -49,10 +50,11 @@
                         android:textSize="@dimen/textsize30"
                         android:text="楼"/>
                     <EditText
+                        android:id="@+id/project_set_unitNo"
                         android:layout_width="@dimen/width55"
                         android:layout_height="match_parent"
                         android:textSize="@dimen/textsize30"
-                        android:text="2"
+                        android:text="5"
                         />
                     <TextView
                         android:layout_width="@dimen/width60"
@@ -61,10 +63,11 @@
                         android:textSize="@dimen/textsize30"
                         android:text="单元"/>
                     <EditText
+                        android:id="@+id/project_set_layerNo"
                         android:layout_width="@dimen/width55"
                         android:layout_height="match_parent"
                         android:textSize="@dimen/textsize35"
-                        android:text="7"/>
+                        android:text="5"/>
                     <TextView
                         android:layout_width="@dimen/width40"
                         android:layout_height="match_parent"
@@ -72,10 +75,11 @@
                         android:textSize="@dimen/textsize30"
                         android:text="层"/>
                     <EditText
+                        android:id="@+id/project_set_roomNo"
                         android:layout_width="@dimen/width90"
                         android:layout_height="match_parent"
                         android:textSize="@dimen/textsize30"
-                        android:text="503"/>
+                        android:text="5"/>
                      <TextView
                        android:layout_width="@dimen/width40"
                        android:layout_height="match_parent"
@@ -90,6 +94,7 @@
                 android:layout_height="@dimen/width80"
                 android:background="@mipmap/project_2">
                 <EditText
+                    android:id="@+id/project_set_ipOne"
                     android:layout_width="@dimen/width100"
                     android:layout_marginLeft="@dimen/width200"
                     android:layout_height="match_parent"
@@ -102,6 +107,7 @@
                     android:textSize="@dimen/textsize30"
                     android:text="."/>
                 <EditText
+                    android:id="@+id/project_set_ipTwo"
                     android:layout_width="@dimen/width100"
                     android:layout_height="match_parent"
                     android:textSize="@dimen/textsize30"
@@ -114,6 +120,7 @@
                     android:textSize="@dimen/textsize30"
                     android:text="."/>
                 <EditText
+                    android:id="@+id/project_set_ipThree"
                     android:layout_width="@dimen/width100"
                     android:layout_height="match_parent"
                     android:textSize="@dimen/textsize30"
@@ -125,6 +132,7 @@
                     android:textSize="@dimen/textsize30"
                     android:text="."/>
                 <EditText
+                    android:id="@+id/project_set_ipFour"
                     android:layout_width="@dimen/width100"
                     android:layout_height="match_parent"
                     android:textSize="@dimen/textsize30"
@@ -137,6 +145,7 @@
                 android:layout_height="@dimen/width80"
                 android:background="@mipmap/project_3">
                 <EditText
+                    android:id="@+id/project_set_subOne"
                     android:layout_width="@dimen/width100"
                     android:layout_marginLeft="@dimen/width200"
                     android:layout_height="match_parent"
@@ -149,6 +158,7 @@
                     android:textSize="@dimen/textsize30"
                     android:text="."/>
                 <EditText
+                    android:id="@+id/project_set_subTwo"
                     android:layout_width="@dimen/width100"
                     android:layout_height="match_parent"
                     android:textSize="@dimen/textsize30"
@@ -161,6 +171,7 @@
                     android:textSize="@dimen/textsize30"
                     android:text="."/>
                 <EditText
+                    android:id="@+id/project_set_subThree"
                     android:layout_width="@dimen/width100"
                     android:layout_height="match_parent"
                     android:textSize="@dimen/textsize30"
@@ -172,6 +183,7 @@
                     android:textSize="@dimen/textsize30"
                     android:text="."/>
                 <EditText
+                    android:id="@+id/project_set_subFour"
                     android:layout_width="@dimen/width100"
                     android:layout_height="match_parent"
                     android:textSize="@dimen/textsize30"
@@ -184,6 +196,7 @@
                 android:layout_height="@dimen/width80"
                 android:background="@mipmap/project_4">
                 <EditText
+                    android:id="@+id/project_set_gatewayOne"
                     android:layout_width="@dimen/width100"
                     android:layout_marginLeft="@dimen/width200"
                     android:layout_height="match_parent"
@@ -196,6 +209,7 @@
                     android:textSize="@dimen/textsize30"
                     android:text="."/>
                 <EditText
+                    android:id="@+id/project_set_gatewayTwo"
                     android:layout_width="@dimen/width100"
                     android:layout_height="match_parent"
                     android:textSize="@dimen/textsize30"
@@ -208,6 +222,7 @@
                     android:textSize="@dimen/textsize30"
                     android:text="."/>
                 <EditText
+                    android:id="@+id/project_set_gatewayThree"
                     android:layout_width="@dimen/width100"
                     android:layout_height="match_parent"
                     android:textSize="@dimen/textsize30"
@@ -219,6 +234,7 @@
                     android:textSize="@dimen/textsize30"
                     android:text="."/>
                 <EditText
+                    android:id="@+id/project_set_gatewayFour"
                     android:layout_width="@dimen/width100"
                     android:layout_height="match_parent"
                     android:textSize="@dimen/textsize30"
@@ -231,6 +247,7 @@
                 android:layout_height="@dimen/width80"
                 android:background="@mipmap/project_5">
                 <EditText
+                    android:id="@+id/project_set_impOne"
                     android:layout_width="@dimen/width100"
                     android:layout_marginLeft="@dimen/width200"
                     android:layout_height="match_parent"
@@ -243,6 +260,7 @@
                     android:textSize="@dimen/textsize30"
                     android:text="."/>
                 <EditText
+                    android:id="@+id/project_set_impTwo"
                     android:layout_width="@dimen/width100"
                     android:layout_height="match_parent"
                     android:textSize="@dimen/textsize30"
@@ -255,6 +273,7 @@
                     android:textSize="@dimen/textsize30"
                     android:text="."/>
                 <EditText
+                    android:id="@+id/project_set_impThree"
                     android:layout_width="@dimen/width100"
                     android:layout_height="match_parent"
                     android:textSize="@dimen/textsize30"
@@ -266,6 +285,7 @@
                     android:textSize="@dimen/textsize30"
                     android:text="."/>
                 <EditText
+                    android:id="@+id/project_set_impFour"
                     android:layout_width="@dimen/width100"
                     android:layout_height="match_parent"
                     android:textSize="@dimen/textsize30"
@@ -278,6 +298,7 @@
                 android:layout_height="@dimen/width80"
                 android:background="@mipmap/project_6">
                 <EditText
+                    android:id="@+id/project_set_centerOne"
                     android:layout_width="@dimen/width100"
                     android:layout_marginLeft="@dimen/width200"
                     android:layout_height="match_parent"
@@ -290,6 +311,7 @@
                     android:textSize="@dimen/textsize30"
                     android:text="."/>
                 <EditText
+                    android:id="@+id/project_set_centerTwo"
                     android:layout_width="@dimen/width100"
                     android:layout_height="match_parent"
                     android:textSize="@dimen/textsize30"
@@ -302,6 +324,7 @@
                     android:textSize="@dimen/textsize30"
                     android:text="."/>
                 <EditText
+                    android:id="@+id/project_set_centerThree"
                     android:layout_width="@dimen/width100"
                     android:layout_height="match_parent"
                     android:textSize="@dimen/textsize30"
@@ -313,6 +336,7 @@
                     android:textSize="@dimen/textsize30"
                     android:text="."/>
                 <EditText
+                    android:id="@+id/project_set_centerFour"
                     android:layout_width="@dimen/width100"
                     android:layout_height="match_parent"
                     android:textSize="@dimen/textsize30"

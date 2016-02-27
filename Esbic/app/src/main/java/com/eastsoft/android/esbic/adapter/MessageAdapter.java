@@ -5,27 +5,28 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
 import com.eastsoft.android.esbic.R;
-import com.eastsoft.android.esbic.util.MessageUtil;
+import com.eastsoft.android.esbic.table.MessageInfo;
 
 import java.util.List;
-import java.util.zip.Inflater;
 
 /**
  * Created by Mr Wang on 2016/2/5.
  */
 public class MessageAdapter extends BaseAdapter {
-    private List<MessageUtil> messageList;
+    private List<MessageInfo> messageList;
     private Context context;
     private LayoutInflater inflate;
-    public MessageAdapter(List<MessageUtil> messageList, Context context){
+    private TextView itemTitle, itemDate;
+    public MessageAdapter(List<MessageInfo> messageList, Context context){
         this.messageList=messageList;
         this.context=context;
     }
     @Override
     public int getCount() {
-        return 8;
+        return messageList.size();
     }
 
     @Override
@@ -42,6 +43,10 @@ public class MessageAdapter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
         inflate=LayoutInflater.from(context);
         view=inflate.inflate(R.layout.message_content_item,null);
+        itemTitle = (TextView)view.findViewById(R.id.item_title);
+        itemDate = (TextView)view.findViewById(R.id.item_date);
+        itemTitle.setText(messageList.get(i).getType()==0?"消息":"广告");
+        itemDate.setText(messageList.get(i).getTime());
         return view;
     }
 

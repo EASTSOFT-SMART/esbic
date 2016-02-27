@@ -7,6 +7,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.eastsoft.android.esbic.R;
+import com.eastsoft.android.esbic.jni.IpAddressInfo;
+import com.eastsoft.android.esbic.service.IModelService;
 
 /**
  * Created by sofa on 2016/1/25.
@@ -31,5 +33,10 @@ public class CallManagementCenterActivity extends Activity {
 
          //   }
         //});
+        IModelService modelService = ((MyApplication)getApplication()).getModelService();
+        IpAddressInfo ipAddressInfo = modelService.getIpAddressInfo();
+        String centerAddress = ipAddressInfo.getCenterAddress();
+        modelService.call_center_manager(centerAddress);
     }
+
 }

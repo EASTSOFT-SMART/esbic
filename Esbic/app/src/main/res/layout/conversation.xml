@@ -35,7 +35,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/width100"
                 android:textSize="@dimen/textsize30"
-                android:text="正在呼叫"/>
+                android:text="用户来电"/>
             <TextView
                 android:id="@+id/conversation_going"
                 android:layout_width="match_parent"
@@ -64,10 +64,24 @@
             android:orientation="vertical">
 
             <ImageButton
+                android:id="@+id/conversation_answer"
+                android:layout_width="@dimen/width300"
+                android:layout_marginTop="@dimen/width130"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="@dimen/width80"
+                android:background="@drawable/hangup_bg"/>
+            <ImageButton
                 android:id="@+id/conversation_hang_up"
                 android:layout_width="@dimen/width300"
-                android:layout_marginTop="@dimen/width250"
-                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/width50"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="@dimen/width80"
+                android:background="@drawable/hangup_bg"/>
+            <ImageButton
+                android:id="@+id/conversation_open_lock"
+                android:layout_width="@dimen/width300"
+                android:layout_marginTop="@dimen/width50"
+                android:layout_gravity="center_horizontal"
                 android:layout_height="@dimen/width80"
                 android:background="@drawable/hangup_bg"/>
 

@@ -119,7 +119,9 @@ public class SettingProjectPassWordActivity extends BaseActivity implements Adap
         String numTwo=confrimUserPassword.getText().toString();
         if (numOne.length()==8&&numTwo.length()==8){
             if (numOne.equals(numTwo)){
-
+                MyApplication myApplication = (MyApplication)getApplication();
+                myApplication.getModelService().setProjectPassword(numOne);
+                showShortToast("设置成功");
             }else{
                 showShortToast("两次密码输入不匹配，请重新输入");
                 newUserPassword.setText("");

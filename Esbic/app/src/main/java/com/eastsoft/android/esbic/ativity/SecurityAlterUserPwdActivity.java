@@ -104,10 +104,11 @@ public class SecurityAlterUserPwdActivity extends BaseActivity implements Adapte
         String numTwo=confrimUserPassword.getText().toString();
         if (numOne.length()==4&&numTwo.length()==4){
             if (numOne.equals(numTwo)){
-
+                MyApplication myApplication = (MyApplication)getApplication();
+                myApplication.getModelService().setUserPassword(numOne);
+                showShortToast("设置成功");
             }else{
                 showShortToast("两次密码输入不匹配，请重新输入");
-                newUserPassword.setText("");
                 confrimUserPassword.setText("");
             }
         }

@@ -31,10 +31,31 @@
                 android:layout_width="@dimen/width480"
                 android:layout_height="@dimen/width550"></ListView>
         </LinearLayout>
-        <ImageView
+        <LinearLayout
+            android:layout_marginLeft="@dimen/width100"
             android:layout_gravity="center"
-            android:layout_width="@dimen/width650"
-            android:layout_height="@dimen/width550"/>
+            android:layout_width="@dimen/width600"
+            android:layout_height="@dimen/width600"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/message_title"
+                android:gravity="center"
+                android:layout_width="@dimen/width600"
+                android:layout_height="@dimen/width100"
+                android:text="设备信息"
+                android:textSize="@dimen/textsize25"/>
+            <TextView
+                android:id="@+id/record_device"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_width="@dimen/width550"
+                android:textSize="@dimen/textsize20"
+                android:layout_height="@dimen/width500"
+                android:lineSpacingExtra="6dp"
+                android:lineSpacingMultiplier="1.2"
+                android:text="没有通话记录"/>
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>
 
