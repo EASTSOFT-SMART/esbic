@@ -1,40 +1,74 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_two">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/width100">
+        android:layout_height="@dimen/width93"
+        android:background="@drawable/top_bg">
         <ImageButton
             android:id="@+id/screen_light_back"
             android:layout_gravity="center"
-            android:layout_width="@dimen/width100"
-            android:layout_height="@dimen/width50" />
-        </LinearLayout>
-
+            android:layout_marginLeft="@dimen/width50"
+            android:layout_width="@dimen/width36"
+            android:layout_height="@dimen/width81"
+            android:background="@drawable/top_back" />
+        <TextView
+            android:layout_width="@dimen/width50"
+            android:layout_height="@dimen/width27"
+            android:layout_marginTop="@dimen/width30"
+            style="@style/text_25_ffffff"
+            android:text="返回"/>
+    </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="@dimen/width826"
+        android:layout_height="@dimen/width377"
+        android:layout_marginTop="@dimen/width144"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/light_bg">
+        <TextView
+            android:id="@+id/brightness_name"
+            android:layout_marginTop="@dimen/width70"
+            android:layout_marginLeft="@dimen/width335"
+            android:layout_width="@dimen/width156"
+            android:layout_height="wrap_content"
+            android:text="亮度调整"
+            style="@style/text_30_ffffff"/>
         <LinearLayout
             android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:layout_width="@dimen/width500"
-            android:layout_height="@dimen/width100">
+            android:layout_below="@+id/brightness_name"
+            android:layout_marginTop="@dimen/width58"
+            android:layout_width="@dimen/width690"
+            android:layout_height="@dimen/width55">
             <ImageButton
                 android:id="@+id/screen_light_decrease"
-                android:layout_width="@dimen/width100"
-                android:layout_height="match_parent" />
+                android:layout_width="@dimen/width55"
+                android:layout_height="@dimen/width55"
+                android:background="@drawable/volume_decrease"/>
             <SeekBar
                 android:id="@+id/screen_light_seekbar"
-                android:layout_width="@dimen/width300"
-                android:layout_height="@dimen/width60" />
+                android:layout_marginLeft="@dimen/width27"
+                android:layout_width="@dimen/width526"
+                android:layout_gravity="center_vertical"
+                android:layout_height="wrap_content"
+                android:progressDrawable="@drawable/light_bar"
+                android:paddingLeft="@dimen/width21"
+                android:paddingRight="@dimen/width21"
+                android:thumb="@drawable/volume_button" />
             <ImageButton
                 android:id="@+id/screen_light_add"
-                android:layout_width="@dimen/width100"
-                android:layout_height="match_parent" />
+                android:layout_width="@dimen/width55"
+                android:layout_height="@dimen/width55"
+                android:layout_marginLeft="@dimen/width27"
+                android:background="@drawable/volume_add"/>
+
         </LinearLayout>
 
+    </RelativeLayout>
 
     </RelativeLayout>
 

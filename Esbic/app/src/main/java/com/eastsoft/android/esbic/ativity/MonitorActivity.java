@@ -37,12 +37,12 @@ public class MonitorActivity extends Activity implements AdapterView.OnItemSelec
     }
     private void initData(){
         back=(ImageButton)this.findViewById(R.id.monitor_back);
-        surfaceView=(SurfaceView)this.findViewById(R.id.monitor_place);
+        surfaceView=(SurfaceView)this.findViewById(R.id.monitor);
         gridView=(GridView)this.findViewById(R.id.exchange_monitor);
         placeName=new String[]{"单元正门","单元车库","单元侧门","单元右门","小区正门","小区侧门","小区","小区"};
         mapList=getData();
         simpleAdapter=new SimpleAdapter(this,mapList,R.layout.monitor_exchange,new String[]{
-                "place"},new int[]{R.id.place});
+                "place"},new int[]{R.id.monitor});
         gridView.setAdapter(simpleAdapter);
         gridView.setOnItemClickListener(this);
         gridView.setOnItemSelectedListener(this);
