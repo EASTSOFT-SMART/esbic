@@ -2,19 +2,25 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/callmanagement_bg1">
+    android:background="">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/width100"
-        android:background="@drawable/home_top_bg"
+        android:layout_height="@dimen/width93"
+        android:background="@drawable/top_bg"
         >
         <ImageButton
             android:id="@+id/leave_home_back"
             android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/width75"
-            android:layout_width="@dimen/width100"
-            android:layout_height="@dimen/width35"
-            android:background="@drawable/top_back"/>
+            android:layout_marginLeft="@dimen/width50"
+            android:layout_width="@dimen/width36"
+            android:layout_height="@dimen/width81"
+            android:background="@drawable/top_back" />
+        <TextView
+            android:layout_width="@dimen/width50"
+            android:layout_height="@dimen/width27"
+            android:layout_marginTop="@dimen/width30"
+            style="@style/text_25_ffffff"
+            android:text="返回"/>
     </LinearLayout>
     <RelativeLayout
         android:layout_width="match_parent"
@@ -25,7 +31,7 @@
         android:layout_height="@dimen/width550"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:background="@drawable/callmanagement_bg2"
+        android:background=""
         android:orientation="horizontal">
             <LinearLayout
                 android:layout_width="@dimen/width400"

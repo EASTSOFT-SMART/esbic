@@ -47,9 +47,9 @@
         <item name="android:textSize">@dimen/textsize40</item>
     </style>
 
-    <style name="text_33_ffffff">
+    <style name="text_36_ffffff">
         <item name="android:textColor">#ffffff</item>
-        <item name="android:textSize">@dimen/textsize33</item>
+        <item name="android:textSize">@dimen/textsize36</item>
     </style>
 
     <style name="text_24_ffffff">

@@ -27,7 +27,7 @@
             android:layout_marginLeft="@dimen/width80"
             android:layout_width="@dimen/width60"
             android:layout_height="@dimen/width70"
-            android:background="@drawable/wifi"/>
+            android:background=""/>
 
 
 
