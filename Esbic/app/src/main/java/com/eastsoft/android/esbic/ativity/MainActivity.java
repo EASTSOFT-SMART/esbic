@@ -3,7 +3,10 @@ package com.eastsoft.android.esbic.ativity;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -39,6 +42,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     public  Weather weathers;
     private SimpleDateFormat simpleDateFormat;
     private QueryWeatherInformation queryWeather;
+    protected BoardCastFilterInfo boardCastFilterInfo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,24 +60,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 }
             }
     };
-      //initClock();
-       // while (true){
-       //     try {
-        //        Thread.sleep(30000);
-        //        handler=new Handler(){
-        //            @Override
-        //            public void handleMessage(Message msg) {
-        //                if (msg.what==1){
-        //                    setMinute(time);
-        //                    setHour(time);
-        //                }
-        //            }
-         //       };
-         //   } catch (InterruptedException e) {
-         //       e.printStackTrace();
-         //   }
-
-        //}
 
    }
 
@@ -115,9 +101,49 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         now =new Date();
         yearMonthDay.setText(simpleDateFormat.format(now));
         week.setText(new SimpleDateFormat("E").format(now));
-
+        boardCastFilterInfo=new BoardCastFilterInfo();
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        //注册自定义动态广播信息
+        IntentFilter filter=new IntentFilter();
+        filter.addAction(boardCastFilterInfo.ONCALLBYDOOR);
+        registerReceiver(listenDoorDeviceCall,filter);
+
+        IntentFilter filter1=new IntentFilter();
+        filter1.addAction(Intent.ACTION_SCREEN_OFF);
+        registerReceiver(listenScreenClose,filter1);
+    }
+
+
+    //使用BroadcastReceiver创建广播监听，监听来自门口机的呼叫等。
+    protected BroadcastReceiver listenDoorDeviceCall=new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction().equals(boardCastFilterInfo.ONCALLBYDOOR)){
+                startOncallActivity(context);
+            }
+        }
+    };
+    //使用BroadcastReceiver创建广播监听，监听屏幕的关闭。
+    protected BroadcastReceiver listenScreenClose=new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Intent i=new Intent();
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            i.setClass(context,StandByActivity.class);
+            context.startActivity(i);
+        }
+    };
+
+    //启动被呼叫页面,来响应门口机的呼叫
+    protected void startOncallActivity(Context context){
+        intent=getIntents();
+        intent.setClass(context,OnCallActivity.class);
+        startActivity(intent);
+    }
 
 
 
@@ -157,7 +183,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
         if (view.getId()==leaveHome.getId()){
             playMusic();
-            intent.setClass(MainActivity.this,LeaveHome.class);
+            intent.setClass(MainActivity.this,StandByActivity.class);
             startActivity(intent);
         }
         if (view.getId()==callManagement.getId()){
@@ -247,152 +273,4 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
        }
    }
 
-    private void setMinute(String time){
-        if ((String.valueOf(time.charAt(3)).equals("0"))){
-            minuterAfter.setBackgroundResource(R.drawable.num_0);
-        }
-        if ((String.valueOf(time.charAt(3)).equals("1"))){
-            minuterAfter.setBackgroundResource(R.drawable.num_1);
-        }
-        if ((String.valueOf(time.charAt(3)).equals("2"))){
-            minuterAfter.setBackgroundResource(R.drawable.num_2);
-        }
-        if ((String.valueOf(time.charAt(3)).equals("3"))){
-            minuterAfter.setBackgroundResource(R.drawable.num_3);
-        }
-        if ((String.valueOf(time.charAt(3)).equals("4"))){
-            minuterAfter.setBackgroundResource(R.drawable.num_4);
-        }
-        if ((String.valueOf(time.charAt(3)).equals("5"))){
-            minuterAfter.setBackgroundResource(R.drawable.num_5);
-        }
-        if ((String.valueOf(time.charAt(3)).equals("6"))){
-            minuterAfter.setBackgroundResource(R.drawable.num_6);
-        }
-        if ((String.valueOf(time.charAt(3)).equals("7"))){
-            minuterAfter.setBackgroundResource(R.drawable.num_7);
-        }
-        if ((String.valueOf(time.charAt(3)).equals("8"))){
-            minuterAfter.setBackgroundResource(R.drawable.num_8);
-        }
-        if ((String.valueOf(time.charAt(3)).equals("9"))){
-            minuterAfter.setBackgroundResource(R.drawable.num_9);
-        }
-
-        if ((String.valueOf(time.charAt(2)).equals("0"))){
-            minuteFront.setBackgroundResource(R.drawable.num_0);
-        }
-        if ((String.valueOf(time.charAt(2)).equals("1"))){
-            minuteFront.setBackgroundResource(R.drawable.num_1);
-        }
-        if ((String.valueOf(time.charAt(2)).equals("2"))){
-            minuteFront.setBackgroundResource(R.drawable.num_2);
-        }
-        if ((String.valueOf(time.charAt(2)).equals("3"))){
-            minuteFront.setBackgroundResource(R.drawable.num_3);
-        }
-        if ((String.valueOf(time.charAt(2)).equals("4"))){
-            minuteFront.setBackgroundResource(R.drawable.num_4);
-        }
-        if ((String.valueOf(time.charAt(2)).equals("5"))){
-            minuteFront.setBackgroundResource(R.drawable.num_5);
-        }
-        if ((String.valueOf(time.charAt(2)).equals("6"))){
-            minuteFront.setBackgroundResource(R.drawable.num_6);
-        }
-        if ((String.valueOf(time.charAt(2)).equals("7"))){
-            minuteFront.setBackgroundResource(R.drawable.num_7);
-        }
-        if ((String.valueOf(time.charAt(2)).equals("8"))){
-            minuteFront.setBackgroundResource(R.drawable.num_8);
-        }
-        if ((String.valueOf(time.charAt(2)).equals("9"))){
-            minuteFront.setBackgroundResource(R.drawable.num_9);
-        }
-
-    }
-
-    private void setHour(String time){
-        if ((String.valueOf(time.charAt(0)).equals("0"))){
-            hourFront.setBackgroundResource(R.drawable.num_0);
-        }
-        if ((String.valueOf(time.charAt(0)).equals("1"))){
-            hourFront.setBackgroundResource(R.drawable.num_1);
-        }
-        if ((String.valueOf(time.charAt(0)).equals("2"))){
-            hourFront.setBackgroundResource(R.drawable.num_2);
-        }
-        if ((String.valueOf(time.charAt(0)).equals("3"))){
-            hourFront.setBackgroundResource(R.drawable.num_3);
-        }
-        if ((String.valueOf(time.charAt(0)).equals("4"))){
-            hourFront.setBackgroundResource(R.drawable.num_4);
-        }
-        if ((String.valueOf(time.charAt(0)).equals("5"))){
-            hourFront.setBackgroundResource(R.drawable.num_5);
-        }
-        if ((String.valueOf(time.charAt(0)).equals("6"))){
-            hourFront.setBackgroundResource(R.drawable.num_6);
-        }
-        if ((String.valueOf(time.charAt(0)).equals("7"))){
-            hourFront.setBackgroundResource(R.drawable.num_7);
-        }
-        if ((String.valueOf(time.charAt(0)).equals("8"))){
-            hourFront.setBackgroundResource(R.drawable.num_8);
-        }
-        if ((String.valueOf(time.charAt(0)).equals("9"))){
-            hourFront.setBackgroundResource(R.drawable.num_9);
-        }
-        if ((String.valueOf(time.charAt(1)).equals("0"))){
-            hourAfter.setBackgroundResource(R.drawable.num_0);
-        }
-        if ((String.valueOf(time.charAt(1)).equals("1"))){
-            hourAfter.setBackgroundResource(R.drawable.num_1);
-        }
-        if ((String.valueOf(time.charAt(1)).equals("2"))){
-            hourAfter.setBackgroundResource(R.drawable.num_2);
-        }
-        if ((String.valueOf(time.charAt(1)).equals("3"))){
-            hourAfter.setBackgroundResource(R.drawable.num_3);
-        }
-        if ((String.valueOf(time.charAt(1)).equals("4"))){
-            hourAfter.setBackgroundResource(R.drawable.num_4);
-        }
-        if ((String.valueOf(time.charAt(1)).equals("5"))){
-            hourAfter.setBackgroundResource(R.drawable.num_5);
-        }
-        if ((String.valueOf(time.charAt(1)).equals("6"))){
-            hourAfter.setBackgroundResource(R.drawable.num_6);
-        }
-        if ((String.valueOf(time.charAt(1)).equals("7"))){
-            hourAfter.setBackgroundResource(R.drawable.num_7);
-        }
-        if ((String.valueOf(time.charAt(1)).equals("8"))){
-            hourAfter.setBackgroundResource(R.drawable.num_8);
-        }
-        if ((String.valueOf(time.charAt(1)).equals("9"))){
-            hourAfter.setBackgroundResource(R.drawable.num_9);
-        }
-    }
-   private void initClock(){
-
-     Thread thread=new Thread(new Runnable() {
-         @Override
-         public void run() {
-             while(true){
-                 Message message=new Message();
-                 time=new SimpleDateFormat("HHmm").format(new Date());
-                 Bundle bundle=new Bundle();
-                 bundle.putBoolean("1",false);
-                 message.setData(bundle);
-                 message.what=1;
-                 handler.sendMessageDelayed(message,60000);
-             }
-
-         }
-
-     });
-       thread.start();
-
-   }
 }

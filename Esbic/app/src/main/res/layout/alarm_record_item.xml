@@ -5,64 +5,50 @@
     <LinearLayout
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_width="@dimen/width1200"
-        android:layout_height="@dimen/width130"
-        android:orientation="horizontal">
-        <ImageView
+        android:layout_width="@dimen/width1079"
+        android:layout_height="@dimen/width111"
+        android:orientation="horizontal"
+        android:background="@drawable/police_background">
+        <ImageButton
             android:id="@+id/alarm_icon"
-            android:layout_width="@dimen/width100"
-            android:layout_height="@dimen/width100"
-            android:layout_marginLeft="@dimen/width50"
-            android:layout_gravity="center"
-            android:background="#00ccdd"/>
+            android:layout_width="@dimen/width57"
+            android:layout_height="@dimen/width57"
+            android:layout_marginLeft="@dimen/width28"
+            android:layout_marginTop="@dimen/width26"
+            android:background="@drawable/police"/>
         <LinearLayout
-            android:layout_marginLeft="@dimen/width100"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_marginLeft="@dimen/width26"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
             <TextView
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/width65"
-                android:textSize="@dimen/textsize27"
-                android:text="检测到车库门口有人"/>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/width65"
-                >
-                <TextView
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:layout_width="@dimen/width150"
-                    android:layout_height="@dimen/width65"
-                    android:text="报警时间:"
-                    android:textSize="@dimen/textsize27"/>
+                android:textColor="#A91E30"
+                android:textSize="@dimen/textsize30"
+                android:text="消防报警"/>
+
                 <TextView
                     android:id="@+id/alarm_time"
-                    android:layout_gravity="center"
                     android:gravity="center"
-                    android:layout_width="@dimen/width200"
-                    android:layout_height="@dimen/width65"
-                    android:textSize="@dimen/textsize27"
+                    android:layout_marginLeft="@dimen/width24"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/textsize30"
                     android:text="2016.01.26"/>
-                <TextView
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:layout_width="@dimen/width150"
-                    android:layout_height="@dimen/width65"
-                    android:textSize="@dimen/textsize27"
-                    android:text="处理时间:"/>
+
                 <TextView
                     android:id="@+id/handle_time"
-                    android:layout_gravity="center"
                     android:gravity="center"
-                    android:layout_width="@dimen/width200"
-                    android:layout_height="@dimen/width65"
+                    android:layout_marginLeft="@dimen/width24"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:textSize="@dimen/textsize27"
-                    android:text="2016.01.26"/>
-            </LinearLayout>
-        </LinearLayout>
+                    android:text="17:00"/>
 
+            </LinearLayout>
 
     </LinearLayout>
 

@@ -33,43 +33,16 @@ public class BaseActivity extends Activity{
             numSixMusicId,numSevenMusicId,numEightMusicId,numNineMusicId,numZeroMusicId;
     protected int alarmId,alarmVoiceId,alterSuccessId,passwordWrongId,alterFailedId;
     protected Intent intent;
-    protected BoardCastFilterInfo boardCastFilterInfo;
+
     //初始化GrideView自定义的输入键盘
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initSoundPool();
-        boardCastFilterInfo=new BoardCastFilterInfo();
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        //注册自定义动态广播信息
-        IntentFilter filter=new IntentFilter();
-        filter.addAction(boardCastFilterInfo.ONCALLBYDOOR);
-        registerReceiver(listenDoorDeviceCall,filter);
 
     }
 
-
-    //使用BroadcastReceiver创建广播监听，监听来自门口机的呼叫等。
-    protected BroadcastReceiver listenDoorDeviceCall=new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-           if (intent.getAction().equals(boardCastFilterInfo.ONCALLBYDOOR)){
-               startOncallActivity();
-           }
-        }
-    };
-
-    //启动被呼叫页面,来响应门口机的呼叫
-    protected void startOncallActivity(){
-        intent=getIntents();
-        intent.setClass(BaseActivity.this,OnCallActivity.class);
-        startActivity(intent);
-    }
 
     //单例化Intent
     protected Intent getIntents(){

@@ -1,44 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_4">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/width130"
-        android:orientation="horizontal">
+        android:layout_height="@dimen/width93"
+        android:background="@drawable/top_bg">
         <ImageButton
             android:id="@+id/alarm_record_back"
-            android:layout_marginLeft="@dimen/width40"
             android:layout_gravity="center"
-            android:layout_width="@dimen/width100"
-            android:layout_height="@dimen/width100"
-            android:background="@drawable/back"/>
+            android:layout_marginLeft="@dimen/width50"
+            android:layout_width="@dimen/width36"
+            android:layout_height="@dimen/width81"
+            android:background="@drawable/top_back" />
         <TextView
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:layout_width="@dimen/width150"
-            android:layout_height="@dimen/width100"
-            android:textSize="@dimen/textsize30"
-            android:text="主页面"/>
-        <TextView
-            android:layout_gravity="center"
-            android:layout_width="@dimen/width200"
-            android:gravity="center"
-            android:layout_marginLeft="@dimen/width270"
-            android:layout_height="@dimen/width100"
-            android:textSize="@dimen/textsize40"
-            android:text="报警记录"/>
+            android:layout_width="@dimen/width50"
+            android:layout_height="@dimen/width27"
+            android:layout_marginTop="@dimen/width30"
+            style="@style/text_25_ffffff"
+            android:text="返回"/>
     </LinearLayout>
-    <RelativeLayout
+
+<RelativeLayout
+    android:layout_width="@dimen/width1079"
+    android:layout_height="@dimen/width486"
+    android:layout_marginTop="@dimen/width66"
+    android:layout_gravity="center">
+    <ListView
+        android:id="@+id/record_list"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/width550">
-        <ListView
-            android:id="@+id/record_list"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:layout_width="@dimen/width1200"
-            android:layout_height="@dimen/width500"></ListView>
-    </RelativeLayout>
+        android:layout_height="match_parent"
+        android:divider="#00000000"
+        android:dividerHeight="@dimen/width14"
+        android:fastScrollEnabled="true"
+        android:scrollbarSize="@dimen/width18"
+        android:scrollbarFadeDuration="10"
+        android:scrollbarThumbVertical="@drawable/slipthumb"
+        android:scrollbarTrackVertical="@drawable/police_bar">
+    </ListView>
+</RelativeLayout>
+
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_marginTop="@dimen/width36"
+    android:layout_height="@dimen/width53"
+    android:layout_gravity="center">
+    <ImageButton
+        android:layout_width="@dimen/width53"
+        android:layout_height="@dimen/width53"
+        android:background="@drawable/up"/>
+    <ImageButton
+        android:layout_width="@dimen/width53"
+        android:layout_height="@dimen/width53"
+        android:layout_marginLeft="@dimen/width204"
+        android:background="@drawable/down"/>
+
+</LinearLayout>
 
 
 

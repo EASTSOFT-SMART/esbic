@@ -18,6 +18,7 @@ public class AlarmRecordActivity extends BaseActivity implements View.OnClickLis
     private ListView alarmRecordContent;
     private Intent intent;
     private AlarmRecordAdapter alarmRecordAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
