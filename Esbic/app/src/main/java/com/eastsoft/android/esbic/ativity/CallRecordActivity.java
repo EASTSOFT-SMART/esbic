@@ -3,6 +3,7 @@ package com.eastsoft.android.esbic.ativity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -17,7 +18,7 @@ import java.util.List;
 /**
  * Created by sofa on 2016/1/26.
  */
-public class CallRecordActivity extends BaseActivity implements View.OnClickListener {
+public class CallRecordActivity extends BaseActivity implements View.OnClickListener,AdapterView.OnItemClickListener {
     private Intent intent;
     private ImageButton back;
     private ImageView recordImage;
@@ -45,6 +46,11 @@ public class CallRecordActivity extends BaseActivity implements View.OnClickList
         if (view.getId()==back.getId()){
             this.finish();
         }
+
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
     }
 }

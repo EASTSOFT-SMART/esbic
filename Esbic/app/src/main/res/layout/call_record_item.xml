@@ -5,47 +5,57 @@
     <LinearLayout
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_width="@dimen/width480"
-        android:layout_height="@dimen/width130"
-        android:orientation="horizontal">
+        android:layout_width="@dimen/width348"
+        android:layout_height="@dimen/width112"
+        android:orientation="horizontal"
+        android:background="@drawable/call_record_item_selected">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" >
+
+            <ImageView
+                android:id="@+id/record_icon"
+                android:layout_width="@dimen/width58"
+                android:layout_height="@dimen/width58"
+                android:background="@drawable/call_in"/>
+
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/width15"
             android:orientation="vertical">
             <TextView
                 android:id="@+id/record_from"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/width65"
-                android:textSize="@dimen/textsize27"
+                android:gravity="center|left"
+                android:layout_marginTop="@dimen/width9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/text_23_ffffff"
                 android:text="中心管理机"/>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/width65"
-                >
 
                 <TextView
                     android:id="@+id/record_time"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:layout_width="@dimen/width200"
-                    android:layout_height="@dimen/width65"
-                    android:textSize="@dimen/textsize27"
-                    android:text="2016.01.26"/>
+                    android:gravity="center|left"
+                    android:layout_marginTop="@dimen/width9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/text_23_ffffff"
+                    android:text="2016年1月26日"/>
 
                 <TextView
-                    android:id="@+id/record_status"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:layout_width="@dimen/width200"
-                    android:layout_height="@dimen/width65"
-                    android:textSize="@dimen/textsize27"
-                    android:text="未连接"/>
+                    android:id="@+id/record_time_two"
+                    android:gravity="center|left"
+                    android:layout_marginTop="@dimen/width9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/text_23_ffffff"
+                    android:text="12:00-12:30"/>
             </LinearLayout>
-        </LinearLayout>
-
 
     </LinearLayout>
 

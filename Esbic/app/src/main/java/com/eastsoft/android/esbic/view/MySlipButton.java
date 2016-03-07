@@ -61,14 +61,14 @@ public class MySlipButton extends View implements View.OnTouchListener {
 
         if (ori == Configuration.ORIENTATION_LANDSCAPE) {
 
-            bg_on = ToHalfBig(bg_on, R.dimen.width38);
-            bg_off = ToHalfBig(bg_off, R.dimen.width38);
-            slipper_btn = ToHalfBig(slipper_btn, R.dimen.width34);
+            bg_on = ToHalfBig(bg_on, R.dimen.width33);
+            bg_off = ToHalfBig(bg_off, R.dimen.width33);
+            slipper_btn = ToHalfBig(slipper_btn, R.dimen.width25);
 
         } else if (ori == Configuration.ORIENTATION_PORTRAIT) {
-            bg_on = ToHalfBig(bg_on, R.dimen.width28);
-            bg_off = ToHalfBig(bg_off, R.dimen.width28);
-            slipper_btn = ToHalfBig(slipper_btn, R.dimen.width26);
+            bg_on = ToHalfBig(bg_on, R.dimen.width33);
+            bg_off = ToHalfBig(bg_off, R.dimen.width33);
+            slipper_btn = ToHalfBig(slipper_btn, R.dimen.width25);
 
         }
 

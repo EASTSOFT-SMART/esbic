@@ -2,200 +2,259 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" 
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/bg_7">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/width100">
+        android:layout_height="@dimen/width93"
+        android:background="@drawable/top_bg">
         <ImageButton
             android:id="@+id/security_setting_back"
-            android:layout_marginLeft="@dimen/width40"
             android:layout_gravity="center"
-            android:layout_width="@dimen/width100"
-            android:layout_height="@dimen/width100"
-            android:background="@drawable/back"/>
+            android:layout_marginLeft="@dimen/width50"
+            android:layout_width="@dimen/width36"
+            android:layout_height="@dimen/width81"
+            android:background="@drawable/top_back" />
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:gravity="center|left"
-            android:layout_width="@dimen/width150"
-            android:layout_height="@dimen/width100"
-            android:textSize="@dimen/textsize30"
+            style="@style/text_25_ffffff"
             android:text="返回"/>
-        </LinearLayout>
-    <TextView
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:layout_width="@dimen/width400"
-        android:layout_height="@dimen/width80"
-        android:textSize="@dimen/textsize30"
-        android:text="离家安防设置"/>
+    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/width240"
+        android:layout_height="@dimen/width61"
+        android:background="@drawable/safety_nav">
+
+        <TextView
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/width168"
+            style="@style/text_23_20A6B3"
+            android:text="离家安防设置"/>
+
+        <ImageView
+            android:layout_width="@dimen/width19"
+            android:layout_height="@dimen/width19"
+            android:layout_marginLeft="@dimen/width13"
+            android:layout_gravity="center"
+            android:background="@drawable/security_toright_icon"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/width62"
         android:orientation="vertical">
         <LinearLayout
             android:layout_gravity="center"
-            android:layout_width="@dimen/width1100"
-            android:layout_height="@dimen/width120"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
             <Button
                 android:id="@+id/security_leavehome_one"
                 android:layout_gravity="center"
-                android:layout_width="@dimen/width275"
-                android:layout_height="@dimen/width110"
+                android:layout_width="@dimen/width224"
+                android:layout_height="@dimen/width75"
                 android:text="烟感"
-                android:textSize="@dimen/textsize30"
-                android:gravity="center"/>
+                style="@style/text_23_ffffff"
+                android:background="@drawable/safety_button"/>
             <Button
                 android:id="@+id/security_leavehome_two"
                 android:layout_gravity="center"
-                android:layout_width="@dimen/width275"
-                android:layout_height="@dimen/width110"
+                android:layout_width="@dimen/width224"
+                android:layout_height="@dimen/width75"
                 android:text="煤气"
-                android:textSize="@dimen/textsize30"
-                android:gravity="center"/>
+                android:layout_marginLeft="@dimen/width16"
+                style="@style/text_23_ffffff"
+                android:background="@drawable/safety_button"/>
             <Button
                 android:id="@+id/security_leavehome_three"
                 android:layout_gravity="center"
-                android:layout_width="@dimen/width275"
-                android:layout_height="@dimen/width110"
+                android:layout_width="@dimen/width224"
+                android:layout_height="@dimen/width75"
                 android:text="红外"
-                android:textSize="@dimen/textsize30"
-                android:gravity="center"/>
+                android:layout_marginLeft="@dimen/width16"
+                style="@style/text_23_ffffff"
+                android:background="@drawable/safety_button"/>
             <Button
                 android:id="@+id/security_leavehome_four"
                 android:layout_gravity="center"
-                android:layout_width="@dimen/width275"
-                android:layout_height="@dimen/width110"
                 android:text="门磁"
-                android:textSize="@dimen/textsize30"
-                android:gravity="center"/>
+                android:layout_width="@dimen/width224"
+                android:layout_height="@dimen/width75"
+                style="@style/text_23_ffffff"
+                android:layout_marginLeft="@dimen/width16"
+                android:background="@drawable/safety_button"/>
         </LinearLayout>
+
         <LinearLayout
             android:layout_gravity="center"
-            android:layout_width="@dimen/width1100"
-            android:layout_height="@dimen/width120"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/width16"
             android:orientation="horizontal">
             <Button
                 android:id="@+id/security_leavehome_five"
                 android:layout_gravity="center"
-                android:layout_width="@dimen/width275"
-                android:layout_height="@dimen/width110"
+                android:layout_width="@dimen/width224"
+                android:layout_height="@dimen/width75"
                 android:text="窗磁1"
-                android:textSize="@dimen/textsize30"
-                android:gravity="center"/>
+                style="@style/text_23_ffffff"
+                android:background="@drawable/safety_button"/>
             <Button
                 android:id="@+id/security_leavehome_six"
                 android:layout_gravity="center"
-                android:layout_width="@dimen/width275"
-                android:layout_height="@dimen/width110"
+                android:layout_width="@dimen/width224"
+                android:layout_height="@dimen/width75"
                 android:text="窗磁2"
-                android:textSize="@dimen/textsize30"
-                android:gravity="center"/>
+                style="@style/text_23_ffffff"
+                android:layout_marginLeft="@dimen/width16"
+                android:background="@drawable/safety_button"/>
             <Button
                 android:id="@+id/security_leavehome_seven"
                 android:layout_gravity="center"
-                android:layout_width="@dimen/width275"
-                android:layout_height="@dimen/width110"
+                android:layout_width="@dimen/width224"
+                android:layout_height="@dimen/width75"
                 android:text="紧急绳索"
-                android:textSize="@dimen/textsize30"
-                android:gravity="center"/>
+                style="@style/text_23_ffffff"
+                android:layout_marginLeft="@dimen/width16"
+                android:background="@drawable/safety_button"/>
             <Button
                 android:id="@+id/security_leavehome_eight"
                 android:layout_gravity="center"
-                android:layout_width="@dimen/width275"
-                android:layout_height="@dimen/width110"
+                android:layout_width="@dimen/width224"
+                android:layout_height="@dimen/width75"
                 android:text="床头按钮"
-                android:textSize="@dimen/textsize30"
-                android:gravity="center"/>
+                style="@style/text_23_ffffff"
+                android:layout_marginLeft="@dimen/width16"
+                android:background="@drawable/safety_button"/>
 
         </LinearLayout>
+
     </LinearLayout>
-    <TextView
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:layout_width="@dimen/width400"
-        android:layout_height="@dimen/width80"
-        android:textSize="@dimen/textsize30"
-        android:text="回家安防设置" />
+
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/width240"
+        android:layout_height="@dimen/width61"
+        android:layout_marginTop="@dimen/width62"
+        android:background="@drawable/safety_nav">
+
+        <TextView
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/width168"
+            style="@style/text_23_20A6B3"
+            android:text="离家安防设置"/>
+
+        <ImageView
+            android:layout_width="@dimen/width19"
+            android:layout_height="@dimen/width19"
+            android:layout_marginLeft="@dimen/width13"
+            android:layout_gravity="center"
+            android:background="@drawable/security_toright_icon"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/width62"
         android:orientation="vertical">
         <LinearLayout
             android:layout_gravity="center"
-            android:layout_width="@dimen/width1100"
-            android:layout_height="@dimen/width120"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
             <Button
                 android:id="@+id/security_gohome_one"
                 android:layout_gravity="center"
-                android:layout_width="@dimen/width275"
-                android:layout_height="@dimen/width110"
+                android:layout_width="@dimen/width224"
+                android:layout_height="@dimen/width75"
                 android:text="烟感"
-                android:textSize="@dimen/textsize30"
-                android:gravity="center"/>
+                style="@style/text_23_ffffff"
+                android:layout_marginLeft="@dimen/width16"
+                android:background="@drawable/safety_button"/>
             <Button
                 android:id="@+id/security_gohome_two"
                 android:layout_gravity="center"
-                android:layout_width="@dimen/width275"
-                android:layout_height="@dimen/width110"
+                android:layout_width="@dimen/width224"
+                android:layout_height="@dimen/width75"
                 android:text="煤气"
-                android:textSize="@dimen/textsize30"
-                android:gravity="center"/>
+                style="@style/text_23_ffffff"
+                android:layout_marginLeft="@dimen/width16"
+                android:background="@drawable/safety_button"/>
             <Button
                 android:id="@+id/security_gohome_three"
                 android:layout_gravity="center"
-                android:layout_width="@dimen/width275"
-                android:layout_height="@dimen/width110"
+                android:layout_width="@dimen/width224"
+                android:layout_height="@dimen/width75"
                 android:text="红外"
-                android:textSize="@dimen/textsize30"
-                android:gravity="center"/>
+                style="@style/text_23_ffffff"
+                android:layout_marginLeft="@dimen/width16"
+                android:background="@drawable/safety_button"/>
             <Button
                 android:id="@+id/security_gohome_four"
                 android:layout_gravity="center"
-                android:layout_width="@dimen/width275"
-                android:layout_height="@dimen/width110"
+                android:layout_width="@dimen/width224"
+                android:layout_height="@dimen/width75"
                 android:text="门磁"
-                android:textSize="@dimen/textsize30"
-                android:gravity="center"/>
+                style="@style/text_23_ffffff"
+                android:layout_marginLeft="@dimen/width16"
+                android:background="@drawable/safety_button"/>
         </LinearLayout>
+
         <LinearLayout
             android:layout_gravity="center"
-            android:layout_width="@dimen/width1100"
-            android:layout_height="@dimen/width120"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/width16"
             android:orientation="horizontal">
             <Button
                 android:id="@+id/security_gohome_five"
                 android:layout_gravity="center"
-                android:layout_width="@dimen/width275"
-                android:layout_height="@dimen/width110"
+                android:layout_width="@dimen/width224"
+                android:layout_height="@dimen/width75"
                 android:text="窗磁1"
-                android:textSize="@dimen/textsize30"
-                android:gravity="center"/>
+                style="@style/text_23_ffffff"
+                android:layout_marginLeft="@dimen/width16"
+                android:background="@drawable/safety_button"/>
             <Button
                 android:id="@+id/security_gohome_six"
                 android:layout_gravity="center"
-                android:layout_width="@dimen/width275"
-                android:layout_height="@dimen/width110"
+                android:layout_width="@dimen/width224"
+                android:layout_height="@dimen/width75"
                 android:text="窗磁2"
-                android:textSize="@dimen/textsize30"
-                android:gravity="center"/>
+                style="@style/text_23_ffffff"
+                android:layout_marginLeft="@dimen/width16"
+                android:background="@drawable/safety_button"/>
             <Button
                 android:id="@+id/security_gohome_seven"
                 android:layout_gravity="center"
-                android:layout_width="@dimen/width275"
-                android:layout_height="@dimen/width110"
+                android:layout_width="@dimen/width224"
+                android:layout_height="@dimen/width75"
                 android:text="紧急绳索"
-                android:textSize="@dimen/textsize30"
-                android:gravity="center"/>
+                style="@style/text_23_ffffff"
+                android:layout_marginLeft="@dimen/width16"
+                android:background="@drawable/safety_button"/>
             <Button
                 android:id="@+id/security_gohome_eight"
                 android:layout_gravity="center"
-                android:layout_width="@dimen/width275"
-                android:layout_height="@dimen/width110"
+                android:layout_width="@dimen/width224"
+                android:layout_height="@dimen/width75"
                 android:text="床头按钮"
-                android:textSize="@dimen/textsize30"
-                android:gravity="center"/>
+                style="@style/text_23_ffffff"
+                android:layout_marginLeft="@dimen/width16"
+                android:background="@drawable/safety_button"/>
 
         </LinearLayout>
     </LinearLayout>

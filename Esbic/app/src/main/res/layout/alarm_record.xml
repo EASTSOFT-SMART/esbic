@@ -15,9 +15,9 @@
             android:layout_height="@dimen/width81"
             android:background="@drawable/top_back" />
         <TextView
-            android:layout_width="@dimen/width50"
-            android:layout_height="@dimen/width27"
-            android:layout_marginTop="@dimen/width30"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             style="@style/text_25_ffffff"
             android:text="返回"/>
     </LinearLayout>

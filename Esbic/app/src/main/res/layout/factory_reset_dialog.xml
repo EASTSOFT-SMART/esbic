@@ -1,63 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bg_7">
 
     <LinearLayout
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_width="@dimen/width550"
-        android:layout_height="@dimen/width400"
-        android:orientation="vertical"
-        >
-        <ImageView
-            android:id="@+id/reset_icon"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/width93"
+        android:background="@drawable/top_bg_2">
+        <ImageButton
+            android:id="@+id/factory_reset_back"
             android:layout_gravity="center"
-            android:layout_marginTop="@dimen/width25"
-            android:layout_width="@dimen/width100"
-            android:layout_height="@dimen/width100"
-            android:background="@drawable/reset_icon"/>
-        <LinearLayout
-            android:layout_width="@dimen/width430"
-            android:layout_height="@dimen/width100"
-            android:layout_marginTop="@dimen/width15"
+            android:layout_marginLeft="@dimen/width50"
+            android:layout_width="@dimen/width36"
+            android:layout_height="@dimen/width81"
+            android:background="@drawable/top_back" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:orientation="horizontal">
-            <TextView
-                android:id="@+id/show_password"
-                android:layout_width="@dimen/width400"
-                android:layout_marginLeft="@dimen/width30"
-                android:layout_height="@dimen/width90"
-                android:text="确认恢复出厂设置？"
-                android:gravity="center"
-                android:textSize="@dimen/textsize35"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="@dimen/width500"
-            android:layout_height="@dimen/width100"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/width25"
-            android:orientation="horizontal">
-            <Button
-                android:id="@+id/reset_cancel"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:layout_marginLeft="@dimen/width50"
-                android:layout_width="@dimen/width150"
-                android:layout_height="@dimen/width80"
-                android:textSize="@dimen/textsize30"
-                android:text="取消"/>
-            <Button
-                android:id="@+id/reset_recovery"
-                android:layout_gravity="center"
-                android:layout_marginLeft="@dimen/width100"
-                android:gravity="center"
-                android:layout_width="@dimen/width150"
-                android:layout_height="@dimen/width80"
-                android:textSize="@dimen/textsize30"
-                android:text="确定"/>
+            style="@style/text_25_ffffff"
+            android:text="返回"/>
 
-        </LinearLayout>
     </LinearLayout>
 
-</RelativeLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/width8"
+        android:background="@drawable/line"
+        />
+
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        
+        <LinearLayout
+            android:layout_width="@dimen/width724"
+            android:layout_height="@dimen/width310"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/width158"
+            android:orientation="vertical"
+            android:background="@drawable/recovery_bg">
+            
+            <ImageView
+                android:layout_width="@dimen/width71"
+                android:layout_height="@dimen/width62"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/width30"
+                android:background="@drawable/return_icon"/>
+
+
+                <TextView
+                    android:id="@+id/show_password"
+                    android:layout_width="@dimen/width420"
+                    android:layout_gravity="center"
+                    android:layout_height="@dimen/width67"
+                    android:layout_marginTop="@dimen/width31"
+                    style="@style/text_42_ffffff"
+                    android:text="确认恢复出厂设置"
+                    android:background="@drawable/return_text_bg"
+                    />
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/width50"
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/reset_cancel"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_width="@dimen/width102"
+                    android:layout_height="@dimen/width32"
+                    style="@style/text_21_ffffff"
+                    android:background="@drawable/factory_icon"
+                    android:text="取消"/>
+                <Button
+                    android:id="@+id/reset_recovery"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/width94"
+                    android:gravity="center"
+                    style="@style/text_21_ffffff"
+                    android:layout_width="@dimen/width102"
+                    android:layout_height="@dimen/width32"
+                    android:background="@drawable/factory_icon"
+                    android:text="恢复"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+        </LinearLayout>
+
+
+        
+    </LinearLayout>
+
+        

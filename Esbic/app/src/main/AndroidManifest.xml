@@ -33,9 +33,6 @@
         <meta-data android:name="design_height" android:value="800">
         </meta-data>
 
-        <activity android:name=".ativity.WelcomeActivity"
-            android:screenOrientation="landscape">
-        </activity>
         <activity android:name=".ativity.MainActivity"
             android:screenOrientation="landscape">
             <intent-filter>
@@ -115,6 +112,9 @@
         <activity android:name=".ativity.OnCallActivity"
             android:screenOrientation="landscape"
             >
+        </activity>
+        <activity android:name=".ativity.StandByActivity"
+            android:screenOrientation="landscape">
         </activity>
     </application>
 </manifest>

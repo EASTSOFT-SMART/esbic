@@ -30,7 +30,7 @@
             style="@style/text_18_ffffff"/>
 
         <TextView
-            android:id="@+id/monitor"
+            android:id="@+id/monitor_place"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/width10"
             android:layout_width="@dimen/width150"

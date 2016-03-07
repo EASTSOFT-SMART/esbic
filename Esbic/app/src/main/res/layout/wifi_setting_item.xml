@@ -5,28 +5,42 @@
     <LinearLayout
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_width="@dimen/width1100"
-        android:layout_height="@dimen/width70"
-        android:orientation="horizontal">
-        <TextView
-            android:id="@+id/wifi_list_name"
-            android:gravity="center"
-            android:textSize="@dimen/textsize25"
-            android:text="小米随身Wifi"
-            android:layout_width="@dimen/width300"
-            android:layout_height="@dimen/width70" />
+        android:layout_width="@dimen/width954"
+        android:layout_height="@dimen/width85"
+        android:orientation="horizontal"
+        android:background="@drawable/wifi_list_bg">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/wifi_list_name"
+                android:layout_marginTop="@dimen/width10"
+                android:layout_marginLeft="@dimen/width29"
+                android:textSize="@dimen/textsize23"
+                android:text="小米随身Wifi"
+                android:textColor="#ffffff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/wifi_state"
+                android:layout_marginTop="@dimen/width9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ffffff"
+                android:layout_marginLeft="@dimen/width29"
+                android:textSize="@dimen/textsize23"
+                android:text="未连接"/>
+        </LinearLayout>
+
         <ImageView
-            android:id="@+id/wifi_list_lock"
+            android:id="@+id/wifi_lock"
             android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/width330"
-            android:layout_width="@dimen/width60"
-            android:layout_height="@dimen/width60"
-            android:background="@drawable/lock"/>
-        <ImageView
-            android:id="@+id/wifi_list_intensity"
-            android:layout_marginLeft="@dimen/width80"
-            android:layout_width="@dimen/width60"
-            android:layout_height="@dimen/width70"
+            android:layout_marginLeft="@dimen/width720"
+            android:layout_width="@dimen/width57"
+            android:layout_height="@dimen/width57"
+            android:background="@drawable/wifi_icon"
             />
 
     </LinearLayout>

@@ -110,4 +110,45 @@ public class BaseActivity extends Activity{
         timer.setBase(SystemClock.elapsedRealtime());
     }
     //
+
+    //判断输入键盘按的是哪一个按键
+    protected void playNumberSingByNumber(int num){
+        if (num==0){
+            playButtonMusic(numOneMusicId);
+        }
+        if (num==1){
+            playButtonMusic(numTwoMusicId);
+        }
+        if (num==2){
+            playButtonMusic(numThreeMusicId);
+        }
+        if (num==3){
+            playButtonMusic(numFourMusicId);
+        }
+        if (num==4){
+            playButtonMusic(numFiveMusicId);
+        }
+        if (num==5){
+            playButtonMusic(numSixMusicId);
+        }
+        if (num==6){
+            playButtonMusic(numSevenMusicId);
+        }
+        if (num==7){
+            playButtonMusic(numEightMusicId);
+        }
+        if (num==8){
+            playButtonMusic(numNineMusicId);
+        }
+        if (num==9){
+            playButtonMusic(musicButtonId);
+        }
+        if (num==10){
+            playButtonMusic(numZeroMusicId);
+        }
+        if (num==11){
+            playButtonMusic(musicButtonId);
+        }
+
+    }
 }

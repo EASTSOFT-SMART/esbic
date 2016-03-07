@@ -34,7 +34,6 @@ public class LeaveHome extends BaseActivity implements AdapterView.OnItemClickLi
     private int[] icon;
     private String passWords;
     private String password="1234";
-    private ImageButton back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +44,6 @@ public class LeaveHome extends BaseActivity implements AdapterView.OnItemClickLi
     }
 
     public void initData(){
-        back=(ImageButton)this.findViewById(R.id.leave_home_back);
         numOne=(TextView) this.findViewById(R.id.num_one);
         numTwo=(TextView) this.findViewById(R.id.num_two);
         numThree=(TextView) this.findViewById(R.id.num_three);
@@ -61,6 +59,7 @@ public class LeaveHome extends BaseActivity implements AdapterView.OnItemClickLi
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
         Log.v("GrideView的第几个子列表",String.valueOf(i));
         textHowToShow(i);
         if (i==11){

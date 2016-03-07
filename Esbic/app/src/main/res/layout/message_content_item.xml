@@ -5,43 +5,41 @@
     <LinearLayout
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_width="@dimen/width380"
-        android:layout_height="@dimen/width150"
+        android:layout_width="@dimen/width304"
+        android:layout_height="@dimen/width111"
+        android:background="@drawable/message_item_selected"
         android:orientation="horizontal">
-      <RelativeLayout
-          android:id="@+id/type"
-          android:layout_marginLeft="@dimen/width20"
-          android:layout_gravity="center"
-          android:layout_width="@dimen/width120"
-          android:layout_height="@dimen/width120">
+
           <ImageView
               android:id="@+id/read_status"
-              android:layout_alignParentRight="true"
-              android:layout_width="@dimen/width30"
-              android:layout_height="@dimen/width30"
-              android:background="#009956"/>
-      </RelativeLayout>
+              android:layout_gravity="center"
+              android:layout_width="@dimen/width57"
+              android:layout_height="@dimen/width57"
+              android:background="@drawable/msg_unread"/>
+
         <LinearLayout
-            android:layout_marginLeft="@dimen/width30"
-            android:layout_width="@dimen/width200"
-            android:layout_height="@dimen/width150"
+            android:layout_marginLeft="@dimen/width16"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:orientation="vertical">
             <TextView
-                android:layout_gravity="center"
-                android:gravity="center"
                 android:id="@+id/item_content"
-                android:textSize="@dimen/width25"
-                android:layout_width="@dimen/width200"
-                android:layout_height="@dimen/width65"
+                android:layout_gravity="center|left"
+                style="@style/text_23_ffffff"
+                android:gravity="left"
+                android:layout_marginTop="@dimen/width11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="交物业费"/>
             <TextView
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:layout_width="@dimen/width200"
-                android:layout_height="@dimen/width65"
-                android:textSize="@dimen/width25"
-                android:text="2015年3月2日"/>
-
+                android:id="@+id/message_time"
+                android:layout_gravity="center|left"
+                style="@style/text_23_ffffff"
+                android:gravity="left"
+                android:layout_marginTop="@dimen/width10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="请于2016年2月31日前缴纳"/>
         </LinearLayout>
 
     </LinearLayout>

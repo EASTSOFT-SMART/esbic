@@ -38,7 +38,7 @@ public class MessageContentActivity extends BaseActivity implements View.OnClick
         messageContent=(TextView)this.findViewById(R.id.message_content);
         back=(ImageButton)this.findViewById(R.id.message_con_back);
         back.setOnClickListener(this);
-        messageContentTitle=(ListView)this.findViewById(R.id.message_content_title);
+        messageContentTitle=(ListView)this.findViewById(R.id.message_content_item);
         messageAdapter=new MessageAdapter(messageUtilList,this);
         messageContentTitle.setAdapter(messageAdapter);
 
@@ -47,6 +47,7 @@ public class MessageContentActivity extends BaseActivity implements View.OnClick
     @Override
     public void onClick(View view) {
       if (view.getId()==back.getId()){
+          playButtonMusic(musicButtonId);
           MessageContentActivity.this.finish();
       }
     }

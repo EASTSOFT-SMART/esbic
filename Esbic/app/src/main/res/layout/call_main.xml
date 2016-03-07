@@ -6,17 +6,21 @@
     >
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/width100"
-        android:background="@drawable/top_bg"
-        >
+        android:layout_height="@dimen/width93"
+        android:background="@drawable/top_bg">
         <ImageButton
             android:id="@+id/back"
             android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/width75"
-            android:layout_width="@dimen/width100"
-            android:layout_height="@dimen/width35"
-            android:background="@drawable/top_back"/>
-
+            android:layout_marginLeft="@dimen/width50"
+            android:layout_width="@dimen/width36"
+            android:layout_height="@dimen/width81"
+            android:background="@drawable/top_back" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            style="@style/text_25_ffffff"
+            android:text="返回"/>
     </LinearLayout>
 
     <!--第二部分-->
@@ -24,117 +28,124 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <LinearLayout
-            android:layout_width="@dimen/width1000"
-            android:layout_height="@dimen/width550"
+            android:layout_width="@dimen/width1046"
+            android:layout_height="@dimen/width567"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:background="@drawable/bg_2">
             <LinearLayout
                 android:layout_gravity="center"
-                android:layout_width="@dimen/width500"
-                android:layout_height="@dimen/width550"
+                android:layout_width="@dimen/width523"
+                android:layout_height="@dimen/width567"
                 android:orientation="vertical">
 
                 <ListView
                     android:id="@+id/hostory_list"
                     android:layout_gravity="center"
                     android:visibility="gone"
-                    android:layout_marginTop="@dimen/width40"
-                    android:layout_width="@dimen/width450"
-                    android:layout_height="@dimen/width485"/>
+                    android:layout_marginTop="@dimen/width46"
+                    android:layout_marginBottom="@dimen/width37"
+                    android:layout_width="@dimen/width380"
+                    android:layout_height="@dimen/width444"/>
                 <LinearLayout
                     android:id="@+id/control_help"
                     android:layout_gravity="center"
                     android:layout_width="@dimen/width380"
-                    android:layout_height="@dimen/width415"
-                    android:layout_marginTop="@dimen/width70"
+                    android:layout_height="@dimen/width444"
+                    android:layout_marginTop="@dimen/width66"
                     android:orientation="vertical">
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/width80"
-                        android:textSize="35sp"
+                        style="@style/text_32_ffffff"
                         android:gravity="center|left"
                         android:textColor="#FFFFFF"
                         android:text="使用方法："/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/width50"
-                        android:textSize="25sp"
+                        style="@style/text_22_ffffff"
                         android:gravity="center|left"
-                        android:textColor="#FFFFFF"
                         android:text="②楼栋号+单元号+楼层号"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/width50"
-                        android:textSize="25sp"
                         android:gravity="center|left"
-                        android:textColor="#FFFFFF"
+                        style="@style/text_22_ffffff"
                         android:layout_marginLeft="@dimen/width30"
                         android:text="+房间号"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/width50"
-                        android:textSize="25sp"
+                        style="@style/text_22_ffffff"
                         android:gravity="center|left"
-                        android:textColor="#FFFFFF"
                         android:text="①楼层号+房间号"/>
 
                 </LinearLayout>
                 <LinearLayout
-                    android:layout_width="@dimen/width500"
-                    android:layout_height="@dimen/width65"
+                    android:layout_width="@dimen/width523"
+                    android:layout_height="wrap_content"
                     android:orientation="horizontal">
-
-                    <ImageButton
+                    <Button
                         android:id="@+id/hository"
-                        android:layout_width="@dimen/width245"
-                        android:layout_height="@dimen/width65"
-                        android:background="@drawable/call_history_record"/>
-                    <ImageButton
+                        android:layout_width="@dimen/width255"
+                        android:layout_height="@dimen/width57"
+                        android:background="@drawable/call_history_record"
+                        style="@style/text_24_ffffff"
+                        android:paddingLeft="@dimen/width60"
+                        android:text="历史记录"/>
+                    <Button
                         android:id="@+id/help"
-                        android:layout_width="@dimen/width245"
-                        android:layout_height="@dimen/width65"
-                        android:background="@drawable/operation_help"/>
+                        android:layout_width="@dimen/width255"
+                        android:layout_height="@dimen/width57"
+                        android:background="@drawable/operation_help"
+                        style="@style/text_24_ffffff"
+                        android:paddingLeft="@dimen/width60"
+                        android:text="操作说明"/>
                 </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="@dimen/width500"
-                android:layout_height="@dimen/width550"
+                android:layout_width="@dimen/width523"
+                android:layout_height="@dimen/width567"
                 android:layout_gravity="center"
                 android:orientation="vertical">
-                <LinearLayout
-                    android:layout_width="@dimen/width300"
-                    android:layout_height="@dimen/width75"
-                    android:layout_marginTop="@dimen/width40"
-                    android:layout_gravity="center"
-                    android:orientation="vertical"
-                    android:background="@drawable/input_box">
+
                     <TextView
                         android:id="@+id/tel_number"
-                        android:textSize="25sp"
-                        android:gravity="center"
                         android:layout_gravity="center"
-                        android:layout_width="@dimen/width260"
-                        android:layout_height="@dimen/width75"
+                        android:gravity="center"
+                        android:layout_width="@dimen/width276"
+                        android:layout_height="@dimen/width48"
+                        android:layout_marginTop="@dimen/width40"
+                        android:background="@drawable/input_box"
+                        style="@style/text_30_000000"
+                        android:text="000"
                         />
-                </LinearLayout>
 
 
                 <GridView
                     android:id="@+id/input_board"
-                    android:layout_marginTop="@dimen/width20"
-                    android:layout_width="@dimen/width300"
+                    android:layout_marginTop="@dimen/width25"
+                    android:layout_width="@dimen/width278"
+                    android:layout_height="@dimen/width364"
                     android:numColumns="3"
                     android:layout_gravity="center"
-                    android:layout_height="@dimen/width330"></GridView>
+                    android:horizontalSpacing="@dimen/width25"
+                    android:verticalSpacing="@dimen/width20"
+                    android:listSelector="#00000000"
+                    ></GridView>
 
-                <ImageButton
+                <Button
                     android:id="@+id/call"
                     android:layout_gravity="center"
                     android:layout_width="@dimen/width250"
                     android:layout_height="@dimen/width65"
                     android:layout_marginTop="@dimen/width20"
+                    style="@style/text_24_ffffff"
+                    android:text="呼叫住户"
+                    android:paddingLeft="@dimen/width70"
                     android:background="@drawable/call_resident"/>
 
             </LinearLayout>

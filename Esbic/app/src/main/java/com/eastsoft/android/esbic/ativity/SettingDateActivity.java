@@ -4,10 +4,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.eastsoft.android.esbic.R;
+import com.eastsoft.android.esbic.adapter.InputKeyBoardAdapter;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -20,13 +22,13 @@ import java.util.Map;
  * Created by Mr Wang on 2016/2/17.
  */
 public class SettingDateActivity extends BaseActivity implements AdapterView.OnItemClickListener {
-    private TextView yearMonthDay,hourMinuteSecond;
+    private TextView dateYear,dateMonth,dateDay,dateHour,dateMinute,dateSecond;
     private GridView inputKeyBoard;
-    private List<Map<String,Object>> mapList;
-    private int[] touchNumber = new int[]{R.drawable.input_keyboard_zero_button};
+    private int[] icon;
     private SimpleDateFormat simpleDateFormat;
     private Date date;
     private int position=0;
+    ImageButton back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,112 +37,118 @@ public class SettingDateActivity extends BaseActivity implements AdapterView.OnI
     }
 
     private void initData(){
-        yearMonthDay=(TextView)this.findViewById(R.id.date_ymd);
-        hourMinuteSecond=(TextView)this.findViewById(R.id.date_hms);
+        dateYear=(TextView)this.findViewById(R.id.date_year);
+        dateMonth=(TextView)this.findViewById(R.id.date_month);
+        dateDay=(TextView)this.findViewById(R.id.date_day);
+        dateHour=(TextView)this.findViewById(R.id.date_hour);
+        dateMinute=(TextView)this.findViewById(R.id.date_minute);
+        dateSecond=(TextView)this.findViewById(R.id.date_second);
         inputKeyBoard=(GridView)this.findViewById(R.id.setting_date_input_keyboard);
-        mapList = new ArrayList<Map<String, Object>>();
-        for (int i = 0; i < 12; i++) {
-            Map<String, Object> map = new HashMap<String, Object>();
-            map.put("numButton", touchNumber[0]);
-            mapList.add(map);
-        }
-        SimpleAdapter simpleAdapter = new SimpleAdapter(this, mapList, R.layout.input_keyboard_item, new String[]
-                {"numButton"}, new int[]{R.id.keyboard_child});
-        inputKeyBoard.setAdapter(simpleAdapter);
+        icon=new int[]{R.drawable.num_delete,R.drawable.button_icon};
+        InputKeyBoardAdapter inputKeyBoardAdapter=new InputKeyBoardAdapter(this,icon);
+        inputKeyBoard.setAdapter(inputKeyBoardAdapter);
         inputKeyBoard.setOnItemClickListener(this);
         simpleDateFormat=new SimpleDateFormat("yyMMdd");
         date=new Date();
-        yearMonthDay.setText(simpleDateFormat.format(date));
-        hourMinuteSecond.setText(new SimpleDateFormat("HHmmss").format(date));
+        //yearMonthDay.setText(simpleDateFormat.format(date));
+        // hourMinuteSecond.setText(new SimpleDateFormat("HHmmss").format(date));
 
     }
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        position+=1;
-        if (position==1){
-            yearMonthDay.setText("");
-        }
-        if (yearMonthDay.getText().toString().length()==8){
-            hourMinuteSecond.setText("");
-        }
-        if (i<9){
-            String num=yearMonthDay.getText().toString();
-            if (num.length()<8){
-                yearMonthDay.setText(num+String.valueOf(i+1));
-            }else{
-                String numTwo=hourMinuteSecond.getText().toString();
-                if (numTwo.length()<6){
-                    hourMinuteSecond.setText(numTwo+String.valueOf(i+1));
-                }
-            }
-        }else if (i==10){
-            String num=yearMonthDay.getText().toString();
-            if (num.length()<8){
-                yearMonthDay.setText(num+String.valueOf(0));
-            }else{
-                String numTwo=hourMinuteSecond.getText().toString();
-                if (numTwo.length()<6){
-                    hourMinuteSecond.setText(numTwo+String.valueOf(0));
-                }
-            }
-        }else if (i==11){
-            String num=yearMonthDay.getText().toString();
-            if (num.length()<=8){
-                if (num.length()==8){
-                    yearMonthDay.setText(num.substring(0,6));
-                }else if (num.length()==7){
-                    yearMonthDay.setText(num.substring(0,5));
-                }
-                else if (num.length()==6){
-                    yearMonthDay.setText(num.substring(0,4));
-                }else if (num.length()==5){
-                    yearMonthDay.setText(num.substring(0,3));
-                }else if (num.length()==4) {
-                    yearMonthDay.setText(num.substring(0, 2));
-                }else if (num.length()==3) {
-                    yearMonthDay.setText(num.substring(0, 1));
-                }else if (num.length()==2) {
-                    yearMonthDay.setText(num.substring(0));
-                }else if (num.length()==1) {
-                    yearMonthDay.setText("");
-                }
-            }else{
-                String numTwo=hourMinuteSecond.getText().toString();
-                if (numTwo.length()==6){
-                    hourMinuteSecond.setText(num.substring(0,4));
-                }else if (num.length()==5){
-                    hourMinuteSecond.setText(num.substring(0,3));
-                }else if (num.length()==4){
-                    hourMinuteSecond.setText(num.substring(0,2));
-                }else if (num.length()==3){
-                    hourMinuteSecond.setText(num.substring(0,1));
-                }else if (num.length()==2) {
-                    hourMinuteSecond.setText(num.substring(0));
-                }else if (num.length()==4) {
-                    hourMinuteSecond.setText("");
-                }
-            }
-        }else if (i==9){
-            String num=yearMonthDay.getText().toString()+hourMinuteSecond.getText().toString();
-            if (num.length()<=8){
-                yearMonthDay.setText("");
-            }else{
-                hourMinuteSecond.setText("");
-            }
-        }
-        String numOne=yearMonthDay.getText().toString();
-        String numTwo=hourMinuteSecond.getText().toString();
-        if (numOne.length()==8&&numTwo.length()==6){
-            if (numOne.equals(numTwo)){
 
+
+    }
+
+    //设置TextView从左往右显示
+    public void textHowToShow(int position){
+        if(position<9){
+            if (dateYear.getText().equals("")||dateYear.getText().length()<4){
+                String year=dateYear.getText().toString();
+                dateYear.setText(year+String.valueOf(position+1));
+            }else if (dateMonth.getText().equals("")||dateMonth.getText().length()<2){
+                String month=dateMonth.getText().toString();
+                dateMonth.setText(month+String.valueOf(position+1) );
+            }else if (dateDay.getText().equals("")||dateMonth.getText().length()<2){
+                String day=dateDay.getText().toString();
+                dateDay.setText(day+String.valueOf(position+1));
             }else{
-                showShortToast("两次密码输入不匹配，请重新输入");
-                yearMonthDay.setText("");
-                hourMinuteSecond.setText("");
+                if (dateHour.getText().equals("")||dateHour.getText().length()<2){
+                    String hour=dateHour.getText().toString();
+                    dateHour.setText(hour+String.valueOf(position+1));
+                }else if (dateMinute.getText().equals("")||dateMinute.getText().length()<2){
+                    String minute=dateMinute.getText().toString();
+                    dateMinute.setText(minute+String.valueOf(position+1));
+                }else if (dateSecond.getText().equals("")||dateSecond.getText().length()<2){
+                    String second=dateSecond.getText().toString();
+                    dateSecond.setText(second+String.valueOf(position+1));
+                }else{
+                    String timeString =dateYear.getText().toString() +dateMonth.getText().toString()
+                            +dateDay.getText().toString() +dateHour.getText().toString()+dateMinute.getText().toString()
+                            +dateSecond.getText().toString();
+
+                }
             }
+        }else if (position==9){
+            dateSecond.setText("");
+            dateMinute.setText("");
+            dateHour.setText("");
+            dateDay.setText("");
+            dateMonth.setText("");
+            dateHour.setText("");
+        }else if (position==10){
+            if (dateYear.getText().equals("")||dateYear.getText().length()<4){
+                String year=dateYear.getText().toString();
+                dateYear.setText(year+String.valueOf(0));
+            }else if (dateMonth.getText().equals("")||dateMonth.getText().length()<2){
+                String month=dateMonth.getText().toString();
+                dateMonth.setText(month+String.valueOf(0) );
+            }else if (dateDay.getText().equals("")||dateMonth.getText().length()<2){
+                String day=dateDay.getText().toString();
+                dateDay.setText(day+String.valueOf(0));
+            }else{
+                if (dateHour.getText().equals("")||dateHour.getText().length()<2){
+                    String hour=dateHour.getText().toString();
+                    dateHour.setText(hour+String.valueOf(0));
+                }else if (dateMinute.getText().equals("")||dateMinute.getText().length()<2){
+                    String minute=dateMinute.getText().toString();
+                    dateMinute.setText(minute+String.valueOf(0));
+                }else if (dateSecond.getText().equals("")||dateSecond.getText().length()<2){
+                    String second=dateSecond.getText().toString();
+                    dateSecond.setText(second+String.valueOf(0));
+                }else{
+                    String timeString =dateYear.getText().toString() +dateMonth.getText().toString()
+                            +dateDay.getText().toString() +dateHour.getText().toString()+dateMinute.getText().toString()
+                            +dateSecond.getText().toString();
+
+                }
+            }
+        }else if (position==11){
+            deleteTextViewFromRight();
         }
     }
 
-
+    //设置删除的时候从右往左删除
+    private void deleteTextViewFromRight(){
+        if (!dateSecond.getText().equals("")){
+            dateSecond.setText("");
+        }else if (!dateMinute.getText().equals("")){
+            dateMinute.setText("");
+        }else if (!dateHour.getText().equals("")){
+            dateHour.setText("");
+        }else {
+            if (!dateDay.getText().equals("")) {
+                dateDay.setText("");
+            } else if (!dateMonth.getText().equals("")) {
+                dateMonth.setText("");
+            } else if (!dateMonth.getText().equals("")) {
+                dateMonth.setText("");
+            } else if (!dateYear.getText().equals("")) {
+                dateYear.setText("");
+            } else {
+                return;
+            }
+        }
+    }
 }

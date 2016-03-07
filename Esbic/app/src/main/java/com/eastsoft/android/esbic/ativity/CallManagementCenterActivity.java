@@ -15,9 +15,8 @@ import com.eastsoft.android.esbic.R;
  * Created by sofa on 2016/1/25.
  */
 public class CallManagementCenterActivity extends BaseActivity implements View.OnClickListener {
-    private TextView isCallingCenter,isTalking;
     private Button hangUp;
-    private Chronometer timer;
+    private Chronometer timer,timerConversation;
     private ImageButton back;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,9 +26,9 @@ public class CallManagementCenterActivity extends BaseActivity implements View.O
 
     }
     private void initData(){
-        isCallingCenter=(TextView) this.findViewById(R.id.is_calling_center);
         timer=(Chronometer) this.findViewById(R.id.timer);
-        hangUp=(Button)this.findViewById(R.id.hang_up);
+        timerConversation=(Chronometer)this.findViewById(R.id.timer_conversation);
+        hangUp=(Button)this.findViewById(R.id.call_center_management_hang_up);
         back=(ImageButton)this.findViewById(R.id.call_center_management_back);
         hangUp.setOnClickListener(this);
         back.setOnClickListener(this);

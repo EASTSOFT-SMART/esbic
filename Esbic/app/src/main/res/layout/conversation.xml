@@ -3,55 +3,82 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_3"
     >
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/width100"
-        android:background="@drawable/home_top_bg"
-        >
+        android:layout_height="@dimen/width93"
+        android:background="@drawable/top_bg">
         <ImageButton
             android:id="@+id/conversation_back"
             android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/width75"
-            android:layout_width="@dimen/width100"
-            android:layout_height="@dimen/width35"
-            android:background="@drawable/top_back"/>
-
+            android:layout_marginLeft="@dimen/width50"
+            android:layout_width="@dimen/width36"
+            android:layout_height="@dimen/width81"
+            android:background="@drawable/top_back" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            style="@style/text_25_ffffff"
+            android:text="返回"/>
     </LinearLayout>
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="@dimen/width1046"
+        android:layout_height="@dimen/width567"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:orientation="horizontal"
+        android:background="@drawable/bg_2">
         <LinearLayout
             android:layout_gravity="center"
-            android:layout_width="@dimen/width500"
-            android:layout_marginLeft="@dimen/width100"
-            android:layout_height="@dimen/width600"
+            android:layout_width="@dimen/width523"
+            android:layout_height="@dimen/width567"
             android:orientation="vertical">
             <TextView
-                android:layout_marginTop="@dimen/width150"
-                android:id="@+id/conversation_state"
                 android:gravity="center"
+                android:layout_gravity="center"
                 android:textColor="#FFFFFF"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/width100"
-                android:textSize="@dimen/textsize30"
+                android:layout_marginTop="@dimen/width225"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/textsize36"
                 android:text="正在呼叫"/>
             <TextView
-                android:id="@+id/conversation_going"
-                android:layout_width="match_parent"
+                android:id="@+id/room_name"
                 android:gravity="center"
+                android:layout_gravity="center"
                 android:textColor="#FFFFFF"
-                android:textSize="@dimen/textsize30"
-                android:layout_height="@dimen/width100"
+                android:layout_marginTop="@dimen/width40"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/textsize36"
+                android:text="02楼03单元606户"/>
+            <TextView
+                android:id="@+id/conversation_going"
+                android:layout_width="wrap_content"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                android:layout_marginTop="@dimen/width225"
+                android:textColor="#FFFFFF"
+                android:textSize="@dimen/textsize36"
+                android:layout_height="wrap_content"
                 android:text="正在和XXX通话"/>
 
             <Chronometer
                 android:id="@+id/conversation_time"
-                android:layout_width="match_parent"
-                android:textSize="@dimen/textsize30"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="@dimen/width40"
+                android:textSize="@dimen/textsize36"
+                android:visibility="gone"
                 android:gravity="center"
+                android:layout_gravity="center"
                 android:textColor="#FFFFFF"
-                android:layout_height="@dimen/width100"
+                android:layout_height="wrap_content"
                 />
         </LinearLayout>
 
@@ -59,23 +86,25 @@
 
         <LinearLayout
             android:layout_gravity="center"
-            android:layout_width="@dimen/width500"
-            android:layout_marginLeft="@dimen/width100"
-            android:layout_height="@dimen/width600"
+            android:layout_width="@dimen/width523"
+            android:layout_height="@dimen/width567"
             android:orientation="vertical">
 
-            <ImageButton
+            <Button
                 android:id="@+id/conversation_hang_up"
-                android:layout_width="@dimen/width300"
+                android:layout_width="@dimen/width276"
                 android:layout_marginTop="@dimen/width250"
                 android:layout_gravity="center"
-                android:layout_height="@dimen/width80"
-                android:background="@drawable/hangup_bg"/>
+                android:layout_height="@dimen/width57"
+                android:background="@drawable/hang"
+                style="@style/text_24_ffffff"
+                android:paddingLeft="@dimen/width60"
+                android:text="挂断"/>
 
 
         </LinearLayout>
 
     </LinearLayout>
-
+</RelativeLayout>
 
 </LinearLayout>

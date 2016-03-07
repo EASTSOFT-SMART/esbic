@@ -24,6 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.eastsoft.android.esbic.R;
+import com.eastsoft.android.esbic.adapter.InputKeyBoardAdapter;
 import com.eastsoft.android.esbic.dialog.MyDialog;
 
 import java.util.ArrayList;
@@ -36,15 +37,15 @@ import java.util.Objects;
  * Created by sofa on 2016/1/25.
  */
 public class CallMain extends BaseActivity implements View.OnClickListener,AdapterView.OnItemClickListener{
-    private ImageButton back,call;
-    private ImageButton history,help;
+    private ImageButton back;
+    private Button history,help,call;
     private TextView phoneNumber;
     private GridView inputBoard;
     private ListView historyList;
     private String list[];
     private List<Map<String,Object>> mapList;
     private Intent intent;
-    private SimpleAdapter inputKeyBoardAdapter;
+    private InputKeyBoardAdapter inputKeyBoardAdapter;
     private LinearLayout linearLayout;
     private String number="";
     private int[] icon;
@@ -56,9 +57,9 @@ public class CallMain extends BaseActivity implements View.OnClickListener,Adapt
     }
     private void initData(){
          back=(ImageButton)this.findViewById(R.id.back);
-         call=(ImageButton)this.findViewById(R.id.call);
-         history=(ImageButton)this.findViewById(R.id.hository);
-         help=(ImageButton)this.findViewById(R.id.help);
+         call=(Button) this.findViewById(R.id.call);
+         history=(Button) this.findViewById(R.id.hository);
+         help=(Button) this.findViewById(R.id.help);
          linearLayout=(LinearLayout)this.findViewById(R.id.control_help);
          phoneNumber=(TextView)this.findViewById(R.id.tel_number);
          inputBoard=(GridView)this.findViewById(R.id.input_board);
@@ -109,17 +110,8 @@ public class CallMain extends BaseActivity implements View.OnClickListener,Adapt
    //初始化Adapter
     public void initAdapter(){
         //SimpleAdapter simpleAdapter=new SimpleAdapter();
-        icon=new int[]{R.drawable.num_one,R.drawable.num_two,R.drawable.num_three
-                ,R.drawable.num_four,R.drawable.num_five,R.drawable.num_six,R.drawable.num_seven,R.drawable.num_eight,
-                R.drawable.num_nine,R.drawable.num_clear_all,R.drawable.num_zero,R.drawable.num_delete};
-        mapList=new ArrayList<Map<String, Object>>();
-        for (int i=0;i<icon.length;i++){
-            Map<String,Object> map=new HashMap<String,Object>();
-            map.put("number",icon[i]);
-            mapList.add(map);
-        }
-       inputKeyBoardAdapter=new SimpleAdapter(this,mapList,R.layout.input_keyboard_item,new String[]{
-              "number"},new int[]{R.id.keyboard_child});
+        icon=new int[]{R.drawable.num_delete,R.drawable.button_icon};
+        inputKeyBoardAdapter=new InputKeyBoardAdapter(this,icon);
 
     }
 
@@ -166,46 +158,7 @@ public class CallMain extends BaseActivity implements View.OnClickListener,Adapt
         }
     }
 
-   //判断输入键盘按的是哪一个按键
-    private void playNumberSingByNumber(int num){
-        if (num==0){
-            playButtonMusic(numOneMusicId);
-        }
-        if (num==1){
-            playButtonMusic(numTwoMusicId);
-        }
-        if (num==2){
-            playButtonMusic(numThreeMusicId);
-        }
-        if (num==3){
-            playButtonMusic(numFourMusicId);
-        }
-        if (num==4){
-            playButtonMusic(numFiveMusicId);
-        }
-        if (num==5){
-            playButtonMusic(numSixMusicId);
-        }
-        if (num==6){
-            playButtonMusic(numSevenMusicId);
-        }
-        if (num==7){
-            playButtonMusic(numEightMusicId);
-        }
-        if (num==8){
-            playButtonMusic(numNineMusicId);
-        }
-        if (num==9){
-            playButtonMusic(musicButtonId);
-        }
-        if (num==10){
-            playButtonMusic(numZeroMusicId);
-        }
-        if (num==11){
-            playButtonMusic(musicButtonId);
-        }
 
-    }
     //拉去通话历史记录
     private List<Map<Object,Object>> pullHistoryRecord(){
         return null;

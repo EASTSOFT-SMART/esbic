@@ -10,6 +10,7 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.eastsoft.android.esbic.R;
+import com.eastsoft.android.esbic.adapter.InputKeyBoardAdapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,16 +39,9 @@ public class SettingProjectSetActivity extends BaseActivity implements AdapterVi
         setContentView(R.layout.project_setting);
         back=(ImageButton)this.findViewById(R.id.project_setting_back);
         inputKeyBoard=(GridView)this.findViewById(R.id.project_setting_input_keyboard);
-        icon=new int[]{R.drawable.input_keyboard_zero_button};
-        mapList=new ArrayList<Map<String, Object>>();
-        for (int i = 0; i < 12; i++) {
-            Map<String, Object> map = new HashMap<String, Object>();
-            map.put("numButton", icon[0]);
-            mapList.add(map);
-        }
-        SimpleAdapter simpleAdapter = new SimpleAdapter(this, mapList, R.layout.input_keyboard_item, new String[]
-                {"numButton"}, new int[]{R.id.keyboard_child});
-        inputKeyBoard.setAdapter(simpleAdapter);
+        icon=new int[]{R.drawable.num_delete,R.drawable.button_icon};
+        InputKeyBoardAdapter inputKeyBoardAdapter=new InputKeyBoardAdapter(this,icon);
+        inputKeyBoard.setAdapter(inputKeyBoardAdapter);
         inputKeyBoard.setOnItemClickListener(this);
     }
 

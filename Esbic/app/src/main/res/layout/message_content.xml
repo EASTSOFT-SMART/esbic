@@ -1,73 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_4">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/width130"
-        android:orientation="horizontal">
+        android:layout_height="@dimen/width93"
+        android:background="@drawable/top_bg">
         <ImageButton
             android:id="@+id/message_con_back"
-            android:layout_marginLeft="@dimen/width40"
             android:layout_gravity="center"
-            android:layout_width="@dimen/width100"
-            android:layout_height="@dimen/width100"
-            android:background="@drawable/back"/>
+            android:layout_marginLeft="@dimen/width50"
+            android:layout_width="@dimen/width36"
+            android:layout_height="@dimen/width81"
+            android:background="@drawable/top_back" />
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:gravity="center"
-            android:layout_width="@dimen/width150"
-            android:layout_height="@dimen/width100"
-            android:textSize="@dimen/textsize30"
-            android:text="主页面"/>
+            style="@style/text_25_ffffff"
+            android:text="返回"/>
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_width="@dimen/width1104"
+        android:layout_height="@dimen/width544"
+        android:orientation="horizontal">
         <LinearLayout
-            android:layout_marginLeft="@dimen/width100"
-            android:layout_gravity="center"
-            android:layout_width="@dimen/width400"
-            android:layout_height="@dimen/width600"
+            android:layout_width="@dimen/width303"
+            android:layout_height="@dimen/width544"
+            android:background="@drawable/message_left_bg"
             android:orientation="vertical">
             <ListView
-                android:id="@+id/message_content_title"
+                android:id="@+id/message_content_item"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
+                android:divider="#00000000"
+                android:dividerHeight="@dimen/width8"
+                android:layout_height="@dimen/width472">
             </ListView>
-
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/width7"
+                android:layout_gravity="center">
+                <ImageButton
+                    android:layout_width="@dimen/width53"
+                    android:layout_height="@dimen/width53"
+                    android:background="@drawable/up"/>
+                <ImageButton
+                    android:layout_width="@dimen/width53"
+                    android:layout_height="@dimen/width53"
+                    android:layout_marginLeft="@dimen/width68"
+                    android:background="@drawable/down"/>
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
-            android:layout_marginLeft="@dimen/width100"
+            android:layout_marginLeft="@dimen/width42"
             android:layout_gravity="center"
-            android:layout_width="@dimen/width600"
-            android:layout_height="@dimen/width600"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:orientation="vertical">
+           <LinearLayout
+               android:layout_width="@dimen/width750"
+               android:layout_height="@dimen/width69"
+               android:background="@drawable/message_title_bg">
+               <TextView
+                   android:id="@+id/message_title"
+                   android:gravity="center"
+                   android:layout_gravity="center"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginLeft="@dimen/width45"
+                   android:text="水费缴纳"
+                   style="@style/text_32_ffffff"/>
+           </LinearLayout>
 
-            <TextView
-                android:id="@+id/message_title"
-                android:gravity="center"
-                android:layout_width="@dimen/width600"
-                android:layout_height="@dimen/width100"
-                android:text="交物业费(电梯维修费，垃圾处理费等)"
-                android:textSize="@dimen/textsize25"/>
-            <TextView
-                android:id="@+id/message_content"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:layout_width="@dimen/width550"
-                android:textSize="@dimen/textsize20"
-                android:layout_height="@dimen/width500"
-                android:lineSpacingExtra="6dp"
-                android:lineSpacingMultiplier="1.2"
-                android:text="@string/message_contents"/>
+            <LinearLayout
+                android:layout_width="@dimen/width750"
+                android:layout_height="@dimen/width467"
+                android:background="@drawable/message_right_bg"
+                android:layout_marginTop="@dimen/width9">
+
+                <TextView
+                    android:id="@+id/message_content"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:layout_width="@dimen/width660"
+                    android:layout_marginLeft="@dimen/width45"
+                    style="@style/text_32_ffffff"
+                    android:layout_height="@dimen/width377"
+                    android:lineSpacingExtra="@dimen/width15"
+                    android:lineSpacingMultiplier="1.2"
+                    android:text="@string/message_contents"/>
+
+            </LinearLayout>
+
         </LinearLayout>
 
     </LinearLayout>
-
+</RelativeLayout>
 
 </LinearLayout>

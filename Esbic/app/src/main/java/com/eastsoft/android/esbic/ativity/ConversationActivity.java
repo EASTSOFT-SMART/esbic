@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -17,8 +18,9 @@ import com.eastsoft.android.esbic.R;
  * Created by sofa on 2016/1/26.
  */
 public class ConversationActivity extends BaseActivity implements View.OnClickListener {
-    private TextView isCalling,isConversation;
-    private ImageButton hangUp,back;
+    private TextView isConversation,roomName;
+    private ImageButton back;
+    private Button hangUp;
     private Intent intent;
     private Chronometer timer;
     private static final int STATEWAIT=0;
@@ -33,17 +35,16 @@ public class ConversationActivity extends BaseActivity implements View.OnClickLi
         initData();
     }
     private void  initData(){
-        isCalling=(TextView)this.findViewById(R.id.conversation_state);
         isConversation=(TextView)this.findViewById(R.id.conversation_going);
+        roomName=(TextView)this.findViewById(R.id.room_name);
         timer=(Chronometer)this.findViewById(R.id.conversation_time);
         back=(ImageButton)this.findViewById(R.id.conversation_back);
         back.setOnClickListener(this);
-        hangUp=(ImageButton)this.findViewById(R.id.conversation_hang_up);
+        hangUp=(Button)this.findViewById(R.id.conversation_hang_up);
         hangUp.setOnClickListener(this);
-        isConversation.setVisibility(View.GONE);
         intent=getIntent();
         String roomNumber=intent.getStringExtra("roomNumber");
-        isCalling.setText(isCalling.getText().toString()+roomNumber);
+        roomName.setText(roomNumber);
         timer.start();
         Log.i("ElapsedRealtime()的数值是",String.valueOf(SystemClock.elapsedRealtime()));
     }

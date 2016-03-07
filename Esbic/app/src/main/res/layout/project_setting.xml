@@ -2,338 +2,217 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/safety_bg">
+    android:background="@drawable/bg_7">
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/width90"
-        android:background="@drawable/top_bg">
-        <ImageButton
-            android:id="@+id/project_setting_back"
-            android:layout_marginLeft="@dimen/width90"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/width93"
+    android:background="@drawable/top_bg_2">
+    <ImageButton
+        android:id="@+id/project_setting_back"
+        android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/width50"
+        android:layout_width="@dimen/width36"
+        android:layout_height="@dimen/width81"
+        android:background="@drawable/top_back" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_width="@dimen/width100"
-            android:layout_height="@dimen/width35"
-            android:background="@drawable/top_back"/>
-    </LinearLayout>
+            style="@style/text_25_ffffff"
+            android:text="返回"/>
+</LinearLayout>
+
+
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/width10"
-        android:background="@mipmap/white_strip"></ImageView>
+        android:layout_height="@dimen/width8"
+        android:background="@drawable/line"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal">
+
         <LinearLayout
-            android:layout_width="@dimen/width650"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="@dimen/width120"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/width104"
             android:orientation="vertical"
-            android:layout_gravity="center">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_marginTop="@dimen/width30"
-                android:layout_height="@dimen/width80"
-                android:background="@mipmap/project_1">
+            >
 
-                    <EditText
-                        android:layout_width="@dimen/width70"
-                        android:layout_marginLeft="@dimen/width200"
-                        android:layout_height="match_parent"
-                        android:textSize="@dimen/textsize30"
-                        android:text="10"/>
-                    <TextView
-                        android:layout_width="@dimen/width40"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:textSize="@dimen/textsize30"
-                        android:text="楼"/>
-                    <EditText
-                        android:layout_width="@dimen/width55"
-                        android:layout_height="match_parent"
-                        android:textSize="@dimen/textsize30"
-                        android:text="2"
-                        />
-                    <TextView
-                        android:layout_width="@dimen/width60"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:textSize="@dimen/textsize30"
-                        android:text="单元"/>
-                    <EditText
-                        android:layout_width="@dimen/width55"
-                        android:layout_height="match_parent"
-                        android:textSize="@dimen/textsize35"
-                        android:text="7"/>
-                    <TextView
-                        android:layout_width="@dimen/width40"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:textSize="@dimen/textsize30"
-                        android:text="层"/>
-                    <EditText
-                        android:layout_width="@dimen/width90"
-                        android:layout_height="match_parent"
-                        android:textSize="@dimen/textsize30"
-                        android:text="503"/>
-                     <TextView
-                       android:layout_width="@dimen/width40"
-                       android:layout_height="match_parent"
-                       android:gravity="center"
-                       android:textSize="@dimen/textsize30"
-                       android:text="房"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="@dimen/width198"
+                    android:layout_height="@dimen/width65"
+                    android:background="@drawable/words_bg"
+                    style="@style/text_22_ffffff"
+                    android:gravity="center"
+                    android:text="设备地址"/>
+                <TextView
+                    android:id="@+id/project_setting_device_address"
+                    android:layout_width="@dimen/width497"
+                    android:layout_height="@dimen/width66"
+                    android:layout_marginLeft="@dimen/width12"
+                    android:gravity="center"
+                    style="@style/text_22_000000"
+                    android:background="@drawable/input_box_3"/>
 
             </LinearLayout>
+
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_marginTop="@dimen/width20"
-                android:layout_height="@dimen/width80"
-                android:background="@mipmap/project_2">
-                <EditText
-                    android:layout_width="@dimen/width100"
-                    android:layout_marginLeft="@dimen/width200"
-                    android:layout_height="match_parent"
-                    android:textSize="@dimen/textsize30"
-                    android:text="129"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/width18"
+                android:orientation="horizontal">
+
                 <TextView
-                    android:layout_width="@dimen/width15"
-                    android:layout_height="match_parent"
+                    android:id="@+id/ip"
+                    android:layout_width="@dimen/width198"
+                    android:layout_height="@dimen/width65"
+                    android:background="@drawable/words_bg"
+                    style="@style/text_22_ffffff"
                     android:gravity="center"
-                    android:textSize="@dimen/textsize30"
-                    android:text="."/>
-                <EditText
-                    android:layout_width="@dimen/width100"
-                    android:layout_height="match_parent"
-                    android:textSize="@dimen/textsize30"
-                    android:text="129"
-                    />
+                    android:text="IP"/>
+
                 <TextView
-                    android:layout_width="@dimen/width15"
-                    android:layout_height="match_parent"
+                    android:id="@+id/project_setting_ip"
+                    android:layout_width="@dimen/width497"
+                    android:layout_height="@dimen/width66"
+                    android:layout_marginLeft="@dimen/width12"
                     android:gravity="center"
-                    android:textSize="@dimen/textsize30"
-                    android:text="."/>
-                <EditText
-                    android:layout_width="@dimen/width100"
-                    android:layout_height="match_parent"
-                    android:textSize="@dimen/textsize30"
-                    android:text="129"/>
-                <TextView
-                    android:layout_width="@dimen/width15"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:textSize="@dimen/textsize30"
-                    android:text="."/>
-                <EditText
-                    android:layout_width="@dimen/width100"
-                    android:layout_height="match_parent"
-                    android:textSize="@dimen/textsize30"
-                    android:text="129"/>
+                    style="@style/text_22_000000"
+                    android:background="@drawable/input_box_3"/>
+
 
             </LinearLayout>
+
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_marginTop="@dimen/width20"
-                android:layout_height="@dimen/width80"
-                android:background="@mipmap/project_3">
-                <EditText
-                    android:layout_width="@dimen/width100"
-                    android:layout_marginLeft="@dimen/width200"
-                    android:layout_height="match_parent"
-                    android:textSize="@dimen/textsize30"
-                    android:text="129"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/width18"
+                android:orientation="horizontal">
+
                 <TextView
-                    android:layout_width="@dimen/width15"
-                    android:layout_height="match_parent"
+                    android:id="@+id/subnet_mask"
+                    android:layout_width="@dimen/width198"
+                    android:layout_height="@dimen/width65"
+                    android:background="@drawable/words_bg"
+                    style="@style/text_22_ffffff"
                     android:gravity="center"
-                    android:textSize="@dimen/textsize30"
-                    android:text="."/>
-                <EditText
-                    android:layout_width="@dimen/width100"
-                    android:layout_height="match_parent"
-                    android:textSize="@dimen/textsize30"
-                    android:text="129"
-                    />
+                    android:text="子网掩码 "/>
+
                 <TextView
-                    android:layout_width="@dimen/width15"
-                    android:layout_height="match_parent"
+                    android:id="@+id/project__setting_subnet_mask"
+                    android:layout_width="@dimen/width497"
+                    android:layout_height="@dimen/width66"
+                    android:layout_marginLeft="@dimen/width12"
                     android:gravity="center"
-                    android:textSize="@dimen/textsize30"
-                    android:text="."/>
-                <EditText
-                    android:layout_width="@dimen/width100"
-                    android:layout_height="match_parent"
-                    android:textSize="@dimen/textsize30"
-                    android:text="129"/>
-                <TextView
-                    android:layout_width="@dimen/width15"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:textSize="@dimen/textsize30"
-                    android:text="."/>
-                <EditText
-                    android:layout_width="@dimen/width100"
-                    android:layout_height="match_parent"
-                    android:textSize="@dimen/textsize30"
-                    android:text="129"/>
+                    style="@style/text_22_000000"
+                    android:background="@drawable/input_box_3"/>
 
             </LinearLayout>
+
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_marginTop="@dimen/width20"
-                android:layout_height="@dimen/width80"
-                android:background="@mipmap/project_4">
-                <EditText
-                    android:layout_width="@dimen/width100"
-                    android:layout_marginLeft="@dimen/width200"
-                    android:layout_height="match_parent"
-                    android:textSize="@dimen/textsize30"
-                    android:text="129"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/width18"
+                android:orientation="horizontal">
+
                 <TextView
-                    android:layout_width="@dimen/width15"
-                    android:layout_height="match_parent"
+                    android:id="@+id/gateway"
+                    android:layout_width="@dimen/width198"
+                    android:layout_height="@dimen/width65"
+                    android:background="@drawable/words_bg"
+                    style="@style/text_22_ffffff"
                     android:gravity="center"
-                    android:textSize="@dimen/textsize30"
-                    android:text="."/>
-                <EditText
-                    android:layout_width="@dimen/width100"
-                    android:layout_height="match_parent"
-                    android:textSize="@dimen/textsize30"
-                    android:text="129"
-                    />
+                    android:text="网关"/>
+
                 <TextView
-                    android:layout_width="@dimen/width15"
-                    android:layout_height="match_parent"
+                    android:id="@+id/project_setting_gateway"
+                    android:layout_width="@dimen/width497"
+                    android:layout_height="@dimen/width66"
+                    android:layout_marginLeft="@dimen/width12"
                     android:gravity="center"
-                    android:textSize="@dimen/textsize30"
-                    android:text="."/>
-                <EditText
-                    android:layout_width="@dimen/width100"
-                    android:layout_height="match_parent"
-                    android:textSize="@dimen/textsize30"
-                    android:text="129"/>
+                    style="@style/text_22_000000"
+                    android:background="@drawable/input_box_3"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/width18"
+                android:orientation="horizontal">
+
                 <TextView
-                    android:layout_width="@dimen/width15"
-                    android:layout_height="match_parent"
+                    android:id="@+id/server"
+                    android:layout_width="@dimen/width198"
+                    android:layout_height="@dimen/width65"
+                    android:background="@drawable/words_bg"
+                    style="@style/text_22_ffffff"
                     android:gravity="center"
-                    android:textSize="@dimen/textsize30"
-                    android:text="."/>
-                <EditText
-                    android:layout_width="@dimen/width100"
-                    android:layout_height="match_parent"
-                    android:textSize="@dimen/textsize30"
-                    android:text="129"/>
+                    android:text="服务器"/>
+
+                <TextView
+                    android:id="@+id/project_server"
+                    android:layout_width="@dimen/width497"
+                    android:layout_height="@dimen/width66"
+                    android:layout_marginLeft="@dimen/width12"
+                    android:gravity="center"
+                    style="@style/text_22_000000"
+                    android:background="@drawable/input_box_3"/>
+
+
 
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_marginTop="@dimen/width20"
-                android:layout_height="@dimen/width80"
-                android:background="@mipmap/project_5">
-                <EditText
-                    android:layout_width="@dimen/width100"
-                    android:layout_marginLeft="@dimen/width200"
-                    android:layout_height="match_parent"
-                    android:textSize="@dimen/textsize30"
-                    android:text="129"/>
-                <TextView
-                    android:layout_width="@dimen/width15"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:textSize="@dimen/textsize30"
-                    android:text="."/>
-                <EditText
-                    android:layout_width="@dimen/width100"
-                    android:layout_height="match_parent"
-                    android:textSize="@dimen/textsize30"
-                    android:text="129"
-                    />
-                <TextView
-                    android:layout_width="@dimen/width15"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:textSize="@dimen/textsize30"
-                    android:text="."/>
-                <EditText
-                    android:layout_width="@dimen/width100"
-                    android:layout_height="match_parent"
-                    android:textSize="@dimen/textsize30"
-                    android:text="129"/>
-                <TextView
-                    android:layout_width="@dimen/width15"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:textSize="@dimen/textsize30"
-                    android:text="."/>
-                <EditText
-                    android:layout_width="@dimen/width100"
-                    android:layout_height="match_parent"
-                    android:textSize="@dimen/textsize30"
-                    android:text="129"/>
 
-            </LinearLayout>
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_marginTop="@dimen/width20"
-                android:layout_height="@dimen/width80"
-                android:background="@mipmap/project_6">
-                <EditText
-                    android:layout_width="@dimen/width100"
-                    android:layout_marginLeft="@dimen/width200"
-                    android:layout_height="match_parent"
-                    android:textSize="@dimen/textsize30"
-                    android:text="129"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/width18"
+                android:orientation="horizontal">
+
                 <TextView
-                    android:layout_width="@dimen/width15"
-                    android:layout_height="match_parent"
+                    android:id="@+id/center_management"
+                    android:layout_width="@dimen/width198"
+                    android:layout_height="@dimen/width65"
+                    android:background="@drawable/words_bg"
+                    style="@style/text_22_ffffff"
                     android:gravity="center"
-                    android:textSize="@dimen/textsize30"
-                    android:text="."/>
-                <EditText
-                    android:layout_width="@dimen/width100"
-                    android:layout_height="match_parent"
-                    android:textSize="@dimen/textsize30"
-                    android:text="129"
-                    />
+                    android:text="中心管理机"/>
+
                 <TextView
-                    android:layout_width="@dimen/width15"
-                    android:layout_height="match_parent"
+                    android:id="@+id/project_center_management"
+                    android:layout_width="@dimen/width497"
+                    android:layout_height="@dimen/width66"
+                    android:layout_marginLeft="@dimen/width12"
                     android:gravity="center"
-                    android:textSize="@dimen/textsize30"
-                    android:text="."/>
-                <EditText
-                    android:layout_width="@dimen/width100"
-                    android:layout_height="match_parent"
-                    android:textSize="@dimen/textsize30"
-                    android:text="129"/>
-                <TextView
-                    android:layout_width="@dimen/width15"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:textSize="@dimen/textsize30"
-                    android:text="."/>
-                <EditText
-                    android:layout_width="@dimen/width100"
-                    android:layout_height="match_parent"
-                    android:textSize="@dimen/textsize30"
-                    android:text="129"/>
+                    style="@style/text_22_000000"
+                    android:background="@drawable/input_box_3"/>
 
             </LinearLayout>
 
         </LinearLayout>
+
         <LinearLayout
-            android:layout_width="@dimen/width450"
-            android:layout_height="@dimen/width450"
-            android:layout_marginLeft="@dimen/width50"
-            android:layout_gravity="center">
+            android:layout_width="@dimen/width278"
+            android:layout_height="@dimen/width364"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/width100"
+            android:orientation="vertical">
             <GridView
                 android:id="@+id/project_setting_input_keyboard"
-                android:layout_gravity="center"
                 android:numColumns="3"
-                android:horizontalSpacing="@dimen/width30"
+                android:horizontalSpacing="@dimen/width25"
                 android:verticalSpacing="@dimen/width20"
-                android:layout_width="@dimen/width400"
-                android:layout_height="@dimen/width460"></GridView>
+                android:layout_width="match_parent"
+                android:listSelector="#00000000"
+                android:layout_height="match_parent"></GridView>
+
         </LinearLayout>
 
     </LinearLayout>

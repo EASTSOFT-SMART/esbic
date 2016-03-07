@@ -14,9 +14,9 @@
             android:layout_height="@dimen/width81"
             android:background="@drawable/top_back" />
         <TextView
-            android:layout_width="@dimen/width50"
-            android:layout_height="@dimen/width27"
-            android:layout_marginTop="@dimen/width30"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             style="@style/text_25_ffffff"
             android:text="返回"/>
     </LinearLayout>
@@ -52,13 +52,16 @@
             <SeekBar
                 android:id="@+id/screen_light_seekbar"
                 android:layout_marginLeft="@dimen/width27"
-                android:layout_width="@dimen/width526"
+                android:layout_width="@dimen/width530"
                 android:layout_gravity="center_vertical"
                 android:layout_height="wrap_content"
                 android:progressDrawable="@drawable/light_bar"
-                android:paddingLeft="@dimen/width21"
-                android:paddingRight="@dimen/width21"
-                android:thumb="@drawable/volume_button" />
+                android:paddingLeft="@dimen/width10"
+                android:paddingRight="@dimen/width10"
+                android:maxHeight="@dimen/width22"
+                android:minHeight="@dimen/width22"
+                android:thumb="@drawable/volume_button"
+                android:thumbOffset="0dp"/>
             <ImageButton
                 android:id="@+id/screen_light_add"
                 android:layout_width="@dimen/width55"

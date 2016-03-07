@@ -3,6 +3,7 @@ package com.eastsoft.android.esbic.adapter;
 import android.content.Context;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiConfiguration;
+import android.text.TextPaint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,16 +25,19 @@ public class WifiInfoAdapter extends BaseAdapter {
     private List<WifiConfiguration> wifiConfigurationList;
     private Context context;
     private LayoutInflater inflater;
+    private boolean[] wifiState;
 
 
     public WifiInfoAdapter(List<ScanResult> scanResultList, Context context,
-                           List<WifiConfiguration> wifiConfigurationList){
+                           List<WifiConfiguration> wifiConfigurationList,boolean[] wifiState){
         this.scanResultList=new ArrayList<ScanResult>();
         this.wifiConfigurationList=new ArrayList<WifiConfiguration>();
         this.wifiConfigurationList=wifiConfigurationList;
         this.scanResultList=scanResultList;
         this.context=context;
         inflater=LayoutInflater.from(context);
+        this.wifiState=wifiState;
+
     }
 
 
@@ -55,23 +59,33 @@ public class WifiInfoAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        View view1=null;
-        view1=inflater.inflate(R.layout.wifi_setting_item,null);
+        View view1=inflater.inflate(R.layout.wifi_setting_item,null);
         ScanResult scanResult=scanResultList.get(i);
         TextView wifiName=(TextView)view1.findViewById(R.id.wifi_list_name);
-        ImageView isLock=(ImageView)view1.findViewById(R.id.wifi_list_lock);
-        ImageView wifiIntensity=(ImageView)view1.findViewById(R.id.wifi_list_intensity);
+        TextPaint tp=wifiName.getPaint();
+        tp.setFakeBoldText(true);
+        ImageView isLock=(ImageView)view1.findViewById(R.id.wifi_lock);
+        ViewAttribute viewAttribute=new ViewAttribute();
+        viewAttribute.wifistate=(TextView)view1.findViewById(R.id.wifi_state);
+        if (wifiState[i]){
+            viewAttribute.wifistate.setText("已连接");
+        }else{
+            viewAttribute.wifistate.setText("未连接");
+        }
         wifiName.setText(scanResult.SSID);
         String lockState=scanResult.capabilities;
         if (lockState.contains("WPA")||lockState.contains("wpa")||
                 lockState.contains("WEP") || lockState.contains("wep")){
-        isLock.setVisibility(View.VISIBLE);
+        isLock.setBackgroundResource(R.drawable.wifi_icon_lock);
         }else{
-        isLock.setVisibility(View.INVISIBLE);
+        isLock.setBackgroundResource(R.drawable.wifi_icon);
         }
         return view1;
-
     }
 
+
+    class ViewAttribute{
+       TextView wifistate;
+    }
 
 }

@@ -10,6 +10,7 @@ import android.widget.ImageButton;
 import android.widget.SimpleAdapter;
 
 import com.eastsoft.android.esbic.R;
+import com.eastsoft.android.esbic.adapter.MonitorItemAdapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,7 +28,8 @@ public class MonitorActivity extends Activity implements AdapterView.OnItemSelec
     private ImageButton back;
     private String placeName[];
     private List<Map<String,Object>> mapList;
-    private SimpleAdapter simpleAdapter;
+    private MonitorItemAdapter monitorItemAdapter;
+    private boolean[] state;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,14 +38,15 @@ public class MonitorActivity extends Activity implements AdapterView.OnItemSelec
 
     }
     private void initData(){
+        state=new boolean[]{true,false,false,false,false,false,false,false};
         back=(ImageButton)this.findViewById(R.id.monitor_back);
-        surfaceView=(SurfaceView)this.findViewById(R.id.monitor);
+        surfaceView=(SurfaceView)this.findViewById(R.id.monitor_video);
         gridView=(GridView)this.findViewById(R.id.exchange_monitor);
         placeName=new String[]{"单元正门","单元车库","单元侧门","单元右门","小区正门","小区侧门","小区","小区"};
         mapList=getData();
-        simpleAdapter=new SimpleAdapter(this,mapList,R.layout.monitor_exchange,new String[]{
-                "place"},new int[]{R.id.monitor});
-        gridView.setAdapter(simpleAdapter);
+        monitorItemAdapter=new MonitorItemAdapter(placeName,this);
+        monitorItemAdapter.initState(state);
+        gridView.setAdapter(monitorItemAdapter);
         gridView.setOnItemClickListener(this);
         gridView.setOnItemSelectedListener(this);
         back.setOnClickListener(new View.OnClickListener() {
@@ -68,7 +71,8 @@ public class MonitorActivity extends Activity implements AdapterView.OnItemSelec
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
+        monitorItemAdapter.changeState(i);
+        monitorItemAdapter.notifyDataSetChanged();
     }
 
     @Override

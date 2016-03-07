@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.eastsoft.android.esbic.R;
 import com.eastsoft.android.esbic.util.MessageUtil;
@@ -19,9 +21,11 @@ public class MessageAdapter extends BaseAdapter {
     private List<MessageUtil> messageList;
     private Context context;
     private LayoutInflater inflate;
+    private ViewClass viewClass;
     public MessageAdapter(List<MessageUtil> messageList, Context context){
         this.messageList=messageList;
         this.context=context;
+        viewClass=new ViewClass();
     }
     @Override
     public int getCount() {
@@ -42,11 +46,16 @@ public class MessageAdapter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
         inflate=LayoutInflater.from(context);
         view=inflate.inflate(R.layout.message_content_item,null);
+        viewClass.readStatus=(ImageView)view.findViewById(R.id.read_status);
+        viewClass.title=(TextView)view.findViewById(R.id.item_content);
+        viewClass.time=(TextView)view.findViewById(R.id.message_time);
         return view;
     }
 
 
     class ViewClass{
-
+        ImageView readStatus;
+        TextView title;
+        TextView time;
     }
 }

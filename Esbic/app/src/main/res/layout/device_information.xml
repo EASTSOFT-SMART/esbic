@@ -3,65 +3,170 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/bg_7"
     >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/width93"
+        android:background="@drawable/top_bg_2">
+        <ImageButton
+            android:id="@+id/device_information_back"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/width50"
+            android:layout_width="@dimen/width36"
+            android:layout_height="@dimen/width81"
+            android:background="@drawable/top_back" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            style="@style/text_25_ffffff"
+            android:text="返回"/>
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/width8"
+        android:background="@drawable/line"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/width100">
-            <ImageButton
-                android:id="@+id/device_information_back"
-                android:layout_gravity="center"
-                android:layout_width="@dimen/width80"
-                android:layout_height="@dimen/width80"
-                android:background="@drawable/back"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_centerVertical="true"
+            android:layout_centerInParent="true">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="@dimen/width198"
+                    android:layout_height="@dimen/width65"
+                    android:background="@drawable/words_bg"
+                    style="@style/text_22_ffffff"
+                    android:gravity="center"
+                    android:text="SN"/>
+                <TextView
+                    android:id="@+id/sn"
+                    android:layout_width="@dimen/width823"
+                    android:layout_height="@dimen/width66"
+                    android:layout_marginLeft="@dimen/width12"
+                    android:gravity="center"
+                    style="@style/text_22_000000"
+                    android:background="@drawable/project_query_input_box"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/width37"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="@dimen/width198"
+                    android:layout_height="@dimen/width65"
+                    android:background="@drawable/words_bg"
+                    style="@style/text_22_ffffff"
+                    android:gravity="center"
+                    android:text="MAC"/>
+
+                <TextView
+                    android:id="@+id/mac"
+                    android:layout_width="@dimen/width823"
+                    android:layout_height="@dimen/width66"
+                    android:layout_marginLeft="@dimen/width12"
+                    android:gravity="center"
+                    style="@style/text_22_000000"
+                    android:background="@drawable/project_query_input_box"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/width37"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="@dimen/width198"
+                    android:layout_height="@dimen/width65"
+                    android:background="@drawable/words_bg"
+                    style="@style/text_22_ffffff"
+                    android:gravity="center"
+                    android:text="PLC_MAC"/>
+
+                <TextView
+                    android:id="@+id/plc_mac"
+                    android:layout_width="@dimen/width823"
+                    android:layout_height="@dimen/width66"
+                    android:layout_marginLeft="@dimen/width12"
+                    android:gravity="center"
+                    style="@style/text_22_000000"
+                    android:background="@drawable/project_query_input_box"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/width37"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="@dimen/width198"
+                    android:layout_height="@dimen/width65"
+                    android:background="@drawable/words_bg"
+                    style="@style/text_22_ffffff"
+                    android:gravity="center"
+                    android:text="软件版本"/>
+
+                <TextView
+                    android:id="@+id/software_version"
+                    android:layout_width="@dimen/width823"
+                    android:layout_height="@dimen/width66"
+                    android:layout_marginLeft="@dimen/width12"
+                    android:gravity="center"
+                    style="@style/text_22_000000"
+                    android:background="@drawable/project_query_input_box"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/width37"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="@dimen/width198"
+                    android:layout_height="@dimen/width65"
+                    android:background="@drawable/words_bg"
+                    style="@style/text_22_ffffff"
+                    android:gravity="center"
+                    android:text="硬件版本"/>
+
+                <TextView
+                    android:id="@+id/hardware_version"
+                    android:layout_width="@dimen/width823"
+                    android:layout_height="@dimen/width66"
+                    android:layout_marginLeft="@dimen/width12"
+                    android:gravity="center"
+                    style="@style/text_22_000000"
+                    android:background="@drawable/project_query_input_box"/>
+            </LinearLayout>
+
+
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/sn"
-                android:layout_gravity="center"
-                android:layout_width="@dimen/width900"
-                android:layout_height="@dimen/width70"
-                android:layout_marginTop="@dimen/width10"
-                android:gravity="center"
-                android:background="@drawable/project_set_1"/>
-            <TextView
-                android:id="@+id/mac"
-                android:layout_gravity="center"
-                android:layout_width="@dimen/width900"
-                android:layout_height="@dimen/width70"
-                android:layout_marginTop="@dimen/width10"
-                android:gravity="center"
-                android:background="@drawable/project_set_1"/>
-            <TextView
-                android:id="@+id/plc_mac"
-                android:layout_gravity="center"
-                android:layout_width="@dimen/width900"
-                android:layout_height="@dimen/width70"
-                android:layout_marginTop="@dimen/width10"
-                android:gravity="center"
-                android:background="@drawable/project_set_1"/>
-            <TextView
-                android:id="@+id/software_version"
-                android:layout_gravity="center"
-                android:layout_width="@dimen/width900"
-                android:layout_height="@dimen/width70"
-                android:layout_marginTop="@dimen/width10"
-                android:gravity="center"
-                android:background="@drawable/project_set_1"/>
-            <TextView
-                android:id="@+id/hardware_version"
-                android:layout_gravity="center"
-                android:layout_width="@dimen/width900"
-                android:layout_height="@dimen/width70"
-                android:layout_marginTop="@dimen/width10"
-                android:gravity="center"
-                android:background="@drawable/project_set_1"/>
-
-        </LinearLayout>
-
-
+    </RelativeLayout>
 
 </LinearLayout>

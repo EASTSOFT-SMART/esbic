@@ -11,6 +11,7 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +33,7 @@ public class StandByActivity extends BaseActivity {
     private PagerAdapter pagerAdapter;
     private int[] imageId;
     private Intent intent;
+    private LinearLayout screen;
     private PowerManager pm;
     private PowerManager.WakeLock wakeLock;
     private KeyguardManager mKeyguardManager;
@@ -44,7 +46,8 @@ public class StandByActivity extends BaseActivity {
         initData();
     }
     private void initData(){
-
+        intent=getIntents();
+        screen=(LinearLayout)this.findViewById(R.id.screen);
         pm=(PowerManager)getSystemService(POWER_SERVICE);
         wakeLock=pm.newWakeLock(PowerManager.ACQUIRE_CAUSES_WAKEUP|
                 PowerManager.SCREEN_DIM_WAKE_LOCK|PowerManager.ON_AFTER_RELEASE,"SimpleTimer");
@@ -82,7 +85,7 @@ public class StandByActivity extends BaseActivity {
         mKeyguardLock.disableKeyguard();
         //mKeyguardLock.reenableKeyguard();
 
-        viewPager.setOnClickListener(new View.OnClickListener() {
+        screen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 intent.setClass(StandByActivity.this,LeaveHome.class);
@@ -107,6 +110,8 @@ public class StandByActivity extends BaseActivity {
         super.onPause();
         wakeLock.release();
     }
+
+
 
     private class MyPagerAdapter extends PagerAdapter{
 
