@@ -2,13 +2,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <ImageView
+    <Button
         android:id="@+id/keyboard_child"
         android:gravity="center"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:layout_width="@dimen/width90"
-        android:layout_height="@dimen/width90"
+        android:layout_width="@dimen/width76"
+        android:layout_height="@dimen/width76"
+        android:background="@drawable/button_icon"
+        style="@style/text_30_ffffff"
         />
 
 </RelativeLayout>

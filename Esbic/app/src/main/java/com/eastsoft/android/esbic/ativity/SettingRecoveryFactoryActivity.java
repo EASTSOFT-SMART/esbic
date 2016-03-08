@@ -19,9 +19,11 @@ public class SettingRecoveryFactoryActivity extends BaseActivity implements View
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.factory_reset_dialog);
+        initData();
     }
 
     private void initData(){
+        back=(ImageButton)this.findViewById(R.id.factory_reset_back);
         cancel=(Button)this.findViewById(R.id.reset_cancel);
         recover=(Button)this.findViewById(R.id.reset_recovery);
         cancel.setOnClickListener(this);
@@ -30,10 +32,13 @@ public class SettingRecoveryFactoryActivity extends BaseActivity implements View
     @Override
     public void onClick(View view) {
          if (view.getId()==cancel.getId()){
-             this.onDestroy();
+             this.finish();
          }
          if (view.getId()==recover.getId()){
 
+         }
+         if (view.getId()==back.getId()){
+             this.finish();
          }
     }
 }

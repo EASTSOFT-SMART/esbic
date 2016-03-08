@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.eastsoft.android.esbic.R;
+import com.eastsoft.android.esbic.adapter.InputKeyBoardAdapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,12 +26,13 @@ import java.util.Map;
  */
 public class SettingSecurityNeedPwdActivity extends BaseActivity implements View.OnClickListener,AdapterView.OnItemClickListener {
     private TextView numOne, numTwo, numThree, numFour;
-    private ImageButton back;
     private GridView inputKeyBoard;
-    private int[] touchNumber = new int[]{R.drawable.input_keyboard_zero_button};
+    private int[] icon;
     private String password = "1234";
     private String passwordTwo="2345";
     private List<Map<String, Object>> mapList;
+    //用来表示开启哪一个Activity;
+    private int activityMark=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,30 +42,19 @@ public class SettingSecurityNeedPwdActivity extends BaseActivity implements View
     }
 
     private void initData() {
-        numOne = (TextView) this.findViewById(R.id.num_one);
-        numTwo = (TextView) this.findViewById(R.id.num_two);
-        numThree = (TextView) this.findViewById(R.id.num_three);
+        numOne = (TextView) this.findViewById(R.id.need_pwd_num_one);
+        numTwo = (TextView) this.findViewById(R.id.need_pwd_num_two);
+        numThree = (TextView) this.findViewById(R.id.need_pwd_num_three);
         numFour = (TextView) this.findViewById(R.id.num_four);
-        back = (ImageButton) this.findViewById(R.id.title_back);
-        inputKeyBoard = (GridView) this.findViewById(R.id.input_keyboard);
-        back.setOnClickListener(this);
-        mapList = new ArrayList<Map<String, Object>>();
-        for (int i = 0; i < 12; i++) {
-            Map<String, Object> map = new HashMap<String, Object>();
-            map.put("numButton", touchNumber[0]);
-            mapList.add(map);
-        }
-        SimpleAdapter simpleAdapter = new SimpleAdapter(this, mapList, R.layout.input_keyboard_item, new String[]
-                {"numButton"}, new int[]{R.id.keyboard_child});
-        inputKeyBoard.setAdapter(simpleAdapter);
+        inputKeyBoard = (GridView) this.findViewById(R.id.need_pwd_input_keyboard);
+        icon=new int[]{R.drawable.num_delete,R.drawable.button_icon};
+        InputKeyBoardAdapter inputKeyBoardAdapter=new InputKeyBoardAdapter(this,icon);
+        inputKeyBoard.setAdapter(inputKeyBoardAdapter);
         inputKeyBoard.setOnItemClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
-        if (view.getId() == back.getId()) {
-            this.onDestroy();
-        }
     }
 
     @Override
@@ -79,7 +70,7 @@ public class SettingSecurityNeedPwdActivity extends BaseActivity implements View
             if (password.equals(this.password)) {
                 Intent intent = getIntents();
                 intent.setClass(SettingSecurityNeedPwdActivity.this,SettingSecurityActivity.class);
-                this.onDestroy();
+                this.finish();
             } else {
                 showShortToast("密码错误，请重试！");
                 numOne.setText("");

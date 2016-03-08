@@ -70,23 +70,23 @@ public class ScreenLightActivity extends BaseActivity implements View.OnClickLis
         lightAdd.setOnClickListener(this);
     }
 
-    //获取系统亮度
-    private void setScreenBrightness(float num){
-        WindowManager.LayoutParams layoutParams=getWindow().getAttributes();//获取window属性
-        layoutParams.screenBrightness=num;//num已经除以100
-        super.getWindow().setAttributes(layoutParams);//0-1之间
-    }
+     //获取系统亮度
+      //private void setScreenBrightness(float num){
+      //    WindowManager.LayoutParams layoutParams=getWindow().getAttributes();//获取window属性
+      //    layoutParams.screenBrightness=num;//num已经除以100
+      //  super.getWindow().setAttributes(layoutParams);//0-1之间
+      //}
 
     @Override
     public void onClick(View view) {
         if (view.getId()==back.getId()){
-            playMusic();
+            playButtonMusic(musicButtonId);
             ScreenLightActivity.this.finish();
         }
         if (view.getId()==lightDecrease.getId()){
-            playMusic();
+            playButtonMusic(musicButtonId);
             postion-=25;
-            if (postion>25){
+            if (postion>0){
                 screenLightSeekBar.setProgress(postion);
                 settingAndroidSystemBrightness(postion);
             }else{
@@ -98,7 +98,7 @@ public class ScreenLightActivity extends BaseActivity implements View.OnClickLis
 
         }
         if(view.getId()==lightAdd.getId()){
-            playMusic();
+            playButtonMusic(musicButtonId);
             postion+=25;
             if (postion<=255){
                 screenLightSeekBar.setProgress(postion);
@@ -119,6 +119,7 @@ public class ScreenLightActivity extends BaseActivity implements View.OnClickLis
     public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
         int cur=seekBar.getProgress();
         settingAndroidSystemBrightness(cur);
+        postion=cur;
     }
 
     @Override

@@ -1,13 +1,10 @@
 package com.eastsoft.android.esbic.ativity;
 
 import android.os.Bundle;
+import android.text.TextPaint;
 import android.widget.TextView;
 
 import com.eastsoft.android.esbic.R;
-import com.eastsoft.android.esbic.jni.DeviceInfo;
-import com.eastsoft.android.esbic.jni.IpAddressInfo;
-import com.eastsoft.android.esbic.service.IModelService;
-import com.eastsoft.android.esbic.service.ModelServiceImpl;
 
 import org.w3c.dom.Text;
 
@@ -16,7 +13,8 @@ import org.w3c.dom.Text;
  */
 public class SettingProjectQueryActivity extends BaseActivity {
     private TextView deviceAddress,ip,subnetMask,gateway,server,centerManagement;
-
+    private TextView deviceAddressName,ipName,subnetMaskName,gatewayName,serverName,centerManagementName;
+    private TextView[] textViews;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,31 +28,21 @@ public class SettingProjectQueryActivity extends BaseActivity {
         gateway=(TextView)this.findViewById(R.id.project_gateway);
         server=(TextView)this.findViewById(R.id.project_server);
         centerManagement=(TextView)this.findViewById(R.id.project_center_management);
+        deviceAddressName=(TextView)this.findViewById(R.id.device_addr);
+        ipName=(TextView)this.findViewById(R.id.ip);
+        subnetMaskName=(TextView)this.findViewById(R.id.subnet_mask);
+        gatewayName=(TextView)this.findViewById(R.id.gateway);
+        serverName=(TextView)this.findViewById(R.id.server);
+        centerManagement=(TextView)this.findViewById(R.id.center_management);
+        textViews=new TextView[]{deviceAddress,ip,subnetMask,gateway,server,centerManagement,
+                deviceAddressName,ipName,subnetMaskName,gatewayName,serverName,centerManagementName};
+        initTextViewStyle(textViews);
+    }
 
-        IModelService modelService = ((MyApplication)getApplication()).getModelService();
-        DeviceInfo deviceInfo = modelService.getDeviceInfo();
-        if(deviceInfo != null)
-        {
-            deviceAddress.setText(deviceInfo.getBuilding_no()+"楼"+deviceInfo.getUnit_no()+"单元"+deviceInfo.getLayer_no()+"层"+deviceInfo.getRoom_no()+"房");
-        }else{
-            deviceAddress.setText("设备地址尚未设置");
-        }
-        IpAddressInfo ipAddressInfo = modelService.getIpAddressInfo();
-        if(ipAddressInfo != null)
-        {
-            ip.setText(ipAddressInfo.getIp());
-            subnetMask.setText(ipAddressInfo.getSubnetMask());
-            gateway.setText(ipAddressInfo.getGateway());
-            server.setText(ipAddressInfo.getImpAdress());
-            centerManagement.setText(ipAddressInfo.getCenterAddress());
-        }else
-        {
-            ip.setText("IP地址尚未设置");
-            subnetMask.setText("子网掩码尚未设置");
-            gateway.setText("网关尚未设置");
-            server.setText("服务器地址尚未设置");
-            centerManagement.setText("中心管理机尚未设置");
-        }
-
+    private void initTextViewStyle(TextView[] textViews){
+          for (int i=0;i<textViews.length;i++){
+              TextPaint tp=textViews[i].getPaint();
+              tp.setFakeBoldText(true);
+          }
     }
 }

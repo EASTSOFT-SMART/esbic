@@ -1,112 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_5">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/width120"
-        android:orientation="horizontal">
+        android:layout_height="@dimen/width93"
+        android:background="@drawable/top_bg">
         <ImageButton
             android:id="@+id/wifi_setting_back"
-            android:layout_marginLeft="@dimen/width40"
             android:layout_gravity="center"
-            android:layout_width="@dimen/width100"
-            android:layout_height="@dimen/width100"
-            android:background="@drawable/back"/>
+            android:layout_marginLeft="@dimen/width50"
+            android:layout_width="@dimen/width36"
+            android:layout_height="@dimen/width81"
+            android:background="@drawable/top_back" />
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:gravity="center|left"
-            android:layout_width="@dimen/width150"
-            android:layout_height="@dimen/width100"
-            android:textSize="@dimen/textsize30"
-            android:text="主页面"/>
-        <TextView
-            android:layout_marginLeft="@dimen/width270"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:layout_width="@dimen/width150"
-            android:layout_height="@dimen/width100"
-            android:textSize="@dimen/textsize40"
-            android:text="Wifi设置"/>
+            style="@style/text_25_ffffff"
+            android:text="返回"/>
     </LinearLayout>
+    
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/width51"
+        android:background="@drawable/wifi_nav">
+    </View>
+    
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/width150"
-        android:orientation="horizontal">
-        <LinearLayout
-            android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/width100"
-            android:layout_width="@dimen/width400"
-            android:layout_height="@dimen/width130"
-            android:orientation="vertical">
-            <TextView
+        android:layout_height="@dimen/width86"
+        android:orientation="horizontal"
+        android:background="#ffffff">
+
+            <ImageView
                 android:id="@+id/wifi_name"
-                android:gravity="center"
-                android:layout_marginTop="@dimen/width10"
-                android:layout_width="@dimen/width300"
-                android:layout_height="@dimen/width50"
-                android:textSize="@dimen/textsize25"
-                android:text="wifi名称"/>
-            <TextView
-                android:id="@+id/wifi_status"
-                android:gravity="center"
-                android:layout_marginTop="@dimen/width10"
-                android:layout_width="@dimen/width300"
-                android:layout_height="@dimen/width50"
-                android:textSize="@dimen/textsize25"
-                android:text="未连接"/>
-        </LinearLayout>
-
-        <ImageView
-            android:id="@+id/add_lock"
-            android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/width330"
-            android:layout_width="@dimen/width70"
-            android:layout_height="@dimen/width70"
-            android:visibility="invisible"
-            android:background="@drawable/lock"/>
-        <ImageView
-            android:id="@+id/wifi_intensity"
-            android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/width80"
-            android:layout_width="@dimen/width70"
-            android:layout_height="@dimen/width80"
-            android:visibility="invisible"
-            android:background="@drawable/wifi"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/width380"
-        android:orientation="vertical">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/width100">
-            <TextView
-                android:layout_marginLeft="@dimen/width100"
-                android:layout_width="@dimen/width300"
                 android:layout_gravity="center"
-                android:layout_height="@dimen/width80"
-                android:textSize="@dimen/textsize25"
+                android:layout_marginLeft="@dimen/width182"
+                android:layout_width="@dimen/width46"
+                android:layout_height="@dimen/width34"
+                android:background="@drawable/wifi_icon2"
+                />
+            <TextView
+                android:layout_gravity="center"
                 android:gravity="center"
-                android:text="附近的Wifi"/>
-
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/width20"
+                android:textSize="@dimen/textsize30"
+                android:textColor="#6EB8CD"
+                android:text="WLAN"/>
+        
+            <com.eastsoft.android.esbic.view.MySlipButton
+                android:id="@+id/wifi_switch"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/width697"
+                android:layout_width="@dimen/width88"
+                android:layout_height="@dimen/width33" />
         </LinearLayout>
 
-        <ListView
-            android:id="@+id/wifi_list"
-            android:layout_width="match_parent"
-            android:layout_marginLeft="@dimen/width100"
-            android:layout_height="@dimen/width250">
 
-        </ListView>
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/width51"
+                android:background="@drawable/wifi_nav"
+            >
+            <TextView
+                android:layout_marginLeft="@dimen/width182"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/textsize23"
+                android:gravity="center"
+                android:text="可用WLAN列表"/>
+            <ImageButton
+                android:id="@+id/scan_wifi"
+                android:layout_width="@dimen/width30"
+                android:layout_height="@dimen/width30"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/width694"
+                android:background="@drawable/wifi_scan"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/width10"
+                android:textColor="#6EB8CD"
+                android:textSize="@dimen/textsize23"
+                android:text="扫描"/>
+
+         </LinearLayout>
+
+
+         <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/width380"
+                android:orientation="vertical">
+
+            <ListView
+                android:id="@+id/wifi_list"
+                android:layout_gravity="center"
+                android:layout_width="@dimen/width954"
+                android:divider="#00000000"
+                android:dividerHeight="@dimen/width9"
+                android:layout_height="@dimen/width367">
+
+             </ListView>
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/width30"
+        android:layout_gravity="center">
+        <ImageButton
+            android:id="@+id/up"
+            android:layout_width="@dimen/width53"
+            android:layout_height="@dimen/width53"
+            android:background="@drawable/up"/>
+        <ImageButton
+            android:id="@+id/down"
+            android:layout_width="@dimen/width53"
+            android:layout_height="@dimen/width53"
+            android:layout_marginLeft="@dimen/width206"
+            android:background="@drawable/down"/>
+
+
     </LinearLayout>
 
-    <ImageButton
-        android:id="@+id/rescan_wifi"
-        android:layout_gravity="center"
-        android:layout_width="@dimen/width100"
-        android:layout_height="@dimen/width70"
-        android:background="@drawable/scan_wifi"/>
+
 
 
 </LinearLayout>

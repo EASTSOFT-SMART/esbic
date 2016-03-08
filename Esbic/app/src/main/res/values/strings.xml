@@ -26,5 +26,6 @@
     <string name="see_movie">看电影</string>
     <string name="get_up">起床</string>
     <string name="party">Party</string>
-    <string name="message_contents">没有收到新的消息</string>
+    <string name="message_contents">    亲爱的用户您好:2016年的物业费已经开始收取，请您在1月30日前缴纳2016年的物业费，谢谢您的支持，
+        有了您的支持我们物业才能更好的为小区的业主们服务。</string>
 </resources>

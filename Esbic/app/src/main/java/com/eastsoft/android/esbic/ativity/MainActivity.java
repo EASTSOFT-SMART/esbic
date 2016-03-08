@@ -15,21 +15,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextClock;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.eastsoft.android.esbic.R;
-import com.eastsoft.android.esbic.jni.DeviceInfo;
-import com.eastsoft.android.esbic.jni.DeviceTypeEnum;
-import com.eastsoft.android.esbic.jni.IpAddressInfo;
-import com.eastsoft.android.esbic.jni.JniUtil;
-import com.eastsoft.android.esbic.service.BroadcastTypeEnum;
-import com.eastsoft.android.esbic.service.IModelService;
-import com.eastsoft.android.esbic.service.ModelServiceImpl;
-import com.eastsoft.android.esbic.table.AlarmInfo;
-import com.eastsoft.android.esbic.table.MessageInfo;
-import com.eastsoft.android.esbic.util.JsonUtil;
+import com.eastsoft.android.esbic.util.BoardCastFilterInfo;
 import com.eastsoft.android.esbic.util.QueryWeatherInformation;
-import com.eastsoft.android.esbic.util.TimeUtil;
 import com.eastsoft.android.esbic.util.Weather;
 import com.eastsoft.android.esbic.util.WeatherIcon;
 
@@ -41,12 +29,12 @@ import java.util.Date;
  */
 public class MainActivity extends BaseActivity implements View.OnClickListener {
     private Button message,callRecord,alarmRecord,voice,screenBrightness,wifi,
-            leaveHome,callManagement,monitor,callOtherUser,setting;
+            leaveHome,callManagement,monitor,callOtherUser,setting,callElevator;
     private TextView weather,week,yearMonthDay;
     private ImageView weatherIcon,hourFront,hourAfter,timeIcon,minuteFront,minuterAfter;
     private Dialog progressDialog;
     private String cityName;
-    private Handler handler;
+    private Handler  handler;
     private Intent intent;
     private Date now;
     private TextClock clock;
@@ -54,7 +42,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     public  Weather weathers;
     private SimpleDateFormat simpleDateFormat;
     private QueryWeatherInformation queryWeather;
-    private IModelService modelService;
+    protected BoardCastFilterInfo boardCastFilterInfo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,24 +60,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 }
             }
     };
-      //initClock();
-       // while (true){
-       //     try {
-        //        Thread.sleep(30000);
-        //        handler=new Handler(){
-        //            @Override
-        //            public void handleMessage(Message msg) {
-        //                if (msg.what==1){
-        //                    setMinute(time);
-        //                    setHour(time);
-        //                }
-        //            }
-         //       };
-         //   } catch (InterruptedException e) {
-         //       e.printStackTrace();
-         //   }
-
-        //}
 
    }
 
@@ -105,6 +75,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         monitor=(Button)this.findViewById(R.id.monitor_main);
         callOtherUser=(Button)this.findViewById(R.id.call_other_user);
         setting=(Button)this.findViewById(R.id.set);
+        callElevator=(Button)this.findViewById(R.id.call_elevator);
         yearMonthDay=(TextView) this.findViewById(R.id.year_mouth_day);
         week=(TextView)this.findViewById(R.id.week);
         message.setOnClickListener(this);
@@ -121,6 +92,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         callManagement.setOnClickListener(this);
         monitor.setOnClickListener(this);
         setting.setOnClickListener(this);
+        callElevator.setOnClickListener(this);
         callOtherUser.setOnClickListener(this);
         //progressDialog=new AlertDialog.Builder(this).setTitle("数据读取中").
         //        setMessage("正在读取数据").create();
@@ -129,21 +101,51 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         now =new Date();
         yearMonthDay.setText(simpleDateFormat.format(now));
         week.setText(new SimpleDateFormat("E").format(now));
-
-        MyApplication myApplication = (MyApplication) getApplication();
-        myApplication.setModelService(new ModelServiceImpl(getApplicationContext()));
-
-        MyReceiver myReceiver = new MyReceiver();
-        IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction("com.eastsoft.android.esbic.model");
-        registerReceiver(myReceiver, intentFilter);
-        modelService = ((MyApplication)getApplication()).getModelService();
-        DeviceInfo deviceInfo = modelService.getDeviceInfo();
-        if(deviceInfo != null)
-        {
-            modelService.init_intercom_core(deviceInfo);
-        }
+        boardCastFilterInfo=new BoardCastFilterInfo();
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        //注册自定义动态广播信息
+        IntentFilter filter=new IntentFilter();
+        filter.addAction(boardCastFilterInfo.ONCALLBYDOOR);
+        registerReceiver(listenDoorDeviceCall,filter);
+
+        IntentFilter filter1=new IntentFilter();
+        filter1.addAction(Intent.ACTION_SCREEN_OFF);
+        registerReceiver(listenScreenClose,filter1);
+    }
+
+
+    //使用BroadcastReceiver创建广播监听，监听来自门口机的呼叫等。
+    protected BroadcastReceiver listenDoorDeviceCall=new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction().equals(boardCastFilterInfo.ONCALLBYDOOR)){
+                startOncallActivity(context);
+            }
+        }
+    };
+    //使用BroadcastReceiver创建广播监听，监听屏幕的关闭。
+    protected BroadcastReceiver listenScreenClose=new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Intent i=new Intent();
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            i.setClass(context,StandByActivity.class);
+            context.startActivity(i);
+        }
+    };
+
+    //启动被呼叫页面,来响应门口机的呼叫
+    protected void startOncallActivity(Context context){
+        intent=getIntents();
+        intent.setClass(context,OnCallActivity.class);
+        startActivity(intent);
+    }
+
+
 
     @Override
     public void onClick(View view) {
@@ -156,6 +158,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             playMusic();
             intent.setClass(MainActivity.this,CallRecordActivity.class);
             startActivity(intent);
+
         }
         if(view.getId()==alarmRecord.getId()){
             playMusic();
@@ -180,20 +183,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
         if (view.getId()==leaveHome.getId()){
             playMusic();
-            intent.setClass(MainActivity.this,LeaveHome.class);
+            intent.setClass(MainActivity.this,StandByActivity.class);
             startActivity(intent);
         }
         if (view.getId()==callManagement.getId()){
             playMusic();
-            IpAddressInfo ipAddressInfo = modelService.getIpAddressInfo();
-            if(ipAddressInfo == null || ipAddressInfo.getCenterAddress() == null)
-            {
-                showLongToast("请先设置中心管理机的地址！");
-            }else
-            {
-                intent.setClass(MainActivity.this,CallManagementCenterActivity.class);
-                startActivity(intent);
-            }
+            intent.setClass(MainActivity.this,CallManagementCenterActivity.class);
+            startActivity(intent);
         }
         if (view.getId()==monitor.getId()){
             playMusic();
@@ -210,13 +206,17 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             intent.setClass(MainActivity.this,CallMain.class);
             startActivity(intent);
         }
+        if (view.getId()==callElevator.getId()){
+            intent.setClass(MainActivity.this,OnCallActivity.class);
+            startActivity(intent);
+        }
     }
 
   //查询天气
     private void getWeatherInformation(){
 
-        queryWeather=new QueryWeatherInformation();
-        weathers=queryWeather.getXml();
+           queryWeather=new QueryWeatherInformation();
+         weathers=queryWeather.getXml();
 
     }
     //非空判断
@@ -273,207 +273,4 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
        }
    }
 
-    private void setMinute(String time){
-        if ((String.valueOf(time.charAt(3)).equals("0"))){
-            minuterAfter.setBackgroundResource(R.drawable.num_0);
-        }
-        if ((String.valueOf(time.charAt(3)).equals("1"))){
-            minuterAfter.setBackgroundResource(R.drawable.num_1);
-        }
-        if ((String.valueOf(time.charAt(3)).equals("2"))){
-            minuterAfter.setBackgroundResource(R.drawable.num_2);
-        }
-        if ((String.valueOf(time.charAt(3)).equals("3"))){
-            minuterAfter.setBackgroundResource(R.drawable.num_3);
-        }
-        if ((String.valueOf(time.charAt(3)).equals("4"))){
-            minuterAfter.setBackgroundResource(R.drawable.num_4);
-        }
-        if ((String.valueOf(time.charAt(3)).equals("5"))){
-            minuterAfter.setBackgroundResource(R.drawable.num_5);
-        }
-        if ((String.valueOf(time.charAt(3)).equals("6"))){
-            minuterAfter.setBackgroundResource(R.drawable.num_6);
-        }
-        if ((String.valueOf(time.charAt(3)).equals("7"))){
-            minuterAfter.setBackgroundResource(R.drawable.num_7);
-        }
-        if ((String.valueOf(time.charAt(3)).equals("8"))){
-            minuterAfter.setBackgroundResource(R.drawable.num_8);
-        }
-        if ((String.valueOf(time.charAt(3)).equals("9"))){
-            minuterAfter.setBackgroundResource(R.drawable.num_9);
-        }
-
-        if ((String.valueOf(time.charAt(2)).equals("0"))){
-            minuteFront.setBackgroundResource(R.drawable.num_0);
-        }
-        if ((String.valueOf(time.charAt(2)).equals("1"))){
-            minuteFront.setBackgroundResource(R.drawable.num_1);
-        }
-        if ((String.valueOf(time.charAt(2)).equals("2"))){
-            minuteFront.setBackgroundResource(R.drawable.num_2);
-        }
-        if ((String.valueOf(time.charAt(2)).equals("3"))){
-            minuteFront.setBackgroundResource(R.drawable.num_3);
-        }
-        if ((String.valueOf(time.charAt(2)).equals("4"))){
-            minuteFront.setBackgroundResource(R.drawable.num_4);
-        }
-        if ((String.valueOf(time.charAt(2)).equals("5"))){
-            minuteFront.setBackgroundResource(R.drawable.num_5);
-        }
-        if ((String.valueOf(time.charAt(2)).equals("6"))){
-            minuteFront.setBackgroundResource(R.drawable.num_6);
-        }
-        if ((String.valueOf(time.charAt(2)).equals("7"))){
-            minuteFront.setBackgroundResource(R.drawable.num_7);
-        }
-        if ((String.valueOf(time.charAt(2)).equals("8"))){
-            minuteFront.setBackgroundResource(R.drawable.num_8);
-        }
-        if ((String.valueOf(time.charAt(2)).equals("9"))){
-            minuteFront.setBackgroundResource(R.drawable.num_9);
-        }
-
-    }
-
-    private void setHour(String time){
-        if ((String.valueOf(time.charAt(0)).equals("0"))){
-            hourFront.setBackgroundResource(R.drawable.num_0);
-        }
-        if ((String.valueOf(time.charAt(0)).equals("1"))){
-            hourFront.setBackgroundResource(R.drawable.num_1);
-        }
-        if ((String.valueOf(time.charAt(0)).equals("2"))){
-            hourFront.setBackgroundResource(R.drawable.num_2);
-        }
-        if ((String.valueOf(time.charAt(0)).equals("3"))){
-            hourFront.setBackgroundResource(R.drawable.num_3);
-        }
-        if ((String.valueOf(time.charAt(0)).equals("4"))){
-            hourFront.setBackgroundResource(R.drawable.num_4);
-        }
-        if ((String.valueOf(time.charAt(0)).equals("5"))){
-            hourFront.setBackgroundResource(R.drawable.num_5);
-        }
-        if ((String.valueOf(time.charAt(0)).equals("6"))){
-            hourFront.setBackgroundResource(R.drawable.num_6);
-        }
-        if ((String.valueOf(time.charAt(0)).equals("7"))){
-            hourFront.setBackgroundResource(R.drawable.num_7);
-        }
-        if ((String.valueOf(time.charAt(0)).equals("8"))){
-            hourFront.setBackgroundResource(R.drawable.num_8);
-        }
-        if ((String.valueOf(time.charAt(0)).equals("9"))){
-            hourFront.setBackgroundResource(R.drawable.num_9);
-        }
-        if ((String.valueOf(time.charAt(1)).equals("0"))){
-            hourAfter.setBackgroundResource(R.drawable.num_0);
-        }
-        if ((String.valueOf(time.charAt(1)).equals("1"))){
-            hourAfter.setBackgroundResource(R.drawable.num_1);
-        }
-        if ((String.valueOf(time.charAt(1)).equals("2"))){
-            hourAfter.setBackgroundResource(R.drawable.num_2);
-        }
-        if ((String.valueOf(time.charAt(1)).equals("3"))){
-            hourAfter.setBackgroundResource(R.drawable.num_3);
-        }
-        if ((String.valueOf(time.charAt(1)).equals("4"))){
-            hourAfter.setBackgroundResource(R.drawable.num_4);
-        }
-        if ((String.valueOf(time.charAt(1)).equals("5"))){
-            hourAfter.setBackgroundResource(R.drawable.num_5);
-        }
-        if ((String.valueOf(time.charAt(1)).equals("6"))){
-            hourAfter.setBackgroundResource(R.drawable.num_6);
-        }
-        if ((String.valueOf(time.charAt(1)).equals("7"))){
-            hourAfter.setBackgroundResource(R.drawable.num_7);
-        }
-        if ((String.valueOf(time.charAt(1)).equals("8"))){
-            hourAfter.setBackgroundResource(R.drawable.num_8);
-        }
-        if ((String.valueOf(time.charAt(1)).equals("9"))){
-            hourAfter.setBackgroundResource(R.drawable.num_9);
-        }
-    }
-   private void initClock(){
-
-     Thread thread=new Thread(new Runnable() {
-         @Override
-         public void run() {
-             while(true){
-                 Message message=new Message();
-                 time=new SimpleDateFormat("HHmm").format(new Date());
-                 Bundle bundle=new Bundle();
-                 bundle.putBoolean("1",false);
-                 message.setData(bundle);
-                 message.what=1;
-                 handler.sendMessageDelayed(message,60000);
-             }
-         }
-
-     });
-       thread.start();
-   }
-
-    public class MyReceiver extends BroadcastReceiver
-    {
-        @Override
-        public void onReceive(Context context, Intent intent2)
-        {
-            Bundle bundle = intent2.getExtras();
-            int cmd = bundle.getInt("cmd");
-            BroadcastTypeEnum e = BroadcastTypeEnum.find(cmd);
-            String value = bundle.getString("value");
-            switch (e)
-            {
-                case CALL_REQUEST :
-                    showLongToast("收到呼叫请求！" + value);
-                    playMusic();
-                    intent.setClass(MainActivity.this,ConversationActivity.class);
-                    intent.putExtra("value", value);
-                    startActivity(intent);
-                    break;
-                case PLAY_VIDEO :
-                    showLongToast("视频url" + value);
-                    break;
-                case HANG_UP :
-                    showLongToast("对方已挂断！");
-                    break;
-                case CALL_CONFIRM :
-                    showLongToast("您呼叫的设备已经找到！");
-                    break;
-                case OPEN_LOCK_CONFIRM :
-                    showLongToast("锁已开！");
-                    break;
-                case MONITOR_CONFIRM :
-                    showLongToast("您监视的设备已经找到！");
-                    break;
-                case DEVICE_BUSY :
-                    showLongToast("您呼叫的设备正在忙，请稍后再拨！");
-                    break;
-                case MONITOR_HANG_UP :
-                    showLongToast("门口机挂断监视！");
-                    break;
-                case CALL_ANSWER_CONFIRM :
-                    showLongToast("您呼叫的设备已接听！");
-                    break;
-                case RECEIVE_MESSAGE :
-                    showLongToast("收到新的消息：" + value);
-                    break;
-                case RECEIVE_AD :
-                    showLongToast("收到新的广告" + value);
-                    break;
-                case RECEIVE_ALARM :
-                    showLongToast("收到新的警报" + value);
-                    break;
-                default:
-                    break;
-            }
-        }
-    }
 }

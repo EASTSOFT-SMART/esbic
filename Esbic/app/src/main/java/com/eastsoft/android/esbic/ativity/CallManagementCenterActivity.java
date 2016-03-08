@@ -2,20 +2,22 @@ package com.eastsoft.android.esbic.ativity;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Chronometer;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.eastsoft.android.esbic.R;
-import com.eastsoft.android.esbic.jni.IpAddressInfo;
-import com.eastsoft.android.esbic.service.IModelService;
 
 /**
  * Created by sofa on 2016/1/25.
  */
-public class CallManagementCenterActivity extends Activity {
-    private TextView isCallingCenter,isTalking,time;
+public class CallManagementCenterActivity extends BaseActivity implements View.OnClickListener {
     private Button hangUp;
+    private Chronometer timer,timerConversation;
+    private ImageButton back;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,19 +26,27 @@ public class CallManagementCenterActivity extends Activity {
 
     }
     private void initData(){
-        isCallingCenter=(TextView) this.findViewById(R.id.is_calling_center);
-        time=(TextView) this.findViewById(R.id.time);
-        //hangUp=(Button)this.findViewById(R.id.hang_up);
-        //hangUp.setOnClickListener(new View.OnClickListener() {
-         //   @Override
-         //   public void onClick(View view) {
+        timer=(Chronometer) this.findViewById(R.id.timer);
+        timerConversation=(Chronometer)this.findViewById(R.id.timer_conversation);
+        hangUp=(Button)this.findViewById(R.id.call_center_management_hang_up);
+        back=(ImageButton)this.findViewById(R.id.call_center_management_back);
+        hangUp.setOnClickListener(this);
+        back.setOnClickListener(this);
+        timer.setBase(SystemClock.elapsedRealtime());
+        timer.start();
 
-         //   }
-        //});
-        IModelService modelService = ((MyApplication)getApplication()).getModelService();
-        IpAddressInfo ipAddressInfo = modelService.getIpAddressInfo();
-        String centerAddress = ipAddressInfo.getCenterAddress();
-        modelService.call_center_manager(centerAddress);
     }
 
+    @Override
+    public void onClick(View view) {
+        if (view.getId()==hangUp.getId()){
+            playButtonMusic(musicButtonId);
+            this.finish();
+        }
+        if (view.getId()==back.getId()){
+            playButtonMusic(musicButtonId);
+            this.finish();
+        }
+
+    }
 }

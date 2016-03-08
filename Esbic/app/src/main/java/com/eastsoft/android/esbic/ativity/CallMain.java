@@ -24,6 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.eastsoft.android.esbic.R;
+import com.eastsoft.android.esbic.adapter.InputKeyBoardAdapter;
 import com.eastsoft.android.esbic.dialog.MyDialog;
 
 import java.util.ArrayList;
@@ -36,15 +37,15 @@ import java.util.Objects;
  * Created by sofa on 2016/1/25.
  */
 public class CallMain extends BaseActivity implements View.OnClickListener,AdapterView.OnItemClickListener{
-    private ImageButton back,call;
-    private ImageButton history,help;
+    private ImageButton back;
+    private Button history,help,call;
     private TextView phoneNumber;
     private GridView inputBoard;
     private ListView historyList;
     private String list[];
     private List<Map<String,Object>> mapList;
     private Intent intent;
-    private SimpleAdapter inputKeyBoardAdapter;
+    private InputKeyBoardAdapter inputKeyBoardAdapter;
     private LinearLayout linearLayout;
     private String number="";
     private int[] icon;
@@ -56,9 +57,9 @@ public class CallMain extends BaseActivity implements View.OnClickListener,Adapt
     }
     private void initData(){
          back=(ImageButton)this.findViewById(R.id.back);
-         call=(ImageButton)this.findViewById(R.id.call);
-         history=(ImageButton)this.findViewById(R.id.hository);
-         help=(ImageButton)this.findViewById(R.id.help);
+         call=(Button) this.findViewById(R.id.call);
+         history=(Button) this.findViewById(R.id.hository);
+         help=(Button) this.findViewById(R.id.help);
          linearLayout=(LinearLayout)this.findViewById(R.id.control_help);
          phoneNumber=(TextView)this.findViewById(R.id.tel_number);
          inputBoard=(GridView)this.findViewById(R.id.input_board);
@@ -77,10 +78,13 @@ public class CallMain extends BaseActivity implements View.OnClickListener,Adapt
     @Override
     public void onClick(View view) {
         if (view.getId()==back.getId()){
+            playButtonMusic(musicButtonId);
             this.finish();
         }
         if (view.getId()==call.getId()){
-            if (!phoneNumber.equals("")){
+            String callNumber=phoneNumber.getText().toString();
+            playButtonMusic(musicButtonId);
+            if (!callNumber.equals("")){
                 intent=getIntents();
                 intent.setClass(CallMain.this,ConversationActivity.class);
                 intent.putExtra("roomNumber", phoneNumber.getText());
@@ -91,11 +95,13 @@ public class CallMain extends BaseActivity implements View.OnClickListener,Adapt
 
         }
         if (view.getId()==history.getId()){
+             playButtonMusic(musicButtonId);
              linearLayout.setVisibility(View.GONE);
              historyList.setVisibility(View.VISIBLE);
 
         }
         if (view.getId()==help.getId()){
+            playButtonMusic(musicButtonId);
             linearLayout.setVisibility(View.VISIBLE);
             historyList.setVisibility(View.GONE);
         }
@@ -104,41 +110,33 @@ public class CallMain extends BaseActivity implements View.OnClickListener,Adapt
    //初始化Adapter
     public void initAdapter(){
         //SimpleAdapter simpleAdapter=new SimpleAdapter();
-        icon=new int[]{R.drawable.num_one,R.drawable.num_two,R.drawable.num_three
-                ,R.drawable.num_four,R.drawable.num_five,R.drawable.num_six,R.drawable.num_seven,R.drawable.num_eight,
-                R.drawable.num_nine,R.drawable.num_clear_all,R.drawable.num_zero,R.drawable.num_delete};
-        mapList=new ArrayList<Map<String, Object>>();
-        for (int i=0;i<icon.length;i++){
-            Map<String,Object> map=new HashMap<String,Object>();
-            map.put("number",icon[i]);
-            mapList.add(map);
-        }
-       inputKeyBoardAdapter=new SimpleAdapter(this,mapList,R.layout.input_keyboard_item,new String[]{
-              "number"},new int[]{R.id.keyboard_child});
+        icon=new int[]{R.drawable.num_delete,R.drawable.button_icon};
+        inputKeyBoardAdapter=new InputKeyBoardAdapter(this,icon);
 
     }
 
-   private void showHelpDialog(){
-       MyDialog myDialog=new MyDialog(CallMain.this);
-       final  Dialog dialog=myDialog.getDialog();
-       View view=myDialog.getDialogView(R.layout.call_main_help);
-       dialog.setContentView(view);
-       Window  dialogWindow=dialog.getWindow();
-       WindowManager.LayoutParams lp=dialogWindow.getAttributes();
-       dialogWindow.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.CENTER_VERTICAL);
-       lp.width=ViewGroup.LayoutParams.WRAP_CONTENT;
-       lp.height= ViewGroup.LayoutParams.WRAP_CONTENT;
-       dialogWindow.setAttributes(lp);
-       dialog.show();
-   }
+   //private void showHelpDialog(){
+   //    MyDialog myDialog=new MyDialog(CallMain.this);
+   //    final  Dialog dialog=myDialog.getDialog();
+   //    View view=myDialog.getDialogView(R.layout.call_main_help);
+   //    dialog.setContentView(view);
+   //    Window  dialogWindow=dialog.getWindow();
+   //    WindowManager.LayoutParams lp=dialogWindow.getAttributes();
+   //    dialogWindow.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.CENTER_VERTICAL);
+   //    lp.width=ViewGroup.LayoutParams.WRAP_CONTENT;
+   //    lp.height= ViewGroup.LayoutParams.WRAP_CONTENT;
+   //    dialogWindow.setAttributes(lp);
+   //    dialog.show();
+   //}
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-         if (i<9){
+        playNumberSingByNumber(i);
+        if (i<9){
              number=phoneNumber.getText().toString();
              number+=String.valueOf(i+1);
              phoneNumber.setText(number);
-         }
+        }
         if (i==9){
             phoneNumber.setText("");
         }
@@ -150,11 +148,8 @@ public class CallMain extends BaseActivity implements View.OnClickListener,Adapt
         if (i==11){
             number=phoneNumber.getText().toString();
             int numLength=number.length();
-            if (numLength>=3){
-                String num=number.substring(numLength-3,numLength-2);
-                phoneNumber.setText(num);
-            }else if (numLength==2){
-                String num =number.substring(0);
+            if (numLength>=2){
+                String num=number.substring(0,numLength-1);
                 phoneNumber.setText(num);
             }else{
                 phoneNumber.setText("");
@@ -164,6 +159,9 @@ public class CallMain extends BaseActivity implements View.OnClickListener,Adapt
     }
 
 
-
+    //拉去通话历史记录
+    private List<Map<Object,Object>> pullHistoryRecord(){
+        return null;
+    }
 
 }

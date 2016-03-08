@@ -36,7 +36,7 @@ public class VolumeActivity extends BaseActivity implements SeekBar.OnSeekBarCha
         seekBar=(SeekBar)this.findViewById(R.id.volume_setting_seekbar);
         audioManager=(AudioManager)this.getSystemService(Context.AUDIO_SERVICE);
         maxVolume=audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);//获取当前最大的音量;
-        //Log.i("系统最大音量",String.valueOf(maxVolume));
+        Log.i("系统最大音量",String.valueOf(maxVolume));
         seekBar.setMax(maxVolume);
         currentVolume=audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);//获取当前的音量;
         volume=currentVolume;
@@ -92,6 +92,7 @@ public class VolumeActivity extends BaseActivity implements SeekBar.OnSeekBarCha
         audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,i,0);
         currentVolume=audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
         seekBar.setProgress(currentVolume);
+        volume=currentVolume;
     }
 
     @Override

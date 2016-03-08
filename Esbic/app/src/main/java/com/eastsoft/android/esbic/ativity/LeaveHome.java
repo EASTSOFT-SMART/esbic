@@ -11,11 +11,13 @@ import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.eastsoft.android.esbic.R;
+import com.eastsoft.android.esbic.adapter.InputKeyBoardAdapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,10 +32,7 @@ public class LeaveHome extends BaseActivity implements AdapterView.OnItemClickLi
     private GridView inputKeyBoard;
     private List<Map<String,Object>> listItems;
     private int[] icon;
-    //   R.drawable.small_circle,R.drawable.small_circle,R.drawable.small_circle,R.drawable.small_circle,R.drawable.small_circle,
-      //      R.drawable.small_circle,R.drawable.small_circle,R.drawable.small_circle,R.drawable.small_circle,R.drawable.small_circle,
-      //      R.drawable.small_circle,R.drawable.small_circle
-   // };
+    private String passWords;
     private String password="1234";
 
     @Override
@@ -50,19 +49,9 @@ public class LeaveHome extends BaseActivity implements AdapterView.OnItemClickLi
         numThree=(TextView) this.findViewById(R.id.num_three);
         numFour=(TextView) this.findViewById(R.id.num_four);
         inputKeyBoard=(GridView) this.findViewById(R.id.leave_home_input_keyboard);
-        icon=new int[]{R.drawable.num_zero,R.drawable.num_one,R.drawable.num_two,R.drawable.num_three
-        ,R.drawable.num_four,R.drawable.num_five,R.drawable.num_six,R.drawable.num_seven,R.drawable.num_eight,
-                R.drawable.num_nine,R.drawable.num_delete,R.drawable.num_clear_all};
-        listItems=new ArrayList<Map<String, Object>>();
-        for(int i=0;i<icon.length;i++){
-            Map<String,Object> listItem=new HashMap<String,Object>();
-            listItem.put("icon",icon[i]);
-            listItems.add(listItem);
-
-        }
-        SimpleAdapter simpleAdapter = new SimpleAdapter(this,listItems, R.layout.input_keyboard_item, new String[]
-                {"icon"}, new int[]{R.id.keyboard_child});
-        inputKeyBoard.setAdapter(simpleAdapter);
+        icon=new int[]{R.drawable.num_delete,R.drawable.button_icon};
+        InputKeyBoardAdapter inputKeyBoardAdapter=new InputKeyBoardAdapter(this,icon);
+        inputKeyBoard.setAdapter(inputKeyBoardAdapter);
         inputKeyBoard.setOnItemClickListener(this);
         inputKeyBoard.setOnItemSelectedListener(this);
     }
@@ -70,6 +59,7 @@ public class LeaveHome extends BaseActivity implements AdapterView.OnItemClickLi
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
         Log.v("GrideView的第几个子列表",String.valueOf(i));
         textHowToShow(i);
         if (i==11){
@@ -79,10 +69,8 @@ public class LeaveHome extends BaseActivity implements AdapterView.OnItemClickLi
             String password = numOne.getText().toString() + numTwo.getText().toString()
                     + numThree.getText().toString() + numFour.getText().toString();
             if (password.equals(this.password)) {
-                Intent intent = getIntents();
-                intent.setClass(LeaveHome.this, MainActivity.class);
-                this.onDestroy();
-            } else {
+                this.finish();
+            }else{
                 showShortToast("密码错误，请重试！");
                 numOne.setText("");
                 numTwo.setText("");
@@ -94,12 +82,7 @@ public class LeaveHome extends BaseActivity implements AdapterView.OnItemClickLi
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        Log.v("GrideView的第几个子列表",String.valueOf(i));
-        textHowToShow(i);
-        if (i==11){
-            deleteTextViewFromRight();
-        }
-        getUserSettingPsd();
+
     }
 
     @Override

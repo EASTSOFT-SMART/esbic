@@ -27,12 +27,6 @@ public class SettingDeviceInfoActivity extends BaseActivity implements View.OnCl
         plcMac=(TextView)this.findViewById(R.id.plc_mac);
         back=(ImageButton)this.findViewById(R.id.device_information_back);
         back.setOnClickListener(this);
-
-        sn.setText("Sn获取失败");
-        mac.setText("Mac获取失败");
-        plcMac.setText("PlcMac获取失败");
-        softVersion.setText("软件版本获取失败");
-        hardWareVersion.setText("硬件版本获取失败");
     }
 
     @Override
