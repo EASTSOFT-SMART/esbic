@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<litepal>
+    
+    <dbname value="esbic" ></dbname>
+    <version value="1" ></version>
+
+    <list>
+        <mapping class="com.eastsoft.android.esbic.table.ParaInfo"></mapping>
+        <mapping class="com.eastsoft.android.esbic.table.IntercomInfo"></mapping>
+        <mapping class="com.eastsoft.android.esbic.table.MessageInfo"></mapping>
+        <mapping class="com.eastsoft.android.esbic.table.AlarmInfo"></mapping>
+    </list>
+
+</litepal>
