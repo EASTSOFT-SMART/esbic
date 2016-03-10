@@ -8,9 +8,12 @@ import android.os.Message;
 import android.os.PowerManager;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -21,20 +24,21 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 import com.eastsoft.android.esbic.R;
+import com.eastsoft.android.esbic.view.MyViewPager;
 
 /**
  * Created by Mr Wang on 2016/3/1.
  */
 public class StandByActivity extends BaseActivity {
     private int item=0;//记录上一次点的位置
-    private int currentItem=0;//当前页面
+    private int currentItem;//当前页面
     private ScheduledExecutorService scheduledExecutorService;
-    private List<ImageView> imageViewList;
-    private ViewPager viewPager;
+    private MyViewPager viewPager;
     private PagerAdapter pagerAdapter;
-    private int[] imageId;
+    private List<View> viewList;
     private Intent intent;
     private LinearLayout screen;
+    private View viewOne,viewTwo;
     private PowerManager pm;
     private PowerManager.WakeLock wakeLock;
     private KeyguardManager mKeyguardManager;
@@ -52,27 +56,45 @@ public class StandByActivity extends BaseActivity {
         pm=(PowerManager)getSystemService(POWER_SERVICE);
         wakeLock=pm.newWakeLock(PowerManager.ACQUIRE_CAUSES_WAKEUP|
                 PowerManager.SCREEN_DIM_WAKE_LOCK|PowerManager.ON_AFTER_RELEASE,"SimpleTimer");
-
-        imageId=new int[]{R.drawable.screensaver1,R.drawable.screensaver2,R.drawable.screensaver1
-        ,R.drawable.screensaver2,R.drawable.screensaver1,R.drawable.screensaver2};
-        imageViewList=new ArrayList<ImageView>();
-        for (int i=0;i<imageId.length;i++){
-            ImageView imageView=new ImageView(this);
-            imageView.setBackgroundResource(imageId[i]);
-            imageViewList.add(imageView);
-        }
-        viewPager=(ViewPager)this.findViewById(R.id.pager);
+        viewList=new ArrayList<View>();
+        viewOne=LayoutInflater.from(this).inflate(R.layout.standby_item_one,null);
+        viewTwo=LayoutInflater.from(this).inflate(R.layout.standby_item_two,null);
+        ImageButton buttonOne=(ImageButton)viewOne.findViewById(R.id.lock_one);
+        ImageButton buttonTwo=(ImageButton)viewTwo.findViewById(R.id.lock_two);
+        buttonOne.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=getIntents();
+                intent.setClass(StandByActivity.this,LeaveHome.class);
+                startActivity(intent);
+                StandByActivity.this.finish();
+            }
+        });
+        buttonTwo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=getIntents();
+                intent.setClass(StandByActivity.this,LeaveHome.class);
+                startActivity(intent);
+                StandByActivity.this.finish();
+            }
+        });
+        viewList.add(viewOne);
+        viewList.add(viewTwo);
+        viewPager=(MyViewPager)this.findViewById(R.id.pager);
+        viewPager.setScanScroll(false);
         pagerAdapter=new MyPagerAdapter();
         viewPager.setAdapter(pagerAdapter);
+        viewPager.setCurrentItem(viewList.size()*50);
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                currentItem=position;
+
             }
 
             @Override
             public void onPageSelected(int position) {
-
+                currentItem=position;
             }
 
             @Override
@@ -84,18 +106,6 @@ public class StandByActivity extends BaseActivity {
         mKeyguardLock=mKeyguardManager.newKeyguardLock("tag");
         mKeyguardLock.disableKeyguard();
         //mKeyguardLock.reenableKeyguard();
-
-        screen.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                intent.setClass(StandByActivity.this,LeaveHome.class);
-                startActivity(intent);
-                StandByActivity.this.finish();
-            }
-        });
-
-
-
 
     }
 
@@ -117,7 +127,7 @@ public class StandByActivity extends BaseActivity {
 
         @Override
         public int getCount() {
-            return imageViewList.size();
+            return viewList.size()*100;
         }
 
         //是否是同一张图片
@@ -128,24 +138,31 @@ public class StandByActivity extends BaseActivity {
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
-            ImageView imageView=imageViewList.get(position);
-            container.addView(imageView);
-            imageView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent=getIntents();
-                    intent.setClass(StandByActivity.this,LeaveHome.class);
-                    startActivity(intent);
-                    StandByActivity.this.finish();
-                }
-            });
-            return imageView;
+            View view=viewList.get(position%viewList.size());
+
+            ViewParent viewParent=view.getParent();
+            if (viewParent!=null){
+                ViewGroup viewGroup=(ViewGroup)viewPager;
+                viewGroup.removeView(view);
+            }
+            container.addView(view);
+            //imageView.setOnClickListener(new View.OnClickListener() {
+            //    @Override
+            //    public void onClick(View view) {
+            //        Intent intent=getIntents();
+            //        intent.setClass(StandByActivity.this,LeaveHome.class);
+            //        startActivity(intent);
+            //        StandByActivity.this.finish();
+            //    }
+            //});
+            return view;
         }
 
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
-            //container.removeView(imageViewList.get(position));
+
         }
+
     }
 
     @Override
@@ -160,7 +177,10 @@ public class StandByActivity extends BaseActivity {
 
         @Override
         public void run() {
-            currentItem=currentItem%imageViewList.size();
+            currentItem=currentItem+1;
+            if (currentItem==viewList.size()*100){
+                currentItem=0;
+            }
             //更新界面
             //handler.sendEmptyMessage(0);
             handler.obtainMessage().sendToTarget();
