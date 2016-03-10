@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.eastsoft.android.esbic.R;
@@ -19,6 +20,7 @@ import com.eastsoft.android.esbic.R;
  */
 public class ScreenLightActivity extends BaseActivity implements View.OnClickListener,SeekBar.OnSeekBarChangeListener {
     private ImageButton back,lightAdd,lightDecrease;
+    private TextView back2;
     private SeekBar screenLightSeekBar;
     private int brightnessModel,brightness;
     private int postion=0;
@@ -40,6 +42,8 @@ public class ScreenLightActivity extends BaseActivity implements View.OnClickLis
     private void initData() {
         back=(ImageButton)this.findViewById(R.id.screen_light_back);
         back.setOnClickListener(this);
+        back2=(TextView) this.findViewById(R.id.screen_light_back2);
+        back2.setOnClickListener(this);
         lightAdd=(ImageButton)this.findViewById(R.id.screen_light_add);
         lightDecrease=(ImageButton)this.findViewById(R.id.screen_light_decrease);
         screenLightSeekBar=(SeekBar)this.findViewById(R.id.screen_light_seekbar);
@@ -79,7 +83,7 @@ public class ScreenLightActivity extends BaseActivity implements View.OnClickLis
 
     @Override
     public void onClick(View view) {
-        if (view.getId()==back.getId()){
+        if (view.getId()==back.getId() || view.getId()==back2.getId()){
             playButtonMusic(musicButtonId);
             ScreenLightActivity.this.finish();
         }

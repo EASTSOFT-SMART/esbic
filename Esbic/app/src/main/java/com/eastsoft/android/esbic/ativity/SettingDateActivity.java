@@ -21,19 +21,20 @@ import java.util.Map;
 /**
  * Created by Mr Wang on 2016/2/17.
  */
-public class SettingDateActivity extends BaseActivity implements AdapterView.OnItemClickListener {
-    private TextView dateYear,dateMonth,dateDay,dateHour,dateMinute,dateSecond;
+public class SettingDateActivity extends BaseActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
+    private TextView dateYear,dateMonth,dateDay,dateHour,dateMinute,dateSecond, back2;
     private GridView inputKeyBoard;
     private int[] icon;
     private SimpleDateFormat simpleDateFormat;
     private Date date;
     private int position=0;
-    ImageButton back;
+    private ImageButton back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.setting_date_set);
+        initData();
     }
 
     private void initData(){
@@ -45,20 +46,32 @@ public class SettingDateActivity extends BaseActivity implements AdapterView.OnI
         dateSecond=(TextView)this.findViewById(R.id.date_second);
         inputKeyBoard=(GridView)this.findViewById(R.id.setting_date_input_keyboard);
         icon=new int[]{R.drawable.num_delete,R.drawable.button_icon};
-        InputKeyBoardAdapter inputKeyBoardAdapter=new InputKeyBoardAdapter(this,icon);
+        InputKeyBoardAdapter inputKeyBoardAdapter=new InputKeyBoardAdapter(this,icon,"确认");
         inputKeyBoard.setAdapter(inputKeyBoardAdapter);
         inputKeyBoard.setOnItemClickListener(this);
         simpleDateFormat=new SimpleDateFormat("yyMMdd");
         date=new Date();
         //yearMonthDay.setText(simpleDateFormat.format(date));
         // hourMinuteSecond.setText(new SimpleDateFormat("HHmmss").format(date));
+        back = (ImageButton)this.findViewById(R.id.date_setting_back);
+        back.setOnClickListener(this);
+        back2 = (TextView) this.findViewById(R.id.date_setting_back2);
+        back2.setOnClickListener(this);
+    }
 
+    @Override
+    public void onClick(View view)
+    {
+        if (view.getId() == back.getId() || view.getId() == back2.getId())
+        {
+            playButtonMusic(musicButtonId);
+            finish();
+        }
     }
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-
+        textHowToShow(i);
     }
 
     //设置TextView从左往右显示

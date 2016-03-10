@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.eastsoft.android.esbic.R;
 import com.eastsoft.android.esbic.ativity.BaseActivity;
@@ -16,10 +17,12 @@ import com.eastsoft.android.esbic.ativity.BaseActivity;
 public class InputKeyBoardAdapter extends BaseAdapter {
     private int[] buttonIcon;
     private LayoutInflater inflater;
+    private String buttonName;
 
-    public InputKeyBoardAdapter(Context context,int[] buttonIcon){
-        inflater=LayoutInflater.from(context);
-        this.buttonIcon=buttonIcon;
+    public InputKeyBoardAdapter(Context context,int[] buttonIcon, String buttonName){
+        this.inflater = LayoutInflater.from(context);
+        this.buttonIcon = buttonIcon;
+        this.buttonName = buttonName;
     }
 
     @Override
@@ -41,6 +44,9 @@ public class InputKeyBoardAdapter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
         View v=inflater.inflate(R.layout.input_keyboard_item,null);
         Button button=(Button)v.findViewById(R.id.keyboard_child);
+        button.setClickable(false);
+        button.setEnabled(false);
+        button.setFocusable(false);
         if (i==11){
             button.setBackgroundResource(buttonIcon[0]);
         }else{
@@ -48,8 +54,8 @@ public class InputKeyBoardAdapter extends BaseAdapter {
                 button.setBackgroundResource(buttonIcon[1]);
                 button.setText("1");
             }else if (i==1){
-                    button.setBackgroundResource(buttonIcon[1]);
-                    button.setText("2");
+                button.setBackgroundResource(buttonIcon[1]);
+                button.setText("2");
             }else if (i==2){
                 button.setBackgroundResource(buttonIcon[1]);
                 button.setText("3");
@@ -74,7 +80,7 @@ public class InputKeyBoardAdapter extends BaseAdapter {
             }else if (i==9){
                 button.setBackgroundResource(buttonIcon[1]);
                 button.setTextSize(24);
-                button.setText("删除");
+                button.setText(buttonName);
             }else if (i==10){
                 button.setBackgroundResource(buttonIcon[1]);
                 button.setText("0");

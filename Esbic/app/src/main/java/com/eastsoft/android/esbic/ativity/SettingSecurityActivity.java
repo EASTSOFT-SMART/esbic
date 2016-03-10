@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.eastsoft.android.esbic.R;
 
@@ -18,6 +19,7 @@ public class SettingSecurityActivity extends BaseActivity implements View.OnClic
             securityLeaveHomeFour,securityLeaveHomeFive,
             securityLeaveHomeSix,securityLeaveHomeSeven,securityLeaveHomeEight;
     private ImageButton back;
+    private TextView back2;
     private Button[] buttons;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +29,7 @@ public class SettingSecurityActivity extends BaseActivity implements View.OnClic
     }
     private void initData(){
         back=(ImageButton)this.findViewById(R.id.security_setting_back);
+        back2=(TextView) this.findViewById(R.id.security_setting_back2);
         securityOne=(Button)this.findViewById(R.id.security_gohome_one);
         securityTwo=(Button)this.findViewById(R.id.security_gohome_two);
         securityThree=(Button)this.findViewById(R.id.security_gohome_three);
@@ -44,6 +47,7 @@ public class SettingSecurityActivity extends BaseActivity implements View.OnClic
         securityLeaveHomeSeven=(Button)this.findViewById(R.id.security_leavehome_seven);
         securityLeaveHomeEight=(Button)this.findViewById(R.id.security_leavehome_eight);
         back.setOnClickListener(this);
+        back2.setOnClickListener(this);
         buttons=new Button[]{securityOne,securityTwo,securityThree,securityFour,securityFive,
                 securitySix,securitySeven,securityEight,securityLeaveHomeOne,securityLeaveHomeTwo,securityLeaveHomeThree,
                 securityLeaveHomeFour,securityLeaveHomeFive,
@@ -55,6 +59,11 @@ public class SettingSecurityActivity extends BaseActivity implements View.OnClic
 
     @Override
     public void onClick(View view) {
+        if (view.getId() == back.getId() || view.getId() == back2.getId())
+        {
+            playButtonMusic(musicButtonId);
+            finish();
+        }
         if (view.getId()==securityLeaveHomeOne.getId()){
 
         }

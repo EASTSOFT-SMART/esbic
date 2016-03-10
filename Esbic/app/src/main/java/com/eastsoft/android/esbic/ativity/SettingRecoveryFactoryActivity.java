@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.eastsoft.android.esbic.R;
 
@@ -13,6 +14,7 @@ import com.eastsoft.android.esbic.R;
  */
 public class SettingRecoveryFactoryActivity extends BaseActivity implements View.OnClickListener {
     private ImageButton back;
+    private TextView back2;
     private Button cancel,recover;
 
     @Override
@@ -24,6 +26,9 @@ public class SettingRecoveryFactoryActivity extends BaseActivity implements View
 
     private void initData(){
         back=(ImageButton)this.findViewById(R.id.factory_reset_back);
+        back.setOnClickListener(this);
+        back2=(TextView) this.findViewById(R.id.factory_reset_back2);
+        back2.setOnClickListener(this);
         cancel=(Button)this.findViewById(R.id.reset_cancel);
         recover=(Button)this.findViewById(R.id.reset_recovery);
         cancel.setOnClickListener(this);
@@ -37,8 +42,10 @@ public class SettingRecoveryFactoryActivity extends BaseActivity implements View
          if (view.getId()==recover.getId()){
 
          }
-         if (view.getId()==back.getId()){
-             this.finish();
-         }
+        if (view.getId() == back.getId() || view.getId() == back2.getId())
+        {
+            playButtonMusic(musicButtonId);
+            finish();
+        }
     }
 }

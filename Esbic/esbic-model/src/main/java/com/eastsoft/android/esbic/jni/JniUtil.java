@@ -7,9 +7,7 @@ import com.eastsoft.android.esbic.table.IntercomInfo;
 import com.eastsoft.android.esbic.table.MessageInfo;
 import com.eastsoft.android.esbic.util.AudioUtil;
 import com.eastsoft.android.esbic.util.LogUtil;
-import com.eastsoft.android.esbic.util.TimeUtil;
-
-import org.litepal.crud.DataSupport;
+import com.eastsoft.android.esbic.util.TalkUtil;
 
 /**
  * 34 native
@@ -19,7 +17,6 @@ import org.litepal.crud.DataSupport;
 public class JniUtil
 {
 	private static JniUtil instance = new JniUtil();
-	private DeviceInfo currentDeviceInfo;
 
 	private JniUtil()
 	{
@@ -53,7 +50,6 @@ public class JniUtil
 		register_log_handler();
 		init_intercom_core(deviceInfo);
 		init_talk_task();
-		init_alarm_in();
 		register_inactive_call_handler();
 		register_call_answer_found_handler();
 		register_video_url_handler();
@@ -70,6 +66,7 @@ public class JniUtil
 		register_text_push_handler();
 		register_ad_push_handler();
 		register_alarm_handler();
+		register_talk_task_error_handler();
 	}
 
 	public void destory()
@@ -84,7 +81,6 @@ public class JniUtil
 	public native int init_intercom_core(DeviceInfo deviceInfo);
 	public native int destory_intercom_core();
 	public native int modefy_device_info(DeviceInfo deviceInfo);
-	public native int modefy_add_info(String imp_addr, String center_addr);
 
 	// Intercom communication
 	// 3.1
@@ -100,7 +96,7 @@ public class JniUtil
 	public void inactive_call_handler(DeviceInfo deviceInfo)
 	{
 		BroadcastUtil.getInstance().sendBoardcast(BroadcastTypeEnum.CALL_REQUEST, deviceInfo.toString());
-		currentDeviceInfo = deviceInfo;
+		TalkUtil.getInstance().start(IntercomTypeEnum.MISSED, deviceInfo);
 	}
 	// 3.4
 	public native void register_call_answer_found_handler(String classPath, String methodName, String paraType);
@@ -126,13 +122,13 @@ public class JniUtil
 	public native void register_inactive_call_hang_up_handler(String classPath, String methodName, String paraType);
 	public void register_inactive_call_hang_up_handler()
 	{
-		register_inactive_call_hang_up_handler(this.getClass().getName().replace(".","/"), "inactive_call_hang_up_handler", "(V)V");
+		register_inactive_call_hang_up_handler(this.getClass().getName().replace(".","/"), "inactive_call_hang_up_handler", "()V");
 	}
 	public void inactive_call_hang_up_handler()
 	{
+		AudioUtil.getInstance().stopRecordAudio();
+		TalkUtil.getInstance().stop();
 		BroadcastUtil.getInstance().sendBoardcast(BroadcastTypeEnum.HANG_UP, "null");
-		IntercomInfo intercomInfo = new IntercomInfo(IntercomTypeEnum.MISSED.getType(), currentDeviceInfo.toString());
-		intercomInfo.save();
 	}
 	// 3.7
 	public native int ui_talk_answer();
@@ -140,17 +136,18 @@ public class JniUtil
 	public native void register_talk_answer_handler(String classPath, String methodName, String paraType);
 	public void register_talk_answer_handler()
 	{
-		register_talk_answer_handler(this.getClass().getName().replace(".","/"), "talk_answer_handler", "(V)V");
+		register_talk_answer_handler(this.getClass().getName().replace(".","/"), "talk_answer_handler", "()V");
 	}
 	public void talk_answer_handler()
 	{
+		TalkUtil.getInstance().talk();
 		BroadcastUtil.getInstance().sendBoardcast(BroadcastTypeEnum.CALL_ANSWER_CONFIRM, "null");
 	}
 	// 3.9
 	public native void register_talk_confim_handler(String classPath, String methodName, String paraType);
 	public void register_talk_confim_handler()
 	{
-		register_talk_confim_handler(this.getClass().getName().replace(".","/"), "talk_confim_handler", "(V)V");
+		register_talk_confim_handler(this.getClass().getName().replace(".","/"), "talk_confim_handler", "()V");
 	}
 	public void talk_confim_handler()
 	{
@@ -174,10 +171,12 @@ public class JniUtil
 	public native void register_inactive_talk_hang_up_handler(String classPath, String methodName, String paraType);
 	public void register_inactive_talk_hang_up_handler()
 	{
-		register_inactive_talk_hang_up_handler(this.getClass().getName().replace(".","/"), "inactive_talk_hang_up_handler", "(V)V");
+		register_inactive_talk_hang_up_handler(this.getClass().getName().replace(".","/"), "inactive_talk_hang_up_handler", "()V");
 	}
 	public void inactive_talk_hang_up_handler()
 	{
+		AudioUtil.getInstance().stopRecordAudio();
+		TalkUtil.getInstance().stop();
 		BroadcastUtil.getInstance().sendBoardcast(BroadcastTypeEnum.HANG_UP, "null");
 	}
 	// 3.14
@@ -186,7 +185,7 @@ public class JniUtil
 	public native void register_call_busy_handler(String classPath, String methodName, String paraType);
 	public void register_call_busy_handler()
 	{
-		register_call_busy_handler(this.getClass().getName().replace(".","/"), "call_busy_handler", "(V)V");
+		register_call_busy_handler(this.getClass().getName().replace(".","/"), "call_busy_handler", "()V");
 	}
 	public void call_busy_handler()
 	{
@@ -200,7 +199,7 @@ public class JniUtil
 	public native void register_unlock_door_confirm_handler(String classPath, String methodName, String paraType);
 	public void register_unlock_door_confirm_handler()
 	{
-		register_unlock_door_confirm_handler(this.getClass().getName().replace(".","/"), "unlock_door_confirm_handler", "(V)V");
+		register_unlock_door_confirm_handler(this.getClass().getName().replace(".","/"), "unlock_door_confirm_handler", "()V");
 	}
 	public void unlock_door_confirm_handler()
 	{
@@ -217,8 +216,6 @@ public class JniUtil
 	public void monitor_confirm_handler(DeviceInfo deviceInfo)
 	{
 		BroadcastUtil.getInstance().sendBoardcast(BroadcastTypeEnum.MONITOR_CONFIRM, deviceInfo.toString());
-		IntercomInfo intercomInfo = new IntercomInfo(IntercomTypeEnum.MONITOR_DOOR.getType(), deviceInfo.toString());
-		intercomInfo.save();
 	}
 	// 3.21
 	public native int active_hang_up_monitor(DeviceInfo deviceInfo);
@@ -244,6 +241,8 @@ public class JniUtil
 	}
 	// 4.1
 	public native int init_imp_task(String imp_addr);
+	public native int modify_imp_addr(String imp_addr);
+
 	// 4.2
 	public native int destory_imp_task();
 	// 4.3
@@ -273,7 +272,8 @@ public class JniUtil
 		info.save();
 	}
 	// 5.1
-	public native int init_alarm_in();
+	public native int init_alarm_in(DefencesSwitchInfo defencesSwitchInfoInfo);
+	public native int modify_alarm_in_defences_area(DefencesSwitchInfo defencesSwitchInfoInfo);
 	// 5.2
 	public native int destory_alarm_in();
 	// 5.3
@@ -289,6 +289,19 @@ public class JniUtil
 		alarmInfo.maxRecord(500);
 		alarmInfo.save();
 	}
+
+	// error
+	public native void register_talk_task_error_handler(String classPath, String methodName, String paraType);
+	public void register_talk_task_error_handler()
+	{
+		register_talk_task_error_handler(this.getClass().getName().replace(".","/"), "talk_task_error_handler", "(I"+generateClassPath(DeviceInfo.class)+")V");
+	}
+	public void talk_task_error_handler(int codeType, DeviceInfo deviceInfo)
+	{
+		LogUtil.print("Recv error code :" + ErrorCodeEnum.find(codeType).getInfo() + "\n" + deviceInfo.toString());
+		BroadcastUtil.getInstance().sendBoardcast(BroadcastTypeEnum.TALK_TASK_ERROR, codeType+"");
+	}
+
 	//	log
 	public native int register_log_handler(String classPath, String methodName, String paraType);
 	public void register_log_handler()
@@ -303,9 +316,5 @@ public class JniUtil
 	private String generateClassPath(Class clazz)
 	{
 		return "L" + clazz.getName().replace(".", "/") + ";";
-	}
-
-	public DeviceInfo getCurrentDeviceInfo() {
-		return currentDeviceInfo;
 	}
 }

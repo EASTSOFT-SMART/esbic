@@ -11,6 +11,7 @@ import java.util.List;
 public interface IModelService
 {
     public void init_intercom_core(DeviceInfo deviceInfo);      //  初始化楼宇对讲库
+    public void init_imp_task(String impAddress);               //  初始化IMP服务器
     public void ui_talk_answer();                               //  接听呼叫
     public void active_hang_up();                               //  挂断接听和呼叫
     public int active_call_user(DeviceInfo deviceInfo);         //  呼叫室内机

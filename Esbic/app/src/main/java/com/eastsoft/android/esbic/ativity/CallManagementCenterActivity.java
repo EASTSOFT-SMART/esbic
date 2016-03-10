@@ -18,6 +18,7 @@ public class CallManagementCenterActivity extends BaseActivity implements View.O
     private Button hangUp;
     private Chronometer timer,timerConversation;
     private ImageButton back;
+    private TextView back2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +33,8 @@ public class CallManagementCenterActivity extends BaseActivity implements View.O
         back=(ImageButton)this.findViewById(R.id.call_center_management_back);
         hangUp.setOnClickListener(this);
         back.setOnClickListener(this);
+        back2=(TextView) this.findViewById(R.id.call_center_management_back2);
+        back2.setOnClickListener(this);
         timer.setBase(SystemClock.elapsedRealtime());
         timer.start();
 
@@ -39,14 +42,9 @@ public class CallManagementCenterActivity extends BaseActivity implements View.O
 
     @Override
     public void onClick(View view) {
-        if (view.getId()==hangUp.getId()){
+        if (view.getId()==hangUp.getId() || view.getId()==back.getId() || view.getId()==back2.getId()){
             playButtonMusic(musicButtonId);
             this.finish();
         }
-        if (view.getId()==back.getId()){
-            playButtonMusic(musicButtonId);
-            this.finish();
-        }
-
     }
 }

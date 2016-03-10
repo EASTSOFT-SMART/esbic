@@ -36,10 +36,10 @@ import java.util.Objects;
 /**
  * Created by sofa on 2016/1/25.
  */
-public class CallMain extends BaseActivity implements View.OnClickListener,AdapterView.OnItemClickListener{
+public class CallMain extends BaseActivity implements View.OnClickListener,AdapterView.OnItemClickListener,AdapterView.OnItemSelectedListener{
     private ImageButton back;
     private Button history,help,call;
-    private TextView phoneNumber;
+    private TextView phoneNumber, back2;
     private GridView inputBoard;
     private ListView historyList;
     private String list[];
@@ -56,28 +56,32 @@ public class CallMain extends BaseActivity implements View.OnClickListener,Adapt
         initData();
     }
     private void initData(){
-         back=(ImageButton)this.findViewById(R.id.back);
-         call=(Button) this.findViewById(R.id.call);
-         history=(Button) this.findViewById(R.id.hository);
-         help=(Button) this.findViewById(R.id.help);
-         linearLayout=(LinearLayout)this.findViewById(R.id.control_help);
-         phoneNumber=(TextView)this.findViewById(R.id.tel_number);
-         inputBoard=(GridView)this.findViewById(R.id.input_board);
-         historyList=(ListView)this.findViewById(R.id.hostory_list);
-         back.setOnClickListener(this);
-         call.setOnClickListener(this);
-         history.setOnClickListener(this);
-         help.setOnClickListener(this);
-         //historyList.setAdapter();
-         initAdapter();
-         inputBoard.setAdapter(inputKeyBoardAdapter);
-         inputBoard.setOnItemClickListener(this);
+        back=(ImageButton)this.findViewById(R.id.back);
+        back2=(TextView) this.findViewById(R.id.back2);
+        call=(Button) this.findViewById(R.id.call);
+        history=(Button) this.findViewById(R.id.hository);
+        help=(Button) this.findViewById(R.id.help);
+        linearLayout=(LinearLayout)this.findViewById(R.id.control_help);
+        phoneNumber=(TextView)this.findViewById(R.id.tel_number);
+        phoneNumber.setText("");
+        inputBoard=(GridView)this.findViewById(R.id.input_board);
+        historyList=(ListView)this.findViewById(R.id.hostory_list);
+        back.setOnClickListener(this);
+        back2.setOnClickListener(this);
+        call.setOnClickListener(this);
+        history.setOnClickListener(this);
+        help.setOnClickListener(this);
+        //historyList.setAdapter();
+        initAdapter();
+        inputBoard.setAdapter(inputKeyBoardAdapter);
+        inputBoard.setOnItemClickListener(this);
+        inputBoard.setOnItemSelectedListener(this);
 
     }
 
     @Override
     public void onClick(View view) {
-        if (view.getId()==back.getId()){
+        if (view.getId()==back.getId()||view.getId()==back2.getId()){
             playButtonMusic(musicButtonId);
             this.finish();
         }
@@ -111,7 +115,7 @@ public class CallMain extends BaseActivity implements View.OnClickListener,Adapt
     public void initAdapter(){
         //SimpleAdapter simpleAdapter=new SimpleAdapter();
         icon=new int[]{R.drawable.num_delete,R.drawable.button_icon};
-        inputKeyBoardAdapter=new InputKeyBoardAdapter(this,icon);
+        inputKeyBoardAdapter=new InputKeyBoardAdapter(this,icon,"清空");
 
     }
 
@@ -134,7 +138,7 @@ public class CallMain extends BaseActivity implements View.OnClickListener,Adapt
         playNumberSingByNumber(i);
         if (i<9){
              number=phoneNumber.getText().toString();
-             number+=String.valueOf(i+1);
+             number=number+String.valueOf(i+1);
              phoneNumber.setText(number);
         }
         if (i==9){
@@ -164,4 +168,39 @@ public class CallMain extends BaseActivity implements View.OnClickListener,Adapt
         return null;
     }
 
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+    {playNumberSingByNumber(position);
+        if (position<9){
+            number=phoneNumber.getText().toString();
+            number=number+String.valueOf(position+1);
+            phoneNumber.setText(number);
+        }
+        if (position==9){
+            phoneNumber.setText("");
+        }
+        if (position==10){
+            number=phoneNumber.getText().toString();
+            number+=String.valueOf(0);
+            phoneNumber.setText(number);
+        }
+        if (position==11){
+            number=phoneNumber.getText().toString();
+            int numLength=number.length();
+            if (numLength>=2){
+                String num=number.substring(0,numLength-1);
+                phoneNumber.setText(num);
+            }else{
+                phoneNumber.setText("");
+            }
+
+        }
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent)
+    {
+
+    }
 }
