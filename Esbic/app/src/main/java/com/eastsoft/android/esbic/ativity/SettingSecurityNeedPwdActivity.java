@@ -48,7 +48,7 @@ public class SettingSecurityNeedPwdActivity extends BaseActivity implements View
         numFour = (TextView) this.findViewById(R.id.num_four);
         inputKeyBoard = (GridView) this.findViewById(R.id.need_pwd_input_keyboard);
         icon=new int[]{R.drawable.num_delete,R.drawable.button_icon};
-        InputKeyBoardAdapter inputKeyBoardAdapter=new InputKeyBoardAdapter(this,icon);
+        InputKeyBoardAdapter inputKeyBoardAdapter=new InputKeyBoardAdapter(this,icon, "确认");
         inputKeyBoard.setAdapter(inputKeyBoardAdapter);
         inputKeyBoard.setOnItemClickListener(this);
     }

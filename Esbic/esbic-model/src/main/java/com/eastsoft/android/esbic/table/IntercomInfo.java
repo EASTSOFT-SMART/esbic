@@ -10,13 +10,26 @@ public class IntercomInfo extends DataSupport
 	private int type;
 	private String time;
 	private String device;
-	
-	public IntercomInfo(int type, String device)
+	private long talkTime;
+
+	public IntercomInfo(int type, String time, String device, long talkTime)
 	{
 		this.type = type;
-		this.time = TimeUtil.getDateTimeofNow3();
+		this.time = time;
 		this.device = device;
+		this.talkTime = talkTime;
+
 		this.maxRecord(500);
+	}
+
+	public long getTalkTime()
+	{
+		return talkTime;
+	}
+
+	public void setTalkTime(long talkTime)
+	{
+		this.talkTime = talkTime;
 	}
 
 	public int getType()

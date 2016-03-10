@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.eastsoft.android.esbic.R;
 
@@ -17,6 +18,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
             projectSetting,projectPassword,deviceInfo;
     private Button[] buttonArray;
     private ImageButton settingBack;
+    private TextView settingBack2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
     }
     private void initData(){
         settingBack=(ImageButton) this.findViewById(R.id.setting_back);
+        settingBack2=(TextView) this.findViewById(R.id.setting_back2);
         security=(Button)this.findViewById(R.id.security_setting);
         userPassword=(Button)this.findViewById(R.id.user_password);
         date=(Button)this.findViewById(R.id.date_setting);
@@ -35,6 +38,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
         projectPassword=(Button)this.findViewById(R.id.project_password);
         deviceInfo=(Button)this.findViewById(R.id.device_information);
         settingBack.setOnClickListener(this);
+        settingBack2.setOnClickListener(this);
         buttonArray=new Button[]{
                 security,userPassword,date,recover,projectQuery,
                 projectSetting,projectPassword,deviceInfo
@@ -50,7 +54,8 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
 
     @Override
     public void onClick(View view) {
-        if (view.getId()==R.id.setting_back){
+        if (view.getId()==R.id.setting_back || view.getId()==R.id.setting_back2){
+            playButtonMusic(musicButtonId);
             finish();
         }
         if (view.getId()==security.getId()){

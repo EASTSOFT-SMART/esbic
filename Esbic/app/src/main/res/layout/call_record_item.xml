@@ -19,7 +19,7 @@
                 android:id="@+id/record_icon"
                 android:layout_width="@dimen/width58"
                 android:layout_height="@dimen/width58"
-                android:background="@drawable/call_in"/>
+                android:background="@drawable/call_in_default"/>
 
 
         </LinearLayout>
@@ -32,7 +32,7 @@
             <TextView
                 android:id="@+id/record_from"
                 android:gravity="center|left"
-                android:layout_marginTop="@dimen/width9"
+                android:layout_marginTop="@dimen/width7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/text_23_ffffff"
@@ -41,7 +41,7 @@
                 <TextView
                     android:id="@+id/record_time"
                     android:gravity="center|left"
-                    android:layout_marginTop="@dimen/width9"
+                    android:layout_marginTop="@dimen/width4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/text_23_ffffff"
@@ -50,7 +50,7 @@
                 <TextView
                     android:id="@+id/record_time_two"
                     android:gravity="center|left"
-                    android:layout_marginTop="@dimen/width9"
+                    android:layout_marginTop="@dimen/width4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/text_23_ffffff"
