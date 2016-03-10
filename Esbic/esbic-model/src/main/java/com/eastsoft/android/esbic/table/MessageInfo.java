@@ -7,8 +7,10 @@ import com.eastsoft.android.esbic.util.TimeUtil;
 
 public class MessageInfo extends DataSupport
 {
+	private int id;
 	private int type;
 	private String time;
+	private boolean isRead;
 	private int playTime;
 	private String message;
 	
@@ -19,6 +21,26 @@ public class MessageInfo extends DataSupport
 		this.playTime = playTime;
 		this.message = message;
 		this.maxRecord(500);
+	}
+
+	public int getId()
+	{
+		return id;
+	}
+
+	public void setId(int id)
+	{
+		this.id = id;
+	}
+
+	public boolean isRead()
+	{
+		return isRead;
+	}
+
+	public void setRead(boolean read)
+	{
+		isRead = read;
 	}
 
 	public int getType()

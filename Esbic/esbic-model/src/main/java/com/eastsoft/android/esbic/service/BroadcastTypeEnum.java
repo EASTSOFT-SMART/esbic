@@ -17,6 +17,7 @@ public enum BroadcastTypeEnum
     RECEIVE_MESSAGE 					(10, "RECEIVE_MESSAGE"),      //  收到消息
     RECEIVE_AD      					(11, "RECEIVE_AD"),           //  收到广告
     RECEIVE_ALARM   					(12, "RECEIVE_ALARM"),        //  收到报警
+    TALK_TASK_ERROR                     (13, "TALK_TASK_ERROR"),      //  收到错误信息
     UNKNOWN      						(-1, "UNKNOWN"),              //  出事啦
     ;
 

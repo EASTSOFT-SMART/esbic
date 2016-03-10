@@ -15,6 +15,7 @@
             android:layout_height="@dimen/width81"
             android:background="@drawable/top_back" />
         <TextView
+            android:id="@+id/message_con_back2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -44,23 +45,8 @@
                 android:layout_width="match_parent"
                 android:divider="#00000000"
                 android:dividerHeight="@dimen/width8"
-                android:layout_height="@dimen/width472">
+                android:layout_height="match_parent">
             </ListView>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/width7"
-                android:layout_gravity="center">
-                <ImageButton
-                    android:layout_width="@dimen/width53"
-                    android:layout_height="@dimen/width53"
-                    android:background="@drawable/up"/>
-                <ImageButton
-                    android:layout_width="@dimen/width53"
-                    android:layout_height="@dimen/width53"
-                    android:layout_marginLeft="@dimen/width68"
-                    android:background="@drawable/down"/>
-            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -80,7 +66,7 @@
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:layout_marginLeft="@dimen/width45"
-                   android:text="水费缴纳"
+                   android:text=""
                    style="@style/text_32_ffffff"/>
            </LinearLayout>
 
@@ -100,7 +86,7 @@
                     android:layout_height="@dimen/width377"
                     android:lineSpacingExtra="@dimen/width15"
                     android:lineSpacingMultiplier="1.2"
-                    android:text="@string/message_contents"/>
+                    android:text=""/>
 
             </LinearLayout>
 

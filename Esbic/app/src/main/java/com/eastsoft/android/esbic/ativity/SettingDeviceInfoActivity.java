@@ -13,7 +13,7 @@ import org.w3c.dom.Text;
  * Created by Mr Wang on 2016/2/17.
  */
 public class SettingDeviceInfoActivity extends BaseActivity implements View.OnClickListener {
-    private TextView sn,mac,plcMac,softVersion,hardWareVersion;
+    private TextView sn,mac,plcMac,softVersion,hardWareVersion, back2;
     private ImageButton back;
 
     @Override
@@ -27,12 +27,17 @@ public class SettingDeviceInfoActivity extends BaseActivity implements View.OnCl
         plcMac=(TextView)this.findViewById(R.id.plc_mac);
         back=(ImageButton)this.findViewById(R.id.device_information_back);
         back.setOnClickListener(this);
+        back2=(TextView) this.findViewById(R.id.device_information_back2);
+        back2.setOnClickListener(this);
     }
 
     @Override
-    public void onClick(View view) {
-        if (view.getId()==back.getId()){
-            this.onDestroy();
+    public void onClick(View view)
+    {
+        if (view.getId() == back.getId() || view.getId() == back2.getId())
+        {
+            playButtonMusic(musicButtonId);
+            finish();
         }
     }
 }

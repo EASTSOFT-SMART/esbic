@@ -23,12 +23,13 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <TextView
+                android:id="@+id/alarm_type"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/width65"
                 android:textColor="#A91E30"
                 android:textSize="@dimen/textsize30"
-                android:text="消防报警"/>
+                android:text="没有报警消息"/>
 
                 <TextView
                     android:id="@+id/alarm_time"
@@ -37,16 +38,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/textsize30"
-                    android:text="2016.01.26"/>
+                    android:text=""/>
 
                 <TextView
-                    android:id="@+id/handle_time"
+                    android:id="@+id/alarm_handle_time"
                     android:gravity="center"
                     android:layout_marginLeft="@dimen/width24"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/textsize27"
-                    android:text="17:00"/>
+                    android:text=""/>
 
             </LinearLayout>
 

@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
+import android.widget.TextView;
 
 import com.eastsoft.android.esbic.R;
 
@@ -18,6 +19,7 @@ public class VolumeActivity extends BaseActivity implements SeekBar.OnSeekBarCha
     private MediaPlayer mediaPlayer;
     private AudioManager audioManager;
     private ImageButton back,volumeDecrease,volumeAdd;
+    private TextView back2;
     private SeekBar seekBar;
     private int maxVolume,currentVolume;
     private int volume=0;//初始化声音
@@ -31,6 +33,7 @@ public class VolumeActivity extends BaseActivity implements SeekBar.OnSeekBarCha
     private void initData(){
         mediaPlayer=new MediaPlayer();
         back=(ImageButton)this.findViewById(R.id.volume_setting_back);
+        back2=(TextView) this.findViewById(R.id.volume_setting_back2);
         volumeDecrease=(ImageButton)this.findViewById(R.id.volume_setting_decrease);
         volumeAdd=(ImageButton)this.findViewById(R.id.volume_setting_add);
         seekBar=(SeekBar)this.findViewById(R.id.volume_setting_seekbar);
@@ -42,11 +45,10 @@ public class VolumeActivity extends BaseActivity implements SeekBar.OnSeekBarCha
         volume=currentVolume;
         seekBar.setProgress(currentVolume);
         back.setOnClickListener(this);
+        back2.setOnClickListener(this);
         volumeAdd.setOnClickListener(this);
         volumeDecrease.setOnClickListener(this);
         seekBar.setOnSeekBarChangeListener(this);
-
-
     }
 
     @Override
@@ -56,8 +58,8 @@ public class VolumeActivity extends BaseActivity implements SeekBar.OnSeekBarCha
 
     @Override
     public void onClick(View view) {
-        if (view.getId()==back.getId()){
-            playMusic();
+        if (view.getId()==back.getId() || view.getId()==back2.getId()){
+            playButtonMusic(musicButtonId);
             VolumeActivity.this.finish();
         }
         if (view.getId()==volumeDecrease.getId()){

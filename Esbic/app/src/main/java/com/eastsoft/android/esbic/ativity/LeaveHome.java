@@ -50,7 +50,7 @@ public class LeaveHome extends BaseActivity implements AdapterView.OnItemClickLi
         numFour=(TextView) this.findViewById(R.id.num_four);
         inputKeyBoard=(GridView) this.findViewById(R.id.leave_home_input_keyboard);
         icon=new int[]{R.drawable.num_delete,R.drawable.button_icon};
-        InputKeyBoardAdapter inputKeyBoardAdapter=new InputKeyBoardAdapter(this,icon);
+        InputKeyBoardAdapter inputKeyBoardAdapter=new InputKeyBoardAdapter(this,icon, "清空");
         inputKeyBoard.setAdapter(inputKeyBoardAdapter);
         inputKeyBoard.setOnItemClickListener(this);
         inputKeyBoard.setOnItemSelectedListener(this);

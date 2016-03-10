@@ -16,8 +16,18 @@ import android.widget.ImageView;
 import android.widget.TextClock;
 import android.widget.TextView;
 import com.eastsoft.android.esbic.R;
+import com.eastsoft.android.esbic.jni.DeviceInfo;
+import com.eastsoft.android.esbic.jni.IpAddressInfo;
+import com.eastsoft.android.esbic.jni.MessageInfoEnum;
+import com.eastsoft.android.esbic.service.BroadcastTypeEnum;
+import com.eastsoft.android.esbic.service.IModelService;
+import com.eastsoft.android.esbic.service.ModelServiceImpl;
+import com.eastsoft.android.esbic.table.AlarmInfo;
+import com.eastsoft.android.esbic.table.MessageInfo;
+import com.eastsoft.android.esbic.table.ParaInfo;
 import com.eastsoft.android.esbic.util.BoardCastFilterInfo;
 import com.eastsoft.android.esbic.util.QueryWeatherInformation;
+import com.eastsoft.android.esbic.util.TimeUtil;
 import com.eastsoft.android.esbic.util.Weather;
 import com.eastsoft.android.esbic.util.WeatherIcon;
 
@@ -34,7 +44,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private ImageView weatherIcon,hourFront,hourAfter,timeIcon,minuteFront,minuterAfter;
     private Dialog progressDialog;
     private String cityName;
-    private Handler  handler;
+    private Handler handler;
     private Intent intent;
     private Date now;
     private TextClock clock;
@@ -42,7 +52,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     public  Weather weathers;
     private SimpleDateFormat simpleDateFormat;
     private QueryWeatherInformation queryWeather;
-    protected BoardCastFilterInfo boardCastFilterInfo;
+    private BoardCastFilterInfo boardCastFilterInfo;
+    private IModelService modelService;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,6 +113,26 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         yearMonthDay.setText(simpleDateFormat.format(now));
         week.setText(new SimpleDateFormat("E").format(now));
         boardCastFilterInfo=new BoardCastFilterInfo();
+
+        ((MyApplication)getApplication()).setModelService(new ModelServiceImpl(getApplicationContext()));
+
+        MyReceiver myReceiver = new MyReceiver();
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("com.eastsoft.android.esbic.model");
+        registerReceiver(myReceiver, intentFilter);
+        modelService = ((MyApplication)getApplication()).getModelService();
+        DeviceInfo deviceInfo = modelService.getDeviceInfo();
+        if(deviceInfo != null)
+        {
+            modelService.init_intercom_core(deviceInfo);
+            IpAddressInfo ipAddressInfo = modelService.getIpAddressInfo();
+            if(ipAddressInfo != null && ipAddressInfo.getImpAdress().compareTo("") != 0)
+            {
+                modelService.init_imp_task(ipAddressInfo.getImpAdress());
+            }
+        }
+//        MessageInfo info = new MessageInfo(MessageInfoEnum.MESSAGE.getType(), 0, "消息内容 " + TimeUtil.getDateTimeofNow2());
+//        info.save();
     }
 
     @Override
@@ -215,8 +246,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
   //查询天气
     private void getWeatherInformation(){
 
-           queryWeather=new QueryWeatherInformation();
-         weathers=queryWeather.getXml();
+        queryWeather=new QueryWeatherInformation();
+        weathers=queryWeather.getXml();
 
     }
     //非空判断
@@ -273,4 +304,58 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
        }
    }
 
+    public class MyReceiver extends BroadcastReceiver
+    {
+        @Override
+        public void onReceive(Context context, Intent intent2)
+        {
+            Bundle bundle = intent2.getExtras();
+            int cmd = bundle.getInt("cmd");
+            BroadcastTypeEnum e = BroadcastTypeEnum.find(cmd);
+            String value = bundle.getString("value");
+            switch (e)
+            {
+                case CALL_REQUEST :
+                    intent.setClass(MainActivity.this, OnCallActivity.class);
+                    intent.putExtra("value", value);
+                    startActivity(intent);
+                    break;
+                case PLAY_VIDEO :
+                    showLongToast("视频url" + value);
+                    break;
+                case HANG_UP :
+                    showLongToast("对方已挂断！");
+                    break;
+                case CALL_CONFIRM :
+                    showLongToast("您呼叫的设备已经找到！");
+                    break;
+                case OPEN_LOCK_CONFIRM :
+                    showLongToast("门已开！");
+                    break;
+                case MONITOR_CONFIRM :
+                    showLongToast("您监视的设备已经找到！");
+                    break;
+                case DEVICE_BUSY :
+                    showLongToast("您呼叫的设备正在忙，请稍后再拨！");
+                    break;
+                case MONITOR_HANG_UP :
+                    showLongToast("门口机挂断监视！");
+                    break;
+                case CALL_ANSWER_CONFIRM :
+                    showLongToast("您呼叫的设备已接听！");
+                    break;
+                case RECEIVE_MESSAGE :
+                    showLongToast("收到新的消息：" + value);
+                    break;
+                case RECEIVE_AD :
+                    showLongToast("收到新的广告" + value);
+                    break;
+                case RECEIVE_ALARM :
+                    showLongToast("收到新的警报" + value);
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
 }

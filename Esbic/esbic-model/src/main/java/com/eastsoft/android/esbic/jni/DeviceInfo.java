@@ -11,6 +11,11 @@ public class DeviceInfo
 	private byte room_no;
 	private int dev_no;
 
+	public DeviceInfo()
+	{
+
+	}
+
 	public DeviceInfo(int device_type, int building_no, byte unit_no, byte layer_no, byte room_no, int dev_no) {
 		this.device_type = device_type;
 		this.building_no = building_no;

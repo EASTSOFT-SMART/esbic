@@ -14,6 +14,7 @@ import com.eastsoft.android.esbic.table.ParaInfo;
 import com.eastsoft.android.esbic.util.AudioUtil;
 import com.eastsoft.android.esbic.util.JsonUtil;
 import com.eastsoft.android.esbic.util.LogUtil;
+import com.eastsoft.android.esbic.util.TalkUtil;
 import com.eastsoft.android.esbic.util.TimeUtil;
 
 import org.litepal.crud.DataSupport;
@@ -31,22 +32,26 @@ public class ModelServiceImpl implements IModelService
         JniUtil.getInstance().init(deviceInfo);
     }
 
+    public void init_imp_task(String impAddress)
+    {
+        JniUtil.getInstance().init_imp_task(impAddress);
+    }
+
     public void ui_talk_answer() {
         JniUtil.getInstance().ui_talk_answer();
+        TalkUtil.getInstance().talk();
         AudioUtil.getInstance().startRecordAudio();
-        IntercomInfo intercomInfo = new IntercomInfo(IntercomTypeEnum.RECEIVED.getType(), JniUtil.getInstance().getCurrentDeviceInfo().toString());
-        intercomInfo.save();
     }
 
     public void active_hang_up() {
         JniUtil.getInstance().active_hang_up();
+        TalkUtil.getInstance().stop();
         AudioUtil.getInstance().stopRecordAudio();
     }
 
     public int active_call_user(DeviceInfo deviceInfo)
     {
-        IntercomInfo intercomInfo = new IntercomInfo(IntercomTypeEnum.CALL_ROOM.getType(), deviceInfo.toString());
-        intercomInfo.save();
+        TalkUtil.getInstance().start(IntercomTypeEnum.CALL_ROOM, deviceInfo);
         return JniUtil.getInstance().active_call_user(deviceInfo);
     }
 
@@ -102,12 +107,22 @@ public class ModelServiceImpl implements IModelService
         if(tmp == null)
         {
             paraInfo.save();
-            JniUtil.getInstance().init_imp_task(ipAddressInfo.getImpAdress());
+            if(ipAddressInfo.getImpAdress() != null && ipAddressInfo.getImpAdress().compareTo("") != 0)
+            {
+                JniUtil.getInstance().init_imp_task(ipAddressInfo.getImpAdress());
+            }
         }else
         {
             updateParaInfo(paraInfo);
+            IpAddressInfo info = JsonUtil.fromJson(tmp.getValue(), IpAddressInfo.class);
+            if(info.getImpAdress().compareTo("") == 0)
+            {
+                JniUtil.getInstance().init_imp_task(ipAddressInfo.getImpAdress());
+            }else
+            {
+                JniUtil.getInstance().modify_imp_addr(ipAddressInfo.getImpAdress());
+            }
         }
-        JniUtil.getInstance().modefy_add_info(ipAddressInfo.getImpAdress(), ipAddressInfo.getCenterAddress());
     }
 
     public IpAddressInfo getIpAddressInfo()
@@ -165,17 +180,17 @@ public class ModelServiceImpl implements IModelService
 
     public List<IntercomInfo> getIntecomInfo()
     {
-        return DataSupport.findAll(IntercomInfo.class);
+        return DataSupport.order("time desc").find(IntercomInfo.class);
     }
 
     public List<MessageInfo> getMessageInfo()
     {
-        return DataSupport.findAll(MessageInfo.class);
+        return DataSupport.order("time desc").find(MessageInfo.class);
     }
 
     public List<AlarmInfo> getAlarmInfo()
     {
-        return DataSupport.findAll(AlarmInfo.class);
+        return DataSupport.order("time desc").find(AlarmInfo.class);
     }
 
 

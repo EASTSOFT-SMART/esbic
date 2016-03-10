@@ -16,6 +16,7 @@
             android:layout_height="@dimen/width81"
             android:background="@drawable/top_back" />
         <TextView
+            android:id="@+id/on_call_back2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

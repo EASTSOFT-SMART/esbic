@@ -37,6 +37,7 @@ import java.util.List;
 public class WifiSettingActivity extends BaseActivity implements View.OnClickListener,AdapterView.OnItemClickListener,
         AdapterView.OnItemSelectedListener{
     private ImageButton back,scanWifi;
+    private TextView back2;
     private MySlipButton mySlipButton;
     private ListView listView;
     private Intent intent;
@@ -59,11 +60,13 @@ public class WifiSettingActivity extends BaseActivity implements View.OnClickLis
     }
     private void initData(){
         mySlipButton=(MySlipButton)this.findViewById(R.id.wifi_switch);
-        back=(ImageButton)this.findViewById(R.id.wifi_setting_back);
         listView=(ListView)this.findViewById(R.id.wifi_list);
         listView.setOnItemClickListener(this);
         scanWifi=(ImageButton)this.findViewById(R.id.scan_wifi);
+        back=(ImageButton)this.findViewById(R.id.wifi_setting_back);
         back.setOnClickListener(this);
+        back2 = (TextView)this.findViewById(R.id.wifi_setting_back2);
+        back2.setOnClickListener(this);
         scanWifi.setOnClickListener(this);
         wifiScan=new WifiScan(this);
         initWifiConfig();
@@ -148,7 +151,8 @@ public class WifiSettingActivity extends BaseActivity implements View.OnClickLis
 
     @Override
     public void onClick(View view) {
-        if (view.getId()==back.getId()){
+        if (view.getId()==back.getId() || view.getId()== back2.getId()){
+            playButtonMusic(musicButtonId);
             this.finish();
         }
         if (view.getId()==scanWifi.getId()){

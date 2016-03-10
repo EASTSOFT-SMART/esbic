@@ -80,6 +80,7 @@ public class BaseActivity extends Activity{
     protected void playMusic() {
         //music = MediaPlayer.create(this,R.raw.ring1);
         //music.start();
+        playButtonMusic(musicButtonId);
     }
     //使用SoundPool来播放按键声，为了降低延迟时间。
     protected void initSoundPool(){

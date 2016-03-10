@@ -18,7 +18,7 @@ import com.eastsoft.android.esbic.R;
  * Created by sofa on 2016/1/26.
  */
 public class ConversationActivity extends BaseActivity implements View.OnClickListener {
-    private TextView isConversation,roomName;
+    private TextView isConversation,roomName, back2;
     private ImageButton back;
     private Button hangUp;
     private Intent intent;
@@ -40,6 +40,8 @@ public class ConversationActivity extends BaseActivity implements View.OnClickLi
         timer=(Chronometer)this.findViewById(R.id.conversation_time);
         back=(ImageButton)this.findViewById(R.id.conversation_back);
         back.setOnClickListener(this);
+        back2=(TextView) this.findViewById(R.id.conversation_back2);
+        back2.setOnClickListener(this);
         hangUp=(Button)this.findViewById(R.id.conversation_hang_up);
         hangUp.setOnClickListener(this);
         intent=getIntent();
@@ -55,7 +57,7 @@ public class ConversationActivity extends BaseActivity implements View.OnClickLi
             playButtonMusic(musicButtonId);
             this.finish();
         }
-        if (view.getId()==back.getId()){
+        if (view.getId()==back.getId() || view.getId()==back2.getId()){
             playButtonMusic(musicButtonId);
             this.finish();
         }
