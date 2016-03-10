@@ -122,7 +122,6 @@ public class SettingProjectSetActivity extends BaseActivity implements View.OnFo
             String ipStr = ip.getText().toString();
             if(ipStr.length() !=0 && ipStr.length() != 15)
             {
-                LogUtil.print("IP 地址【"+ipStr+"】" + ipStr.length());
                 showLongToast("IP地址错误，请重新设置！");
             }
             String subnetMaskStr = subnetMask.getText().toString();
@@ -148,6 +147,7 @@ public class SettingProjectSetActivity extends BaseActivity implements View.OnFo
             IpAddressInfo ipAddressInfo = new IpAddressInfo(ipStr, subnetMaskStr, gatewayStr, imp, center);
             ((MyApplication)getApplication()).getModelService().setDeviceInfo(deviceInfo);
             ((MyApplication)getApplication()).getModelService().setIpAddressInfo(ipAddressInfo);
+            showLongToast("设置成功！");
         }else if (position==11)
         {
             int index = currentEditText.getSelectionStart();

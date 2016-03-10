@@ -59,15 +59,15 @@
                 android:progressDrawable="@drawable/light_bar"
                 android:paddingLeft="@dimen/width10"
                 android:paddingRight="@dimen/width10"
-                android:maxHeight="@dimen/width22"
-                android:minHeight="@dimen/width22"
+                android:maxHeight="@dimen/width14"
+                android:minHeight="@dimen/width14"
                 android:thumb="@drawable/volume_button"
                 android:thumbOffset="0dp"/>
             <ImageButton
                 android:id="@+id/screen_light_add"
                 android:layout_width="@dimen/width55"
                 android:layout_height="@dimen/width55"
-                android:layout_marginLeft="@dimen/width27"
+                android:layout_marginLeft="@dimen/width23"
                 android:background="@drawable/volume_add"/>
 
         </LinearLayout>

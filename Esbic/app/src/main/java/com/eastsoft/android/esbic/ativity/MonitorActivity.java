@@ -84,6 +84,11 @@ public class MonitorActivity extends BaseActivity implements View.OnClickListene
         monitorItemAdapter.notifyDataSetChanged();
 
         DeviceInfo deviceInfo = ((MyApplication)getApplication()).getModelService().getDeviceInfo();
+        if(deviceInfo == null)
+        {
+            showLongToast("您尚未设置设备信息！");
+            return;
+        }
         DeviceTypeEnum deviceTypeEnum;
         int devNo;
         if(i%2 == 0)

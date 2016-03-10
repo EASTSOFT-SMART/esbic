@@ -61,15 +61,15 @@
                     android:progressDrawable="@drawable/volume_bar"
                     android:paddingLeft="@dimen/width10"
                     android:paddingRight="@dimen/width10"
-                    android:maxHeight="@dimen/width22"
-                    android:minHeight="@dimen/width22"
+                    android:maxHeight="@dimen/width14"
+                    android:minHeight="@dimen/width14"
                     android:thumbOffset="0dp"
                     android:thumb="@drawable/volume_button"/>
                 <ImageButton
                     android:id="@+id/volume_setting_add"
                     android:layout_width="@dimen/width55"
                     android:layout_height="@dimen/width55"
-                    android:layout_marginLeft="@dimen/width25"
+                    android:layout_marginLeft="@dimen/width23"
                     android:background="@drawable/volume_add"/>
             </LinearLayout>
         </RelativeLayout>

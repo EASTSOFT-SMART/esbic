@@ -44,23 +44,8 @@
                     android:layout_width="match_parent"
                     android:divider="#00000000"
                     android:dividerHeight="@dimen/width8"
-                    android:layout_height="@dimen/width472">
+                    android:layout_height="match_parent">
                 </ListView>
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/width7"
-                    android:layout_gravity="center">
-                    <ImageButton
-                        android:layout_width="@dimen/width53"
-                        android:layout_height="@dimen/width53"
-                        android:background="@drawable/up"/>
-                    <ImageButton
-                        android:layout_width="@dimen/width53"
-                        android:layout_height="@dimen/width53"
-                        android:layout_marginLeft="@dimen/width68"
-                        android:background="@drawable/down"/>
-                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout

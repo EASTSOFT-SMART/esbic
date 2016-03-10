@@ -1,65 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/bg_4">
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@drawable/bg_4"
+              android:orientation="vertical">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/width93"
         android:background="@drawable/top_bg">
+
         <ImageButton
             android:id="@+id/alarm_record_back"
-            android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/width50"
             android:layout_width="@dimen/width36"
             android:layout_height="@dimen/width81"
-            android:background="@drawable/top_back" />
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/width50"
+            android:background="@drawable/top_back"/>
+
         <TextView
             android:id="@+id/alarm_record_back2"
+            style="@style/text_25_ffffff"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            style="@style/text_25_ffffff"
             android:text="返回"/>
     </LinearLayout>
 
-<RelativeLayout
-    android:layout_width="@dimen/width1079"
-    android:layout_height="@dimen/width486"
-    android:layout_marginTop="@dimen/width66"
-    android:layout_gravity="center">
-    <ListView
-        android:id="@+id/record_list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:divider="#00000000"
-        android:dividerHeight="@dimen/width14"
-        android:fastScrollEnabled="true"
-        android:scrollbarSize="@dimen/width18"
-        android:scrollbarFadeDuration="10"
-        android:scrollbarThumbVertical="@drawable/slipthumb"
-        android:scrollbarTrackVertical="@drawable/police_bar">
-    </ListView>
-</RelativeLayout>
+    <RelativeLayout
+        android:layout_width="@dimen/width1079"
+        android:layout_height="@dimen/width620"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/width40">
 
-<LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_marginTop="@dimen/width36"
-    android:layout_height="@dimen/width53"
-    android:layout_gravity="center">
-    <ImageButton
-        android:layout_width="@dimen/width53"
-        android:layout_height="@dimen/width53"
-        android:background="@drawable/up"/>
-    <ImageButton
-        android:layout_width="@dimen/width53"
-        android:layout_height="@dimen/width53"
-        android:layout_marginLeft="@dimen/width204"
-        android:background="@drawable/down"/>
-
-</LinearLayout>
-
-
+        <ListView
+            android:id="@+id/record_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="#00000000"
+            android:dividerHeight="@dimen/width14"
+            >
+        </ListView>
+    </RelativeLayout>
 
 
 </LinearLayout>
