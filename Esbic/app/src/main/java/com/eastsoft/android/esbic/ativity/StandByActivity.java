@@ -10,6 +10,7 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -25,8 +26,8 @@ import com.eastsoft.android.esbic.R;
  * Created by Mr Wang on 2016/3/1.
  */
 public class StandByActivity extends BaseActivity {
-    private int oldPosition=0;//记录上一次点的位置
-    private int currentItem;//当前页面
+    private int item=0;//记录上一次点的位置
+    private int currentItem=0;//当前页面
     private ScheduledExecutorService scheduledExecutorService;
     private List<ImageView> imageViewList;
     private ViewPager viewPager;
@@ -52,7 +53,8 @@ public class StandByActivity extends BaseActivity {
         wakeLock=pm.newWakeLock(PowerManager.ACQUIRE_CAUSES_WAKEUP|
                 PowerManager.SCREEN_DIM_WAKE_LOCK|PowerManager.ON_AFTER_RELEASE,"SimpleTimer");
 
-        imageId=new int[]{R.drawable.screensaver1,R.drawable.screensaver2};
+        imageId=new int[]{R.drawable.screensaver1,R.drawable.screensaver2,R.drawable.screensaver1
+        ,R.drawable.screensaver2,R.drawable.screensaver1,R.drawable.screensaver2};
         imageViewList=new ArrayList<ImageView>();
         for (int i=0;i<imageId.length;i++){
             ImageView imageView=new ImageView(this);
@@ -65,13 +67,12 @@ public class StandByActivity extends BaseActivity {
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
+                currentItem=position;
             }
 
             @Override
             public void onPageSelected(int position) {
-                oldPosition=position;
-                currentItem=position;
+
             }
 
             @Override
@@ -79,7 +80,6 @@ public class StandByActivity extends BaseActivity {
 
             }
         });
-
         mKeyguardManager=(KeyguardManager)getSystemService(Context.KEYGUARD_SERVICE);
         mKeyguardLock=mKeyguardManager.newKeyguardLock("tag");
         mKeyguardLock.disableKeyguard();
@@ -117,7 +117,7 @@ public class StandByActivity extends BaseActivity {
 
         @Override
         public int getCount() {
-            return imageId.length;
+            return imageViewList.size();
         }
 
         //是否是同一张图片
@@ -128,13 +128,23 @@ public class StandByActivity extends BaseActivity {
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
-            container.addView(imageViewList.get(position));
-            return imageViewList.get(position);
+            ImageView imageView=imageViewList.get(position);
+            container.addView(imageView);
+            imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent=getIntents();
+                    intent.setClass(StandByActivity.this,LeaveHome.class);
+                    startActivity(intent);
+                    StandByActivity.this.finish();
+                }
+            });
+            return imageView;
         }
 
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
-            container.removeView(imageViewList.get(position));
+            //container.removeView(imageViewList.get(position));
         }
     }
 
@@ -150,7 +160,7 @@ public class StandByActivity extends BaseActivity {
 
         @Override
         public void run() {
-            currentItem=(currentItem+1)%imageId.length;
+            currentItem=currentItem%imageViewList.size();
             //更新界面
             //handler.sendEmptyMessage(0);
             handler.obtainMessage().sendToTarget();
