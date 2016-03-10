@@ -11,6 +11,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.eastsoft.android.esbic.R;
+import com.eastsoft.android.esbic.util.LogUtil;
 
 /**
  * Created by Mr Wang on 2016/2/16.
@@ -39,7 +40,7 @@ public class VolumeActivity extends BaseActivity implements SeekBar.OnSeekBarCha
         seekBar=(SeekBar)this.findViewById(R.id.volume_setting_seekbar);
         audioManager=(AudioManager)this.getSystemService(Context.AUDIO_SERVICE);
         maxVolume=audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);//获取当前最大的音量;
-        Log.i("系统最大音量",String.valueOf(maxVolume));
+        LogUtil.print("媒体最大音量"+String.valueOf(maxVolume));
         seekBar.setMax(maxVolume);
         currentVolume=audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);//获取当前的音量;
         volume=currentVolume;
@@ -68,9 +69,11 @@ public class VolumeActivity extends BaseActivity implements SeekBar.OnSeekBarCha
             if (volume<=0){
                 volume=0;
                 audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,volume,0);
+                audioManager.setStreamVolume(AudioManager.STREAM_SYSTEM,volume,0);
                 seekBar.setProgress(volume);
             }else{
                 audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,volume,0);
+                audioManager.setStreamVolume(AudioManager.STREAM_SYSTEM,volume,0);
                 seekBar.setProgress(volume);
             }
         }
@@ -79,10 +82,12 @@ public class VolumeActivity extends BaseActivity implements SeekBar.OnSeekBarCha
             volume+=2;
             if (volume<=maxVolume){
                 audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,volume,0);
+                audioManager.setStreamVolume(AudioManager.STREAM_SYSTEM,volume,0);
                 seekBar.setProgress(volume);
             }else{
                 volume=maxVolume;
                 audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,volume,0);
+                audioManager.setStreamVolume(AudioManager.STREAM_SYSTEM,volume,0);
                 seekBar.setProgress(volume);
             }
         }
@@ -104,6 +109,6 @@ public class VolumeActivity extends BaseActivity implements SeekBar.OnSeekBarCha
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
-
+        playMusic();
     }
 }

@@ -33,15 +33,21 @@
                 android:textSize="@dimen/textsize23"
                 android:text="未连接"/>
         </LinearLayout>
-
-        <ImageView
-            android:id="@+id/wifi_lock"
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/width720"
-            android:layout_width="@dimen/width57"
-            android:layout_height="@dimen/width57"
-            android:background="@drawable/wifi_icon"
-            />
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/width42"
+            android:layout_weight="1">
+            <ImageView
+                android:id="@+id/wifi_lock"
+                android:layout_gravity="right"
+                android:layout_width="@dimen/width57"
+                android:layout_height="@dimen/width57"
+                android:background="@drawable/wifi_icon"
+                />
+        </LinearLayout>
+
 
     </LinearLayout>
 

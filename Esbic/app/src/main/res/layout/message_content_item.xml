@@ -6,7 +6,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:layout_width="@dimen/width304"
-        android:layout_height="@dimen/width111"
+        android:layout_height="@dimen/width102"
         android:background="@drawable/message_item_selected"
         android:orientation="horizontal">
 

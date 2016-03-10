@@ -95,9 +95,10 @@
 
 
          <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/width380"
-                android:orientation="vertical">
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:orientation="vertical"
+             android:weightSum="1">
 
             <ListView
                 android:id="@+id/wifi_list"
@@ -105,32 +106,10 @@
                 android:layout_width="@dimen/width954"
                 android:divider="#00000000"
                 android:dividerHeight="@dimen/width9"
-                android:layout_height="@dimen/width367">
+                android:layout_height="290dp"
+                android:layout_weight="0.62">
 
              </ListView>
         </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/width30"
-        android:layout_gravity="center">
-        <ImageButton
-            android:id="@+id/up"
-            android:layout_width="@dimen/width53"
-            android:layout_height="@dimen/width53"
-            android:background="@drawable/up"/>
-        <ImageButton
-            android:id="@+id/down"
-            android:layout_width="@dimen/width53"
-            android:layout_height="@dimen/width53"
-            android:layout_marginLeft="@dimen/width206"
-            android:background="@drawable/down"/>
-
-
-    </LinearLayout>
-
-
-
 
 </LinearLayout>
