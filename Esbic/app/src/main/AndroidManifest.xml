@@ -43,134 +43,108 @@
             </intent-filter>
         </activity>
         <activity android:name=".ativity.SmartHomeActivity"
-                  android:windowSoftInputMode="adjustUnspecified|stateHidden"
-                  android:configChanges="orientation|keyboardHidden"
+                  android:windowSoftInputMode="stateHidden"
             android:screenOrientation="landscape">
         </activity>
         <activity android:name=".ativity.LeaveHome"
-                  android:windowSoftInputMode="adjustUnspecified|stateHidden"
-                  android:configChanges="orientation|keyboardHidden"
+                  android:windowSoftInputMode="stateHidden"
             android:screenOrientation="landscape">
         </activity>
         <activity android:name=".ativity.CallMain"
-                  android:windowSoftInputMode="adjustUnspecified|stateHidden"
-                  android:configChanges="orientation|keyboardHidden"
+                  android:windowSoftInputMode="stateHidden"
             android:screenOrientation="landscape">
         </activity>
         <activity android:name=".ativity.CallManagementCenterActivity"
-                  android:windowSoftInputMode="adjustUnspecified|stateHidden"
-                  android:configChanges="orientation|keyboardHidden"
+                  android:windowSoftInputMode="stateHidden"
             android:screenOrientation="landscape">
         </activity>
         <activity android:name=".ativity.CallRecordActivity"
-                  android:windowSoftInputMode="adjustUnspecified|stateHidden"
-                  android:configChanges="orientation|keyboardHidden"
+                  android:windowSoftInputMode="stateHidden"
             android:screenOrientation="landscape">
         </activity>
         <activity android:name=".ativity.ConversationActivity"
-                  android:windowSoftInputMode="adjustUnspecified|stateHidden"
-                  android:configChanges="orientation|keyboardHidden"
+                  android:windowSoftInputMode="stateHidden"
             android:screenOrientation="landscape">
         </activity>
         <activity android:name=".ativity.MessageContentActivity"
-                  android:windowSoftInputMode="adjustUnspecified|stateHidden"
-                  android:configChanges="orientation|keyboardHidden"
+                  android:windowSoftInputMode="stateHidden"
             android:screenOrientation="landscape">
         </activity>
         <activity android:name=".ativity.MonitorActivity"
-                  android:windowSoftInputMode="adjustUnspecified|stateHidden"
-                  android:configChanges="orientation|keyboardHidden"
+                  android:windowSoftInputMode="stateHidden"
             android:screenOrientation="landscape">
         </activity>
         <activity android:name=".ativity.PushMessageActivity"
-                  android:windowSoftInputMode="adjustUnspecified|stateHidden"
-                  android:configChanges="orientation|keyboardHidden"
+                  android:windowSoftInputMode="stateHidden"
             android:screenOrientation="landscape">
         </activity>
         <activity android:name=".ativity.ScreenLightActivity"
-                  android:windowSoftInputMode="adjustUnspecified|stateHidden"
-                  android:configChanges="orientation|keyboardHidden"
+                  android:windowSoftInputMode="stateHidden"
             android:screenOrientation="landscape">
         </activity>
         <activity android:name=".ativity.VolumeActivity"
-                  android:windowSoftInputMode="adjustUnspecified|stateHidden"
-                  android:configChanges="orientation|keyboardHidden"
+                  android:windowSoftInputMode="stateHidden"
             android:screenOrientation="landscape">
         </activity>
         <activity android:name=".ativity.SettingActivity"
-                  android:windowSoftInputMode="adjustUnspecified|stateHidden"
-                  android:configChanges="orientation|keyboardHidden"
+                  android:windowSoftInputMode="stateHidden"
             android:screenOrientation="landscape">
         </activity>
         <activity android:name=".ativity.WifiSettingActivity"
-                  android:windowSoftInputMode="adjustUnspecified|stateHidden"
-                  android:configChanges="orientation|keyboardHidden"
+                  android:windowSoftInputMode="stateHidden"
             android:screenOrientation="landscape">
         </activity>
         <activity android:name=".ativity.AlarmRecordActivity"
-                  android:windowSoftInputMode="adjustUnspecified|stateHidden"
-                  android:configChanges="orientation|keyboardHidden"
+                  android:windowSoftInputMode="stateHidden"
             android:screenOrientation="landscape">
         </activity>
         <activity android:name=".ativity.SettingSecurityNeedPwdActivity"
-                  android:windowSoftInputMode="adjustUnspecified|stateHidden"
-                  android:configChanges="orientation|keyboardHidden"
+                  android:windowSoftInputMode="stateHidden"
             android:screenOrientation="landscape">
         </activity>
         <activity android:name=".ativity.SettingSecurityActivity"
-                  android:windowSoftInputMode="adjustUnspecified|stateHidden"
-                  android:configChanges="orientation|keyboardHidden"
+                  android:windowSoftInputMode="stateHidden"
             android:screenOrientation="landscape">
         </activity>
         <activity android:name=".ativity.SecurityAlterUserPwdActivity"
-            android:windowSoftInputMode="adjustUnspecified|stateHidden"
-            android:configChanges="orientation|keyboardHidden"
+                  android:windowSoftInputMode="stateHidden"
             android:screenOrientation="landscape">
         </activity>
         <activity android:name=".ativity.SettingDateActivity"
-                  android:windowSoftInputMode="adjustUnspecified|stateHidden"
-                  android:configChanges="orientation|keyboardHidden"
+                  android:windowSoftInputMode="stateHidden"
             android:screenOrientation="landscape">
         </activity>
         <activity android:name=".ativity.SettingRecoveryFactoryActivity"
-                  android:windowSoftInputMode="adjustUnspecified|stateHidden"
-                  android:configChanges="orientation|keyboardHidden"
+                  android:windowSoftInputMode="stateHidden"
             android:screenOrientation="landscape">
         </activity>
         <activity android:name=".ativity.SettingProjectQueryActivity"
-                  android:windowSoftInputMode="adjustUnspecified|stateHidden"
-                  android:configChanges="orientation|keyboardHidden"
+                  android:windowSoftInputMode="stateHidden"
             android:screenOrientation="landscape">
         </activity>
         <activity android:name=".ativity.SettingDeviceInfoActivity"
-                  android:windowSoftInputMode="adjustUnspecified|stateHidden"
-                  android:configChanges="orientation|keyboardHidden"
+                  android:windowSoftInputMode="stateHidden"
             android:screenOrientation="landscape">
         </activity>
         <activity android:name=".ativity.SettingProjectPassWordActivity"
-                  android:windowSoftInputMode="adjustUnspecified|stateHidden"
-                  android:configChanges="orientation|keyboardHidden"
+                  android:windowSoftInputMode="stateHidden"
             android:screenOrientation="landscape">
         </activity>
         <activity android:name=".ativity.SettingProjectSetActivity"
-                  android:windowSoftInputMode="adjustUnspecified|stateHidden"
-                  android:configChanges="orientation|keyboardHidden"
+                  android:windowSoftInputMode="stateHidden"
             android:screenOrientation="landscape">
         </activity>
         <activity android:name=".ativity.OnCallActivity"
-                  android:windowSoftInputMode="adjustUnspecified|stateHidden"
-                  android:configChanges="orientation|keyboardHidden"
+                  android:windowSoftInputMode="stateHidden"
             android:screenOrientation="landscape"
             >
         </activity>
         <activity android:name=".ativity.StandByActivity"
-                  android:windowSoftInputMode="adjustUnspecified|stateHidden"
-                  android:configChanges="orientation|keyboardHidden"
+                  android:windowSoftInputMode="stateHidden"
             android:screenOrientation="landscape">
         </activity>
         <activity android:name=".ativity.WeatherSettingActivity"
-            android:windowSoftInputMode="adjustUnspecified|stateHidden"
-            android:configChanges="orientation|keyboardHidden"
+                  android:windowSoftInputMode="stateHidden"
             android:screenOrientation="landscape">
         </activity>
     </application>

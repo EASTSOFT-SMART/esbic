@@ -3,6 +3,7 @@ package com.eastsoft.android.esbic.ativity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.GridView;
@@ -19,6 +20,8 @@ import com.eastsoft.android.esbic.util.LogUtil;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by Mr Wang on 2016/2/17.
@@ -61,6 +64,7 @@ public class SettingProjectSetActivity extends BaseActivity implements View.OnFo
         centerManagementAddr.setOnFocusChangeListener(this);
 
         currentEditText = deviceAddress;
+
         IModelService modelService = ((MyApplication)getApplication()).getModelService();
         DeviceInfo deviceInfo = modelService.getDeviceInfo();
         if(deviceInfo != null)
@@ -70,6 +74,10 @@ public class SettingProjectSetActivity extends BaseActivity implements View.OnFo
                     + String.format("%02d", deviceInfo.getLayer_no()) + "层"
                     + String.format("%02d", deviceInfo.getRoom_no()) + "房间");
         }
+
+        Editable ea = deviceAddress.getText();  // 将光标移动到最后
+        deviceAddress.setSelection(ea.length());
+
         IpAddressInfo ipAddressInfo = modelService.getIpAddressInfo();
         if(ipAddressInfo != null)
         {
@@ -84,15 +92,16 @@ public class SettingProjectSetActivity extends BaseActivity implements View.OnFo
     @Override
     public void onClick(View view)
     {
+        playMusic();
         if (view.getId() == back.getId() || view.getId() == back2.getId())
         {
-            playButtonMusic(musicButtonId);
             finish();
         }
     }
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        playMusic();
         textHowToShow(i);
     }
 

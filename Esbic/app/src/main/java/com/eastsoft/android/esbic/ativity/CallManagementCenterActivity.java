@@ -52,11 +52,6 @@ public class CallManagementCenterActivity extends BaseActivity implements View.O
         if (view.getId()==hangUp.getId() || view.getId()==back.getId() || view.getId()==back2.getId())
         {
             playButtonMusic(musicButtonId);
-            this.finish();
-        }
-        if (view.getId()==back.getId() || view.getId()==back2.getId())
-        {
-            playButtonMusic(musicButtonId);
             modelService.active_hang_up();
             this.finish();
         }

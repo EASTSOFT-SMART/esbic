@@ -8,6 +8,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.eastsoft.android.esbic.R;
+import com.eastsoft.android.esbic.service.IModelService;
 
 /**
  * Created by sofa on 2016/1/27.
@@ -19,6 +20,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
     private Button[] buttonArray;
     private ImageButton settingBack;
     private TextView settingBack2;
+    private IModelService modelService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,8 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
                 projectSetting,projectPassword,deviceInfo
         };
         initOnclickListener(buttonArray);
+
+        modelService = ((MyApplication)getApplication()).getModelService();
     }
     //循环设置控件的监听
     private void initOnclickListener(Button[] buttons){
@@ -60,12 +64,19 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
         }
         if (view.getId()==security.getId()){
             intent=getIntents();
-            intent.setClass(SettingActivity.this,SettingSecurityNeedPwdActivity.class);
+            String userPwd = modelService.getUserPassword();
+            if(userPwd == null || userPwd.compareTo("") == 0)
+            {
+                intent.setClass(SettingActivity.this,SettingSecurityActivity.class);
+            }else
+            {
+                intent.setClass(SettingActivity.this,SettingSecurityNeedPwdActivity.class);
+            }
             startActivity(intent);
         }
         if (view.getId()==userPassword.getId()){
             intent=getIntents();
-            intent.setClass(SettingActivity.this,SettingSecurityNeedPwdActivity.class);
+            intent.setClass(SettingActivity.this,SecurityAlterUserPwdActivity.class);
             startActivity(intent);
         }
         if (view.getId()==date.getId()){

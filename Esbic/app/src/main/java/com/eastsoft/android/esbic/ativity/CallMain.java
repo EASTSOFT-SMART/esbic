@@ -112,7 +112,7 @@ public class CallMain extends BaseActivity implements View.OnClickListener,Adapt
             if (!callNumber.equals("")){
                 if(callNumber.length() != 4 && callNumber.length() != 8)
                 {
-                    showLongToast("输入的号码格式错误！");
+                    showLongToast("输入的号码格式错误，请查看操作说明！");
                     return;
                 }
                 if(callNumber.length() == 4)
@@ -181,7 +181,7 @@ public class CallMain extends BaseActivity implements View.OnClickListener,Adapt
         if (i==9){
             if(intercomInfos.size() == 0)
             {
-                showLongToast("没有拨出记录！");
+                showLongToast("没有历史记录！");
                 return;
             }
             IntercomInfo intercomInfo = intercomInfos.get(0);

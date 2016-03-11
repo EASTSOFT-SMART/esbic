@@ -29,7 +29,7 @@ import com.eastsoft.android.esbic.view.MyViewPager;
 /**
  * Created by Mr Wang on 2016/3/1.
  */
-public class StandByActivity extends BaseActivity {
+public class StandByActivity extends BaseActivity implements View.OnClickListener{
     private int item=0;//记录上一次点的位置
     private int currentItem;//当前页面
     private ScheduledExecutorService scheduledExecutorService;
@@ -44,6 +44,7 @@ public class StandByActivity extends BaseActivity {
     private KeyguardManager mKeyguardManager;
     private KeyguardManager.KeyguardLock mKeyguardLock;
     private String userPasswd;
+    private ImageButton buttonOne, buttonTwo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,32 +64,11 @@ public class StandByActivity extends BaseActivity {
 
         userPasswd = ((MyApplication)getApplication()).getModelService().getUserPassword();
 
-        ImageButton buttonOne=(ImageButton)viewOne.findViewById(R.id.lock_one);
-        ImageButton buttonTwo=(ImageButton)viewTwo.findViewById(R.id.lock_two);
-        buttonOne.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(userPasswd != null && userPasswd.compareTo("") != 0)
-                {
-                    Intent intent=getIntents();
-                    intent.setClass(StandByActivity.this,LeaveHome.class);
-                    startActivity(intent);
-                }
-                StandByActivity.this.finish();
-            }
-        });
-        buttonTwo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(userPasswd != null && userPasswd.compareTo("") != 0)
-                {
-                    Intent intent=getIntents();
-                    intent.setClass(StandByActivity.this,LeaveHome.class);
-                    startActivity(intent);
-                }
-                StandByActivity.this.finish();
-            }
-        });
+        buttonOne=(ImageButton)viewOne.findViewById(R.id.lock_one);
+        buttonTwo=(ImageButton)viewTwo.findViewById(R.id.lock_two);
+        buttonOne.setOnClickListener(this);
+        buttonTwo.setOnClickListener(this);
+
         viewList.add(viewOne);
         viewList.add(viewTwo);
         viewPager=(MyViewPager)this.findViewById(R.id.pager);
@@ -116,6 +96,22 @@ public class StandByActivity extends BaseActivity {
         mKeyguardLock.disableKeyguard();
         //mKeyguardLock.reenableKeyguard();
 
+    }
+
+    @Override
+    public void onClick(View view)
+    {
+        playMusic();
+        if(view.getId() == buttonOne.getId() || view.getId() == buttonTwo.getId())
+        {
+            if(userPasswd != null && userPasswd.compareTo("") != 0)
+            {
+                Intent intent=getIntents();
+                intent.setClass(StandByActivity.this,LeaveHome.class);
+                startActivity(intent);
+            }
+            StandByActivity.this.finish();
+        }
     }
 
     @Override
