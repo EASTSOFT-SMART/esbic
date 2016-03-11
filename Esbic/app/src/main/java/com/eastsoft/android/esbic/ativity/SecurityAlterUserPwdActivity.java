@@ -76,6 +76,7 @@ public class SecurityAlterUserPwdActivity extends BaseActivity implements View.O
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        playMusic();
         textHowToShow(i);
     }
 

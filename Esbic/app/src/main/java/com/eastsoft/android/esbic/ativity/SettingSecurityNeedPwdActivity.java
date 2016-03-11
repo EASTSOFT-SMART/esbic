@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageButton;
+import android.widget.MultiAutoCompleteTextView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,8 +29,7 @@ public class SettingSecurityNeedPwdActivity extends BaseActivity implements View
     private TextView numOne, numTwo, numThree, numFour;
     private GridView inputKeyBoard;
     private int[] icon;
-    private String password = "1234";
-    private String passwordTwo="2345";
+    private String password;
     private List<Map<String, Object>> mapList;
     //用来表示开启哪一个Activity;
     private int activityMark=0;
@@ -48,9 +48,10 @@ public class SettingSecurityNeedPwdActivity extends BaseActivity implements View
         numFour = (TextView) this.findViewById(R.id.need_pwd_num_four);
         inputKeyBoard = (GridView) this.findViewById(R.id.need_pwd_input_keyboard);
         icon=new int[]{R.drawable.num_delete,R.drawable.button_icon};
-        InputKeyBoardAdapter inputKeyBoardAdapter=new InputKeyBoardAdapter(this,icon, "确认");
+        InputKeyBoardAdapter inputKeyBoardAdapter=new InputKeyBoardAdapter(this,icon, "清空");
         inputKeyBoard.setAdapter(inputKeyBoardAdapter);
         inputKeyBoard.setOnItemClickListener(this);
+        password = ((MyApplication)getApplication()).getModelService().getUserPassword();
     }
 
     @Override
@@ -59,7 +60,7 @@ public class SettingSecurityNeedPwdActivity extends BaseActivity implements View
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        Log.v("GrideView的第几个子列表", String.valueOf(i));
+        playMusic();
         textHowToShow(i);
         if (i == 11) {
             deleteTextViewFromRight();
@@ -77,24 +78,15 @@ public class SettingSecurityNeedPwdActivity extends BaseActivity implements View
                 numThree.setText(String.valueOf(position + 1));
             } else if (numFour.getText().equals("")) {
                 numFour.setText(String.valueOf(position + 1));
+                comparePwd();
             } else {
                 return;
             }
         } else if (position == 9) {
-            String password = numOne.getText().toString() + numTwo.getText().toString()
-                    + numThree.getText().toString() + numFour.getText().toString();
-            if (password.equals(this.password)) {
-                Intent intent = getIntents();
-                intent.setClass(SettingSecurityNeedPwdActivity.this,SettingSecurityActivity.class);
-                startActivity(intent);
-                this.finish();
-            } else {
-                showShortToast("密码错误，请重试！");
-                numOne.setText("");
-                numTwo.setText("");
-                numFour.setText("");
-                numThree.setText("");
-            }
+            numOne.setText("");
+            numTwo.setText("");
+            numFour.setText("");
+            numThree.setText("");
         } else if (position == 10) {
             if (numOne.getText().equals("")) {
                 numOne.setText(String.valueOf(0));
@@ -104,9 +96,28 @@ public class SettingSecurityNeedPwdActivity extends BaseActivity implements View
                 numThree.setText(String.valueOf(0));
             } else if (numFour.getText().equals("")) {
                 numFour.setText(String.valueOf(0));
+                comparePwd();
             } else {
                 return;
             }
+        }
+    }
+
+    private void comparePwd()
+    {
+        String password = numOne.getText().toString() + numTwo.getText().toString()
+                + numThree.getText().toString() + numFour.getText().toString();
+        if (password.equals(this.password)) {
+            Intent intent = getIntents();
+            intent.setClass(SettingSecurityNeedPwdActivity.this,SettingSecurityActivity.class);
+            startActivity(intent);
+            this.finish();
+        } else {
+            showShortToast("密码错误，请重试！");
+            numOne.setText("");
+            numTwo.setText("");
+            numFour.setText("");
+            numThree.setText("");
         }
     }
 

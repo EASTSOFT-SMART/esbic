@@ -339,14 +339,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 case OPEN_LOCK_CONFIRM :
                     showLongToast("门已开！");
                     break;
-                case MONITOR_CONFIRM :
-                    showLongToast("您监视的设备已经找到！");
-                    break;
                 case DEVICE_BUSY :
                     showLongToast("您呼叫的设备正在忙，请稍后再拨！");
-                    break;
-                case MONITOR_HANG_UP :
-                    showLongToast("门口机挂断监视！");
                     break;
                 case CALL_ANSWER_CONFIRM :
                     showLongToast("您呼叫的设备已接听！");

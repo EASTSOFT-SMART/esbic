@@ -61,6 +61,16 @@ public class TimeUtil
 		return date;
 	}
 
+	public static String getDateTimeofNow4()
+	{
+		String date;
+		SimpleDateFormat myfmt = new SimpleDateFormat("yyyyMMddHHmmss");
+		TimeZone timeZoneChina = TimeZone.getTimeZone("Asia/Shanghai");
+		myfmt.setTimeZone(timeZoneChina);
+		date = myfmt.format(new Date());
+		return date;
+	}
+
 	public static String formatTime(long ms)
 	{
 		int ss = 1000;

@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.eastsoft.android.esbic.R;
 import com.eastsoft.android.esbic.adapter.InputKeyBoardAdapter;
+import com.eastsoft.android.esbic.util.TimeUtil;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -26,7 +27,6 @@ public class SettingDateActivity extends BaseActivity implements View.OnClickLis
     private GridView inputKeyBoard;
     private int[] icon;
     private SimpleDateFormat simpleDateFormat;
-    private Date date;
     private int position=0;
     private ImageButton back;
 
@@ -50,9 +50,15 @@ public class SettingDateActivity extends BaseActivity implements View.OnClickLis
         inputKeyBoard.setAdapter(inputKeyBoardAdapter);
         inputKeyBoard.setOnItemClickListener(this);
         simpleDateFormat=new SimpleDateFormat("yyMMdd");
-        date=new Date();
-        //yearMonthDay.setText(simpleDateFormat.format(date));
-        // hourMinuteSecond.setText(new SimpleDateFormat("HHmmss").format(date));
+
+//        String time = TimeUtil.getDateTimeofNow4(); // yyyyMMddHHmmss
+//        dateYear.setText(time.substring(0,4));
+//        dateMonth.setText(time.substring(4,6));
+//        dateDay.setText(time.substring(6,8));
+//        dateHour.setText(time.substring(8,10));
+//        dateMinute.setText(time.substring(10,12));
+//        dateSecond.setText(time.substring(12));
+
         back = (ImageButton)this.findViewById(R.id.date_setting_back);
         back.setOnClickListener(this);
         back2 = (TextView) this.findViewById(R.id.date_setting_back2);
@@ -62,15 +68,16 @@ public class SettingDateActivity extends BaseActivity implements View.OnClickLis
     @Override
     public void onClick(View view)
     {
+        playMusic();
         if (view.getId() == back.getId() || view.getId() == back2.getId())
         {
-            playButtonMusic(musicButtonId);
             finish();
         }
     }
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        playMusic();
         textHowToShow(i);
     }
 
@@ -104,7 +111,7 @@ public class SettingDateActivity extends BaseActivity implements View.OnClickLis
             String timeString =dateYear.getText().toString() +dateMonth.getText().toString()
                     +dateDay.getText().toString() +dateHour.getText().toString()+dateMinute.getText().toString()
                     +dateSecond.getText().toString();
-
+            showLongToast("设置成功！");
         }else if (position==10){
             if (dateYear.getText().equals("")||dateYear.getText().length()<4){
                 String year=dateYear.getText().toString();

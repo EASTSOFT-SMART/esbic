@@ -65,6 +65,7 @@ public class LeaveHome extends BaseActivity implements AdapterView.OnItemClickLi
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
         Log.v("GrideView的第几个子列表",String.valueOf(i));
+        playMusic();
         textHowToShow(i);
         if (i==11){
             deleteTextViewFromRight();

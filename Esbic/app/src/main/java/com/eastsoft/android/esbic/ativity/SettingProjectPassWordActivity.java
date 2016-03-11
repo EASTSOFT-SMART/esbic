@@ -90,6 +90,7 @@ public class SettingProjectPassWordActivity extends BaseActivity implements View
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        playMusic();
         textHowToShow(i);
     }
 
