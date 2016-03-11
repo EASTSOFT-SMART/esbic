@@ -95,7 +95,6 @@ public class StandByActivity extends BaseActivity {
         viewPager.setScanScroll(false);
         pagerAdapter=new MyPagerAdapter();
         viewPager.setAdapter(pagerAdapter);
-        viewPager.setCurrentItem(viewList.size()*50);
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -149,7 +148,6 @@ public class StandByActivity extends BaseActivity {
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
             View view=viewList.get(position%viewList.size());
-
             ViewParent viewParent=view.getParent();
             if (viewParent!=null){
                 ViewGroup viewGroup=(ViewGroup)viewPager;

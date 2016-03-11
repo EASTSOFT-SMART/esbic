@@ -28,6 +28,7 @@ public class MonitorItemAdapter extends BaseAdapter {
     public MonitorItemAdapter(String[] placeNameList, Context context) {
         this.placeName = placeNameList;
         this.inflater = LayoutInflater.from(context);
+        state=new boolean[]{true,false,false,false,false,false,false,false};
     }
 
     @Override
@@ -47,75 +48,91 @@ public class MonitorItemAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
+
         view = inflater.inflate(R.layout.monitor_exchange, null);
         backgroud = (LinearLayout) view.findViewById(R.id.monitor_background);
         hangState = (TextView) view.findViewById(R.id.monitor_state);
         chronometer = (Chronometer) view.findViewById(R.id.monitor_time);
         TextView place = (TextView) view.findViewById(R.id.monitor_place);
         place.setText(placeName[i]);
-
         if (i == 0 && state[0]) {
             backgroud.setBackgroundResource(R.drawable.monitor_hangup);
             hangState.setText("挂断");
-            state[0] = !state[0];
+            chronometer.start();
+        }else if (i==0){
+            backgroud.setBackgroundResource(R.drawable.monitor_display);
+            hangState.setText("监视");
+            chronometer.stop();
         }
-
 
         if (i == 1 && state[1]) {
             backgroud.setBackgroundResource(R.drawable.monitor_hangup_gray);
             hangState.setText("挂断");
-        } else {
+            chronometer.start();
+        } else if (i==1){
             backgroud.setBackgroundResource(R.drawable.monitor_display_gray);
             hangState.setText("监视");
+            chronometer.stop();
         }
-
 
         if (i == 2 && state[2]) {
             backgroud.setBackgroundResource(R.drawable.monitor_hangup_gray);
             hangState.setText("挂断");
-        } else {
+            chronometer.start();
+        } else if (i==2){
             backgroud.setBackgroundResource(R.drawable.monitor_display_gray);
             hangState.setText("监视");
+            chronometer.stop();
         }
 
 
         if (i == 3 && state[3]) {
             backgroud.setBackgroundResource(R.drawable.monitor_hangup);
             hangState.setText("挂断");
-        } else {
+            chronometer.start();
+        } else if (i==3){
             backgroud.setBackgroundResource(R.drawable.monitor_display);
+            chronometer.stop();
         }
 
 
         if (i == 4 && state[4]) {
             backgroud.setBackgroundResource(R.drawable.monitor_hangup);
             hangState.setText("挂断");
-        } else {
+            chronometer.start();
+        } else if (i==4){
             backgroud.setBackgroundResource(R.drawable.monitor_display);
+            chronometer.stop();
         }
 
 
         if (i == 5 && state[5]) {
             backgroud.setBackgroundResource(R.drawable.monitor_hangup_gray);
             hangState.setText("挂断");
-        } else {
+            chronometer.start();
+        } else if (i==5){
             backgroud.setBackgroundResource(R.drawable.monitor_display_gray);
+            chronometer.stop();
         }
 
 
         if (i == 6 && state[6]) {
             backgroud.setBackgroundResource(R.drawable.monitor_hangup_gray);
             hangState.setText("挂断");
-        } else {
+            chronometer.start();
+        } else if (i==6){
             backgroud.setBackgroundResource(R.drawable.monitor_display_gray);
+            chronometer.stop();
         }
 
 
         if (i == 7 && state[7]) {
             backgroud.setBackgroundResource(R.drawable.monitor_hangup);
             hangState.setText("挂断");
-        } else {
+            chronometer.start();
+        } else if (i==7){
             backgroud.setBackgroundResource(R.drawable.monitor_display);
+            chronometer.stop();
         }
 
         return view;

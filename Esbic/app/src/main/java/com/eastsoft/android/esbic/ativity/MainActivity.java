@@ -105,6 +105,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         setting.setOnClickListener(this);
         callElevator.setOnClickListener(this);
         callOtherUser.setOnClickListener(this);
+        weatherIcon.setOnClickListener(this);
         //progressDialog=new AlertDialog.Builder(this).setTitle("数据读取中").
         //        setMessage("正在读取数据").create();
         intent=getIntents();
@@ -185,6 +186,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         playMusic();
+
+        if (view.getId()==weatherIcon.getId()){
+            intent.setClass(MainActivity.this,WeatherSettingActivity.class);
+            startActivity(intent);
+        }
+
         if (view.getId()==message.getId()){
             intent.setClass(MainActivity.this,MessageContentActivity.class);
             startActivity(intent);

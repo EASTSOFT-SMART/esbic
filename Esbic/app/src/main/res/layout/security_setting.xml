@@ -7,7 +7,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/width93"
-        android:background="@drawable/top_bg">
+        android:background="@drawable/top_bg_2">
         <ImageButton
             android:id="@+id/security_setting_back"
             android:layout_gravity="center"

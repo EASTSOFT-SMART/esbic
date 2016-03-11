@@ -32,7 +32,7 @@
             android:layout_width="@dimen/width751"
             android:layout_height="@dimen/width526"
             android:layout_marginLeft="@dimen/width48"
-            android:layout_marginTop="@dimen/width58"
+            android:layout_gravity="center"
             android:background="@drawable/monitor_video_bg">
             <SurfaceView
                 android:id="@+id/monitor_video"
@@ -42,8 +42,8 @@
 
         </LinearLayout>
         <LinearLayout
-            android:layout_width="@dimen/width412"
-            android:layout_height="@dimen/width440"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             >
             <GridView
