@@ -54,8 +54,8 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
 
     @Override
     public void onClick(View view) {
+        playButtonMusic(musicButtonId);
         if (view.getId()==R.id.setting_back || view.getId()==R.id.setting_back2){
-            playButtonMusic(musicButtonId);
             finish();
         }
         if (view.getId()==security.getId()){

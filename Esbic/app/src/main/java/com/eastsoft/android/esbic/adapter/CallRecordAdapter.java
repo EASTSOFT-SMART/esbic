@@ -71,10 +71,16 @@ public class CallRecordAdapter extends BaseAdapter {
         DeviceTypeEnum deviceTypeEnum = DeviceTypeEnum.find(deviceInfo.getDevice_type());
         if(deviceTypeEnum == DeviceTypeEnum.DT_ROOM_MACHINE)
         {
-            deviceStr = deviceInfo.getBuilding_no()+"楼"+deviceInfo.getUnit_no()+"单元"+deviceInfo.getLayer_no()+"层"+deviceInfo.getRoom_no()+"房间";
+            deviceStr = String.format("%02d", deviceInfo.getBuilding_no())+"楼"
+                    + String.format("%02d", deviceInfo.getUnit_no())+"单元"
+                    + String.format("%02d", deviceInfo.getLayer_no())+"层"
+                    + String.format("%02d", deviceInfo.getRoom_no())+"房间";
         }else if(deviceTypeEnum == DeviceTypeEnum.DT_UNIT_DOOR_MACHINE)
         {
-            deviceStr = deviceInfo.getBuilding_no()+"楼"+deviceInfo.getUnit_no()+"单元"+deviceInfo.getDev_no()+"号" + deviceTypeEnum.getName();
+            deviceStr = String.format("%02d", deviceInfo.getBuilding_no())+"楼"
+                    + String.format("%02d", deviceInfo.getUnit_no())+"单元"
+                    + String.format("%02d", deviceInfo.getDev_no())+"号"
+                    + deviceTypeEnum.getName();
         }
         viewAttribute.recordFrom.setText(deviceStr);
         viewAttribute.recordTime.setText(intercomInfo.getTime());
