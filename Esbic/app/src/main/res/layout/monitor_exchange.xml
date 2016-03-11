@@ -12,8 +12,8 @@
         android:background="@drawable/monitor_display">
         <TextView
             android:id="@+id/monitor_state"
-            android:layout_width="@dimen/width40"
-            android:layout_height="@dimen/width18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/width96"
             android:layout_marginTop="@dimen/width7"
             android:textSize="@dimen/textsize18"
@@ -24,19 +24,19 @@
         <Chronometer
             android:id="@+id/monitor_time"
             android:layout_gravity="center"
-            android:layout_width="@dimen/width100"
-            android:layout_marginTop="@dimen/width23"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="@dimen/width8"
             android:layout_height="wrap_content"
-            style="@style/text_18_ffffff"/>
+            style="@style/text_22_ffffff"/>
 
         <TextView
             android:id="@+id/monitor_place"
             android:layout_gravity="center"
-            android:layout_marginTop="@dimen/width10"
-            android:layout_width="@dimen/width150"
+            android:layout_marginTop="@dimen/width8"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="单元正门"
-            style="@style/text_18_ffffff"/>
+            style="@style/text_22_ffffff"/>
 
 
     </LinearLayout>

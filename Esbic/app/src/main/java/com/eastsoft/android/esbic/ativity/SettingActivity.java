@@ -65,7 +65,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
         }
         if (view.getId()==userPassword.getId()){
             intent=getIntents();
-            intent.setClass(SettingActivity.this,SecurityAlterUserPwdActivity.class);
+            intent.setClass(SettingActivity.this,SettingSecurityNeedPwdActivity.class);
             startActivity(intent);
         }
         if (view.getId()==date.getId()){

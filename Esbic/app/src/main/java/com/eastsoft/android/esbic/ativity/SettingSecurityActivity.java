@@ -25,7 +25,7 @@ public class SettingSecurityActivity extends BaseActivity implements View.OnClic
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.security_setting);
-
+        initData();
     }
     private void initData(){
         back=(ImageButton)this.findViewById(R.id.security_setting_back);

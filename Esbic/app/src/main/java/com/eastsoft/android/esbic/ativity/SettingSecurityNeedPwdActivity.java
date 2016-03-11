@@ -45,7 +45,7 @@ public class SettingSecurityNeedPwdActivity extends BaseActivity implements View
         numOne = (TextView) this.findViewById(R.id.need_pwd_num_one);
         numTwo = (TextView) this.findViewById(R.id.need_pwd_num_two);
         numThree = (TextView) this.findViewById(R.id.need_pwd_num_three);
-        numFour = (TextView) this.findViewById(R.id.num_four);
+        numFour = (TextView) this.findViewById(R.id.need_pwd_num_four);
         inputKeyBoard = (GridView) this.findViewById(R.id.need_pwd_input_keyboard);
         icon=new int[]{R.drawable.num_delete,R.drawable.button_icon};
         InputKeyBoardAdapter inputKeyBoardAdapter=new InputKeyBoardAdapter(this,icon, "确认");
@@ -64,33 +64,6 @@ public class SettingSecurityNeedPwdActivity extends BaseActivity implements View
         if (i == 11) {
             deleteTextViewFromRight();
         }
-        if (!numFour.getText().equals("")) {
-            String password = numOne.getText().toString() + numTwo.getText().toString()
-                    + numThree.getText().toString() + numFour.getText().toString();
-            if (password.equals(this.password)) {
-                Intent intent = getIntents();
-                intent.setClass(SettingSecurityNeedPwdActivity.this,SettingSecurityActivity.class);
-                this.finish();
-            } else {
-                showShortToast("密码错误，请重试！");
-                numOne.setText("");
-                numTwo.setText("");
-                numFour.setText("");
-                numThree.setText("");
-            }
-            if (password.equals(this.passwordTwo)) {
-                Intent intent = getIntents();
-                intent.setClass(SettingSecurityNeedPwdActivity.this,SettingSecurityActivity.class);
-                this.onDestroy();
-            } else {
-                showShortToast("密码错误，请重试！");
-                numOne.setText("");
-                numTwo.setText("");
-                numFour.setText("");
-                numThree.setText("");
-            }
-
-        }
     }
 
     //设置TextView从左往右显示
@@ -108,7 +81,20 @@ public class SettingSecurityNeedPwdActivity extends BaseActivity implements View
                 return;
             }
         } else if (position == 9) {
-            return;
+            String password = numOne.getText().toString() + numTwo.getText().toString()
+                    + numThree.getText().toString() + numFour.getText().toString();
+            if (password.equals(this.password)) {
+                Intent intent = getIntents();
+                intent.setClass(SettingSecurityNeedPwdActivity.this,SettingSecurityActivity.class);
+                startActivity(intent);
+                this.finish();
+            } else {
+                showShortToast("密码错误，请重试！");
+                numOne.setText("");
+                numTwo.setText("");
+                numFour.setText("");
+                numThree.setText("");
+            }
         } else if (position == 10) {
             if (numOne.getText().equals("")) {
                 numOne.setText(String.valueOf(0));
@@ -139,22 +125,6 @@ public class SettingSecurityNeedPwdActivity extends BaseActivity implements View
         }
     }
 
-    //判断设置界面用户设置的密码与输入的密码是否对应
-    private void getUserSettingPsd() {
-        SharedPreferences sharedPreferences = getSharedPreferences("", Context.MODE_PRIVATE);
-        password = sharedPreferences.getString("", "");
-        String inputPassword = numTwo.getText().toString() + numTwo.getText().toString() + numThree.getText().toString() +
-                numFour.getText().toString();
-        if (inputPassword.equals(password)) {
-            Intent intent = getIntents();
-            intent.setClass(SettingSecurityNeedPwdActivity.this, MainActivity.class);
-            this.onDestroy();
-        } else {
-            numFour.setText("");
-            numThree.setText("");
-            numTwo.setText("");
-            numOne.setText("");
-            Toast.makeText(this, "密码输入错误，请重新输入", Toast.LENGTH_SHORT).show();
-        }
-    }
+
+
 }

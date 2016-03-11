@@ -83,7 +83,7 @@ public class SettingDateActivity extends BaseActivity implements View.OnClickLis
             }else if (dateMonth.getText().equals("")||dateMonth.getText().length()<2){
                 String month=dateMonth.getText().toString();
                 dateMonth.setText(month+String.valueOf(position+1) );
-            }else if (dateDay.getText().equals("")||dateMonth.getText().length()<2){
+            }else if (dateDay.getText().equals("")||dateDay.getText().length()<2){
                 String day=dateDay.getText().toString();
                 dateDay.setText(day+String.valueOf(position+1));
             }else{
@@ -97,19 +97,14 @@ public class SettingDateActivity extends BaseActivity implements View.OnClickLis
                     String second=dateSecond.getText().toString();
                     dateSecond.setText(second+String.valueOf(position+1));
                 }else{
-                    String timeString =dateYear.getText().toString() +dateMonth.getText().toString()
-                            +dateDay.getText().toString() +dateHour.getText().toString()+dateMinute.getText().toString()
-                            +dateSecond.getText().toString();
-
+                    return;
                 }
             }
         }else if (position==9){
-            dateSecond.setText("");
-            dateMinute.setText("");
-            dateHour.setText("");
-            dateDay.setText("");
-            dateMonth.setText("");
-            dateHour.setText("");
+            String timeString =dateYear.getText().toString() +dateMonth.getText().toString()
+                    +dateDay.getText().toString() +dateHour.getText().toString()+dateMinute.getText().toString()
+                    +dateSecond.getText().toString();
+
         }else if (position==10){
             if (dateYear.getText().equals("")||dateYear.getText().length()<4){
                 String year=dateYear.getText().toString();

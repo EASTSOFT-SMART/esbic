@@ -50,7 +50,6 @@ public class MonitorActivity extends BaseActivity implements View.OnClickListene
         placeName=new String[]{"单元正门","单元车库","单元侧门","单元右门","小区正门","小区侧门","小区","小区"};
         mapList=getData();
         monitorItemAdapter=new MonitorItemAdapter(placeName,this);
-        monitorItemAdapter.initState(state);
         gridView.setAdapter(monitorItemAdapter);
         gridView.setOnItemClickListener(this);
         gridView.setOnItemSelectedListener(this);

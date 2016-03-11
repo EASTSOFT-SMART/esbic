@@ -168,5 +168,10 @@
                   android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="landscape">
         </activity>
+        <activity android:name=".ativity.WeatherSettingActivity"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="landscape">
+        </activity>
     </application>
 </manifest>
