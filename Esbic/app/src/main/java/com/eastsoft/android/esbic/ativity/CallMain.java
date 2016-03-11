@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.telecom.Call;
 import android.view.Gravity;
 import android.view.View;
@@ -24,8 +25,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.eastsoft.android.esbic.R;
+import com.eastsoft.android.esbic.adapter.CallRecordAdapter;
 import com.eastsoft.android.esbic.adapter.InputKeyBoardAdapter;
 import com.eastsoft.android.esbic.dialog.MyDialog;
+import com.eastsoft.android.esbic.jni.DeviceInfo;
+import com.eastsoft.android.esbic.jni.IntercomTypeEnum;
+import com.eastsoft.android.esbic.service.IModelService;
+import com.eastsoft.android.esbic.table.IntercomInfo;
+import com.eastsoft.android.esbic.util.JsonUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -49,6 +56,9 @@ public class CallMain extends BaseActivity implements View.OnClickListener,Adapt
     private LinearLayout linearLayout;
     private String number="";
     private int[] icon;
+    private IModelService modelService;
+    private List<IntercomInfo> intercomInfos = new ArrayList<>();
+    private CallRecordAdapter callRecordAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,6 +87,17 @@ public class CallMain extends BaseActivity implements View.OnClickListener,Adapt
         inputBoard.setOnItemClickListener(this);
         inputBoard.setOnItemSelectedListener(this);
 
+        modelService = ((MyApplication)getApplication()).getModelService();
+        List<IntercomInfo> infos = modelService.getIntecomInfo();
+        for(IntercomInfo intercomInfo : infos)
+        {
+            if(intercomInfo.getType() == IntercomTypeEnum.CALL_ROOM.getType())
+            {
+                intercomInfos.add(intercomInfo);
+            }
+        }
+        callRecordAdapter=new CallRecordAdapter(intercomInfos, CallMain.this);
+        historyList.setAdapter(callRecordAdapter);
     }
 
     @Override
@@ -89,12 +110,28 @@ public class CallMain extends BaseActivity implements View.OnClickListener,Adapt
             String callNumber=phoneNumber.getText().toString();
             playButtonMusic(musicButtonId);
             if (!callNumber.equals("")){
+                if(callNumber.length() != 4 && callNumber.length() != 8)
+                {
+                    showLongToast("输入的号码格式错误！");
+                    return;
+                }
+                if(callNumber.length() == 4)
+                {
+                    DeviceInfo info = ((MyApplication)getApplication()).getModelService().getDeviceInfo();
+                    if(info == null)
+                    {
+                        showLongToast("请先设置本机的设备信息！");
+                        return;
+                    }
+                }
                 intent=getIntents();
                 intent.setClass(CallMain.this,ConversationActivity.class);
                 intent.putExtra("roomNumber", phoneNumber.getText());
-                startActivityForResult(intent,1);
+                startActivity(intent);
+                this.finish();
             }else{
-                Toast.makeText(CallMain.this,"输入的号码不能为空",Toast.LENGTH_SHORT).show();
+                Toast.makeText(CallMain.this,"输入的号码不能为空！",Toast.LENGTH_SHORT).show();
+                return;
             }
 
         }
@@ -115,7 +152,7 @@ public class CallMain extends BaseActivity implements View.OnClickListener,Adapt
     public void initAdapter(){
         //SimpleAdapter simpleAdapter=new SimpleAdapter();
         icon=new int[]{R.drawable.num_delete,R.drawable.button_icon};
-        inputKeyBoardAdapter=new InputKeyBoardAdapter(this,icon,"清空");
+        inputKeyBoardAdapter=new InputKeyBoardAdapter(this,icon,"重拨");
 
     }
 
@@ -142,7 +179,21 @@ public class CallMain extends BaseActivity implements View.OnClickListener,Adapt
              phoneNumber.setText(number);
         }
         if (i==9){
-            phoneNumber.setText("");
+            if(intercomInfos.size() == 0)
+            {
+                showLongToast("没有拨出记录！");
+                return;
+            }
+            IntercomInfo intercomInfo = intercomInfos.get(0);
+            DeviceInfo deviceInfo = JsonUtil.fromJson( intercomInfo.getDevice(), DeviceInfo.class);
+            intent=getIntents();
+            intent.setClass(CallMain.this, ConversationActivity.class);
+            intent.putExtra("roomNumber",String.format("%02d", deviceInfo.getBuilding_no())
+                    + String.format("%02d", deviceInfo.getUnit_no())
+                    + String.format("%02d", deviceInfo.getLayer_no())
+                    + String.format("%02d", deviceInfo.getRoom_no()));
+            startActivity(intent);
+            this.finish();
         }
         if (i==10){
             number=phoneNumber.getText().toString();

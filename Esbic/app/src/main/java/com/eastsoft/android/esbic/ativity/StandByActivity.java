@@ -43,6 +43,7 @@ public class StandByActivity extends BaseActivity {
     private PowerManager.WakeLock wakeLock;
     private KeyguardManager mKeyguardManager;
     private KeyguardManager.KeyguardLock mKeyguardLock;
+    private String userPasswd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,23 +60,32 @@ public class StandByActivity extends BaseActivity {
         viewList=new ArrayList<View>();
         viewOne=LayoutInflater.from(this).inflate(R.layout.standby_item_one,null);
         viewTwo=LayoutInflater.from(this).inflate(R.layout.standby_item_two,null);
+
+        userPasswd = ((MyApplication)getApplication()).getModelService().getUserPassword();
+
         ImageButton buttonOne=(ImageButton)viewOne.findViewById(R.id.lock_one);
         ImageButton buttonTwo=(ImageButton)viewTwo.findViewById(R.id.lock_two);
         buttonOne.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=getIntents();
-                intent.setClass(StandByActivity.this,LeaveHome.class);
-                startActivity(intent);
+                if(userPasswd != null && userPasswd.compareTo("") != 0)
+                {
+                    Intent intent=getIntents();
+                    intent.setClass(StandByActivity.this,LeaveHome.class);
+                    startActivity(intent);
+                }
                 StandByActivity.this.finish();
             }
         });
         buttonTwo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=getIntents();
-                intent.setClass(StandByActivity.this,LeaveHome.class);
-                startActivity(intent);
+                if(userPasswd != null && userPasswd.compareTo("") != 0)
+                {
+                    Intent intent=getIntents();
+                    intent.setClass(StandByActivity.this,LeaveHome.class);
+                    startActivity(intent);
+                }
                 StandByActivity.this.finish();
             }
         });

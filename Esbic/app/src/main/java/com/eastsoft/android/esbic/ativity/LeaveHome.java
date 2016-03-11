@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.eastsoft.android.esbic.R;
 import com.eastsoft.android.esbic.adapter.InputKeyBoardAdapter;
+import com.eastsoft.android.esbic.service.IModelService;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,8 +34,8 @@ public class LeaveHome extends BaseActivity implements AdapterView.OnItemClickLi
     private List<Map<String,Object>> listItems;
     private int[] icon;
     private String passWords;
-    private String password="1234";
-
+    private String password;
+    private IModelService modelService;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +55,9 @@ public class LeaveHome extends BaseActivity implements AdapterView.OnItemClickLi
         inputKeyBoard.setAdapter(inputKeyBoardAdapter);
         inputKeyBoard.setOnItemClickListener(this);
         inputKeyBoard.setOnItemSelectedListener(this);
+
+        modelService = ((MyApplication)getApplication()).getModelService();
+        password = modelService.getUserPassword();
     }
 
 
@@ -104,6 +108,10 @@ public class LeaveHome extends BaseActivity implements AdapterView.OnItemClickLi
                  return;
              }
          }else if (position==9){
+             numOne.setText("");
+             numTwo.setText("");
+             numFour.setText("");
+             numThree.setText("");
              return;
          }else if (position==10){
              if (numOne.getText().equals("")){

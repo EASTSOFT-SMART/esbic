@@ -68,12 +68,10 @@ public class VolumeActivity extends BaseActivity implements SeekBar.OnSeekBarCha
             volume-=2;
             if (volume<=0){
                 volume=0;
-                audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,volume,0);
-                audioManager.setStreamVolume(AudioManager.STREAM_SYSTEM,volume,0);
+                setVolume(volume);
                 seekBar.setProgress(volume);
             }else{
-                audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,volume,0);
-                audioManager.setStreamVolume(AudioManager.STREAM_SYSTEM,volume,0);
+                setVolume(volume);
                 seekBar.setProgress(volume);
             }
         }
@@ -81,13 +79,11 @@ public class VolumeActivity extends BaseActivity implements SeekBar.OnSeekBarCha
             playMusic();
             volume+=2;
             if (volume<=maxVolume){
-                audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,volume,0);
-                audioManager.setStreamVolume(AudioManager.STREAM_SYSTEM,volume,0);
+                setVolume(volume);
                 seekBar.setProgress(volume);
             }else{
                 volume=maxVolume;
-                audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,volume,0);
-                audioManager.setStreamVolume(AudioManager.STREAM_SYSTEM,volume,0);
+                setVolume(volume);
                 seekBar.setProgress(volume);
             }
         }
@@ -110,5 +106,15 @@ public class VolumeActivity extends BaseActivity implements SeekBar.OnSeekBarCha
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
         playMusic();
+    }
+
+    private void setVolume(int volume)
+    {
+        audioManager.setStreamVolume(AudioManager.STREAM_VOICE_CALL,volume,0);
+        audioManager.setStreamVolume(AudioManager.STREAM_SYSTEM,volume,0);
+        audioManager.setStreamVolume(AudioManager.STREAM_RING,volume,0);
+        audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,volume,0);
+        audioManager.setStreamVolume(AudioManager.STREAM_ALARM,volume,0);
+        audioManager.setStreamVolume(AudioManager.STREAM_NOTIFICATION,volume,0);
     }
 }
