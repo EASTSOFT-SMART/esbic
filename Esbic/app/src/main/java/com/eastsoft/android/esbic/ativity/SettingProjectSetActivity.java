@@ -14,6 +14,7 @@ import com.eastsoft.android.esbic.adapter.InputKeyBoardAdapter;
 import com.eastsoft.android.esbic.jni.DeviceInfo;
 import com.eastsoft.android.esbic.jni.DeviceTypeEnum;
 import com.eastsoft.android.esbic.jni.IpAddressInfo;
+import com.eastsoft.android.esbic.service.IModelService;
 import com.eastsoft.android.esbic.util.LogUtil;
 
 import java.util.List;
@@ -60,6 +61,24 @@ public class SettingProjectSetActivity extends BaseActivity implements View.OnFo
         centerManagementAddr.setOnFocusChangeListener(this);
 
         currentEditText = deviceAddress;
+        IModelService modelService = ((MyApplication)getApplication()).getModelService();
+        DeviceInfo deviceInfo = modelService.getDeviceInfo();
+        if(deviceInfo != null)
+        {
+            deviceAddress.setText(String.format("%02d", deviceInfo.getBuilding_no()) + "楼"
+                    + String.format("%02d", deviceInfo.getUnit_no()) + "单元"
+                    + String.format("%02d", deviceInfo.getLayer_no()) + "层"
+                    + String.format("%02d", deviceInfo.getRoom_no()) + "房间");
+        }
+        IpAddressInfo ipAddressInfo = modelService.getIpAddressInfo();
+        if(ipAddressInfo != null)
+        {
+            ip.setText(ipAddressInfo.getIp());
+            subnetMask.setText(ipAddressInfo.getSubnetMask());
+            gateway.setText(ipAddressInfo.getGateway());
+            impServerAddr.setText(ipAddressInfo.getImpAdress());
+            centerManagementAddr.setText(ipAddressInfo.getCenterAddress());
+        }
     }
 
     @Override
@@ -113,6 +132,7 @@ public class SettingProjectSetActivity extends BaseActivity implements View.OnFo
             if(addr.length() != 14)
             {
                 showLongToast("设备地址错误，请重新设置！");
+                return;
             }
             DeviceInfo deviceInfo = new DeviceInfo(DeviceTypeEnum.DT_ROOM_MACHINE.getType(),
                     Integer.parseInt(addr.substring(0,2)),
@@ -123,26 +143,31 @@ public class SettingProjectSetActivity extends BaseActivity implements View.OnFo
             if(ipStr.length() !=0 && ipStr.length() != 15)
             {
                 showLongToast("IP地址错误，请重新设置！");
+                return;
             }
             String subnetMaskStr = subnetMask.getText().toString();
             if(subnetMaskStr.length() !=0 && subnetMaskStr.length() != 15)
             {
                 showLongToast("子网掩码错误，请重新设置！");
+                return;
             }
             String gatewayStr = gateway.getText().toString();
             if(gatewayStr.length() !=0 && gatewayStr.length() != 15)
             {
                 showLongToast("网关地址错误，请重新设置！");
+                return;
             }
             String imp = impServerAddr.getText().toString();
             if(imp.length() !=0 && imp.length() != 15)
             {
                 showLongToast("服务器地址错误，请重新设置！");
+                return;
             }
             String center = centerManagementAddr.getText().toString();
             if(center.length() !=0 && center.length() != 15)
             {
                 showLongToast("中心管理机地址错误，请重新设置！");
+                return;
             }
             IpAddressInfo ipAddressInfo = new IpAddressInfo(ipStr, subnetMaskStr, gatewayStr, imp, center);
             ((MyApplication)getApplication()).getModelService().setDeviceInfo(deviceInfo);

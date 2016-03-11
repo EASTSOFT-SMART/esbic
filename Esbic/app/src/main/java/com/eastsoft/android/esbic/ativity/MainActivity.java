@@ -131,8 +131,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 modelService.init_imp_task(ipAddressInfo.getImpAdress());
             }
         }
-//        MessageInfo info = new MessageInfo(MessageInfoEnum.MESSAGE.getType(), 0, "消息内容 " + TimeUtil.getDateTimeofNow2());
+//        MessageInfo info = new MessageInfo(MessageInfoEnum.MESSAGE.getType(), 0, "这是消息内容 " + TimeUtil.getDateTimeofNow2());
 //        info.save();
+//        AlarmInfo alarmInfo = new AlarmInfo(1);
+//        alarmInfo.save();
+//        alarmInfo = new AlarmInfo(4);
+//        alarmInfo.save();
     }
 
     @Override
@@ -180,66 +184,62 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
+        playMusic();
         if (view.getId()==message.getId()){
-            playMusic();
             intent.setClass(MainActivity.this,MessageContentActivity.class);
             startActivity(intent);
         }
         if (view.getId()==callRecord.getId()){
-            playMusic();
             intent.setClass(MainActivity.this,CallRecordActivity.class);
             startActivity(intent);
 
         }
         if(view.getId()==alarmRecord.getId()){
-            playMusic();
             intent.setClass(MainActivity.this,AlarmRecordActivity.class);
             startActivity(intent);
         }
         if(view.getId()==voice.getId()){
-            playMusic();
             intent.setClass(MainActivity.this,VolumeActivity.class);
             startActivity(intent);
         }
         if(view.getId()==screenBrightness.getId()){
-            playMusic();
             intent.setClass(MainActivity.this,ScreenLightActivity.class);
             startActivity(intent);
         }
         if(view.getId()==wifi.getId()){
-            playMusic();
             intent.setClass(MainActivity.this,WifiSettingActivity.class);
             startActivity(intent);
         }
 
         if (view.getId()==leaveHome.getId()){
-            playMusic();
             intent.setClass(MainActivity.this,StandByActivity.class);
             startActivity(intent);
         }
         if (view.getId()==callManagement.getId()){
-            playMusic();
+            IpAddressInfo ipAddressInfo = modelService.getIpAddressInfo();
+            if(ipAddressInfo == null || ipAddressInfo.getCenterAddress() == null || ipAddressInfo.getCenterAddress().compareTo("") == 0)
+            {
+                showLongToast("请先设置中心管理机的地址！");
+                return;
+            }
             intent.setClass(MainActivity.this,CallManagementCenterActivity.class);
             startActivity(intent);
         }
         if (view.getId()==monitor.getId()){
-            playMusic();
             intent.setClass(MainActivity.this,MonitorActivity.class);
             startActivity(intent);
         }
         if (view.getId()==setting.getId()){
-            playMusic();
             intent.setClass(MainActivity.this,SettingActivity.class);
             startActivity(intent);
         }
         if (view.getId()==callOtherUser.getId()){
-            playMusic();
             intent.setClass(MainActivity.this,CallMain.class);
             startActivity(intent);
         }
         if (view.getId()==callElevator.getId()){
-            intent.setClass(MainActivity.this,OnCallActivity.class);
-            startActivity(intent);
+//            intent.setClass(MainActivity.this,OnCallActivity.class);
+//            startActivity(intent);
         }
     }
 

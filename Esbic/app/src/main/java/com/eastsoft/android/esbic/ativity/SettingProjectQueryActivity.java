@@ -44,7 +44,10 @@ public class SettingProjectQueryActivity extends BaseActivity implements View.On
         DeviceInfo deviceInfo = modelService.getDeviceInfo();
         if(deviceInfo != null)
         {
-            deviceAddress.setText(deviceInfo.getBuilding_no()+"楼"+deviceInfo.getUnit_no()+"单元"+deviceInfo.getLayer_no()+"层"+deviceInfo.getRoom_no()+"房");
+            deviceAddress.setText(String.format("%02d", deviceInfo.getBuilding_no()) + "楼"
+                    + String.format("%02d", deviceInfo.getUnit_no()) + "单元"
+                    + String.format("%02d", deviceInfo.getLayer_no()) + "层"
+                    + String.format("%02d", deviceInfo.getRoom_no()) + "房间");
         }else{
             deviceAddress.setText("设备地址尚未设置");
         }

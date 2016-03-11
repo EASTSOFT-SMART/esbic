@@ -10,6 +10,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.eastsoft.android.esbic.R;
+import com.eastsoft.android.esbic.jni.IpAddressInfo;
+import com.eastsoft.android.esbic.service.IModelService;
 
 /**
  * Created by sofa on 2016/1/25.
@@ -19,6 +21,8 @@ public class CallManagementCenterActivity extends BaseActivity implements View.O
     private Chronometer timer,timerConversation;
     private ImageButton back;
     private TextView back2;
+    private IModelService modelService;
+    private String centerAaddr;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,13 +41,23 @@ public class CallManagementCenterActivity extends BaseActivity implements View.O
         back2.setOnClickListener(this);
         timer.setBase(SystemClock.elapsedRealtime());
         timer.start();
-
+        modelService = ((MyApplication)getApplication()).getModelService();
+        IpAddressInfo ipAddressInfo = modelService.getIpAddressInfo();
+        centerAaddr = ipAddressInfo.getCenterAddress();
+        modelService.call_center_manager(centerAaddr);
     }
 
     @Override
     public void onClick(View view) {
-        if (view.getId()==hangUp.getId() || view.getId()==back.getId() || view.getId()==back2.getId()){
+        if (view.getId()==hangUp.getId() || view.getId()==back.getId() || view.getId()==back2.getId())
+        {
             playButtonMusic(musicButtonId);
+            this.finish();
+        }
+        if (view.getId()==back.getId() || view.getId()==back2.getId())
+        {
+            playButtonMusic(musicButtonId);
+            modelService.active_hang_up();
             this.finish();
         }
     }
