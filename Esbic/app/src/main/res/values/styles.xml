@@ -114,7 +114,26 @@
         <item name="android:textSize">@dimen/textsize25</item>
         <item name="android:gravity">center</item>
     </style>
-
+    <style name="text_26_ffffff">
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">@dimen/textsize26</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <style name="text_27_ffffff">
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">@dimen/textsize27</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <style name="text_28_ffffff">
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">@dimen/textsize28</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <style name="text_29_ffffff">
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">@dimen/textsize29</item>
+        <item name="android:gravity">center</item>
+    </style>
     <style name="text_30_ffffff">
         <item name="android:textColor">#ffffff</item>
         <item name="android:textSize">@dimen/textsize30</item>

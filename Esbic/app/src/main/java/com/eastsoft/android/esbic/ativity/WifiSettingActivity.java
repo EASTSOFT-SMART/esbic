@@ -92,7 +92,7 @@ public class WifiSettingActivity extends BaseActivity implements View.OnClickLis
         wifiScan.openWifi();
         wifiScan.startScan();
         try {
-            Thread.sleep(2000);
+            Thread.sleep(1000);
             Log.v("Wifi正在打开","让主线程等待1秒钟");
         } catch (InterruptedException e) {
             e.printStackTrace();

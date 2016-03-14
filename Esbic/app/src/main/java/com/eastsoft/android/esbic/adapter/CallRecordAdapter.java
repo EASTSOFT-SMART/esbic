@@ -56,7 +56,6 @@ public class CallRecordAdapter extends BaseAdapter {
         viewAttribute.recordIcon=(ImageView)view.findViewById(R.id.record_icon);
         viewAttribute.recordFrom=(TextView)view.findViewById(R.id.record_from);
         viewAttribute.recordTime=(TextView)view.findViewById(R.id.record_time);
-        viewAttribute.recordTimeTwo=(TextView)view.findViewById(R.id.record_time_two);
         if(intercomInfos.size() == 0)
         {
             return view;
@@ -83,8 +82,7 @@ public class CallRecordAdapter extends BaseAdapter {
                     + deviceTypeEnum.getName();
         }
         viewAttribute.recordFrom.setText(deviceStr);
-        viewAttribute.recordTime.setText(intercomInfo.getTime());
-        viewAttribute.recordTimeTwo.setText(TimeUtil.formatTime(intercomInfo.getTalkTime()));
+        viewAttribute.recordTime.setText(intercomInfo.getTime().substring(5) +"\t\t"+ TimeUtil.formatTime(intercomInfo.getTalkTime()));
         IntercomTypeEnum intercomTypeEnum = IntercomTypeEnum.find(intercomInfo.getType());
         switch (intercomTypeEnum)
         {
@@ -99,6 +97,5 @@ public class CallRecordAdapter extends BaseAdapter {
         ImageView recordIcon;
         TextView recordFrom;
         TextView recordTime;
-        TextView recordTimeTwo;
     }
 }

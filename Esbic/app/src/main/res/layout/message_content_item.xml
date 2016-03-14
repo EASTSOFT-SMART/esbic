@@ -6,7 +6,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:layout_width="@dimen/width304"
-        android:layout_height="@dimen/width102"
+        android:layout_height="@dimen/width75"
         android:background="@drawable/message_item_selected"
         android:orientation="horizontal">
 
@@ -25,21 +25,20 @@
             <TextView
                 android:id="@+id/item_content"
                 android:layout_gravity="center|left"
-                style="@style/text_23_ffffff"
+                style="@style/text_26_ffffff"
                 android:gravity="left"
-                android:layout_marginTop="@dimen/width11"
+                android:layout_marginTop="@dimen/width8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="交物业费"/>
             <TextView
                 android:id="@+id/message_time"
                 android:layout_gravity="center|left"
-                style="@style/text_23_ffffff"
+                style="@style/text_18_ffffff"
                 android:gravity="left"
-                android:layout_marginTop="@dimen/width10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="请于2016年2月31日前缴纳"/>
+                android:text="2016-02-14 15:00:01"/>
         </LinearLayout>
 
     </LinearLayout>

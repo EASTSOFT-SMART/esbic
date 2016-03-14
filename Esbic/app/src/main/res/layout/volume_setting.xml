@@ -51,7 +51,7 @@
                     android:id="@+id/volume_setting_decrease"
                     android:layout_width="@dimen/width55"
                     android:layout_height="@dimen/width55"
-                    android:background="@drawable/volume_decrease"/>
+                    android:background="@drawable/volume_down"/>
                 <SeekBar
                     android:id="@+id/volume_setting_seekbar"
                     android:layout_marginLeft="@dimen/width27"
@@ -70,7 +70,7 @@
                     android:layout_width="@dimen/width55"
                     android:layout_height="@dimen/width55"
                     android:layout_marginLeft="@dimen/width23"
-                    android:background="@drawable/volume_add"/>
+                    android:background="@drawable/volume_up2"/>
             </LinearLayout>
         </RelativeLayout>
     </RelativeLayout>
