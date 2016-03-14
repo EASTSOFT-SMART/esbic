@@ -43,10 +43,17 @@
             <ListView
                 android:id="@+id/message_content_item"
                 android:layout_width="match_parent"
+                android:layout_height="@dimen/width490"
                 android:divider="#00000000"
-                android:dividerHeight="@dimen/width8"
-                android:layout_height="match_parent">
+                android:dividerHeight="@dimen/width8" >
             </ListView>
+            <TextView
+                android:id="@+id/message_unread"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/width50"
+                android:text="您有0条未读消息"
+                android:gravity="center"
+                style="@style/text_25_ffffff"/>
         </LinearLayout>
 
         <LinearLayout

@@ -6,7 +6,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:layout_width="@dimen/width1079"
-        android:layout_height="@dimen/width111"
+        android:layout_height="@dimen/width80"
         android:orientation="horizontal"
         android:background="@drawable/police_background">
         <ImageButton
@@ -14,7 +14,7 @@
             android:layout_width="@dimen/width57"
             android:layout_height="@dimen/width57"
             android:layout_marginLeft="@dimen/width28"
-            android:layout_marginTop="@dimen/width26"
+            android:layout_marginTop="@dimen/width7"
             android:background="@drawable/police"/>
         <LinearLayout
             android:layout_marginLeft="@dimen/width26"

@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.eastsoft.android.esbic.R;
 import com.eastsoft.android.esbic.adapter.MessageAdapter;
+import com.eastsoft.android.esbic.jni.MessageInfoEnum;
 import com.eastsoft.android.esbic.service.IModelService;
 import com.eastsoft.android.esbic.table.MessageInfo;
 
@@ -28,12 +29,13 @@ public class MessageContentActivity extends BaseActivity implements View.OnClick
 
     private ListView messageListView;
     private ImageButton back;
-    private TextView messageTitle,messageContent, back2;
+    private TextView messageTitle,messageContent, back2, message_unread_count;
     private MessageAdapter messageAdapter;
     private List<MessageInfo> messageInfos = new ArrayList<>();
     private Context context;
     private Intent intent;
     private IModelService modelService;
+    private int unReadMsgCount;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +46,7 @@ public class MessageContentActivity extends BaseActivity implements View.OnClick
         modelService = ((MyApplication)getApplication()).getModelService();
         messageInfos = modelService.getMessageInfo();
 
+        message_unread_count = (TextView)findViewById(R.id.message_unread);
         messageTitle =(TextView)this.findViewById(R.id.message_title);
         messageContent=(TextView)this.findViewById(R.id.message_content);
         if(messageInfos.size() > 0)
@@ -57,6 +60,16 @@ public class MessageContentActivity extends BaseActivity implements View.OnClick
         back2 = (TextView)this.findViewById(R.id.message_con_back2);
         back2.setOnClickListener(this);
 
+        unReadMsgCount = 0;
+        for(MessageInfo info : messageInfos)
+        {
+            if(info.isRead())
+            {
+                continue;
+            }
+            unReadMsgCount++;
+        }
+        message_unread_count.setText("您有"+unReadMsgCount+"条未读消息");
         messageListView =(ListView)this.findViewById(R.id.message_content_item);
         messageAdapter=new MessageAdapter(messageInfos,this);
         messageListView.setAdapter(messageAdapter);
@@ -82,6 +95,8 @@ public class MessageContentActivity extends BaseActivity implements View.OnClick
             ContentValues values = new ContentValues();
             values.put("isRead", true);
             DataSupport.update(MessageInfo.class, values, messageInfo.getId());
+            unReadMsgCount--;
+            message_unread_count.setText("您有"+unReadMsgCount+"条未读消息");
         }
        messageAdapter.notifyDataSetChanged();
 
