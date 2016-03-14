@@ -65,7 +65,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             public void handleMessage(Message msg) {
                 if (msg.what==1){
                     if (weathers!=null){
-                        weather.setText(weathers.getStatus());
+                        weather.setText(weathers.getLowTemperature() +"～"+ weathers.getHighTemperature() + "℃   " + weathers.getStatus());
                         initWeatherIcon();
                     }
                 }
