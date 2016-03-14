@@ -47,9 +47,9 @@ public class QueryWeatherInformation {
                             if (parser.getName().equals("status1")){
                                 weather.setStatus(parser.nextText());
                             }else if (parser.getName().equals("temperature1")){
-                                weather.setLowTemperature(parser.nextText());
-                            }else if (parser.getName().equals("temperature2")){
                                 weather.setHighTemperature(parser.nextText());
+                            }else if (parser.getName().equals("temperature2")){
+                                weather.setLowTemperature(parser.nextText());
                             }else if (parser.getName().equals("savedate_weather")){
                                 weather.setSavedateWeather(parser.nextText());
                             }
