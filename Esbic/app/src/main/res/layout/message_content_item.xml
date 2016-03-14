@@ -27,7 +27,7 @@
                 android:layout_gravity="center|left"
                 style="@style/text_26_ffffff"
                 android:gravity="left"
-                android:layout_marginTop="@dimen/width11"
+                android:layout_marginTop="@dimen/width8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="交物业费"/>

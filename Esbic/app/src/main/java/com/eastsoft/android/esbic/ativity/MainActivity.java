@@ -17,6 +17,7 @@ import android.widget.TextClock;
 import android.widget.TextView;
 import com.eastsoft.android.esbic.R;
 import com.eastsoft.android.esbic.jni.DeviceInfo;
+import com.eastsoft.android.esbic.jni.DeviceTypeEnum;
 import com.eastsoft.android.esbic.jni.IpAddressInfo;
 import com.eastsoft.android.esbic.jni.MessageInfoEnum;
 import com.eastsoft.android.esbic.service.BroadcastTypeEnum;
@@ -26,6 +27,8 @@ import com.eastsoft.android.esbic.table.AlarmInfo;
 import com.eastsoft.android.esbic.table.MessageInfo;
 import com.eastsoft.android.esbic.table.ParaInfo;
 import com.eastsoft.android.esbic.util.BoardCastFilterInfo;
+import com.eastsoft.android.esbic.util.JsonUtil;
+import com.eastsoft.android.esbic.util.LogUtil;
 import com.eastsoft.android.esbic.util.QueryWeatherInformation;
 import com.eastsoft.android.esbic.util.TimeUtil;
 import com.eastsoft.android.esbic.util.Weather;
@@ -323,7 +326,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             switch (e)
             {
                 case CALL_REQUEST :
-                    intent.setClass(MainActivity.this, OnCallActivity.class);
+                    DeviceInfo deviceInfo = JsonUtil.fromJson(value, DeviceInfo.class);
+                    if(deviceInfo.getDevice_type() == DeviceTypeEnum.DT_UNIT_DOOR_MACHINE.getType())
+                    {
+                        intent.setClass(MainActivity.this, OnCallActivity.class);
+                    }else if(deviceInfo.getDevice_type() == DeviceTypeEnum.DT_ROOM_MACHINE.getType())
+                    {
+                        intent.setClass(MainActivity.this, RoomCallActivity.class);
+                    }else
+                    {
+                        LogUtil.print("Device type is error ! " + deviceInfo.toString());
+                        return;
+                    }
                     intent.putExtra("value", value);
                     startActivity(intent);
                     break;

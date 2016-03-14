@@ -139,6 +139,11 @@
             android:screenOrientation="landscape"
             >
         </activity>
+        <activity android:name=".ativity.RoomCallActivity"
+                  android:windowSoftInputMode="stateHidden"
+                  android:screenOrientation="landscape"
+            >
+        </activity>
         <activity android:name=".ativity.StandByActivity"
                   android:windowSoftInputMode="stateHidden"
             android:screenOrientation="landscape">
