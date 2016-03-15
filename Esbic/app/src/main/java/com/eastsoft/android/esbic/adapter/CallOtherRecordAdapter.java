@@ -79,7 +79,7 @@ public class CallOtherRecordAdapter extends BaseAdapter {
                     + deviceTypeEnum.getName();
         }
         viewAttribute.recordFrom.setText(deviceStr);
-        viewAttribute.recordTime.setText(intercomInfo.getTime().substring(5) +"\t\t"+ TimeUtil.formatTime(intercomInfo.getTalkTime()));
+        viewAttribute.recordTime.setText(intercomInfo.getTime().substring(5)); //  +"\t\t"+ TimeUtil.formatTime(intercomInfo.getTalkTime())
         IntercomTypeEnum intercomTypeEnum = IntercomTypeEnum.find(intercomInfo.getType());
         switch (intercomTypeEnum)
         {

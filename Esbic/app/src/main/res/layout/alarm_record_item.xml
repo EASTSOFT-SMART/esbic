@@ -34,20 +34,22 @@
                 <TextView
                     android:id="@+id/alarm_time"
                     android:gravity="center"
-                    android:layout_marginLeft="@dimen/width24"
+                    android:layout_marginLeft="@dimen/width50"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/textsize30"
-                    android:text=""/>
+                    android:textColor="@color/white"
+                    android:text="2016-01-01"/>
 
                 <TextView
                     android:id="@+id/alarm_handle_time"
                     android:gravity="center"
-                    android:layout_marginLeft="@dimen/width24"
+                    android:layout_marginLeft="@dimen/width50"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/textsize27"
-                    android:text=""/>
+                    android:textSize="@dimen/textsize30"
+                    android:textColor="@color/white"
+                    android:text="2016-01-01"/>
 
             </LinearLayout>
 

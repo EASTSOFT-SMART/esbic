@@ -29,9 +29,9 @@
 
     <RelativeLayout
         android:layout_width="@dimen/width1079"
-        android:layout_height="@dimen/width620"
+        android:layout_height="@dimen/width615"
         android:layout_gravity="center"
-        android:layout_marginTop="@dimen/width40">
+        android:layout_marginTop="@dimen/width45">
 
         <ListView
             android:id="@+id/record_list"

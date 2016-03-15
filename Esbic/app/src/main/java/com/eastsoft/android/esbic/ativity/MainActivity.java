@@ -23,6 +23,7 @@ import com.eastsoft.android.esbic.jni.IpAddressInfo;
 import com.eastsoft.android.esbic.service.BroadcastTypeEnum;
 import com.eastsoft.android.esbic.service.IModelService;
 import com.eastsoft.android.esbic.service.ModelServiceImpl;
+import com.eastsoft.android.esbic.table.AlarmInfo;
 import com.eastsoft.android.esbic.table.ParaInfo;
 import com.eastsoft.android.esbic.util.BoardCastFilterInfo;
 import com.eastsoft.android.esbic.util.JsonUtil;
