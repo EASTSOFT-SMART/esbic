@@ -23,15 +23,17 @@ public class MonitorItemAdapter extends BaseAdapter
     private String[] placeName;
     private LayoutInflater inflater;
     private boolean[] state;
+    private boolean[] isStart;
     private LinearLayout backgroud;
     private Chronometer chronometer;
     private TextView hangState;
 
-    public MonitorItemAdapter(String[] placeNameList, boolean[] state, Context context)
+    public MonitorItemAdapter(String[] placeNameList, boolean[] state, boolean[] isStart, Context context)
     {
         this.placeName = placeNameList;
         this.inflater = LayoutInflater.from(context);
         this.state = state;
+        this.isStart = isStart;
     }
 
     @Override
@@ -66,7 +68,10 @@ public class MonitorItemAdapter extends BaseAdapter
         {
             backgroud.setBackgroundResource(R.drawable.monitor_hangup);
             hangState.setText("挂断");
-            chronometer.start();
+            if(isStart[0] == true)
+            {
+                chronometer.start();
+            }
         } else if (i == 0)
         {
             backgroud.setBackgroundResource(R.drawable.monitor_display);
@@ -78,7 +83,10 @@ public class MonitorItemAdapter extends BaseAdapter
         {
             backgroud.setBackgroundResource(R.drawable.monitor_hangup_gray);
             hangState.setText("挂断");
-            chronometer.start();
+            if(isStart[1] == true)
+            {
+                chronometer.start();
+            }
         } else if (i == 1)
         {
             backgroud.setBackgroundResource(R.drawable.monitor_display_gray);
@@ -90,7 +98,10 @@ public class MonitorItemAdapter extends BaseAdapter
         {
             backgroud.setBackgroundResource(R.drawable.monitor_hangup_gray);
             hangState.setText("挂断");
-            chronometer.start();
+            if(isStart[2] == true)
+            {
+                chronometer.start();
+            }
         } else if (i == 2)
         {
             backgroud.setBackgroundResource(R.drawable.monitor_display_gray);
@@ -103,7 +114,10 @@ public class MonitorItemAdapter extends BaseAdapter
         {
             backgroud.setBackgroundResource(R.drawable.monitor_hangup);
             hangState.setText("挂断");
-            chronometer.start();
+            if(isStart[3] == true)
+            {
+                chronometer.start();
+            }
         } else if (i == 3)
         {
             backgroud.setBackgroundResource(R.drawable.monitor_display);
@@ -115,7 +129,10 @@ public class MonitorItemAdapter extends BaseAdapter
         {
             backgroud.setBackgroundResource(R.drawable.monitor_hangup);
             hangState.setText("挂断");
-            chronometer.start();
+            if(isStart[4] == true)
+            {
+                chronometer.start();
+            }
         } else if (i == 4)
         {
             backgroud.setBackgroundResource(R.drawable.monitor_display);
@@ -127,7 +144,10 @@ public class MonitorItemAdapter extends BaseAdapter
         {
             backgroud.setBackgroundResource(R.drawable.monitor_hangup_gray);
             hangState.setText("挂断");
-            chronometer.start();
+            if(isStart[5] == true)
+            {
+                chronometer.start();
+            }
         } else if (i == 5)
         {
             backgroud.setBackgroundResource(R.drawable.monitor_display_gray);
@@ -139,7 +159,10 @@ public class MonitorItemAdapter extends BaseAdapter
         {
             backgroud.setBackgroundResource(R.drawable.monitor_hangup_gray);
             hangState.setText("挂断");
-            chronometer.start();
+            if(isStart[6] == true)
+            {
+                chronometer.start();
+            }
         } else if (i == 6)
         {
             backgroud.setBackgroundResource(R.drawable.monitor_display_gray);
@@ -151,7 +174,10 @@ public class MonitorItemAdapter extends BaseAdapter
         {
             backgroud.setBackgroundResource(R.drawable.monitor_hangup);
             hangState.setText("挂断");
-            chronometer.start();
+            if(isStart[7] == true)
+            {
+                chronometer.start();
+            }
         } else if (i == 7)
         {
             backgroud.setBackgroundResource(R.drawable.monitor_display);

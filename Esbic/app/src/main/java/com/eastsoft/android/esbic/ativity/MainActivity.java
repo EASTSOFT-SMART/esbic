@@ -43,7 +43,7 @@ import java.util.Date;
 public class MainActivity extends BaseActivity implements View.OnClickListener {
     private Button message,callRecord,alarmRecord,voice,screenBrightness,wifi,
             leaveHome,callManagement,monitor,callOtherUser,setting,callElevator;
-    private TextView weather,week,yearMonthDay;
+    private TextView weather,weather_tmp, week,yearMonthDay;
     private ImageView weatherIcon,hourFront,hourAfter,timeIcon,minuteFront,minuterAfter;
     private Dialog progressDialog;
     private String cityName;
@@ -68,7 +68,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             public void handleMessage(Message msg) {
                 if (msg.what==1){
                     if (weathers!=null){
-                        weather.setText(weathers.getLowTemperature() +"～"+ weathers.getHighTemperature() + "℃   " + weathers.getStatus());
+                        weather.setText(weathers.getStatus());
+                        weather_tmp.setText(weathers.getLowTemperature() +"～"+ weathers.getHighTemperature() + "℃");
                         initWeatherIcon();
                     }
                 }
@@ -94,6 +95,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         week=(TextView)this.findViewById(R.id.week);
         message.setOnClickListener(this);
         weather=(TextView)this.findViewById(R.id.weather);
+        weather_tmp=(TextView)this.findViewById(R.id.weather_tmp);
         weatherIcon=(ImageView)this.findViewById(R.id.weather_icon);
         //clock=(TextClock)this.findViewById(R.id.main_time);
         //clock.setFormat24Hour("hh:mm");

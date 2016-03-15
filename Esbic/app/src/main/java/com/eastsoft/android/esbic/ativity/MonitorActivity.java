@@ -50,7 +50,7 @@ public class MonitorActivity extends BaseActivity implements View.OnClickListene
     private String placeName[];
     private List<Map<String,Object>> mapList;
     private MonitorItemAdapter monitorItemAdapter;
-    private boolean[] state;
+    private boolean[] state, isStart;
     private IModelService modelService;
     private boolean isMonitoring;
     private int currentMonitorIndex;
@@ -74,13 +74,14 @@ public class MonitorActivity extends BaseActivity implements View.OnClickListene
 
     }
     private void initData(){
-        state=new boolean[]{false,false,false,false,false,false,false,false};
+        state = new boolean[]{false,false,false,false,false,false,false,false};
+        isStart = new boolean[]{false,false,false,false,false,false,false,false};
         back=(ImageButton)this.findViewById(R.id.monitor_back);
         back2=(TextView) this.findViewById(R.id.monitor_back2);
         gridView=(GridView)this.findViewById(R.id.exchange_monitor);
         placeName=new String[]{"单元正门","单元车库","单元侧门","单元右门","小区正门","小区侧门","小区","小区"};
         mapList=getData();
-        monitorItemAdapter=new MonitorItemAdapter(placeName, state, this);
+        monitorItemAdapter=new MonitorItemAdapter(placeName, state, isStart, this);
         gridView.setAdapter(monitorItemAdapter);
         gridView.setOnItemClickListener(this);
         gridView.setOnItemSelectedListener(this);
@@ -170,6 +171,7 @@ public class MonitorActivity extends BaseActivity implements View.OnClickListene
             ((MyApplication)getApplication()).getModelService().ui_req_monitor(info);
         }else if(currentMonitorIndex == i){
             state[i] = false;
+            isStart[i] = false;
             monitorItemAdapter.notifyDataSetChanged();
             isMonitoring = false;
             currentMonitorIndex = -1;
@@ -179,6 +181,7 @@ public class MonitorActivity extends BaseActivity implements View.OnClickListene
             modelService.active_hang_up_monitor(currentDeviceInfo);
             SystemClock.sleep(500);
             state[currentMonitorIndex] = false;
+            isStart[currentMonitorIndex] = false;
             state[i] = true;
             monitorItemAdapter.notifyDataSetChanged();
             isMonitoring = true;
@@ -214,7 +217,9 @@ public class MonitorActivity extends BaseActivity implements View.OnClickListene
                     mMediaPlayer.playMRL(value);
                     break;
                 case MONITOR_CONFIRM :
-                    showLongToast("您监视的设备已经找到！");
+                    showLongToast("您监视的设备已经找到,正在获取视频！");
+                    isStart[currentMonitorIndex] = true;
+                    monitorItemAdapter.notifyDataSetChanged();
                     break;
                 case DEVICE_BUSY :
                     showLongToast("您呼叫的设备正在忙，请稍后再拨！");

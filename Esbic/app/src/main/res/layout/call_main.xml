@@ -45,7 +45,7 @@
                     android:id="@+id/hostory_list"
                     android:layout_gravity="center"
                     android:layout_marginTop="@dimen/width46"
-                    android:layout_marginBottom="@dimen/width37"
+                    android:layout_marginBottom="@dimen/width26"
                     android:divider="#00000000"
                     android:layout_width="@dimen/width356"
                     android:layout_height="@dimen/width427"/>
@@ -92,7 +92,7 @@
                     <Button
                         android:id="@+id/hository"
                         android:layout_width="@dimen/width255"
-                        android:layout_height="@dimen/width57"
+                        android:layout_height="@dimen/width70"
                         android:background="@drawable/call_history_record"
                         style="@style/text_24_ffffff"
                         android:paddingLeft="@dimen/width60"
@@ -100,7 +100,7 @@
                     <Button
                         android:id="@+id/help"
                         android:layout_width="@dimen/width255"
-                        android:layout_height="@dimen/width57"
+                        android:layout_height="@dimen/width70"
                         android:background="@drawable/operation_help"
                         style="@style/text_24_ffffff"
                         android:paddingLeft="@dimen/width60"
@@ -143,9 +143,9 @@
                 <Button
                     android:id="@+id/call"
                     android:layout_gravity="center"
-                    android:layout_width="@dimen/width250"
-                    android:layout_height="@dimen/width65"
-                    android:layout_marginTop="@dimen/width20"
+                    android:layout_width="@dimen/width300"
+                    android:layout_height="@dimen/width70"
+                    android:layout_marginTop="@dimen/width22"
                     style="@style/text_24_ffffff"
                     android:text="呼叫住户"
                     android:paddingLeft="@dimen/width70"
