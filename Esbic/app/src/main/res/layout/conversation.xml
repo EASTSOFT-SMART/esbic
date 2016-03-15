@@ -43,7 +43,7 @@
                 android:gravity="center"
                 android:layout_gravity="center"
                 android:textColor="#FFFFFF"
-                android:layout_marginTop="@dimen/width225"
+                android:layout_marginTop="@dimen/width200"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/textsize36"
@@ -53,30 +53,18 @@
                 android:gravity="center"
                 android:layout_gravity="center"
                 android:textColor="#FFFFFF"
-                android:layout_marginTop="@dimen/width40"
+                android:layout_marginTop="@dimen/width20"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/textsize36"
                 android:text="02楼03单元606户"/>
-            <TextView
-                android:id="@+id/conversation_going"
-                android:layout_width="wrap_content"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:visibility="gone"
-                android:layout_marginTop="@dimen/width225"
-                android:textColor="#FFFFFF"
-                android:textSize="@dimen/textsize36"
-                android:layout_height="wrap_content"
-                android:text="正在和XXX通话"/>
-
             <Chronometer
                 android:id="@+id/conversation_time"
                 android:layout_width="wrap_content"
                 android:layout_marginTop="@dimen/width40"
                 android:textSize="@dimen/textsize36"
-                android:visibility="gone"
                 android:gravity="center"
+                android:visibility="gone"
                 android:layout_gravity="center"
                 android:textColor="#FFFFFF"
                 android:layout_height="wrap_content"
@@ -93,18 +81,15 @@
 
             <Button
                 android:id="@+id/conversation_hang_up"
-                android:layout_width="@dimen/width276"
+                android:layout_width="@dimen/width300"
                 android:layout_marginTop="@dimen/width250"
                 android:layout_gravity="center"
-                android:layout_height="@dimen/width57"
+                android:layout_height="@dimen/width70"
                 android:background="@drawable/hang"
                 style="@style/text_24_ffffff"
                 android:paddingLeft="@dimen/width60"
                 android:text="挂断"/>
-
-
         </LinearLayout>
-
     </LinearLayout>
 </RelativeLayout>
 

@@ -25,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.eastsoft.android.esbic.R;
+import com.eastsoft.android.esbic.adapter.CallOtherRecordAdapter;
 import com.eastsoft.android.esbic.adapter.CallRecordAdapter;
 import com.eastsoft.android.esbic.adapter.InputKeyBoardAdapter;
 import com.eastsoft.android.esbic.dialog.MyDialog;
@@ -58,7 +59,7 @@ public class CallMain extends BaseActivity implements View.OnClickListener,Adapt
     private int[] icon;
     private IModelService modelService;
     private List<IntercomInfo> intercomInfos = new ArrayList<>();
-    private CallRecordAdapter callRecordAdapter;
+    private CallOtherRecordAdapter callOtherRecordAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,8 +97,8 @@ public class CallMain extends BaseActivity implements View.OnClickListener,Adapt
                 intercomInfos.add(intercomInfo);
             }
         }
-        callRecordAdapter=new CallRecordAdapter(intercomInfos, CallMain.this);
-        historyList.setAdapter(callRecordAdapter);
+        callOtherRecordAdapter=new CallOtherRecordAdapter(intercomInfos, CallMain.this);
+        historyList.setAdapter(callOtherRecordAdapter);
     }
 
     @Override
@@ -211,12 +212,6 @@ public class CallMain extends BaseActivity implements View.OnClickListener,Adapt
             }
 
         }
-    }
-
-
-    //拉去通话历史记录
-    private List<Map<Object,Object>> pullHistoryRecord(){
-        return null;
     }
 
     @Override

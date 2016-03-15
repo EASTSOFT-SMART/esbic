@@ -10,6 +10,7 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.StrictMode;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -19,20 +20,17 @@ import com.eastsoft.android.esbic.R;
 import com.eastsoft.android.esbic.jni.DeviceInfo;
 import com.eastsoft.android.esbic.jni.DeviceTypeEnum;
 import com.eastsoft.android.esbic.jni.IpAddressInfo;
-import com.eastsoft.android.esbic.jni.MessageInfoEnum;
 import com.eastsoft.android.esbic.service.BroadcastTypeEnum;
 import com.eastsoft.android.esbic.service.IModelService;
 import com.eastsoft.android.esbic.service.ModelServiceImpl;
 import com.eastsoft.android.esbic.table.AlarmInfo;
-import com.eastsoft.android.esbic.table.MessageInfo;
 import com.eastsoft.android.esbic.table.ParaInfo;
 import com.eastsoft.android.esbic.util.BoardCastFilterInfo;
 import com.eastsoft.android.esbic.util.JsonUtil;
 import com.eastsoft.android.esbic.util.LogUtil;
-import com.eastsoft.android.esbic.util.QueryWeatherInformation;
-import com.eastsoft.android.esbic.util.TimeUtil;
-import com.eastsoft.android.esbic.util.Weather;
-import com.eastsoft.android.esbic.util.WeatherIcon;
+import com.eastsoft.android.esbic.weather.WeatherEnum;
+import com.eastsoft.android.esbic.weather.WeatherInfo;
+import com.eastsoft.android.esbic.weather.WeatherUtil;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -43,7 +41,7 @@ import java.util.Date;
 public class MainActivity extends BaseActivity implements View.OnClickListener {
     private Button message,callRecord,alarmRecord,voice,screenBrightness,wifi,
             leaveHome,callManagement,monitor,callOtherUser,setting,callElevator;
-    private TextView weather,week,yearMonthDay;
+    private TextView weather,weather_tmp, week,yearMonthDay;
     private ImageView weatherIcon,hourFront,hourAfter,timeIcon,minuteFront,minuterAfter;
     private Dialog progressDialog;
     private String cityName;
@@ -52,28 +50,32 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private Date now;
     private TextClock clock;
     private String time;
-    public  Weather weathers;
+    private WeatherInfo weatherInfo;
     private SimpleDateFormat simpleDateFormat;
-    private QueryWeatherInformation queryWeather;
     private BoardCastFilterInfo boardCastFilterInfo;
     private IModelService modelService;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
         initData();
         new Thread(new QueryWeather()).start();
         handler=new Handler(){
             @Override
             public void handleMessage(Message msg) {
                 if (msg.what==1){
-                    if (weathers!=null){
-                        weather.setText(weathers.getLowTemperature() +"～"+ weathers.getHighTemperature() + "℃   " + weathers.getStatus());
-                        initWeatherIcon();
+                    if (weatherInfo != null){
+                        weather.setText(weatherInfo.description);
+                        weather_tmp.setText(weatherInfo.lowTemperate +"～"+ weatherInfo.hightTemperate + "℃");
+                        weatherIcon.setBackgroundResource(WeatherEnum.find(weatherInfo.description).icon);
                     }
                 }
             }
-    };
+        };
 
    }
 
@@ -94,6 +96,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         week=(TextView)this.findViewById(R.id.week);
         message.setOnClickListener(this);
         weather=(TextView)this.findViewById(R.id.weather);
+        weather_tmp=(TextView)this.findViewById(R.id.weather_tmp);
         weatherIcon=(ImageView)this.findViewById(R.id.weather_icon);
         //clock=(TextClock)this.findViewById(R.id.main_time);
         //clock.setFormat24Hour("hh:mm");
@@ -124,6 +127,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction("com.eastsoft.android.esbic.model");
         registerReceiver(myReceiver, intentFilter);
+
+        MyReceiver2 myReceiver2 = new MyReceiver2();
+        IntentFilter intentFilter2 = new IntentFilter();
+        intentFilter2.addAction("com.eastsoft.android.esbic.app");
+        registerReceiver(myReceiver2, intentFilter2);
+
         modelService = ((MyApplication)getApplication()).getModelService();
         DeviceInfo deviceInfo = modelService.getDeviceInfo();
         if(deviceInfo != null)
@@ -255,10 +264,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
   //查询天气
     private void getWeatherInformation(){
-
-        queryWeather=new QueryWeatherInformation();
-        weathers=queryWeather.getXml();
-
+        String city = "青岛";
+        ParaInfo paraInfo = modelService.getParaInfoByName("city");
+        if(paraInfo!= null && paraInfo.getValue().compareTo("")!=0)
+        {
+            city = paraInfo.getValue();
+        }
+        weatherInfo = WeatherUtil.getWeather(city);
     }
     //非空判断
     private void checkCityName(String cityName){
@@ -268,38 +280,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             return;
         }
     }
-    //初始化天气图标
-    private void initWeatherIcon(){
-        if(weathers.getStatus().equals(WeatherIcon.CLOUDY)){
-            weatherIcon.setBackgroundResource(R.drawable.weather_9);
-        }else if (weathers.getStatus().equals(WeatherIcon.HEAVYRAIN)){
-            weatherIcon.setBackgroundResource(R.drawable.weather_4);
-        }else if (weathers.getStatus().equals(WeatherIcon.HEAVYSNOW)){
-            weatherIcon.setBackgroundResource(R.drawable.weather_3);
-        }else if (weathers.getStatus().equals(WeatherIcon.LIGHTRAIN)){
-            weatherIcon.setBackgroundResource(R.drawable.weather_10);
-        }else if (weathers.getStatus().equals(WeatherIcon.LIGHTSNOW)){
-            weatherIcon.setBackgroundResource(R.drawable.weather_12);
-        }else if (weathers.getStatus().equals(WeatherIcon.MIST)){
-            weatherIcon.setBackgroundResource(R.drawable.weather_1);
-        }else if (weathers.getStatus().equals(WeatherIcon.MISTANDSNOW)){
-            weatherIcon.setBackgroundResource(R.drawable.weather_2);
-        }else if (weathers.getStatus().equals(WeatherIcon.MODERATERAIN)){
-            weatherIcon.setBackgroundResource(R.drawable.weather_11);
-        }else if (weathers.getStatus().equals(WeatherIcon.MODERATESNOW)){
-            weatherIcon.setBackgroundResource(R.drawable.weather_6);
-        }else if (weathers.getStatus().equals(WeatherIcon.SHADE)){
-            weatherIcon.setBackgroundResource(R.drawable.weather_9);
-        }else if (weathers.getStatus().equals(WeatherIcon.SUNNY)){
-            weatherIcon.setBackgroundResource(R.drawable.weather_8);
-        }else if (weathers.getStatus().equals(WeatherIcon.THUNDERRAIN)){
-            weatherIcon.setBackgroundResource(R.drawable.weather_7);
-        }else if (weathers.getStatus().equals(WeatherIcon.THUNDERSHOWER)){
-            weatherIcon.setBackgroundResource(R.drawable.weather_13);
-        }else{
-            weatherIcon.setBackgroundResource(R.drawable.weather_8);
-        }
-    }
+
    class QueryWeather implements Runnable{
 
        @Override
@@ -367,6 +348,24 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                     break;
                 case RECEIVE_ALARM :
                     showLongToast("收到新的警报" + value);
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    public class MyReceiver2 extends BroadcastReceiver
+    {
+        @Override
+        public void onReceive(Context context, Intent intent2)
+        {
+            Bundle bundle = intent2.getExtras();
+            int cmd = bundle.getInt("cmd");
+            switch (cmd)
+            {
+                case 1 :
+                    new Thread(new QueryWeather()).start();
                     break;
                 default:
                     break;

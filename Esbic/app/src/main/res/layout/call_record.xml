@@ -42,7 +42,7 @@
                     android:id="@+id/record_contents"
                     android:layout_width="match_parent"
                     android:divider="#00000000"
-                    android:dividerHeight="@dimen/width8"
+                    android:dividerHeight="@dimen/width4"
                     android:layout_height="match_parent">
                 </ListView>
             </LinearLayout>

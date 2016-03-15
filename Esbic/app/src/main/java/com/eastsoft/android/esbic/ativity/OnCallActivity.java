@@ -41,6 +41,7 @@ public class OnCallActivity extends BaseActivity implements View.OnClickListener
     private ImageButton back;
     private SurfaceHolder surfaceHolder;
     private IModelService modelService;
+    private boolean isTalking;
     private Intent intent;
 
     private LibVLC mMediaPlayer;
@@ -104,11 +105,16 @@ public class OnCallActivity extends BaseActivity implements View.OnClickListener
 
     @Override
     public void onClick(View view) {
+        playMusic();
         if (view.getId()==back.getId()||view.getId()==back2.getId()){
-            playButtonMusic(musicButtonId);
+            if(isTalking == true)
+            {
+                modelService.active_hang_up();
+            }
             finish();
         }
         if (view.getId()==accept.getId()){
+            isTalking = true;
             modelService.ui_talk_answer();
         }
         if (view.getId()==hangUp.getId()){

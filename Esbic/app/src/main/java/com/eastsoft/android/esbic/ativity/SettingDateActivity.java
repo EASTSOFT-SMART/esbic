@@ -12,6 +12,8 @@ import com.eastsoft.android.esbic.R;
 import com.eastsoft.android.esbic.adapter.InputKeyBoardAdapter;
 import com.eastsoft.android.esbic.util.TimeUtil;
 
+import java.io.DataOutputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -51,13 +53,13 @@ public class SettingDateActivity extends BaseActivity implements View.OnClickLis
         inputKeyBoard.setOnItemClickListener(this);
         simpleDateFormat=new SimpleDateFormat("yyMMdd");
 
-//        String time = TimeUtil.getDateTimeofNow4(); // yyyyMMddHHmmss
-//        dateYear.setText(time.substring(0,4));
-//        dateMonth.setText(time.substring(4,6));
-//        dateDay.setText(time.substring(6,8));
-//        dateHour.setText(time.substring(8,10));
-//        dateMinute.setText(time.substring(10,12));
-//        dateSecond.setText(time.substring(12));
+        String time = TimeUtil.getDateTimeofNow4(); // yyyyMMddHHmmss
+        dateYear.setText(time.substring(0,4));
+        dateMonth.setText(time.substring(4,6));
+        dateDay.setText(time.substring(6,8));
+        dateHour.setText(time.substring(8,10));
+        dateMinute.setText(time.substring(10,12));
+        dateSecond.setText(time.substring(12));
 
         back = (ImageButton)this.findViewById(R.id.date_setting_back);
         back.setOnClickListener(this);
@@ -109,9 +111,9 @@ public class SettingDateActivity extends BaseActivity implements View.OnClickLis
             }
         }else if (position==9){
             String timeString =dateYear.getText().toString() +dateMonth.getText().toString()
-                    +dateDay.getText().toString() +dateHour.getText().toString()+dateMinute.getText().toString()
+                    +dateDay.getText().toString() +"."+dateHour.getText().toString()+dateMinute.getText().toString()
                     +dateSecond.getText().toString();
-            showLongToast("设置成功！");
+            setDate(timeString);
         }else if (position==10){
             if (dateYear.getText().equals("")||dateYear.getText().length()<4){
                 String year=dateYear.getText().toString();
@@ -132,11 +134,6 @@ public class SettingDateActivity extends BaseActivity implements View.OnClickLis
                 }else if (dateSecond.getText().equals("")||dateSecond.getText().length()<2){
                     String second=dateSecond.getText().toString();
                     dateSecond.setText(second+String.valueOf(0));
-                }else{
-                    String timeString =dateYear.getText().toString() +dateMonth.getText().toString()
-                            +dateDay.getText().toString() +dateHour.getText().toString()+dateMinute.getText().toString()
-                            +dateSecond.getText().toString();
-
                 }
             }
         }else if (position==11){
@@ -164,6 +161,24 @@ public class SettingDateActivity extends BaseActivity implements View.OnClickLis
             } else {
                 return;
             }
+        }
+    }
+
+    public void setDate(String date){
+        try {
+            // 修改时间需要获取root权限
+            Process process = Runtime.getRuntime().exec("su");
+//            String datetime="20131023.112800"; //测试的设置的时间【时间格式 yyyyMMdd.HHmmss】
+            DataOutputStream os = new DataOutputStream(process.getOutputStream());
+            os.writeBytes("setprop persist.sys.timezone GMT\n");
+            os.writeBytes("/system/bin/date -s "+date+"\n");
+            os.writeBytes("clock -w\n");
+            os.writeBytes("exit\n");
+            os.flush();
+            showLongToast("设置成功！");
+        } catch (IOException e) {
+            e.printStackTrace();
+            showLongToast("设置失败！");
         }
     }
 }
