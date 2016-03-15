@@ -37,7 +37,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/city_aim"
+            android:id="@+id/city_setting_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/text_64_ffffff"
@@ -69,7 +69,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/text_30_ffffff"
-                android:text="多云转晴"/>
+                android:layout_gravity="center"
+                android:text="晴"/>
 
         </LinearLayout>
 
@@ -89,6 +90,7 @@
                 android:id="@+id/temp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/width5"
                 style="@style/text_30_ffffff"
                 android:text="1℃~5℃"/>
 
@@ -96,7 +98,7 @@
                 android:id="@+id/wind_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/width25"
+                android:layout_marginTop="@dimen/width15"
                 style="@style/text_30_ffffff"
                 android:text="西北风3-5级"/>
 
@@ -115,7 +117,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/width208"
+            android:layout_marginLeft="@dimen/width205"
             style="@style/text_24_20A683"
             android:text="选择省份"/>
 
@@ -123,9 +125,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/width410"
+            android:layout_marginLeft="@dimen/width420"
             style="@style/text_24_20A683"
-            android:text="选择省份"/>
+            android:text="选择城市"/>
 
     </LinearLayout>
 
@@ -138,13 +140,13 @@
         <ListView
             android:id="@+id/pro_list"
             android:layout_width="@dimen/width509"
-            android:layout_height="@dimen/width337"></ListView>
+            android:layout_height="@dimen/width400"></ListView>
 
         <ListView
             android:id="@+id/city_list"
             android:layout_width="@dimen/width509"
             android:layout_marginLeft="@dimen/width9"
-            android:layout_height="@dimen/width337"></ListView>
+            android:layout_height="@dimen/width400"></ListView>
 
     </LinearLayout>
 

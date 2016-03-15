@@ -202,6 +202,23 @@ public class ModelServiceImpl implements IModelService
         LogUtil.print(LogUtil.LogPriorityEnum.CORE_LOG_PRI_INFO, "UPDATE -> " + paraInfo.toString());
     }
 
+    public void saveParaInfo(ParaInfo paraInfo)
+    {
+        ParaInfo tmp = getParaInfo(paraInfo.getName());
+        if(tmp == null)
+        {
+            paraInfo.save();
+        }else
+        {
+            updateParaInfo(paraInfo);
+        }
+    }
+
+    public ParaInfo getParaInfoByName(String colname)
+    {
+        return getParaInfo(colname);
+    }
+
     private ParaInfo getParaInfo(String colname)
     {
         List<ParaInfo> paraInfos = DataSupport.where("name=?", colname).find(ParaInfo.class);

@@ -5,6 +5,7 @@ import com.eastsoft.android.esbic.jni.IpAddressInfo;
 import com.eastsoft.android.esbic.table.AlarmInfo;
 import com.eastsoft.android.esbic.table.IntercomInfo;
 import com.eastsoft.android.esbic.table.MessageInfo;
+import com.eastsoft.android.esbic.table.ParaInfo;
 
 import java.util.List;
 
@@ -32,6 +33,8 @@ public interface IModelService
     public void setUserPassword(String userPassword);           //  设置用户密码
     public String getUserPassword();                            //  获取用户密码
 
+    public void saveParaInfo(ParaInfo paraInfo);                //  保存para信息
+    public ParaInfo getParaInfoByName(String colname);          //  获取para中的信息
     public List<IntercomInfo> getIntecomInfo();                 //  获取对讲记录
     public List<MessageInfo> getMessageInfo();                  //  获取消息和广告记录
     public List<AlarmInfo> getAlarmInfo();                      //  获取报警记录
