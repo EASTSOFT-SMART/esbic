@@ -21,26 +21,26 @@ android:layout_height="match_parent">
         android:textSize="@dimen/textsize30"/>
     <LinearLayout
         android:layout_width="@dimen/width253"
-        android:layout_height="@dimen/width45"
-        android:layout_marginTop="@dimen/width42"
+        android:layout_height="@dimen/width55"
+        android:layout_marginTop="@dimen/width30"
         android:layout_gravity="center"
         android:orientation="horizontal"
         android:background="@drawable/wifi_input_box">
         <EditText
             android:id="@+id/input_password"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/width190"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
             android:hint="请输入wifi密码"
-            android:textSize="@dimen/textsize18"
+            android:textSize="@dimen/textsize22"
             />
         <ImageButton
-            android:id="@+id/show_password"
+            android:id="@+id/show_wifi_password"
             android:layout_gravity="center"
-            android:layout_width="@dimen/width29"
-            android:layout_marginLeft="@dimen/width60"
-            android:layout_height="@dimen/width17"
+            android:layout_width="@dimen/width40"
+            android:layout_marginLeft="@dimen/width10"
+            android:layout_height="@dimen/width30"
             android:background="@drawable/scan"
             />
     </LinearLayout>
@@ -54,8 +54,9 @@ android:layout_height="match_parent">
             android:id="@+id/wifi_setting_cancel"
             android:layout_gravity="center"
             android:gravity="center"
-            android:layout_width="@dimen/width87"
-            android:layout_height="@dimen/width27"
+            android:layout_width="@dimen/width100"
+            android:layout_height="@dimen/width50"
+            android:textSize="@dimen/textsize25"
             android:background="@drawable/wifi_dialog_button"
             android:text="取消"/>
         <Button
@@ -63,8 +64,9 @@ android:layout_height="match_parent">
             android:layout_gravity="center"
             android:layout_marginLeft="@dimen/width31"
             android:gravity="center"
-            android:layout_width="@dimen/width87"
-            android:layout_height="@dimen/width27"
+            android:layout_width="@dimen/width100"
+            android:layout_height="@dimen/width50"
+            android:textSize="@dimen/textsize25"
             android:background="@drawable/wifi_dialog_button"
             android:text="连接"/>
 

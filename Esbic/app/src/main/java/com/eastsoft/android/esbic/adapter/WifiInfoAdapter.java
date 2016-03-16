@@ -1,6 +1,7 @@
 package com.eastsoft.android.esbic.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiConfiguration;
 import android.text.TextPaint;
@@ -67,12 +68,14 @@ public class WifiInfoAdapter extends BaseAdapter {
         ImageView isLock=(ImageView)view1.findViewById(R.id.wifi_lock);
         ViewAttribute viewAttribute=new ViewAttribute();
         viewAttribute.wifistate=(TextView)view1.findViewById(R.id.wifi_state);
+        wifiName.setText(scanResult.SSID);
         if (wifiState[i]){
             viewAttribute.wifistate.setText("已连接");
+            wifiName.setTextColor(Color.rgb(0, 0, 0));
+            viewAttribute.wifistate.setTextColor(Color.rgb(0, 0, 0));
         }else{
             viewAttribute.wifistate.setText("未连接");
         }
-        wifiName.setText(scanResult.SSID);
         String lockState=scanResult.capabilities;
         if (lockState.contains("WPA")||lockState.contains("wpa")||
                 lockState.contains("WEP") || lockState.contains("wep")){

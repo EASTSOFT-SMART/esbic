@@ -64,7 +64,7 @@
 
         <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/width51"
+                android:layout_height="@dimen/width70"
                 android:background="@drawable/wifi_nav"
             >
             <TextView
@@ -80,15 +80,16 @@
                 android:layout_width="@dimen/width30"
                 android:layout_height="@dimen/width30"
                 android:layout_gravity="center"
-                android:layout_marginLeft="@dimen/width694"
+                android:layout_marginLeft="@dimen/width690"
                 android:background="@drawable/wifi_scan"/>
             <TextView
+                android:id="@+id/scan_wifi2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="@dimen/width10"
+                android:layout_marginLeft="@dimen/width5"
                 android:textColor="#6EB8CD"
-                android:textSize="@dimen/textsize23"
+                android:textSize="@dimen/textsize25"
                 android:text="扫描"/>
 
          </LinearLayout>
@@ -105,8 +106,8 @@
                 android:layout_gravity="center"
                 android:layout_width="@dimen/width954"
                 android:divider="#00000000"
-                android:dividerHeight="@dimen/width9"
-                android:layout_height="290dp"
+                android:dividerHeight="@dimen/width3"
+                android:layout_height="match_parent"
                 android:layout_weight="0.62">
 
              </ListView>
