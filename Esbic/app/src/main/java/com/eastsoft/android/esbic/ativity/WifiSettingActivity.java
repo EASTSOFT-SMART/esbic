@@ -45,7 +45,7 @@ public class WifiSettingActivity extends BaseActivity implements View.OnClickLis
     private Intent intent;
     private int state;
     private WifiScan wifiScan;
-    private boolean[] wifiState;
+    private boolean[] wifiState = new boolean[100];
     private String wifiSSID;
     private EditText editText;
     private String wifiPassword;
@@ -53,10 +53,11 @@ public class WifiSettingActivity extends BaseActivity implements View.OnClickLis
     private WifiInfoAdapter wifiInfoAdapter;
     private boolean isHidden = true;
     //扫描结果列表
-    private List<ScanResult> scanResultList;
-    private List<WifiConfiguration> mWifiConfiguration;
+    private List<ScanResult> scanResultList = new ArrayList<>();
+    private List<WifiConfiguration> mWifiConfiguration = new ArrayList<>();
     private WifiInfo wifiInfo;
     private int currentIndex;
+    private boolean isReopen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -81,8 +82,10 @@ public class WifiSettingActivity extends BaseActivity implements View.OnClickLis
         scanWifi2.setOnClickListener(this);
 
         wifiScan = new WifiScan(this);
-        initWifiConfig();
+        wifiInfoAdapter = new WifiInfoAdapter(scanResultList, this, null, wifiState);
         listView.setAdapter(wifiInfoAdapter);
+        initWifiConfig();
+
         state = wifiScan.checkState();
         if (state == 1 || state == 0 || state == 2 || state == 4)
         {
@@ -98,9 +101,12 @@ public class WifiSettingActivity extends BaseActivity implements View.OnClickLis
             {
                 if (checkState)
                 {
+                    isReopen = true;
                     initWifiConfig();
                 } else
                 {
+                    scanResultList.clear();
+                    wifiInfoAdapter.notifyDataSetChanged();
                     wifiScan.closeWifi();
                 }
             }
@@ -110,6 +116,16 @@ public class WifiSettingActivity extends BaseActivity implements View.OnClickLis
     private void initWifiConfig()
     {
         wifiScan.openWifi();
+        if(isReopen)
+        {
+            try
+            {
+                new Thread().sleep(4000);
+            }catch(Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
         wifiScan.startScan();
         //0正在关闭，1WIFI不可用，2正在打开，3可用，4状态不可知。
         if (wifiScan.checkState() == 0 && wifiScan.checkState() == 1 &&
@@ -118,16 +134,19 @@ public class WifiSettingActivity extends BaseActivity implements View.OnClickLis
             showShortToast("Wifi不可用");
         } else if (wifiScan.checkState() == 2)
         {
-            showShortToast("wifi正在打开!");
+            showShortToast("wifi正在打开 。。。");
+        }
+        while(wifiScan.checkState() != 3)
+        {
+            showShortToast("wifi正在打开 。。。");
         }
         if (wifiScan.checkState() == 3)
         {
-            //每次都新的创建一个List,用来清除上一次List储存的ScanResult数据。
-            scanResultList = new ArrayList<>();
-            scanResultList = wifiScan.getmWifiList();
+            List<ScanResult> tmp = wifiScan.getmWifiList();
+            scanResultList.clear();
+            scanResultList.addAll(tmp);
             mWifiConfiguration = wifiScan.getConfiguration();
             wifiInfo = wifiScan.getWifiInfo();
-            wifiState = new boolean[scanResultList.size()];
             for (int i = 0; i < scanResultList.size(); i++)
             {
                 wifiState[i] = false;
@@ -138,7 +157,8 @@ public class WifiSettingActivity extends BaseActivity implements View.OnClickLis
                     wifiState[i] = true;
                 }
             }
-            wifiInfoAdapter = new WifiInfoAdapter(scanResultList, this, null, wifiState);
+            wifiInfoAdapter.notifyDataSetChanged();
+            showLongToast("WIFI开启成功！");
         }
     }
 
