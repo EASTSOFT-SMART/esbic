@@ -12,11 +12,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.Interpolator;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Scroller;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executors;
@@ -45,6 +49,7 @@ public class StandByActivity extends BaseActivity implements View.OnClickListene
     private KeyguardManager.KeyguardLock mKeyguardLock;
     private String userPasswd;
     private ImageButton buttonOne, buttonTwo;
+    private FixedSpeedScroller mScroller;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +80,14 @@ public class StandByActivity extends BaseActivity implements View.OnClickListene
         viewPager.setScanScroll(false);
         pagerAdapter=new MyPagerAdapter();
         viewPager.setAdapter(pagerAdapter);
+        try {
+            Field mField = ViewPager.class.getDeclaredField("mScroller");
+            mField.setAccessible(true);
+            mScroller = new FixedSpeedScroller(viewPager.getContext(),new AccelerateInterpolator());
+            mField.set(viewPager, mScroller);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -150,6 +163,8 @@ public class StandByActivity extends BaseActivity implements View.OnClickListene
                 viewGroup.removeView(view);
             }
             container.addView(view);
+            viewPager.setCurrentItem(currentItem);
+            mScroller.setmDuration(800);  // 单位ms 设置图片切换的过度时间，要不然太突然，受不了。。。
             //imageView.setOnClickListener(new View.OnClickListener() {
             //    @Override
             //    public void onClick(View view) {
@@ -201,5 +216,40 @@ public class StandByActivity extends BaseActivity implements View.OnClickListene
     @Override
     protected void onStop() {
         super.onStop();
+    }
+
+    public class FixedSpeedScroller extends Scroller
+    {
+        private int mDuration = 1000;
+
+        public FixedSpeedScroller(Context context) {
+            super(context);
+            // TODO Auto-generated constructor stub
+        }
+
+        public FixedSpeedScroller(Context context, Interpolator interpolator) {
+            super(context, interpolator);
+        }
+
+        @Override
+        public void startScroll(int startX, int startY, int dx, int dy, int duration) {
+            // Ignore received duration, use fixed one instead
+            super.startScroll(startX, startY, dx, dy, mDuration);
+        }
+
+        @Override
+        public void startScroll(int startX, int startY, int dx, int dy) {
+            // Ignore received duration, use fixed one instead
+            super.startScroll(startX, startY, dx, dy, mDuration);
+        }
+
+        public void setmDuration(int time) {
+            mDuration = time;
+        }
+
+        public int getmDuration() {
+            return mDuration;
+        }
+
     }
 }

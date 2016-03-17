@@ -28,12 +28,16 @@ import com.eastsoft.android.esbic.table.ParaInfo;
 import com.eastsoft.android.esbic.util.BoardCastFilterInfo;
 import com.eastsoft.android.esbic.util.JsonUtil;
 import com.eastsoft.android.esbic.util.LogUtil;
+import com.eastsoft.android.esbic.util.WifiScan;
 import com.eastsoft.android.esbic.weather.WeatherEnum;
 import com.eastsoft.android.esbic.weather.WeatherInfo;
 import com.eastsoft.android.esbic.weather.WeatherUtil;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by sofa on 2016/1/22.
@@ -150,6 +154,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 //        alarmInfo.save();
 //        alarmInfo = new AlarmInfo(4);
 //        alarmInfo.save();
+        new WifiScan(this).openWifi();
     }
 
     @Override
@@ -271,6 +276,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             city = paraInfo.getValue();
         }
         weatherInfo = WeatherUtil.getWeather(city);
+        if(weatherInfo == null)
+        {
+            handler.postDelayed(new QueryWeather(), 5);
+        }
     }
     //非空判断
     private void checkCityName(String cityName){

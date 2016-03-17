@@ -125,9 +125,9 @@ public class WifiScan {
         for(int i = 0; i < mWifiConfiguration.size(); i++){
             WifiConfiguration wifi =mWifiConfiguration.get(i);
             if(wifi.networkId == wifiId){
-                while(!(wifiManager.enableNetwork(wifiId, true))){//激活该Id，建立连接
+                if(wifiManager.enableNetwork(wifiId, true)){//激活该Id，建立连接
                     //status:0--已经连接，1--不可连接，2--可以连接
-                    Log.i("ConnectWifi",String.valueOf(mWifiConfiguration.get(wifiId).status));
+                    mWifiConfiguration = wifiManager.getConfiguredNetworks();
                 }
                 return mWifiConfiguration.get(wifiId).status;
             }
@@ -159,12 +159,13 @@ public class WifiScan {
 
     //重新获取WifiConfiguration
     public void reGetConfiguration(){
-        mWifiConfiguration=wifiManager.getConfiguredNetworks();//得到配置好的网络信息
+        mWifiConfiguration = wifiManager.getConfiguredNetworks();//得到配置好的网络信息
     }
 
     //得到WifiInfo的所有信息
-    public String getWifiInfo(){
-        return(wifiInfo==null)?"NULL":wifiInfo.toString();
+    public WifiInfo getWifiInfo(){
+        wifiInfo=wifiManager.getConnectionInfo();
+        return wifiInfo;
     }
     //得到连接的ID
     public int getNetWorkId(){

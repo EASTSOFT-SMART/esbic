@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.eastsoft.android.esbic.R;
 import com.eastsoft.android.esbic.dialog.MyDialog;
 import com.eastsoft.android.esbic.util.BoardCastFilterInfo;
+import com.eastsoft.android.esbic.util.TimeUtil;
 
 /**
  * Created by ll on 2016/1/9.
@@ -33,6 +34,7 @@ public class BaseActivity extends Activity{
             numSixMusicId,numSevenMusicId,numEightMusicId,numNineMusicId,numZeroMusicId;
     protected int alarmId,alarmVoiceId,alterSuccessId,passwordWrongId,alterFailedId;
     protected Intent intent;
+    protected Toast toast;
 
     //初始化GrideView自定义的输入键盘
 
@@ -40,7 +42,7 @@ public class BaseActivity extends Activity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initSoundPool();
-
+        toast = Toast.makeText(this, "", Toast.LENGTH_SHORT);//成员变量toast
     }
 
 
@@ -70,11 +72,13 @@ public class BaseActivity extends Activity{
     }
     //统一显示ShortToast
     protected void showShortToast(String string){
-        Toast.makeText(this,string,Toast.LENGTH_SHORT).show();
+        toast.setText(string);//刷新文字内容
+        toast.show();//显示toast
     }
     //统一显示LongToast
     protected void showLongToast(String string){
-        Toast.makeText(this,string,Toast.LENGTH_LONG).show();
+        toast.setText(string);//刷新文字内容
+        toast.show();//显示toast
     }
     //用于播放按键音
     protected void playMusic() {
