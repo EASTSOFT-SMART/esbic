@@ -1,6 +1,7 @@
 package com.eastsoft.android.esbic.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.DrawableRes;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -54,7 +55,7 @@ public class CityAdapter extends BaseAdapter
         city_name.setText(infos.get(i));
         if(status[i] == true)
         {
-            city_name.setBackgroundResource(R.drawable.words_bg);
+            city_name.setTextColor(Color.BLACK);
         }
         return view;
     }
