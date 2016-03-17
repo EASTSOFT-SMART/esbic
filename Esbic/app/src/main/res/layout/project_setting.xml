@@ -59,16 +59,76 @@
                     android:gravity="center"
                     android:text="设备地址"/>
 
-                <EditText
-                    android:id="@+id/project_setting_device_address"
-                    style="@style/text_22_000000"
+                <LinearLayout
                     android:layout_width="@dimen/width497"
-                    android:layout_height="@dimen/width66"
-                    android:layout_marginLeft="@dimen/width12"
-                    android:background="@drawable/input_box_3"
-                    android:gravity="center"
-                    android:maxLength="14"
-                    android:text="05楼05单元05层05房间"/>
+                    android:layout_height="@dimen/width63"
+                    android:layout_marginLeft="@dimen/width15"
+                    android:background="@color/white"
+                    android:orientation="horizontal" >
+                    <TextView
+                        android:layout_width="@dimen/width110"
+                        android:layout_height="wrap_content"
+                        android:text="    "/>
+                    <EditText
+                        android:id="@+id/setting_device_first"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:maxLength="2"
+                        android:text="05"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="楼"/>
+
+                    <EditText
+                        android:id="@+id/setting_device_second"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:background="@null"
+                        android:clickable="true"
+                        android:maxLength="2"
+                        android:text="05"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="单元"/>
+
+                    <EditText
+                        android:id="@+id/setting_device_third"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:background="@null"
+                        android:maxLength="2"
+                        android:text="05"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="层"/>
+
+                    <EditText
+                        android:id="@+id/setting_device_fourth"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:gravity="center"
+                        android:maxLength="2"
+                        android:text="05"/>
+                    <TextView
+                        android:layout_width="@dimen/width130"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical|left"
+                        android:text="房间"/>
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -87,18 +147,71 @@
                     android:gravity="center"
                     android:text="IP"/>
 
-                <EditText
-                    android:id="@+id/project_setting_ip"
-                    style="@style/text_22_000000"
+                <LinearLayout
                     android:layout_width="@dimen/width497"
-                    android:layout_height="@dimen/width66"
-                    android:layout_marginLeft="@dimen/width12"
-                    android:background="@drawable/input_box_3"
-                    android:gravity="center"
-                    android:maxLength="15"
-                    android:text="192.168.001.211"/>
+                    android:layout_height="@dimen/width70"
+                    android:layout_marginLeft="@dimen/width15"
+                    android:background="@color/white"
+                    android:orientation="horizontal" >
 
+                    <EditText
+                        android:id="@+id/setting_ip_first"
+                        android:layout_width="@dimen/width190"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical|right"
+                        android:background="@null"
+                        android:maxLength="3"
+                        android:text="255"/>
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="."/>
+
+                    <EditText
+                        android:id="@+id/setting_ip_second"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:background="@null"
+                        android:clickable="true"
+                        android:maxLength="3"
+                        android:text="255"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="."/>
+
+                    <EditText
+                        android:id="@+id/setting_ip_third"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:background="@null"
+                        android:clickable="true"
+                        android:maxLength="3"
+                        android:text="255"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="."/>
+
+                    <EditText
+                        android:id="@+id/setting_ip_fourth"
+                        android:layout_width="@dimen/width190"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:clickable="true"
+                        android:gravity="center_vertical|left"
+                        android:maxLength="3"
+                        android:text="255"/>
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -116,16 +229,71 @@
                     android:gravity="center"
                     android:text="子网掩码 "/>
 
-                <EditText
-                    android:id="@+id/project_setting_subnet_mask"
-                    style="@style/text_22_000000"
+                <LinearLayout
                     android:layout_width="@dimen/width497"
-                    android:layout_height="@dimen/width66"
-                    android:layout_marginLeft="@dimen/width12"
-                    android:background="@drawable/input_box_3"
-                    android:gravity="center"
-                    android:maxLength="15"
-                    android:text="255.255.255.000"/>
+                    android:layout_height="@dimen/width70"
+                    android:layout_marginLeft="@dimen/width15"
+                    android:background="@color/white"
+                    android:orientation="horizontal" >
+
+                    <EditText
+                        android:id="@+id/setting_submask_first"
+                        android:layout_width="@dimen/width190"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical|right"
+                        android:background="@null"
+                        android:maxLength="3"
+                        android:text="255"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="."/>
+
+                    <EditText
+                        android:id="@+id/setting_submask_second"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:background="@null"
+                        android:clickable="true"
+                        android:maxLength="3"
+                        android:text="255"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="."/>
+
+                    <EditText
+                        android:id="@+id/setting_submask_third"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:background="@null"
+                        android:clickable="true"
+                        android:maxLength="3"
+                        android:text="255"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="."/>
+
+                    <EditText
+                        android:id="@+id/setting_submask_fourth"
+                        android:layout_width="@dimen/width190"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:clickable="true"
+                        android:gravity="center_vertical|left"
+                        android:maxLength="3"
+                        android:text="255"/>
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -144,16 +312,71 @@
                     android:gravity="center"
                     android:text="网关"/>
 
-                <EditText
-                    android:id="@+id/project_setting_gateway"
-                    style="@style/text_22_000000"
+                <LinearLayout
                     android:layout_width="@dimen/width497"
-                    android:layout_height="@dimen/width66"
-                    android:layout_marginLeft="@dimen/width12"
-                    android:background="@drawable/input_box_3"
-                    android:gravity="center"
-                    android:maxLength="15"
-                    android:text="192.168.001.254"/>
+                    android:layout_height="@dimen/width70"
+                    android:layout_marginLeft="@dimen/width15"
+                    android:background="@color/white"
+                    android:orientation="horizontal" >
+
+                    <EditText
+                        android:id="@+id/setting_gateway_first"
+                        android:layout_width="@dimen/width190"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical|right"
+                        android:background="@null"
+                        android:maxLength="3"
+                        android:text="255"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="."/>
+
+                    <EditText
+                        android:id="@+id/setting_gateway_second"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:background="@null"
+                        android:clickable="true"
+                        android:maxLength="3"
+                        android:text="255"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="."/>
+
+                    <EditText
+                        android:id="@+id/setting_gateway_third"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:background="@null"
+                        android:clickable="true"
+                        android:maxLength="3"
+                        android:text="255"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="."/>
+
+                    <EditText
+                        android:id="@+id/setting_gateway_fourth"
+                        android:layout_width="@dimen/width190"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:clickable="true"
+                        android:gravity="center_vertical|left"
+                        android:maxLength="3"
+                        android:text="255"/>
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -171,15 +394,68 @@
                     android:gravity="center"
                     android:text="服务器"/>
 
-                <EditText
-                    android:id="@+id/project_setting_imp_server"
-                    style="@style/text_22_000000"
+                <LinearLayout
                     android:layout_width="@dimen/width497"
-                    android:layout_height="@dimen/width66"
-                    android:layout_marginLeft="@dimen/width12"
-                    android:background="@drawable/input_box_3"
-                    android:gravity="center"
-                    android:maxLength="15"/>
+                    android:layout_height="@dimen/width70"
+                    android:layout_marginLeft="@dimen/width15"
+                    android:background="@color/white"
+                    android:orientation="horizontal" >
+
+                    <EditText
+                        android:id="@+id/setting_imp_first"
+                        android:layout_width="@dimen/width190"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical|right"
+                        android:background="@null"
+                        android:maxLength="3"
+                        android:text="255"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="."/>
+
+                    <EditText
+                        android:id="@+id/setting_imp_second"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:background="@null"
+                        android:maxLength="3"
+                        android:text="255"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="."/>
+
+                    <EditText
+                        android:id="@+id/setting_imp_third"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:background="@null"
+                        android:maxLength="3"
+                        android:text="255"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="."/>
+
+                    <EditText
+                        android:id="@+id/setting_imp_fourth"
+                        android:layout_width="@dimen/width190"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:gravity="center_vertical|left"
+                        android:maxLength="3"
+                        android:text="255"/>
+                </LinearLayout>
 
 
             </LinearLayout>
@@ -199,15 +475,68 @@
                     android:gravity="center"
                     android:text="中心管理机"/>
 
-                <EditText
-                    android:id="@+id/project_setting_center_management"
-                    style="@style/text_22_000000"
+                <LinearLayout
                     android:layout_width="@dimen/width497"
-                    android:layout_height="@dimen/width66"
-                    android:layout_marginLeft="@dimen/width12"
-                    android:background="@drawable/input_box_3"
-                    android:gravity="center"
-                    android:maxLength="15"/>
+                    android:layout_height="@dimen/width70"
+                    android:layout_marginLeft="@dimen/width15"
+                    android:background="@color/white"
+                    android:orientation="horizontal" >
+
+                    <EditText
+                        android:id="@+id/setting_center_first"
+                        android:layout_width="@dimen/width190"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical|right"
+                        android:background="@null"
+                        android:maxLength="3"
+                        android:text="255"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="."/>
+
+                    <EditText
+                        android:id="@+id/setting_center_second"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:background="@null"
+                        android:maxLength="3"
+                        android:text="255"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="."/>
+
+                    <EditText
+                        android:id="@+id/setting_center_third"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:background="@null"
+                        android:maxLength="3"
+                        android:text="255"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="."/>
+
+                    <EditText
+                        android:id="@+id/setting_center_fourth"
+                        android:layout_width="@dimen/width190"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:gravity="center_vertical|left"
+                        android:maxLength="3"
+                        android:text="255"/>
+                </LinearLayout>
 
             </LinearLayout>
 
