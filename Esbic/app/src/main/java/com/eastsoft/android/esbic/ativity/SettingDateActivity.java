@@ -1,29 +1,19 @@
 package com.eastsoft.android.esbic.ativity;
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageButton;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.eastsoft.android.esbic.R;
 import com.eastsoft.android.esbic.adapter.InputKeyBoardAdapter;
 import com.eastsoft.android.esbic.util.TimeUtil;
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.common.api.GoogleApiClient;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
