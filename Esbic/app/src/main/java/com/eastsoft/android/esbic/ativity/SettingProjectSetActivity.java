@@ -7,6 +7,7 @@ import android.os.Message;
 import android.text.Editable;
 import android.text.InputType;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -21,6 +22,8 @@ import com.eastsoft.android.esbic.jni.DeviceTypeEnum;
 import com.eastsoft.android.esbic.jni.IpAddressInfo;
 import com.eastsoft.android.esbic.service.IModelService;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -50,7 +53,7 @@ public class SettingProjectSetActivity extends BaseActivity implements View.OnFo
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.project_setting);
-        imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         back = (ImageButton) this.findViewById(R.id.project_setting_back);
         back.setOnClickListener(this);
         back2 = (TextView) this.findViewById(R.id.project_setting_back2);
@@ -199,6 +202,58 @@ public class SettingProjectSetActivity extends BaseActivity implements View.OnFo
                 centerManagementAddr4.setText(tmp[3]);
             }
         }
+        for (EditText editText : editTexts)
+        {
+            disableShowSoftInput(editText);
+        }
+    }
+
+    public void disableShowSoftInput(EditText editText)
+    {
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
+        int currentVersion = android.os.Build.VERSION.SDK_INT;
+        String methodName = null;
+        if (currentVersion >= 16)
+        {
+            // 4.2
+            methodName = "setShowSoftInputOnFocus";
+        } else if (currentVersion >= 14)
+        {
+            // 4.0
+            methodName = "setSoftInputShownOnFocus";
+        }
+
+        if (methodName == null)
+        {
+            editText.setInputType(InputType.TYPE_NULL);
+        } else
+        {
+            Class<EditText> cls = EditText.class;
+            Method setShowSoftInputOnFocus;
+            try
+            {
+                setShowSoftInputOnFocus = cls.getMethod(methodName, boolean.class);
+                setShowSoftInputOnFocus.setAccessible(true);
+                setShowSoftInputOnFocus.invoke(editText, false);
+            } catch (NoSuchMethodException e)
+            {
+                editText.setInputType(InputType.TYPE_NULL);
+                e.printStackTrace();
+            } catch (IllegalAccessException e)
+            {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (IllegalArgumentException e)
+            {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (InvocationTargetException e)
+            {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
@@ -339,47 +394,47 @@ public class SettingProjectSetActivity extends BaseActivity implements View.OnFo
     private void append(String tmp)
     {
         int len = currentEditText.getText().toString().trim().length();
-        if(currentEditText == deviceAddress1 || currentEditText == deviceAddress2 || currentEditText == deviceAddress3 || currentEditText == deviceAddress4)
+        if (currentEditText == deviceAddress1 || currentEditText == deviceAddress2 || currentEditText == deviceAddress3 || currentEditText == deviceAddress4)
         {
-            if(len == 0)
+            if (len == 0)
             {
                 currentEditText.append(tmp);
-            }else if(len == 1)
+            } else if (len == 1)
             {
                 currentEditText.append(tmp);
                 int index = editTexts.indexOf(currentEditText);
-                if(currentEditText != centerManagementAddr4)
+                if (currentEditText != centerManagementAddr4)
                 {
-                    currentEditText = editTexts.get(index+1);
+                    currentEditText = editTexts.get(index + 1);
                     currentEditText.setFocusable(true);
                     currentEditText.requestFocus();
                 }
             }
-        }else
+        } else
         {
-            if(len < 2)
+            if (len < 2)
             {
                 currentEditText.append(tmp);
-            }else if(len == 2)
+            } else if (len == 2)
             {
                 currentEditText.append(tmp);
                 int index = editTexts.indexOf(currentEditText);
-                if(currentEditText != centerManagementAddr4)
+                if (currentEditText != centerManagementAddr4)
                 {
-                    currentEditText = editTexts.get(index+1);
+                    currentEditText = editTexts.get(index + 1);
                     currentEditText.setFocusable(true);
                     currentEditText.requestFocus();
                 }
-            }else if(len == 3)
+            } else if (len == 3)
             {
                 int index = editTexts.indexOf(currentEditText);
-                if(currentEditText != centerManagementAddr4)
+                if (currentEditText != centerManagementAddr4)
                 {
-                    currentEditText = editTexts.get(index+1);
+                    currentEditText = editTexts.get(index + 1);
                     currentEditText.setFocusable(true);
                     currentEditText.requestFocus();
                     currentEditText.append(tmp);
-                }else
+                } else
                 {
                     currentEditText.setSelection(currentEditText.getText().toString().length());
                 }
@@ -395,12 +450,12 @@ public class SettingProjectSetActivity extends BaseActivity implements View.OnFo
         {
             int index = currentEditText.getSelectionStart();
             String str = currentEditText.getText().toString();
-            if(index == 0)
+            if (index == 0)
             {
                 int ind = editTexts.indexOf(currentEditText);
-                if(currentEditText != deviceAddress1)
+                if (currentEditText != deviceAddress1)
                 {
-                    currentEditText = editTexts.get(ind-1);
+                    currentEditText = editTexts.get(ind - 1);
                     currentEditText.setFocusable(true);
                     currentEditText.requestFocus();
                     str = currentEditText.getText().toString();
@@ -411,16 +466,16 @@ public class SettingProjectSetActivity extends BaseActivity implements View.OnFo
                         currentEditText.getText().delete(location - 1, location);
                     }
                 }
-            }else if (!str.equals(""))
+            } else if (!str.equals(""))
             {
                 currentEditText.getText().delete(index - 1, index);
             }
-        }else
+        } else
         {
             int index = editTexts.indexOf(currentEditText);
-            if(currentEditText != deviceAddress1)
+            if (currentEditText != deviceAddress1)
             {
-                currentEditText = editTexts.get(index-1);
+                currentEditText = editTexts.get(index - 1);
                 currentEditText.setFocusable(true);
                 currentEditText.requestFocus();
                 String str = currentEditText.getText().toString();
