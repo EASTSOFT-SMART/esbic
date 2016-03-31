@@ -1,6 +1,5 @@
 package com.eastsoft.android.esbic.ativity;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.View;
@@ -20,9 +19,9 @@ public class CallManagementCenterActivity extends BaseActivity implements View.O
     private Button hangUp;
     private Chronometer timer,timerConversation;
     private ImageButton back;
-    private TextView back2;
+    private TextView back2, centerAddr;
     private IModelService modelService;
-    private String centerAaddr;
+    private String centerAddress;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +34,7 @@ public class CallManagementCenterActivity extends BaseActivity implements View.O
         timerConversation=(Chronometer)this.findViewById(R.id.timer_conversation);
         hangUp=(Button)this.findViewById(R.id.call_center_management_hang_up);
         back=(ImageButton)this.findViewById(R.id.call_center_management_back);
+        centerAddr = (TextView)this.findViewById(R.id.call_center_management_addr);
         hangUp.setOnClickListener(this);
         back.setOnClickListener(this);
         back2=(TextView) this.findViewById(R.id.call_center_management_back2);
@@ -43,8 +43,9 @@ public class CallManagementCenterActivity extends BaseActivity implements View.O
         timer.start();
         modelService = ((MyApplication)getApplication()).getModelService();
         IpAddressInfo ipAddressInfo = modelService.getIpAddressInfo();
-        centerAaddr = ipAddressInfo.getCenterAddress();
-        modelService.call_center_manager(centerAaddr);
+        centerAddress = ipAddressInfo.getCenterAddress();
+        centerAddr.setText(centerAddress);
+        modelService.call_center_manager(centerAddress);
     }
 
     @Override

@@ -44,13 +44,21 @@
                      android:gravity="center"
                      android:layout_gravity="center"
                      android:textColor="#FFFFFF"
-                     android:layout_marginTop="@dimen/width225"
+                     android:layout_marginTop="@dimen/width210"
                      android:layout_width="wrap_content"
                      android:layout_height="wrap_content"
                      android:textSize="@dimen/textsize36"
-                     android:text="正在呼叫管理中心..."/>
-
-
+                     android:text="正在呼叫管理中心"/>
+                <TextView
+                    android:id="@+id/call_center_management_addr"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:textColor="#FFFFFF"
+                    android:layout_marginTop="@dimen/width5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/textsize36"
+                    android:text=""/>
                  <Chronometer
                      android:id="@+id/timer"
                      android:gravity="center"
