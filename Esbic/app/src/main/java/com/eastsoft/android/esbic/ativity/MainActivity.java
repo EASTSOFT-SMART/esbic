@@ -20,14 +20,17 @@ import com.eastsoft.android.esbic.R;
 import com.eastsoft.android.esbic.jni.DeviceInfo;
 import com.eastsoft.android.esbic.jni.DeviceTypeEnum;
 import com.eastsoft.android.esbic.jni.IpAddressInfo;
+import com.eastsoft.android.esbic.jni.MessageInfoEnum;
 import com.eastsoft.android.esbic.service.BroadcastTypeEnum;
 import com.eastsoft.android.esbic.service.IModelService;
 import com.eastsoft.android.esbic.service.ModelServiceImpl;
 import com.eastsoft.android.esbic.table.AlarmInfo;
+import com.eastsoft.android.esbic.table.MessageInfo;
 import com.eastsoft.android.esbic.table.ParaInfo;
 import com.eastsoft.android.esbic.util.BoardCastFilterInfo;
 import com.eastsoft.android.esbic.util.JsonUtil;
 import com.eastsoft.android.esbic.util.LogUtil;
+import com.eastsoft.android.esbic.util.TimeUtil;
 import com.eastsoft.android.esbic.util.WifiScan;
 import com.eastsoft.android.esbic.weather.WeatherEnum;
 import com.eastsoft.android.esbic.weather.WeatherInfo;
@@ -278,7 +281,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         weatherInfo = WeatherUtil.getWeather(city);
         if(weatherInfo == null)
         {
-            handler.postDelayed(new QueryWeather(), 5);
+            handler.postDelayed(new QueryWeather(), 10000);
         }
     }
     //非空判断

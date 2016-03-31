@@ -15,6 +15,7 @@ import com.eastsoft.android.esbic.adapter.CityAdapter;
 import com.eastsoft.android.esbic.service.IModelService;
 import com.eastsoft.android.esbic.table.ParaInfo;
 import com.eastsoft.android.esbic.util.CityUtil;
+import com.eastsoft.android.esbic.util.LogUtil;
 import com.eastsoft.android.esbic.weather.WeatherEnum;
 import com.eastsoft.android.esbic.weather.WeatherUtil;
 import com.eastsoft.android.esbic.weather.WeatherInfo;
@@ -79,12 +80,17 @@ public class WeatherSettingActivity extends BaseActivity implements AdapterView.
         {
             city = paraInfo.getValue();
         }
-        WeatherInfo info = WeatherUtil.getWeather(city);
-        city_name.setText(city);
-        weater_content.setText(info.description);
-        temp.setText(info.lowTemperate+"～"+ info.hightTemperate + "℃");
-        wind_status.setText(info.wind);
-        weater_setting_icon.setBackgroundResource(WeatherEnum.find(info.description).icon);
+        try {
+            WeatherInfo info = WeatherUtil.getWeather(city);
+            city_name.setText(city);
+            weater_content.setText(info.description);
+            temp.setText(info.lowTemperate+"～"+ info.hightTemperate + "℃");
+            wind_status.setText(info.wind);
+            weater_setting_icon.setBackgroundResource(WeatherEnum.find(info.description).icon);
+        }catch(Exception e)
+        {
+            LogUtil.print("获取天气失败");
+        }
     }
 
     @Override

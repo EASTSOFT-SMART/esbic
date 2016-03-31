@@ -6,8 +6,8 @@
         android:id="@+id/monitor_background"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_width="@dimen/width206"
-        android:layout_height="@dimen/width111"
+        android:layout_width="@dimen/width210"
+        android:layout_height="@dimen/width110"
         android:orientation="vertical"
         android:background="@drawable/monitor_display">
         <TextView

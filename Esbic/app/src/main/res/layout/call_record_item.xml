@@ -18,8 +18,7 @@
             <ImageView
                 android:id="@+id/record_icon"
                 android:layout_width="@dimen/width58"
-                android:layout_height="@dimen/width58"
-                android:background="@drawable/call_in_default"/>
+                android:layout_height="@dimen/width58"/>
 
 
         </LinearLayout>
@@ -35,7 +34,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/text_26_ffffff"
-                android:text="05楼05单元05层05房间"/>
+                android:text="    没有通话记录！"/>
 
                 <TextView
                     android:id="@+id/record_time"
@@ -44,7 +43,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/text_18_ffffff"
-                    android:text="2016年1月1日 "/>
+                    android:text=""/>
 
 
             </LinearLayout>

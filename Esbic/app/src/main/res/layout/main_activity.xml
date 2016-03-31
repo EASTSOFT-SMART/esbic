@@ -108,7 +108,7 @@
                   android:layout_gravity="right"
                   android:layout_width="wrap_content"
                   android:layout_height="@dimen/width35"
-                  android:text="未知"
+                  android:text="获取中"
                   android:layout_marginTop="@dimen/width5"
                   style="@style/text_30_ffffff"/>
                 <TextView
@@ -118,7 +118,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/width35"
                     android:layout_marginTop="@dimen/width10"
-                    android:text="0~10C" />
+                    android:text="获取中" />
             </LinearLayout>
 
             <ImageView
@@ -126,7 +126,7 @@
                 android:layout_width="@dimen/width118"
                 android:layout_height="@dimen/width84"
                 android:layout_marginLeft="@dimen/width10"
-                android:background="@drawable/weather_9"/>
+                android:background="@drawable/weather_8"/>
 
         </LinearLayout>
         <!--温度，最高低温度，时间，天气结束 -->

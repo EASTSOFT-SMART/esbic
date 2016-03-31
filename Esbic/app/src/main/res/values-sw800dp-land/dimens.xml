@@ -1001,8 +1001,14 @@
 <dimen name="width999">999.0dp</dimen>
 <dimen name="width1000">1000.0dp</dimen>
 <dimen name="width1001">1001.0dp</dimen>
-    	
-  
+
+<dimen name="width1026">1026dp</dimen>
+<dimen name="width1046">1046dp</dimen>
+<dimen name="width1079">1079dp</dimen>
+<dimen name="width1100">1100dp</dimen>
+<dimen name="width1104">1104dp</dimen>
+<dimen name="width1200">1200dp</dimen>
+
 <dimen name="textsize1">1.0sp</dimen>
 <dimen name="textsize2">2.0sp</dimen>
 <dimen name="textsize3">3.0sp</dimen>

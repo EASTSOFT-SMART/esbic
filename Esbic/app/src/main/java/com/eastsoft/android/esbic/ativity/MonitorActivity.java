@@ -110,7 +110,8 @@ public class MonitorActivity extends BaseActivity implements View.OnClickListene
         EventHandler em = EventHandler.getInstance();
         em.addHandler(mVlcHandler);
         this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
-        mMediaPlayer.playMRL("rtsp://218.204.223.237:554/live/1/66251FC11353191F/e7ooqwcfbqjoo80j.sdp");
+        String testUrl = "rtsp://218.204.223.237:554/live/1/66251FC11353191F/e7ooqwcfbqjoo80j.sdp";
+        mMediaPlayer.playMRL(testUrl);
     }
 
     @Override

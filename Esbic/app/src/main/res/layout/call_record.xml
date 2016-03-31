@@ -43,6 +43,7 @@
                     android:layout_width="match_parent"
                     android:divider="#00000000"
                     android:dividerHeight="@dimen/width4"
+                    android:background="@drawable/message_left_bg"
                     android:layout_height="match_parent">
                 </ListView>
             </LinearLayout>
