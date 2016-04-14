@@ -1,6 +1,7 @@
 package com.eastsoft.android.esbic.ativity;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiConfiguration;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -64,11 +66,6 @@ public class WifiSettingActivity extends BaseActivity implements View.OnClickLis
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.wifi_setting);
-        initData();
-    }
-
-    private void initData()
-    {
         mySlipButton = (MySlipButton) this.findViewById(R.id.wifi_switch);
         listView = (ListView) this.findViewById(R.id.wifi_list);
         listView.setOnItemClickListener(this);
@@ -80,7 +77,11 @@ public class WifiSettingActivity extends BaseActivity implements View.OnClickLis
         back2.setOnClickListener(this);
         scanWifi.setOnClickListener(this);
         scanWifi2.setOnClickListener(this);
+        initData();
+    }
 
+    private void initData()
+    {
         wifiScan = new WifiScan(this);
         wifiInfoAdapter = new WifiInfoAdapter(scanResultList, this, null, wifiState);
         listView.setAdapter(wifiInfoAdapter);
@@ -292,6 +293,12 @@ public class WifiSettingActivity extends BaseActivity implements View.OnClickLis
                             currentIndex = WifiSettingActivity.this.position;
                             wifiState[currentIndex] = true;
                             WifiSettingActivity.this.wifiInfoAdapter.notifyDataSetChanged();
+                            dialog.dismiss();
+                            // 隐藏输入法软键盘
+                            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                            imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+                            imm.hideSoftInputFromWindow(view.getWindowToken(), 0); //强制隐藏键盘
+                            ((InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(WifiSettingActivity.this.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                         } else if (status == 1)
                         {
                             showShortToast("连接失败！");

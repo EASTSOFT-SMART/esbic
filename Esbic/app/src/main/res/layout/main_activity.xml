@@ -21,6 +21,7 @@
         <Button
             android:id="@+id/call_record"
             android:layout_marginTop="@dimen/width23"
+
             android:layout_marginLeft="@dimen/width98"
             android:layout_width="@dimen/width71"
             android:layout_height="@dimen/width47"
@@ -84,7 +85,7 @@
     <LinearLayout
         android:layout_width="@dimen/width489"
         android:layout_height="@dimen/width501"
-        android:layout_marginTop="@dimen/width121"
+        android:layout_marginTop="@dimen/width100"
         android:layout_marginLeft="@dimen/width102"
         android:orientation="vertical"
         android:background="@drawable/bg"
@@ -183,7 +184,7 @@
         <LinearLayout
             android:layout_width="@dimen/width520"
             android:layout_height="@dimen/width386"
-            android:layout_marginTop="@dimen/width173"
+            android:layout_marginTop="@dimen/width153"
             android:layout_marginLeft="@dimen/width67"
             android:orientation="vertical">
             <LinearLayout

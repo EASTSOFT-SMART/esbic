@@ -1,29 +1,33 @@
 package com.eastsoft.android.esbic.ativity;
 
 import android.content.Context;
+import android.content.pm.ActivityInfo;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.eastsoft.android.esbic.R;
 import com.eastsoft.android.esbic.util.LogUtil;
+import com.eastsoft.android.esbic.util.TimeUtil;
 
 /**
  * Created by Mr Wang on 2016/2/16.
  */
 public class VolumeActivity extends BaseActivity implements SeekBar.OnSeekBarChangeListener,View.OnClickListener {
-    private MediaPlayer mediaPlayer;
     private AudioManager audioManager;
     private ImageButton back,volumeDecrease,volumeAdd;
     private TextView back2;
     private SeekBar seekBar;
     private int maxVolume,currentVolume;
     private int volume=0;//初始化声音
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,8 +35,8 @@ public class VolumeActivity extends BaseActivity implements SeekBar.OnSeekBarCha
         initData();
     }
 
-    private void initData(){
-        mediaPlayer=new MediaPlayer();
+    private void initData()
+    {
         back=(ImageButton)this.findViewById(R.id.volume_setting_back);
         back2=(TextView) this.findViewById(R.id.volume_setting_back2);
         volumeDecrease=(ImageButton)this.findViewById(R.id.volume_setting_decrease);
@@ -40,7 +44,6 @@ public class VolumeActivity extends BaseActivity implements SeekBar.OnSeekBarCha
         seekBar=(SeekBar)this.findViewById(R.id.volume_setting_seekbar);
         audioManager=(AudioManager)this.getSystemService(Context.AUDIO_SERVICE);
         maxVolume=audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);//获取当前最大的音量;
-        LogUtil.print("媒体最大音量"+String.valueOf(maxVolume));
         seekBar.setMax(maxVolume);
         currentVolume=audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);//获取当前的音量;
         volume=currentVolume;
