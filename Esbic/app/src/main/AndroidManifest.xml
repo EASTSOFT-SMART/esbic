@@ -44,86 +44,113 @@
             </intent-filter>
         </activity>
         <activity android:name=".ativity.SmartHomeActivity"
+                  android:windowSoftInputMode="stateHidden"
             android:screenOrientation="landscape">
         </activity>
         <activity android:name=".ativity.LeaveHome"
+                  android:windowSoftInputMode="stateHidden"
             android:screenOrientation="landscape">
         </activity>
         <activity android:name=".ativity.CallMain"
+                  android:windowSoftInputMode="stateHidden"
             android:screenOrientation="landscape">
         </activity>
         <activity android:name=".ativity.CallManagementCenterActivity"
+                  android:windowSoftInputMode="stateHidden"
             android:screenOrientation="landscape">
         </activity>
         <activity android:name=".ativity.CallRecordActivity"
+                  android:windowSoftInputMode="stateHidden"
             android:screenOrientation="landscape">
         </activity>
         <activity android:name=".ativity.ConversationActivity"
+                  android:windowSoftInputMode="stateHidden"
             android:screenOrientation="landscape">
         </activity>
         <activity android:name=".ativity.MessageContentActivity"
+                  android:windowSoftInputMode="stateHidden"
             android:screenOrientation="landscape">
         </activity>
         <activity android:name=".ativity.MonitorActivity"
+                  android:windowSoftInputMode="stateHidden"
             android:screenOrientation="landscape">
         </activity>
         <activity android:name=".ativity.PushMessageActivity"
+                  android:windowSoftInputMode="stateHidden"
             android:screenOrientation="landscape">
         </activity>
         <activity android:name=".ativity.ScreenLightActivity"
+                  android:windowSoftInputMode="stateHidden"
             android:screenOrientation="landscape">
         </activity>
         <activity android:name=".ativity.VolumeActivity"
-            android:screenOrientation="landscape" >
+                  android:windowSoftInputMode="stateHidden"
+            android:screenOrientation="landscape">
         </activity>
         <activity android:name=".ativity.SettingActivity"
+                  android:windowSoftInputMode="stateHidden"
             android:screenOrientation="landscape">
         </activity>
         <activity android:name=".ativity.WifiSettingActivity"
+                  android:windowSoftInputMode="stateHidden"
             android:screenOrientation="landscape">
         </activity>
         <activity android:name=".ativity.AlarmRecordActivity"
+                  android:windowSoftInputMode="stateHidden"
             android:screenOrientation="landscape">
         </activity>
         <activity android:name=".ativity.SettingSecurityNeedPwdActivity"
+                  android:windowSoftInputMode="stateHidden"
             android:screenOrientation="landscape">
         </activity>
         <activity android:name=".ativity.SettingSecurityActivity"
+                  android:windowSoftInputMode="stateHidden"
             android:screenOrientation="landscape">
         </activity>
         <activity android:name=".ativity.SecurityAlterUserPwdActivity"
+                  android:windowSoftInputMode="stateHidden"
             android:screenOrientation="landscape">
         </activity>
         <activity android:name=".ativity.SettingDateActivity"
+                  android:windowSoftInputMode="stateHidden"
             android:screenOrientation="landscape">
         </activity>
         <activity android:name=".ativity.SettingRecoveryFactoryActivity"
+                  android:windowSoftInputMode="stateHidden"
             android:screenOrientation="landscape">
         </activity>
         <activity android:name=".ativity.SettingProjectQueryActivity"
+                  android:windowSoftInputMode="stateHidden"
             android:screenOrientation="landscape">
         </activity>
         <activity android:name=".ativity.SettingDeviceInfoActivity"
+                  android:windowSoftInputMode="stateHidden"
             android:screenOrientation="landscape">
         </activity>
         <activity android:name=".ativity.SettingProjectPassWordActivity"
+                  android:windowSoftInputMode="stateHidden"
             android:screenOrientation="landscape">
         </activity>
         <activity android:name=".ativity.SettingProjectSetActivity"
+                  android:windowSoftInputMode="stateHidden"
             android:screenOrientation="landscape">
         </activity>
         <activity android:name=".ativity.OnCallActivity"
+                  android:windowSoftInputMode="stateHidden"
             android:screenOrientation="landscape"
             >
         </activity>
         <activity android:name=".ativity.RoomCallActivity"
+                  android:windowSoftInputMode="stateHidden"
                   android:screenOrientation="landscape"
             >
         </activity>
         <activity android:name=".ativity.StandByActivity"
+                  android:windowSoftInputMode="stateHidden"
             android:screenOrientation="landscape">
         </activity>
         <activity android:name=".ativity.WeatherSettingActivity"
+                  android:windowSoftInputMode="stateHidden"
             android:screenOrientation="landscape">
         </activity>
     </application>

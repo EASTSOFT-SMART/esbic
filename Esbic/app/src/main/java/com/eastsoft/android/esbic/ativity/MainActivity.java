@@ -1,7 +1,5 @@
 package com.eastsoft.android.esbic.ativity;
 
-
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -38,9 +36,7 @@ import com.eastsoft.android.esbic.weather.WeatherUtil;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
+import java.util.Locale;
 
 /**
  * Created by sofa on 2016/1/22.
@@ -89,10 +85,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener
                     }
                 }else if(msg.what == 2)
                 {
-                    simpleDateFormat=new SimpleDateFormat("yyyy年MM月dd日");
+                    simpleDateFormat=new SimpleDateFormat("yyyy年MM月dd日", Locale.CHINA);
                     now =new Date();
                     yearMonthDay.setText(simpleDateFormat.format(now));
-                    week.setText(new SimpleDateFormat("E").format(now));
+                    week.setText(new SimpleDateFormat("E", Locale.CHINA).format(now));
                 }
             }
         };
@@ -138,10 +134,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener
         callElevator.setOnClickListener(this);
 
         intent=getIntents();
-        simpleDateFormat=new SimpleDateFormat("yyyy年MM月dd日");
+        simpleDateFormat=new SimpleDateFormat("yyyy年MM月dd日", Locale.CHINA);
         now =new Date();
         yearMonthDay.setText(simpleDateFormat.format(now));
-        week.setText(new SimpleDateFormat("E").format(now));
+        week.setText(new SimpleDateFormat("E", Locale.CHINA).format(now));
         boardCastFilterInfo=new BoardCastFilterInfo();
 
         ((MyApplication)getApplication()).setModelService(new ModelServiceImpl(getApplicationContext()));
@@ -265,8 +261,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener
             startActivity(intent);
         }
         if (view.getId()==callElevator.getId()){
-//            intent.setClass(MainActivity.this,OnCallActivity.class);
-//            startActivity(intent);
+            showShortToast("绿色出行，拒绝电梯!");
         }
     }
 
@@ -315,7 +310,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener
             Message message=new Message();
             message.what=2;
             handler.sendMessageDelayed(message, 200);
-            handler.postDelayed(new UpdateDate(), 5000);
+            if(TimeUtil.isSystemTimeCorrect())
+            {
+                return;
+            }
+            handler.postDelayed(new UpdateDate(), 3000);
         }
     }
 
@@ -332,6 +331,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener
             {
                 case CALL_REQUEST :
                     DeviceInfo deviceInfo = JsonUtil.fromJson(value, DeviceInfo.class);
+                    if(deviceInfo == null)
+                    {
+                        return;
+                    }
                     if(deviceInfo.getDevice_type() == DeviceTypeEnum.DT_UNIT_DOOR_MACHINE.getType())
                     {
                         intent.setClass(MainActivity.this, OnCallActivity.class);
