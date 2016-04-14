@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.eastsoft.android.esbic.R;
+import com.eastsoft.android.esbic.util.LogUtil;
 
 /**
  * Created by sofa on 2016/1/26.
@@ -94,7 +95,7 @@ public class ScreenLightActivity extends BaseActivity implements View.OnClickLis
                 screenLightSeekBar.setProgress(postion);
                 settingAndroidSystemBrightness(postion);
             }else{
-                postion=1;
+                postion=0;
                 screenLightSeekBar.setProgress(postion);
                 settingAndroidSystemBrightness(postion);
             }
@@ -113,7 +114,7 @@ public class ScreenLightActivity extends BaseActivity implements View.OnClickLis
                 settingAndroidSystemBrightness(postion);
             }
         }
-
+        LogUtil.print("当前亮度值为 ： " + postion);
     }
 
     private void settingAndroidSystemBrightness(int num){

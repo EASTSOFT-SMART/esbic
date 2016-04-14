@@ -29,7 +29,7 @@
 
     <RelativeLayout
         android:layout_width="@dimen/width1079"
-        android:layout_height="@dimen/width615"
+        android:layout_height="@dimen/width570"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/width45">
 
@@ -38,6 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:divider="#00000000"
+            android:background="@drawable/message_left_bg"
             android:dividerHeight="@dimen/width8"
             >
         </ListView>

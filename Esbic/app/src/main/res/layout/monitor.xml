@@ -51,7 +51,7 @@
                 android:layout_gravity="center"
                 android:numColumns="2"
                 android:layout_width="@dimen/width412"
-                android:layout_height="@dimen/width441"></GridView>
+                android:layout_height="@dimen/width450"></GridView>
         </LinearLayout>
 
     </LinearLayout>

@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             style="@style/text_64_ffffff"
             android:layout_gravity="bottom"
-            android:text="青岛"
+            android:text="获取中"
             />
 
         <ImageView
@@ -62,7 +62,7 @@
                 android:layout_width="@dimen/width77"
                 android:layout_height="@dimen/width56"
                 android:layout_gravity="center"
-                android:background="@drawable/weather_s_1"/>
+                android:background="@drawable/weather_8"/>
 
             <TextView
                 android:id="@+id/weater_content"
@@ -70,7 +70,7 @@
                 android:layout_height="wrap_content"
                 style="@style/text_30_ffffff"
                 android:layout_gravity="center"
-                android:text="晴"/>
+                android:text="获取中"/>
 
         </LinearLayout>
 
@@ -92,7 +92,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/width5"
                 style="@style/text_30_ffffff"
-                android:text="1℃~5℃"/>
+                android:text="获取中"/>
 
             <TextView
                 android:id="@+id/wind_status"
@@ -100,7 +100,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/width15"
                 style="@style/text_30_ffffff"
-                android:text="西北风3-5级"/>
+                android:text="获取中"/>
 
         </LinearLayout>
 

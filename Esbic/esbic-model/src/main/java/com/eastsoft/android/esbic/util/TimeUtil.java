@@ -12,22 +12,29 @@ public class TimeUtil
 		throw new AssertionError(); 
 	}
 	
-	public static boolean isSystemTimeCorrect() throws ParseException
+	public static boolean isSystemTimeCorrect()
 	{
-		SimpleDateFormat myfmt = new SimpleDateFormat("yyyyMMddHHmmss");
-		TimeZone timeZoneChina = TimeZone.getTimeZone("Asia/Shanghai");
-		myfmt.setTimeZone(timeZoneChina);
-		
-		Date date1 = new Date();
-		Date date2 = myfmt.parse("20160101000000");
-		long ms1 = date1.getTime();
-		long ms2 = date2.getTime();
-		long sdiff = (ms1-ms2)/1000;
-		if (sdiff < 0)
-		{
-			return false;
-		}
-		return true;
+        try
+        {
+            SimpleDateFormat myfmt = new SimpleDateFormat("yyyyMMddHHmmss");
+            TimeZone timeZoneChina = TimeZone.getTimeZone("Asia/Shanghai");
+            myfmt.setTimeZone(timeZoneChina);
+
+            Date date1 = new Date();
+            Date date2 = myfmt.parse("20160101000000");
+            long ms1 = date1.getTime();
+            long ms2 = date2.getTime();
+            long sdiff = (ms1-ms2)/1000;
+            if (sdiff < 0)
+            {
+                return false;
+            }
+        }catch (Exception e)
+        {
+            LogUtil.print(LogUtil.LogPriorityEnum.CORE_LOG_PRI_ERROR, e.getMessage());
+            return false;
+        }
+        return true;
 	}
 	
 	

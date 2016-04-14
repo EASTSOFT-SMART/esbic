@@ -63,7 +63,7 @@ public class TalkUtil
     {
         if(intercomTypeEnum == null || deviceInfo == null)
         {
-            LogUtil.print(LogUtil.LogPriorityEnum.CORE_LOG_PRI_ERROR, "TalkUtil intercomTypeEnum or deviceInfo is null!");
+            LogUtil.print(LogUtil.LogPriorityEnum.CORE_LOG_PRI_WARN, "TalkUtil intercomTypeEnum or deviceInfo is null!");
             return;
         }
         endTime = new Date().getTime();

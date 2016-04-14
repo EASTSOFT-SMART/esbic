@@ -28,79 +28,79 @@
         android:layout_height="match_parent"
         android:orientation="horizontal">
 
-    <LinearLayout
-        android:layout_gravity="center"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_width="@dimen/width1104"
-        android:layout_height="@dimen/width544"
-        android:orientation="horizontal">
         <LinearLayout
-            android:layout_width="@dimen/width303"
-            android:layout_height="@dimen/width544"
-
-            android:orientation="vertical">
-            <ListView
-                android:id="@+id/message_content_item"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/width482"
-                android:divider="#00000000"
-                android:dividerHeight="@dimen/width5" >
-            </ListView>
-            <TextView
-                android:id="@+id/message_unread"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/width58"
-                android:text="您有0条未读消息"
-                android:gravity="center"
-                android:background="@drawable/message_left_bg"
-                style="@style/text_25_ffffff"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_marginLeft="@dimen/width42"
             android:layout_gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-           <LinearLayout
-               android:layout_width="@dimen/width750"
-               android:layout_height="@dimen/width69"
-               android:background="@drawable/message_title_bg">
-               <TextView
-                   android:id="@+id/message_title"
-                   android:gravity="center"
-                   android:layout_gravity="center"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_marginLeft="@dimen/width45"
-                   android:text=""
-                   style="@style/text_32_ffffff"/>
-           </LinearLayout>
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_width="@dimen/width1104"
+            android:layout_height="@dimen/width544"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="@dimen/width303"
+                android:layout_height="@dimen/width544"
+
+                android:orientation="vertical">
+                <ListView
+                    android:id="@+id/message_content_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/width482"
+                    android:divider="#00000000"
+                    android:background="@drawable/message_left_bg"
+                    android:dividerHeight="@dimen/width5" >
+                </ListView>
+                <TextView
+                    android:id="@+id/message_unread"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/width58"
+                    android:text="您有0条未读消息"
+                    android:gravity="center"
+                    android:background="@drawable/message_left_bg"
+                    style="@style/text_25_ffffff"/>
+            </LinearLayout>
 
             <LinearLayout
+                android:layout_marginLeft="@dimen/width42"
+                android:layout_gravity="center"
                 android:layout_width="@dimen/width750"
-                android:layout_height="@dimen/width467"
-                android:background="@drawable/message_right_bg"
-                android:layout_marginTop="@dimen/width9">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+               <LinearLayout
+                   android:layout_width="@dimen/width750"
+                   android:layout_height="@dimen/width69"
+                   android:background="@drawable/message_title_bg">
+                   <TextView
+                       android:id="@+id/message_title"
+                       android:gravity="center"
+                       android:layout_gravity="center"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginLeft="@dimen/width45"
+                       android:text=""
+                       style="@style/text_32_ffffff"/>
+               </LinearLayout>
 
-                <TextView
-                    android:id="@+id/message_content"
-                    android:gravity="center"
-                    android:layout_gravity="center"
-                    android:layout_width="@dimen/width660"
-                    android:layout_marginLeft="@dimen/width45"
-                    style="@style/text_32_ffffff"
-                    android:layout_height="@dimen/width377"
-                    android:lineSpacingExtra="@dimen/width15"
-                    android:lineSpacingMultiplier="1.2"
-                    android:text=""/>
+                <LinearLayout
+                    android:layout_width="@dimen/width750"
+                    android:layout_height="@dimen/width467"
+                    android:background="@drawable/message_right_bg"
+                    android:layout_marginTop="@dimen/width9">
+
+                    <TextView
+                        android:id="@+id/message_content"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:layout_width="@dimen/width660"
+                        android:layout_marginLeft="@dimen/width45"
+                        style="@style/text_32_ffffff"
+                        android:layout_height="@dimen/width377"
+                        android:lineSpacingExtra="@dimen/width15"
+                        android:lineSpacingMultiplier="1.2"
+                        android:text=""/>
+
+                </LinearLayout>
 
             </LinearLayout>
 
         </LinearLayout>
-
-    </LinearLayout>
-</RelativeLayout>
-
+    </RelativeLayout>
 </LinearLayout>

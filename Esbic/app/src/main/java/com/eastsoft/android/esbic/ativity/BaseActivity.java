@@ -10,6 +10,8 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.HandlerThread;
 import android.os.SystemClock;
 import android.view.Gravity;
 import android.view.View;
@@ -35,16 +37,31 @@ public class BaseActivity extends Activity{
     protected int alarmId,alarmVoiceId,alterSuccessId,passwordWrongId,alterFailedId;
     protected Intent intent;
     protected Toast toast;
+    private HandlerThread handlerThread;
+    protected Handler handler;
+
+    public BaseActivity()
+    {
+        this.handlerThread = new HandlerThread(this.getClass().getSimpleName());
+        handlerThread.start();
+        this.handler = new Handler(handlerThread.getLooper());
+    }
 
     //初始化GrideView自定义的输入键盘
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initSoundPool();
-        toast = Toast.makeText(this, "", Toast.LENGTH_SHORT);//成员变量toast
+        toast = Toast.makeText(BaseActivity.this, "", Toast.LENGTH_SHORT);//成员变量toast
+        handler.postDelayed(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                initSoundPool();
+            }
+        },10);
     }
-
 
     //单例化Intent
     protected Intent getIntents(){

@@ -1,7 +1,5 @@
 package com.eastsoft.android.esbic.ativity;
 
-
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -20,14 +18,17 @@ import com.eastsoft.android.esbic.R;
 import com.eastsoft.android.esbic.jni.DeviceInfo;
 import com.eastsoft.android.esbic.jni.DeviceTypeEnum;
 import com.eastsoft.android.esbic.jni.IpAddressInfo;
+import com.eastsoft.android.esbic.jni.MessageInfoEnum;
 import com.eastsoft.android.esbic.service.BroadcastTypeEnum;
 import com.eastsoft.android.esbic.service.IModelService;
 import com.eastsoft.android.esbic.service.ModelServiceImpl;
 import com.eastsoft.android.esbic.table.AlarmInfo;
+import com.eastsoft.android.esbic.table.MessageInfo;
 import com.eastsoft.android.esbic.table.ParaInfo;
 import com.eastsoft.android.esbic.util.BoardCastFilterInfo;
 import com.eastsoft.android.esbic.util.JsonUtil;
 import com.eastsoft.android.esbic.util.LogUtil;
+import com.eastsoft.android.esbic.util.TimeUtil;
 import com.eastsoft.android.esbic.util.WifiScan;
 import com.eastsoft.android.esbic.weather.WeatherEnum;
 import com.eastsoft.android.esbic.weather.WeatherInfo;
@@ -35,21 +36,19 @@ import com.eastsoft.android.esbic.weather.WeatherUtil;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
+import java.util.Locale;
 
 /**
  * Created by sofa on 2016/1/22.
  */
-public class MainActivity extends BaseActivity implements View.OnClickListener {
+public class MainActivity extends BaseActivity implements View.OnClickListener
+{
     private Button message,callRecord,alarmRecord,voice,screenBrightness,wifi,
             leaveHome,callManagement,monitor,callOtherUser,setting,callElevator;
     private TextView weather,weather_tmp, week,yearMonthDay;
     private ImageView weatherIcon,hourFront,hourAfter,timeIcon,minuteFront,minuterAfter;
     private Dialog progressDialog;
     private String cityName;
-    private Handler handler;
     private Intent intent;
     private Date now;
     private TextClock clock;
@@ -58,32 +57,46 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private SimpleDateFormat simpleDateFormat;
     private BoardCastFilterInfo boardCastFilterInfo;
     private IModelService modelService;
+    private MyReceiver myReceiver;
+    private MyReceiver2 myReceiver2;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
-        if (android.os.Build.VERSION.SDK_INT > 9) {
+        if (android.os.Build.VERSION.SDK_INT > 9)
+        {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
-        initData();
-        new Thread(new QueryWeather()).start();
-        handler=new Handler(){
+        handler = new Handler()
+        {
             @Override
-            public void handleMessage(Message msg) {
-                if (msg.what==1){
-                    if (weatherInfo != null){
+            public void handleMessage(Message msg)
+            {
+                if (msg.what==1)
+                {
+                    if (weatherInfo != null)
+                    {
                         weather.setText(weatherInfo.description);
                         weather_tmp.setText(weatherInfo.lowTemperate +"～"+ weatherInfo.hightTemperate + "℃");
                         weatherIcon.setBackgroundResource(WeatherEnum.find(weatherInfo.description).icon);
                     }
+                }else if(msg.what == 2)
+                {
+                    simpleDateFormat=new SimpleDateFormat("yyyy年MM月dd日", Locale.CHINA);
+                    now =new Date();
+                    yearMonthDay.setText(simpleDateFormat.format(now));
+                    week.setText(new SimpleDateFormat("E", Locale.CHINA).format(now));
                 }
             }
         };
-
+        initData();
    }
 
-    private void  initData(){
+    private void  initData()
+    {
         message=(Button)this.findViewById(R.id.message);
         callRecord=(Button)this.findViewById(R.id.call_record);
         alarmRecord=(Button)this.findViewById(R.id.alarm_record);
@@ -98,88 +111,83 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         callElevator=(Button)this.findViewById(R.id.call_elevator);
         yearMonthDay=(TextView) this.findViewById(R.id.year_mouth_day);
         week=(TextView)this.findViewById(R.id.week);
-        message.setOnClickListener(this);
+
         weather=(TextView)this.findViewById(R.id.weather);
         weather_tmp=(TextView)this.findViewById(R.id.weather_tmp);
         weatherIcon=(ImageView)this.findViewById(R.id.weather_icon);
-        //clock=(TextClock)this.findViewById(R.id.main_time);
-        //clock.setFormat24Hour("hh:mm");
+
+        weatherIcon.setOnClickListener(this);
+
+        message.setOnClickListener(this);
         callRecord.setOnClickListener(this);
         alarmRecord.setOnClickListener(this);
+        wifi.setOnClickListener(this);
         voice.setOnClickListener(this);
         screenBrightness.setOnClickListener(this);
-        wifi.setOnClickListener(this);
-        leaveHome.setOnClickListener(this);
+        setting.setOnClickListener(this);
+
+
         callManagement.setOnClickListener(this);
         monitor.setOnClickListener(this);
-        setting.setOnClickListener(this);
-        callElevator.setOnClickListener(this);
         callOtherUser.setOnClickListener(this);
-        weatherIcon.setOnClickListener(this);
-        //progressDialog=new AlertDialog.Builder(this).setTitle("数据读取中").
-        //        setMessage("正在读取数据").create();
+        leaveHome.setOnClickListener(this);
+        callElevator.setOnClickListener(this);
+
         intent=getIntents();
-        simpleDateFormat=new SimpleDateFormat("yyyy年MM月dd日");
+        simpleDateFormat=new SimpleDateFormat("yyyy年MM月dd日", Locale.CHINA);
         now =new Date();
         yearMonthDay.setText(simpleDateFormat.format(now));
-        week.setText(new SimpleDateFormat("E").format(now));
+        week.setText(new SimpleDateFormat("E", Locale.CHINA).format(now));
         boardCastFilterInfo=new BoardCastFilterInfo();
 
         ((MyApplication)getApplication()).setModelService(new ModelServiceImpl(getApplicationContext()));
 
-        MyReceiver myReceiver = new MyReceiver();
+        myReceiver = new MyReceiver();
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction("com.eastsoft.android.esbic.model");
         registerReceiver(myReceiver, intentFilter);
 
-        MyReceiver2 myReceiver2 = new MyReceiver2();
+        myReceiver2 = new MyReceiver2();
         IntentFilter intentFilter2 = new IntentFilter();
         intentFilter2.addAction("com.eastsoft.android.esbic.app");
         registerReceiver(myReceiver2, intentFilter2);
 
         modelService = ((MyApplication)getApplication()).getModelService();
-        DeviceInfo deviceInfo = modelService.getDeviceInfo();
-        if(deviceInfo != null)
+        handler.postDelayed(new Runnable()
         {
-            modelService.init_intercom_core(deviceInfo);
-            IpAddressInfo ipAddressInfo = modelService.getIpAddressInfo();
-            if(ipAddressInfo != null && ipAddressInfo.getImpAdress().compareTo("") != 0)
+            @Override
+            public void run()
             {
-                modelService.init_imp_task(ipAddressInfo.getImpAdress());
+                DeviceInfo deviceInfo = modelService.getDeviceInfo();
+                if(deviceInfo != null)
+                {
+                    modelService.init_intercom_core(deviceInfo);
+                    IpAddressInfo ipAddressInfo = modelService.getIpAddressInfo();
+                    if(ipAddressInfo != null && ipAddressInfo.getImpAdress().compareTo("") != 0)
+                    {
+                        modelService.init_imp_task(ipAddressInfo.getImpAdress());
+                    }
+                }
+
+                new Thread(new QueryWeather()).start();
+                new Thread(new UpdateDate()).start();
+                new WifiScan(getApplicationContext()).openWifi();
             }
-        }
+        }, 100);
+
 //        MessageInfo info = new MessageInfo(MessageInfoEnum.MESSAGE.getType(), 0, "这是消息内容 " + TimeUtil.getDateTimeofNow2());
 //        info.save();
 //        AlarmInfo alarmInfo = new AlarmInfo(1);
 //        alarmInfo.save();
 //        alarmInfo = new AlarmInfo(4);
 //        alarmInfo.save();
-        new WifiScan(this).openWifi();
-    }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
         //注册自定义动态广播信息
-        IntentFilter filter=new IntentFilter();
-        filter.addAction(boardCastFilterInfo.ONCALLBYDOOR);
-        registerReceiver(listenDoorDeviceCall,filter);
-
-        IntentFilter filter1=new IntentFilter();
-        filter1.addAction(Intent.ACTION_SCREEN_OFF);
-        registerReceiver(listenScreenClose,filter1);
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(Intent.ACTION_SCREEN_OFF);
+        registerReceiver(listenScreenClose, filter);
     }
 
-
-    //使用BroadcastReceiver创建广播监听，监听来自门口机的呼叫等。
-    protected BroadcastReceiver listenDoorDeviceCall=new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            if (intent.getAction().equals(boardCastFilterInfo.ONCALLBYDOOR)){
-                startOncallActivity(context);
-            }
-        }
-    };
     //使用BroadcastReceiver创建广播监听，监听屏幕的关闭。
     protected BroadcastReceiver listenScreenClose=new BroadcastReceiver() {
         @Override
@@ -190,15 +198,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             context.startActivity(i);
         }
     };
-
-    //启动被呼叫页面,来响应门口机的呼叫
-    protected void startOncallActivity(Context context){
-        intent=getIntents();
-        intent.setClass(context,OnCallActivity.class);
-        startActivity(intent);
-    }
-
-
 
     @Override
     public void onClick(View view) {
@@ -262,13 +261,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             startActivity(intent);
         }
         if (view.getId()==callElevator.getId()){
-//            intent.setClass(MainActivity.this,OnCallActivity.class);
-//            startActivity(intent);
+            showShortToast("绿色出行，拒绝电梯!");
         }
     }
 
   //查询天气
-    private void getWeatherInformation(){
+    private boolean getWeatherInformation()
+    {
         String city = "青岛";
         ParaInfo paraInfo = modelService.getParaInfoByName("city");
         if(paraInfo!= null && paraInfo.getValue().compareTo("")!=0)
@@ -278,31 +277,46 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         weatherInfo = WeatherUtil.getWeather(city);
         if(weatherInfo == null)
         {
-            handler.postDelayed(new QueryWeather(), 5);
+            handler.postDelayed(new QueryWeather(), 10000);
+            return false;
         }
-    }
-    //非空判断
-    private void checkCityName(String cityName){
-        if (null==cityName||cityName.equals("")){
-            new AlertDialog.Builder(this).setTitle("输入不正确").
-                    setMessage("城市名不能为空").setPositiveButton("确定",null).show();
-            return;
-        }
+        return true;
     }
 
-   class QueryWeather implements Runnable{
-
+   class QueryWeather implements Runnable
+   {
        @Override
-       public void run() {
+       public void run()
+       {
            Message message=new Message();
-           getWeatherInformation();
+           boolean result = getWeatherInformation();
+           if(!result)
+           {
+               return;
+           }
            Bundle bundle=new Bundle();
            bundle.putBoolean("1",false);
            message.setData(bundle);
            message.what=1;
-           handler.sendMessageDelayed(message,200);
+           handler.sendMessageDelayed(message, 200);
        }
    }
+
+    class UpdateDate implements Runnable
+    {
+        @Override
+        public void run()
+        {
+            Message message=new Message();
+            message.what=2;
+            handler.sendMessageDelayed(message, 200);
+            if(TimeUtil.isSystemTimeCorrect())
+            {
+                return;
+            }
+            handler.postDelayed(new UpdateDate(), 3000);
+        }
+    }
 
     public class MyReceiver extends BroadcastReceiver
     {
@@ -317,6 +331,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             {
                 case CALL_REQUEST :
                     DeviceInfo deviceInfo = JsonUtil.fromJson(value, DeviceInfo.class);
+                    if(deviceInfo == null)
+                    {
+                        return;
+                    }
                     if(deviceInfo.getDevice_type() == DeviceTypeEnum.DT_UNIT_DOOR_MACHINE.getType())
                     {
                         intent.setClass(MainActivity.this, OnCallActivity.class);
@@ -380,5 +398,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                     break;
             }
         }
+    }
+
+    @Override
+    protected void onDestroy()
+    {
+        super.onDestroy();
+        unregisterReceiver(myReceiver);
+        unregisterReceiver(myReceiver2);
+        unregisterReceiver(listenScreenClose);
+        LogUtil.print(this.getClass().getSimpleName() + " onDestroy !");
     }
 }

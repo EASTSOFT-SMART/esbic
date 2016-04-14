@@ -13,14 +13,14 @@
         >
         <Button
             android:id="@+id/message"
-            android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/width105"
+            android:layout_marginTop="@dimen/width14"
+            android:layout_marginLeft="@dimen/width100"
             android:layout_width="@dimen/width71"
             android:layout_height="@dimen/width47"
             android:background="@drawable/message"/>
         <Button
             android:id="@+id/call_record"
-            android:layout_marginTop="@dimen/width23"
+            android:layout_marginTop="@dimen/width18"
             android:layout_marginLeft="@dimen/width98"
             android:layout_width="@dimen/width71"
             android:layout_height="@dimen/width47"
@@ -29,7 +29,7 @@
             />
         <Button
             android:id="@+id/alarm_record"
-            android:layout_marginTop="@dimen/width23"
+            android:layout_marginTop="@dimen/width18"
             android:layout_marginLeft="@dimen/width98"
             android:layout_width="@dimen/width71"
             android:layout_height="@dimen/width47"
@@ -38,7 +38,7 @@
            />
         <Button
             android:id="@+id/wifi"
-            android:layout_marginTop="@dimen/width23"
+            android:layout_marginTop="@dimen/width18"
             android:layout_marginLeft="@dimen/width98"
             android:layout_width="@dimen/width71"
             android:layout_height="@dimen/width47"
@@ -47,7 +47,7 @@
             />
         <Button
             android:id="@+id/volume"
-            android:layout_marginTop="@dimen/width23"
+            android:layout_marginTop="@dimen/width18"
             android:layout_marginLeft="@dimen/width98"
             android:layout_width="@dimen/width71"
             android:layout_height="@dimen/width47"
@@ -56,7 +56,7 @@
             />
         <Button
             android:id="@+id/brightness"
-            android:layout_marginTop="@dimen/width23"
+            android:layout_marginTop="@dimen/width18"
             android:layout_marginLeft="@dimen/width98"
             android:layout_width="@dimen/width71"
             android:layout_height="@dimen/width47"
@@ -65,7 +65,7 @@
             />
         <Button
             android:id="@+id/set"
-            android:layout_marginTop="@dimen/width23"
+            android:layout_marginTop="@dimen/width18"
             android:layout_marginLeft="@dimen/width98"
             android:layout_width="@dimen/width71"
             android:layout_height="@dimen/width47"
@@ -84,7 +84,7 @@
     <LinearLayout
         android:layout_width="@dimen/width489"
         android:layout_height="@dimen/width501"
-        android:layout_marginTop="@dimen/width121"
+        android:layout_marginTop="@dimen/width100"
         android:layout_marginLeft="@dimen/width102"
         android:orientation="vertical"
         android:background="@drawable/bg"
@@ -108,7 +108,7 @@
                   android:layout_gravity="right"
                   android:layout_width="wrap_content"
                   android:layout_height="@dimen/width35"
-                  android:text="未知"
+                  android:text="获取中"
                   android:layout_marginTop="@dimen/width5"
                   style="@style/text_30_ffffff"/>
                 <TextView
@@ -118,7 +118,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/width35"
                     android:layout_marginTop="@dimen/width10"
-                    android:text="0~10C" />
+                    android:text="获取中" />
             </LinearLayout>
 
             <ImageView
@@ -126,7 +126,7 @@
                 android:layout_width="@dimen/width118"
                 android:layout_height="@dimen/width84"
                 android:layout_marginLeft="@dimen/width10"
-                android:background="@drawable/weather_9"/>
+                android:background="@drawable/weather_8"/>
 
         </LinearLayout>
         <!--温度，最高低温度，时间，天气结束 -->
@@ -183,7 +183,7 @@
         <LinearLayout
             android:layout_width="@dimen/width520"
             android:layout_height="@dimen/width386"
-            android:layout_marginTop="@dimen/width173"
+            android:layout_marginTop="@dimen/width153"
             android:layout_marginLeft="@dimen/width67"
             android:orientation="vertical">
             <LinearLayout

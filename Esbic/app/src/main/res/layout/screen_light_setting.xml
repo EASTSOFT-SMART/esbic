@@ -49,7 +49,7 @@
                 android:id="@+id/screen_light_decrease"
                 android:layout_width="@dimen/width55"
                 android:layout_height="@dimen/width55"
-                android:background="@drawable/brightness_down2"/>
+                android:background="@drawable/screen_light_decrease"/>
             <SeekBar
                 android:id="@+id/screen_light_seekbar"
                 android:layout_marginLeft="@dimen/width27"
@@ -68,7 +68,7 @@
                 android:layout_width="@dimen/width55"
                 android:layout_height="@dimen/width55"
                 android:layout_marginLeft="@dimen/width23"
-                android:background="@drawable/brightness_up2"/>
+                android:background="@drawable/screen_light_add"/>
 
         </LinearLayout>
 
