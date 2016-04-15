@@ -91,7 +91,7 @@
         >
         <!--温度,最低温度最高温度,时间+天气开始-->
         <LinearLayout
-            android:id="@+id/rel"
+            android:id="@+id/weatherLinearLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/width55"
@@ -140,6 +140,7 @@
             android:background="@drawable/the_white_line"/>
 
         <TextClock
+            android:id="@+id/clock"
             android:layout_gravity="right"
             android:gravity="center"
             android:textSize="@dimen/width95"
