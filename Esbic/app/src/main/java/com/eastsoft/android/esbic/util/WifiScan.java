@@ -149,7 +149,9 @@ public class WifiScan {
                 wifiCong.hiddenSSID = false;
                 wifiCong.status = WifiConfiguration.Status.ENABLED;
                 wifiId =wifiManager.addNetwork(wifiCong);//将配置好的特定WIFI密码信息添加,添加完成后默认是不激活状态，成功返回ID，否则为-1
-                if(wifiId!= -1){
+                wifiManager.saveConfiguration();        // 修改wifi配置后（添加或删除），必须调用此函数保存当前配置信息，否则此时断电的话，设置的信息是不会保存的
+                if(wifiId!= -1)
+                {
                     return wifiId;
                 }
             }
