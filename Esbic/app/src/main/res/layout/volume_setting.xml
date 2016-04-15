@@ -9,16 +9,15 @@
         android:background="@drawable/top_bg">
         <ImageButton
             android:id="@+id/volume_setting_back"
-            android:layout_gravity="center"
             android:layout_marginLeft="@dimen/width50"
             android:layout_width="@dimen/width36"
             android:layout_height="@dimen/width81"
             android:background="@drawable/top_back" />
         <TextView
             android:id="@+id/volume_setting_back2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/width81"
+            android:gravity="center_vertical"
             style="@style/text_25_ffffff"
             android:text="返回"/>
     </LinearLayout>

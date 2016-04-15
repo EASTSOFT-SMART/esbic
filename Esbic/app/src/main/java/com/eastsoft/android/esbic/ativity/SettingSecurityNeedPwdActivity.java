@@ -28,6 +28,8 @@ import java.util.Map;
 public class SettingSecurityNeedPwdActivity extends BaseActivity implements View.OnClickListener,AdapterView.OnItemClickListener {
     private TextView numOne, numTwo, numThree, numFour;
     private GridView inputKeyBoard;
+    private ImageButton back;
+    private TextView back2;
     private int[] icon;
     private String password;
     private List<Map<String, Object>> mapList;
@@ -42,6 +44,10 @@ public class SettingSecurityNeedPwdActivity extends BaseActivity implements View
     }
 
     private void initData() {
+        back=(ImageButton) this.findViewById(R.id.security_setting_passwd_back);
+        back2=(TextView) this.findViewById(R.id.security_setting_passwd_back2);
+        back.setOnClickListener(this);
+        back2.setOnClickListener(this);
         numOne = (TextView) this.findViewById(R.id.need_pwd_num_one);
         numTwo = (TextView) this.findViewById(R.id.need_pwd_num_two);
         numThree = (TextView) this.findViewById(R.id.need_pwd_num_three);
@@ -55,7 +61,13 @@ public class SettingSecurityNeedPwdActivity extends BaseActivity implements View
     }
 
     @Override
-    public void onClick(View view) {
+    public void onClick(View view)
+    {
+        playMusic();
+        if (view.getId()==back.getId() || view.getId()==back2.getId())
+        {
+            finish();
+        }
     }
 
     @Override

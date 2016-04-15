@@ -202,43 +202,47 @@ public class MainActivity extends BaseActivity implements View.OnClickListener
     @Override
     public void onClick(View view) {
         playMusic();
-
         if (view.getId()==weatherIcon.getId()){
             intent.setClass(MainActivity.this,WeatherSettingActivity.class);
             startActivity(intent);
         }
-
-        if (view.getId()==message.getId()){
+        else if (view.getId()==message.getId()){
             intent.setClass(MainActivity.this,MessageContentActivity.class);
             startActivity(intent);
         }
-        if (view.getId()==callRecord.getId()){
+        else if (view.getId()==callRecord.getId()){
             intent.setClass(MainActivity.this,CallRecordActivity.class);
             startActivity(intent);
-
         }
-        if(view.getId()==alarmRecord.getId()){
+        else if(view.getId()==alarmRecord.getId()){
             intent.setClass(MainActivity.this,AlarmRecordActivity.class);
             startActivity(intent);
         }
-        if(view.getId()==voice.getId()){
-            intent.setClass(MainActivity.this,VolumeActivity.class);
-            startActivity(intent);
-        }
-        if(view.getId()==screenBrightness.getId()){
-            intent.setClass(MainActivity.this,ScreenLightActivity.class);
-            startActivity(intent);
-        }
-        if(view.getId()==wifi.getId()){
+        else if(view.getId()==wifi.getId()){
             intent.setClass(MainActivity.this,WifiSettingActivity.class);
             startActivity(intent);
         }
-
-        if (view.getId()==leaveHome.getId()){
-            intent.setClass(MainActivity.this,StandByActivity.class);
+        else if(view.getId()==voice.getId()){
+            intent.setClass(MainActivity.this,VolumeActivity.class);
             startActivity(intent);
         }
-        if (view.getId()==callManagement.getId()){
+        else if(view.getId()==screenBrightness.getId()){
+            intent.setClass(MainActivity.this,ScreenLightActivity.class);
+            startActivity(intent);
+        }
+        else if (view.getId()==setting.getId()){
+            intent.setClass(MainActivity.this,SettingActivity.class);
+            startActivity(intent);
+        }
+        else if (view.getId()==monitor.getId()){
+            intent.setClass(MainActivity.this,MonitorActivity.class);
+            startActivity(intent);
+        }
+        else if (view.getId()==callOtherUser.getId()){
+            intent.setClass(MainActivity.this,CallMain.class);
+            startActivity(intent);
+        }
+        else if (view.getId()==callManagement.getId()){
             IpAddressInfo ipAddressInfo = modelService.getIpAddressInfo();
             if(ipAddressInfo == null || ipAddressInfo.getCenterAddress() == null || ipAddressInfo.getCenterAddress().compareTo("") == 0)
             {
@@ -248,20 +252,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener
             intent.setClass(MainActivity.this,CallManagementCenterActivity.class);
             startActivity(intent);
         }
-        if (view.getId()==monitor.getId()){
-            intent.setClass(MainActivity.this,MonitorActivity.class);
+        else if (view.getId()==leaveHome.getId()){
+            intent.setClass(MainActivity.this,StandByActivity.class);
             startActivity(intent);
         }
-        if (view.getId()==setting.getId()){
-            intent.setClass(MainActivity.this,SettingActivity.class);
-            startActivity(intent);
-        }
-        if (view.getId()==callOtherUser.getId()){
-            intent.setClass(MainActivity.this,CallMain.class);
-            startActivity(intent);
-        }
-        if (view.getId()==callElevator.getId()){
-            showShortToast("绿色出行，拒绝电梯!");
+        else if (view.getId()==callElevator.getId()){
+            showShortToast("绿色出行，请走楼梯!");
         }
     }
 
