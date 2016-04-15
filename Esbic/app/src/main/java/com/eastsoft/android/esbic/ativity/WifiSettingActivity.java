@@ -269,7 +269,7 @@ public class WifiSettingActivity extends BaseActivity implements View.OnClickLis
             @Override
             public void onClick(View view)
             {
-                dialog.dismiss();
+                closeDialog(dialog, view);
             }
         });
         connect.setOnClickListener(new View.OnClickListener()
@@ -293,12 +293,7 @@ public class WifiSettingActivity extends BaseActivity implements View.OnClickLis
                             currentIndex = WifiSettingActivity.this.position;
                             wifiState[currentIndex] = true;
                             WifiSettingActivity.this.wifiInfoAdapter.notifyDataSetChanged();
-                            dialog.dismiss();
-                            // 隐藏输入法软键盘
-                            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                            imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
-                            imm.hideSoftInputFromWindow(view.getWindowToken(), 0); //强制隐藏键盘
-                            ((InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(WifiSettingActivity.this.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                            closeDialog(dialog, view);
                         } else if (status == 1)
                         {
                             showShortToast("连接失败！");
@@ -314,6 +309,17 @@ public class WifiSettingActivity extends BaseActivity implements View.OnClickLis
             }
         });
         dialog.show();
+    }
+
+    private void closeDialog(Dialog dialog, View view)
+    {
+        dialog.dismiss();
+        // 隐藏输入法软键盘
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0); //强制隐藏键盘
+        ((InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(WifiSettingActivity.this.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+
     }
 
     @Override
