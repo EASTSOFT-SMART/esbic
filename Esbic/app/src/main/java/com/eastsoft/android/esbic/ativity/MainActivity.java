@@ -9,11 +9,15 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.StrictMode;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextClock;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.eastsoft.android.esbic.R;
 import com.eastsoft.android.esbic.jni.DeviceInfo;
 import com.eastsoft.android.esbic.jni.DeviceTypeEnum;
@@ -47,11 +51,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener
             leaveHome,callManagement,monitor,callOtherUser,setting,callElevator;
     private TextView weather,weather_tmp, week,yearMonthDay;
     private ImageView weatherIcon,hourFront,hourAfter,timeIcon,minuteFront,minuterAfter;
+    private LinearLayout weatherLinearLayout;
     private Dialog progressDialog;
     private String cityName;
     private Intent intent;
     private Date now;
     private TextClock clock;
+    private volatile long clickCount;
     private String time;
     private WeatherInfo weatherInfo;
     private SimpleDateFormat simpleDateFormat;
@@ -115,8 +121,41 @@ public class MainActivity extends BaseActivity implements View.OnClickListener
         weather=(TextView)this.findViewById(R.id.weather);
         weather_tmp=(TextView)this.findViewById(R.id.weather_tmp);
         weatherIcon=(ImageView)this.findViewById(R.id.weather_icon);
+        weatherLinearLayout = (LinearLayout)this.findViewById(R.id.weatherLinearLayout);
+        weatherLinearLayout.setOnClickListener(this);
 
-        weatherIcon.setOnClickListener(this);
+        clock = (TextClock)this.findViewById(R.id.clock);
+        clock.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                clickCount++;
+                if (clickCount > 1)
+                {
+                    if (clickCount == 4)
+                    {
+                        LogUtil.print(LogUtil.LogPriorityEnum.CORE_LOG_PRI_ERROR, "finish application, bye bye!");
+                        android.os.Process.killProcess(android.os.Process.myPid());    //获取PID
+                        System.exit(0);
+                    }
+                    return;
+                }
+                new Thread(new Runnable()
+                {
+                    @Override
+                    public void run()
+                    {
+                        try {
+                            Thread.sleep(2000);
+                            clickCount = 0;
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
+            }
+        });
 
         message.setOnClickListener(this);
         callRecord.setOnClickListener(this);
@@ -202,7 +241,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener
     @Override
     public void onClick(View view) {
         playMusic();
-        if (view.getId()==weatherIcon.getId()){
+        if (view.getId()==weatherLinearLayout.getId()){
             intent.setClass(MainActivity.this,WeatherSettingActivity.class);
             startActivity(intent);
         }
