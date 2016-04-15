@@ -26,6 +26,7 @@ import com.eastsoft.android.esbic.jni.DeviceInfo;
 import com.eastsoft.android.esbic.jni.DeviceTypeEnum;
 import com.eastsoft.android.esbic.service.BroadcastTypeEnum;
 import com.eastsoft.android.esbic.service.IModelService;
+import com.eastsoft.android.esbic.util.LogUtil;
 
 import org.videolan.libvlc.EventHandler;
 import org.videolan.libvlc.IVideoPlayer;
@@ -56,7 +57,7 @@ public class MonitorActivity extends BaseActivity implements View.OnClickListene
     private int currentMonitorIndex;
     private DeviceInfo currentDeviceInfo;
     private View currentView;
-
+    private MyMonitorReceiver myReceiver;
     private LibVLC mMediaPlayer;
     private SurfaceHolder mSurfaceHolder;
     private int mVideoHeight;
@@ -90,7 +91,7 @@ public class MonitorActivity extends BaseActivity implements View.OnClickListene
 
         modelService = ((MyApplication)getApplication()).getModelService();
 
-        MyMonitorReceiver myReceiver = new MyMonitorReceiver();
+        myReceiver = new MyMonitorReceiver();
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction("com.eastsoft.android.esbic.model");
         registerReceiver(myReceiver, intentFilter);
@@ -263,6 +264,8 @@ public class MonitorActivity extends BaseActivity implements View.OnClickListene
             EventHandler em = EventHandler.getInstance();
             em.removeHandler(mVlcHandler);
         }
+        unregisterReceiver(myReceiver);
+        LogUtil.print(this.getClass().getSimpleName() + " onDestroy !");
     }
 
     @Override

@@ -14,6 +14,7 @@ import com.eastsoft.android.esbic.util.TimeUtil;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -50,7 +51,7 @@ public class SettingDateActivity extends BaseActivity implements View.OnClickLis
         InputKeyBoardAdapter inputKeyBoardAdapter = new InputKeyBoardAdapter(this, icon, "确认");
         inputKeyBoard.setAdapter(inputKeyBoardAdapter);
         inputKeyBoard.setOnItemClickListener(this);
-        simpleDateFormat = new SimpleDateFormat("yyMMdd");
+        simpleDateFormat = new SimpleDateFormat("yyMMdd", Locale.CHINA);
 
         String time = TimeUtil.getDateTimeofNow4(); // yyyyMMddHHmmss
         dateYear.setText(time.substring(0, 4));
