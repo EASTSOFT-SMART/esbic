@@ -1,0 +1,3 @@
+JNIEXPORT jint JNICALL Java_com_eastsoft_android_esbic_jni_JniUtil_unregister_1handler
+  (JNIEnv *, jobject, jint);
+
